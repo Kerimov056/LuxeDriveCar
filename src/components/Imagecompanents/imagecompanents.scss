@@ -1,0 +1,23 @@
+#ImageC{
+    width: 100%;
+    height: 88vh;
+
+    &>img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+
+#merc{
+    margin-top: 80px;
+    width: 100%;
+    height: 470px;
+
+    &>img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}

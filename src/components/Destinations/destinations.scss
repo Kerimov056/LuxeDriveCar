@@ -1,0 +1,84 @@
+
+#Destinations{
+    width: 100%;
+    height: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+
+    &>div{
+        width: 88%;
+        height: 100%;
+
+        .Basliq{
+            width: 100%;
+            height: 30%;
+            border-bottom: 1px solid rgb(154, 154, 154);
+            flex-wrap: wrap;
+            flex-direction: column;
+            align-content: flex-end;
+
+            &>p{
+                height: 120px;
+            }
+
+            &>h1{
+                font-size: 34px;
+                color: white;
+            }
+
+            &>h3{
+                font-size: 18px;
+                color: #bfa37c;
+            }
+        }
+
+        .DestinationsCardIn{
+            width: 100%;
+            height: 70%;
+            grid-column: 20px;
+            grid-row: 20px;
+            display: flex;
+            justify-content: space-between;
+            overflow: hidden;
+            
+            .bossss{
+                width: 12%;
+            }
+
+            .griddd{
+                margin-right: -120px;
+                width: 88%;
+                display: grid;
+                grid-template-columns: auto auto auto;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+#DestinationsCard{
+    width: 400px;
+    height: 200px;
+    
+    &>h3{
+        font-size: 26px;
+        font-weight: 699;
+        color: white;
+    }
+
+    &>p{
+        margin-top: 10px;
+        color: gray;
+        font-size: 18px;
+    }
+}

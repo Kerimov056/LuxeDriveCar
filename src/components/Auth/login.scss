@@ -1,0 +1,268 @@
+.login_section {
+    width: 100%;
+    height: 100vh;
+    background-color: #50b5ff;
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+
+
+    .container {
+        width: 1670px;
+        height: 1670px;
+        position: relative;
+        margin-left: -800px;
+        margin-top: -880px;
+    }
+
+    .circle {
+        width: 100%;
+        height: 100%;
+        background-color: aqua;
+        position: absolute;
+        border-radius: 50%;
+        animation: ripple-animation 2.8s infinite ease-out;
+    }
+
+    .circle1 {
+        animation-delay: 0s;
+        background-color: #dcecf7;
+    }
+
+    .circle2 {
+        animation-delay: 500ms;
+        background-color: #daefff;
+    }
+
+    .circle3 {
+        animation-delay: 1s;
+        background-color: #abd7f6;
+    }
+
+    .circle4 {
+        animation-delay: 1500ms;
+        background-color: #84ccff;
+    }
+
+    @keyframes ripple-animation {
+        0% {
+            transform: scale(0.1);
+            opacity: 1;
+        }
+
+        100% {
+            transform: scale(1);
+            opacity: 0;
+        }
+    }
+
+    .background {
+        width: 430px;
+        height: 520px;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        top: 50%;
+    }
+
+    .login_form {
+        height: 520px;
+        width: 400px;
+        background-color: rgba(255, 255, 255, 0.13);
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 38%;
+        border-radius: 10px;
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+        padding: 50px 35px;
+
+        * {
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            outline: none;
+            border: none;
+        }
+
+        h3 {
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 42px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 30px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        input {
+            display: block;
+            height: 50px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.07);
+            border-radius: 3px;
+            padding: 0 10px;
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: 300;
+
+            &::placeholder {
+                color: #e5e5e5;
+            }
+        }
+
+        button {
+            margin-top: 50px;
+            width: 100%;
+            background-color: #ffffff;
+            color: #080710;
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    }
+
+
+    .Socialllll {
+        width: 625px;
+        height: 140px;
+        margin-top: 300px;
+        margin-right: 10px;
+        cursor: pointer;
+
+        @import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+
+        .content {
+            position: relative;
+        }
+
+        .content h2 {
+            color: #fff;
+            font-size: 9em;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            margin-left: 200px;
+        }
+
+        .content h2:nth-child(1) {
+            color: transparent;
+            -webkit-text-stroke: 2px #ffffff;
+        }
+
+        .content h2:nth-child(2) {
+            color: #84ccff;
+            animation: animate 2s ease-in-out infinite;
+        }
+
+        @keyframes animate {
+
+            0%,
+            100% {
+                clip-path: polygon(0% 45%,
+                        16% 44%,
+                        33% 50%,
+                        54% 60%,
+                        70% 61%,
+                        84% 59%,
+                        100% 52%,
+                        100% 100%,
+                        0% 100%);
+            }
+
+            50% {
+                clip-path: polygon(0% 60%,
+                        15% 65%,
+                        34% 66%,
+                        51% 62%,
+                        67% 50%,
+                        84% 45%,
+                        100% 46%,
+                        100% 100%,
+                        0% 100%);
+            }
+        }
+
+
+        #txt {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            font-family: sans-serif;
+            letter-spacing: 3.5px;
+            font-size: 3.5rem;
+            font-weight: 700;
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 100px;
+            -webkit-transform-style: preserve-3d;
+            -webkit-perspective: 100px;
+            margin-top: 100px;
+        }
+
+        #txt>b {
+            height: 3.5rem;
+            box-shadow: 0 .4rem .3rem -.3rem #aaa;
+            color: #979c9f;
+            background: linear-gradient(#aaf, #acf, #afc);
+            background-clip: text;
+            text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transform-origin: bottom;
+            transform: rotateX(-85deg);
+            -webkit-transform-origin: bottom;
+            -webkit-transform: rotateX(-85deg);
+            animation: getUp 7s infinite;
+        }
+
+        #txt>b:nth-child(2) {
+            animation-delay: .25s;
+        }
+
+        #txt>b:nth-child(3) {
+            animation-delay: .5s;
+        }
+
+        #txt>b:nth-child(4) {
+            animation-delay: .75s;
+        }
+
+        #txt>b:nth-child(5) {
+            animation-delay: 1s;
+        }
+
+        #txt>b:nth-child(6) {
+            animation-delay: 1.25s;
+        }
+
+        #txt>b:nth-child(7) {
+            animation-delay: 1.5s;
+        }
+
+        #txt>b:nth-child(8) {
+            animation-delay: 1.75s;
+        }
+
+        @keyframes getUp {
+
+            10%,
+            50% {
+                transform: rotateX(0);
+            }
+
+            0%,
+            60%,
+            100% {
+                transform: rotateX(-85deg);
+            }
+        }
+    }
+}
