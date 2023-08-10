@@ -4,12 +4,16 @@ import DestinationsCard from './DestinationsCard'
 import Chauffeurs from '../Chauffeurs/Chauffeurs'
 
 const Destinations = (props) => {
+
+    const Color = props.color;
+
+
     return (
-        <div id='Destinations'>
+        <div id='Destinations' style={{backgroundColor:Color}}>
             <div>
                 <div className='Basliq'>
                     <p></p>
-                    <h1>{props.name}</h1>
+                    <h1 style={{color: Color==="white" ? "black" : "white"}}>{props.name}</h1>
                     <h3>{props.topic}</h3>
                 </div>
                 <div className='DestinationsCardIn'>
@@ -17,10 +21,10 @@ const Destinations = (props) => {
                     <div className='griddd'>
                         {props.isAnswer && (
                             [
-                                <DestinationsCard key="1" descrption={"Tortor condimentum lacinia quis vel eros donec odio. Feugiat fermentum in posuere urna. Faucibus turpis in eun mi bibendum."} name={"No Delays"} />,
-                                <DestinationsCard key="2" descrption={"Tortor condimentum lacinia quis vel eros donec odio. Feugiat fermentum in posuere urna. Faucibus turpis in eun mi bibendum."} name={"High Quality"} />,
-                                <DestinationsCard key="3" descrption={"Tortor condimentum lacinia quis vel eros donec odio. Feugiat fermentum in posuere urna. Faucibus turpis in eun mi bibendum."} name={"Premium Support"} />,
-                                <DestinationsCard key="4" descrption={"Tortor condimentum lacinia quis vel eros donec odio. Feugiat fermentum in posuere urna. Faucibus turpis in eun mi bibendum."} name={"A Diverse Selection"} />,
+                                <DestinationsCard color={Color==="white" ? "black" : "white" } key="1" descrption={"Tortor condimentum lacinia quis vel eros donec odio. Feugiat fermentum in posuere urna. Faucibus turpis in eun mi bibendum."} name={"No Delays"} />,
+                                <DestinationsCard color={Color==="white" ? "black" : "white" } key="2" descrption={"Tortor condimentum lacinia quis vel eros donec odio. Feugiat fermentum in posuere urna. Faucibus turpis in eun mi bibendum."} name={"High Quality"} />,
+                                <DestinationsCard color={Color==="white" ? "black" : "white" } key="3" descrption={"Tortor condimentum lacinia quis vel eros donec odio. Feugiat fermentum in posuere urna. Faucibus turpis in eun mi bibendum."} name={"Premium Support"} />,
+                                <DestinationsCard color={Color==="white" ? "black" : "white" } key="4" descrption={"Tortor condimentum lacinia quis vel eros donec odio. Feugiat fermentum in posuere urna. Faucibus turpis in eun mi bibendum."} name={"A Diverse Selection"} />,
                             ]
                         )}
                         {props.isHuman && (
