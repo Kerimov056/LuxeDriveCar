@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react'
 import './carcatogorie.scss'
 import { AiOutlineCheck } from 'react-icons/ai'
 import  AOS from 'aos'
+import "aos/dist/aos.css";
+
+
 
 const Carcatogorie = (props) => {
 
