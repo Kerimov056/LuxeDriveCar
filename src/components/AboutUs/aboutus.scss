@@ -12,6 +12,7 @@
         .CatalogName {
             width: 100%;
             height: 210px;
+            margin-top: 100px;
 
             &>h1 {
                 font-size: 55px;
@@ -53,13 +54,13 @@
                 display: flex;
                 align-items: center;
                 width: fit-content;
-                animation: carouselAnim 3s infinite alternate linear;
+                animation: carouselAnim 9s infinite alternate linear;
             }
 
 
             @media only screen and (max-width: 768px) {
                 .items {
-                    animation: carouselAnim 35s infinite alternate linear;
+                    animation: carouselAnim 350s infinite alternate linear;
                 }
 
                 @keyframes carouselAnim {
@@ -101,8 +102,8 @@
             .faders .right,
             .faders .left {
                 background: linear-gradient(to right,
-                        rgb(100, 100, 100) 0%,
-                        rgba(255, 255, 255, 0) 100%);
+                        rgba(255, 255, 255, 0) 100%,
+                        rgb(100, 100, 100) 0%);
                 width: 15%;
                 height: 100%;
                 position: absolute;
