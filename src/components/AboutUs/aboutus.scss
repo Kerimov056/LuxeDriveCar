@@ -1,0 +1,122 @@
+.CarCards {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &>div {
+        width: 88%;
+        height: 100%;
+
+        .CatalogName {
+            width: 100%;
+            height: 210px;
+
+            &>h1 {
+                font-size: 55px;
+                color: black;
+            }
+
+            &>h3 {
+                color: #bfa37c;
+                letter-spacing: 2px;
+                font-size: 20px;
+            }
+        }
+
+        #HomeAbout {
+            width: 100%;
+            height: 80vh;
+            background-color: rgb(255, 255, 255);
+            display: flex;
+
+            @import url("https://fonts.googleapis.com/css?family=Muli:400,700&display=swap");
+
+
+            h1 {
+                text-align: left;
+                margin: 1.5em;
+                color: white;
+                font-size: 50px;
+            }
+
+            .container {
+                width: 100%;
+                overflow: hidden;
+                position: relative;
+                height: 600px;
+            }
+
+            .items {
+                height: 100%;
+                display: flex;
+                align-items: center;
+                width: fit-content;
+                animation: carouselAnim 3s infinite alternate linear;
+            }
+
+
+            @media only screen and (max-width: 768px) {
+                .items {
+                    animation: carouselAnim 35s infinite alternate linear;
+                }
+
+                @keyframes carouselAnim {
+                    from {
+                        transform: translate(0, 0);
+                    }
+
+                    to {
+                        transform: translate(calc(-100% + (2 * 300px)));
+                    }
+                }
+            }
+
+            .entry p {
+                text-align: center;
+                padding: 1em;
+            }
+
+            .name {
+                font-weight: bold;
+            }
+
+            @keyframes carouselAnim {
+                from {
+                    transform: translate(0, 0);
+                }
+
+                to {
+                    transform: translate(calc(-100% + (5 * 300px)));
+                }
+            }
+
+            .container .faders {
+                width: 100%;
+                position: absolute;
+                height: 100%;
+            }
+
+            .faders .right,
+            .faders .left {
+                background: linear-gradient(to right,
+                        rgb(100, 100, 100) 0%,
+                        rgba(255, 255, 255, 0) 100%);
+                width: 15%;
+                height: 100%;
+                position: absolute;
+                z-index: 200;
+            }
+
+            .right {
+                right: 0;
+                background: linear-gradient(to left,
+                        rgba(245, 245, 245, 1) 0%,
+                        rgba(255, 255, 255, 0) 100%);
+            }
+
+        }
+
+    }
+}
