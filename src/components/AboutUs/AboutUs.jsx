@@ -47,6 +47,17 @@ const AboutUs = () => {
           </div>
         </div>
 
+        <div className='Safety'>
+          <div><img src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/inner-ab-img-2.jpg' /></div>
+          <div className='left'>
+            <div>
+              <h1>We Care About Your Comfort And Safety</h1>
+              <h3>BEST DRIVERS</h3>
+              <p>Turpis tincidunt id aliquet risus feugiat in ante metus dictum. Netus et sed malesuada fames ac turpis. Netus et sed males ada fames ac turpis egesta doi tempus urna. Amet nulla facilisi morbi temp do.</p>
+              <button>+ VIEW MORE</button>
+            </div>
+          </div>
+        </div>
 
       </div>
     </>
