@@ -6,12 +6,18 @@ import Swal from "sweetalert2";
 import { Input, Text, Button } from '@chakra-ui/react'
 import { useFormik } from 'formik'
 import loginSchema from '../Validators/loginSchema';
-
+import { useMutation } from 'react-query'
 
 
 const Login = () => {
 
   const history = useNavigate();
+
+  const {mutate, isLoading} = useMutation(login,{
+    onSuccess: (resp)=>{
+      console.log(resp.data);
+    }
+  });
 
   const formik = useFormik({
     initialValues: {
@@ -20,39 +26,42 @@ const Login = () => {
     },
     validationSchema: loginSchema,
     onSubmit: async (values) => {
-      try {
-        const response = await axios.post(
-          `${process.env.REACT_APP_API_HOST}/api/Auth/Login`,
-          {
-            UsernameOrEmail: values.email,
-            password: values.password,
-          }
-        );
 
-        if (response.status === 200) {
-          localStorage.setItem("token", JSON.stringify(response.data));
-          Swal.fire({
-            position: "top-center",
-            icon: "success",
-            title: "Signed in successfully!",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          history.push('/Home');
-        } else {
-          Swal.fire({
-            position: "top-center",
-            icon: "error",
-            title: "Email or password is wrong!",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-        console.log(response);
-      } catch (error) {
-        // Handle errors here if needed
-        console.error(error);
-      }
+      mutate();
+
+      // try {
+      //   const response = await axios.post(
+      //     `${process.env.REACT_APP_API_HOST}/api/Auth/Login`,
+      //     {
+      //       UsernameOrEmail: values.email,
+      //       password: values.password,
+      //     }
+      //   );
+
+      //   if (response.status === 200) {
+      //     localStorage.setItem("token", JSON.stringify(response.data));
+      //     Swal.fire({
+      //       position: "top-center",
+      //       icon: "success",
+      //       title: "Signed in successfully!",
+      //       showConfirmButton: false,
+      //       timer: 1500,
+      //     });
+      //     history.push('/Home');
+      //   } else {
+      //     Swal.fire({
+      //       position: "top-center",
+      //       icon: "error",
+      //       title: "Email or password is wrong!",
+      //       showConfirmButton: false,
+      //       timer: 1500,
+      //     });
+      //   }
+      //   console.log(response);
+      // } catch (error) {
+      //   // Handle errors here if needed
+      //   console.error(error);
+      // }
     }
   });
 
@@ -100,7 +109,7 @@ const Login = () => {
               placeholder='Here is a sample placeholder'
               size='sm'
             />
-            <Button type='submit' onClick={formik.handleSubmit}>Log In</Button>
+            <Button isLoading={isLoading} type='submit' onClick={formik.handleSubmit}>Log In</Button>
           </form>
         </div>
 
