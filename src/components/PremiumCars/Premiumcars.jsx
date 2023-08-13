@@ -32,8 +32,10 @@ const Premiumcars = (props) => {
             <div style={{backgroundColor:props.backColor}} id='Premiumcarssss'>
                 <div>
                     <div style={{order:props.one}} className='PremiumcarsImg'>
-                        <img className='PremiumcarsImgOne' src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/01/h1-img-6.jpg' />
-                        {/* <img className='PremiumcarsImgTwo' src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/01/h1-img-7.jpg' /> */}
+                        <img style={props.about===false ? {} : {width:"750px",objectFit:"cover"}} className='PremiumcarsImgOne' src={props.imgUrl} />
+                        {props.about===false ? 
+                        <img className='PremiumcarsImgTwo' src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/01/h1-img-7.jpg' />
+                       : <h1></h1> }
                     </div>
                     <div style={{order:props.two}} className='PremiumcarsText'>
                         <div>

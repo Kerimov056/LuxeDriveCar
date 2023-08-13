@@ -106,7 +106,7 @@ const AboutUs = () => {
 
 
         <div className='PC'> 
-          <Premiumcars />
+          <Premiumcars about={true} backColor={"white"}  one={2} two={1} NumColor={"black"} imgUrl={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/inner-ab-img-3.jpg"} />
         </div>
 
 

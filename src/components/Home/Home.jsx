@@ -277,7 +277,7 @@ const Home = ({ color, onNavStateChange }) => {
       </div>
 
       <div className='Premium '>
-        <Premiumcars />
+      <Premiumcars about={false} backColor={"black"}  one={1} two={2} NumColor={"white"} imgUrl={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/01/h1-img-6.jpg"} />
       </div>
 
       <div id='HomeAbout'>
