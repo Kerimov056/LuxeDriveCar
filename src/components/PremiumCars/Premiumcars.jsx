@@ -26,27 +26,27 @@ function Number1({ n }) {
 }
 
 
-const Premiumcars = () => {
+const Premiumcars = (props) => {
     return (
         <>
-            <div id='Premiumcarssss'>
+            <div style={{backgroundColor:props.backColor}} id='Premiumcarssss'>
                 <div>
-                    <div className='PremiumcarsImg'>
+                    <div style={{order:props.one}} className='PremiumcarsImg'>
                         <img className='PremiumcarsImgOne' src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/01/h1-img-6.jpg' />
-                        <img className='PremiumcarsImgTwo' src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/01/h1-img-7.jpg' />
+                        {/* <img className='PremiumcarsImgTwo' src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/01/h1-img-7.jpg' /> */}
                     </div>
-                    <div className='PremiumcarsText'>
+                    <div style={{order:props.two}} className='PremiumcarsText'>
                         <div>
-                            <h1>Premium Cars Rental</h1>
-                            <h3>ONLY THE BEST</h3>
+                            <h1 style={{color: props.NumColor}}>Premium Cars Rental</h1>
+                            <h3 style={{color: props.NumColor}}>ONLY THE BEST</h3>
                             <p>Praesent elementum facilisis leo vel fringilla est. Vest bulum lectus a urise ultrices eros in cursus turpi uto.</p>
                             <div>
                                 <div>
-                                    <span><Number n={21} /><span>+</span></span>
+                                    <span style={{color: props.NumColor}}><Number n={21} /><span>+</span></span>
                                     <p>Years of experience</p>
                                 </div>
                                 <div>
-                                    <span><Number n={157} /><b>k</b></span>
+                                    <span style={{color: props.NumColor}}><Number n={157} /><b>k</b></span>
                                     <p>Satisfied clients</p>
                                 </div>
                             </div>

@@ -9,7 +9,7 @@ import Car from '../Card/Car'
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Questions from '../Questions/Questions'
-
+import Premiumcars from '../PremiumCars/Premiumcars'
 
 
 const AboutUs = () => {
@@ -102,6 +102,11 @@ const AboutUs = () => {
             <img className='TwoImg' src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/inner-faq-img-2.jpg' />
             <img className='TrhreImg' src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/inner-faq-img-3.jpg' />
           </div>
+        </div>
+
+
+        <div className='PC'> 
+          <Premiumcars />
         </div>
 
 
