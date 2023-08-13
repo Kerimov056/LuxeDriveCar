@@ -16,12 +16,12 @@ const AboutUs = () => {
 
   useEffect(() => {
     AOS.init({
-        offset: 630,
-        duration: 800,
-        delay: 260,
+      offset: 630,
+      duration: 800,
+      delay: 260,
     });
     AOS.refresh();
-}, []);
+  }, []);
 
   return (
     <>
@@ -76,24 +76,34 @@ const AboutUs = () => {
         <div id='Accordions'>
           <div>
 
-            <div style={{marginBottom:"1px solid gray"}} className='Questions'>
+            <div style={{ marginBottom: "1px solid gray" }} className='Questions'>
               <div>
                 <h1>Frequently Asked Questions</h1>
                 <h3>LIST OF ANSWERS</h3>
               </div>
             </div>
 
-            <div className='ByQuestions'>
+            <div style={{ marginTop: "-100px" }} className='ByQuestions'>
               <p></p>
               <div>
 
                 <Questions />
-               
+
               </div>
             </div>
 
           </div>
         </div>
+
+
+        <div className='ThreeImg'>
+          <div>
+            <img className='oneImg' src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/inner-faq-img-1.2.jpg' />
+            <img className='TwoImg' src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/inner-faq-img-2.jpg' />
+            <img className='TrhreImg' src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/inner-faq-img-3.jpg' />
+          </div>
+        </div>
+
 
       </div>
     </>

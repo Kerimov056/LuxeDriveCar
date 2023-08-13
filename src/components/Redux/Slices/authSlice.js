@@ -6,14 +6,14 @@ export const authSlice = createSlice({
     name:'auth',
     initialState,
     reducers:{
-        login:(state, action) => {
+        loginAction:(state, action) => {
             return action.payload;
         },
-        logout:(state, action) => {
+        logoutAction:(state, action) => {
             return initialState;
         },
     }
 })
 
-export const { changeTheme } = authSlice.actions;
+export const { loginAction, logoutAction } = authSlice.actions;
 export default authSlice.reducer;

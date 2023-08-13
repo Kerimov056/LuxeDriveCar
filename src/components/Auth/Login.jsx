@@ -7,15 +7,21 @@ import { Input, Text, Button } from '@chakra-ui/react'
 import { useFormik } from 'formik'
 import loginSchema from '../Validators/loginSchema';
 import { useMutation } from 'react-query'
-
+import { login } from "../Services/authServices";
+import { useDispatch, useSelector } from 'react-redux';
+import { loginAction } from "../Redux/Slices/authSlice";
 
 const Login = () => {
+    const history = useNavigate();
 
-  const history = useNavigate();
+    const dispatch = useDispatch();
+    const { token } = useSelector(x=>x.authReducer)
+    console.log(token);
 
-  const {mutate, isLoading} = useMutation(login,{
+  const {mutate, isLoading} = useMutation((values) => login(values),{
     onSuccess: (resp)=>{
-      console.log(resp.data);
+    //   console.log(resp.data);
+    dispatch( loginAction(resp.data))
     }
   });
 
@@ -27,7 +33,7 @@ const Login = () => {
     validationSchema: loginSchema,
     onSubmit: async (values) => {
 
-      mutate();
+      mutate(values);
 
       // try {
       //   const response = await axios.post(
