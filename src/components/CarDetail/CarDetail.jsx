@@ -32,9 +32,9 @@ const CarDetail = () => {
                             </div>
 
                             <div className='Det'>
-                                <div><span>SKU:</span><span>0058</span></div>
-                                <div><span>Catagory:</span><span>EXPENSIVE</span></div>
-                                <div><span>Tags:</span><span><button>#Car</button></span></div>
+                                <div><span>SKU:</span><span className='Answer'>0058</span></div>
+                                <div><span>Catagory:</span><span className='Answer Category'>EXPENSIVE</span></div>
+                                <div><span>Tags:</span><span className='Answer'><button>#Car</button></span></div>
                             </div>
                         </div>
                     </div>
