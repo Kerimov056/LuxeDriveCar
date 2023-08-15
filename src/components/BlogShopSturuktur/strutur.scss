@@ -16,6 +16,15 @@
         .LeftBar {
             width: 67%;
             height: auto;
+            //---------
+
+
+            
+
+
+
+
+            //----------
         }
 
         .RightBar {
@@ -28,13 +37,13 @@
                 margin-top: 50px;
                 width: 100%;
                 height: auto;
-                background-color: #1b9bee;
                 display: flex;
                 flex-direction: column;
                 align-items: start;
 
                 &>h1 {
                     font-size: 26px;
+                    margin-bottom: 10px;
                 }
 
                 /* this is a recreation of twitter search in css */
@@ -44,12 +53,12 @@
                     --focus-input-bg-color: transparent;
                     --text-color: #949faa;
                     --active-color: #1b9bee;
-                    --width-of-input: 200px;
+                    --width-of-input: 100%;
                     --inline-padding-of-input: 1.2em;
                     --gap: 0.9rem;
                     width: 100%;
                 }
-
+                
                 /* form style */
                 .form {
                     font-size: 0.9rem;
@@ -60,7 +69,7 @@
                     position: relative;
                     isolation: isolate;
                 }
-
+                
                 /* a fancy bg for showing background and border when focus. */
                 .fancy-bg {
                     position: absolute;
@@ -73,7 +82,7 @@
                     pointer-events: none;
                     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
                 }
-
+                
                 /* label styling */
                 label {
                     width: 100%;
@@ -81,26 +90,27 @@
                     height: 40px;
                     padding-inline: var(--inline-padding-of-input);
                     display: flex;
+                    overflow: hidden;   
                     align-items: center;
                 }
-
+                
                 .search,
                 .close-btn {
                     position: absolute;
                 }
-
+                
                 /* styling search-icon */
                 .search {
                     fill: var(--text-color);
                     left: var(--inline-padding-of-input);
                 }
-
+                
                 /* svg -- size */
                 svg {
                     width: 17px;
                     display: block;
                 }
-
+                
                 /* styling of close button */
                 .close-btn {
                     border: none;
@@ -118,7 +128,7 @@
                     opacity: 0;
                     visibility: hidden;
                 }
-
+                
                 /* styling of input */
                 .input {
                     color: var(--input-text-color);
@@ -127,11 +137,11 @@
                     background: none;
                     border: none;
                 }
-
+                
                 .input:focus {
                     outline: none;
                 }
-
+                
                 .input::placeholder {
                     color: var(--text-color)
                 }

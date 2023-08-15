@@ -1,0 +1,17 @@
+#BlogPost{
+    width: 100%;
+    height: 1300px;
+    background-color: rgb(161, 97, 14);
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+
+    &>div{
+        margin-top: 40px;
+    }
+
+    &:first-child{
+        background-color: red;
+    }
+}

@@ -1,13 +1,18 @@
 import React from 'react';
 import './strutur.scss'
 import RecentPost from './RecentPost';
+import BlogPost from '../Blogs/BlogPost';
 
 const Strutur = () => {
     return (
         <>
             <div id='Strutur'>
                 <div>
-                    <div className='LeftBar'></div>
+                    <div className='LeftBar'>
+                        <BlogPost />
+                    </div>
+
+
                     <div className='RightBar'>
 
                         <div className='Search'>
