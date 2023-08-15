@@ -1,19 +1,18 @@
 import React from 'react';
-import './blogs.scss'
+import "./shop.scss";
 import Strutur from '../BlogShopSturuktur/Strutur';
 import Navbar from '../Navbar/Navbar';
 
-const Blogs = () => {
+
+const Shop = () => {
     return (
         <>
-            <div className='BlogNavbar'>
-                <Navbar />
-            </div>
+            <Navbar />
             <div>
-                <Strutur blog={true} />
+                <Strutur blog={false} />
             </div>
         </>
     );
 }
 
-export default Blogs;
+export default Shop;

@@ -16,8 +16,8 @@ const Strutur = (props) => {
                                     <BlogPost />
                                     <BlogPost />
                                 </div> :
-                                <div>
-                                    bura Car kartlarini getir
+                                <div className='Shoppp'>
+                                    
                                 </div>
                         }
                     </div>

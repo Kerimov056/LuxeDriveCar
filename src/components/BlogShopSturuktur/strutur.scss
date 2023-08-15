@@ -17,6 +17,14 @@
             width: 67%;
             height: auto;
             display: inline-block;
+
+
+            .Shoppp{
+                width: 100%;
+                height: auto;
+                display: grid;
+                grid-template-columns: auto auto;
+            }
         }
 
         .RightBar {

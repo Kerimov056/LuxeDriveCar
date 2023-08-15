@@ -18,11 +18,11 @@ const Navbartwo = () => {
                         <span class="line line3"></span>
                     </div>
                     <ul class="menu-items" id='nd'>
-                        <li><a href="#"><Link to={'./'} id='Linkkk'>Home</Link></a></li>
-                        <li><a href="#"><Link to={'./AboutUs'} id='Linkkk'>About Us</Link></a></li>
-                        <li><a href="#"><Link to={'./VehicleFleet'}>VEHICLE FLEET</Link></a></li>
-                        <li><a href="#"><Link to={'./Blogs'}>BLOG</Link></a></li>
-                        <li><a href="#">SHOP</a></li>
+                        <li><a><Link to={'./'} id='Linkkk'>Home</Link></a></li>
+                        <li><a><Link to={'./AboutUs'} id='Linkkk'>About Us</Link></a></li>
+                        <li><a><Link to={'./VehicleFleet'}>VEHICLE FLEET</Link></a></li>
+                        <li><a><Link to={'./Blogs'}>BLOG</Link></a></li>
+                        <li><a><Link to={'./Shop'}>SHOP</Link></a></li>
                     </ul>
                     <h1 class="logo"><BsSearch/></h1>
                 </div>

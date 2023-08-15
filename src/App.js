@@ -9,6 +9,7 @@ import Login from './components/Auth/Login'
 import Register from './components/Auth/Register'
 import VehicleFleet from './components/VehicleFleet/VehicleFleet';
 import Blogs from './components/Blogs/Blogs';
+import Shop from './components/Shop/Shop';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
             <Route path='/Register' element={<Register/>} />
             <Route path='/VehicleFleet' element={<VehicleFleet/>} />
             <Route path='/Blogs' element={<Blogs/>} />
+            <Route path='/Shop' element={<Shop/>} />
           </Routes>
 
           <Footer />
