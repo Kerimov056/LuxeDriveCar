@@ -12,16 +12,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginAction } from "../Redux/Slices/authSlice";
 
 const Login = () => {
-    const history = useNavigate();
+  const history = useNavigate();
 
-    const dispatch = useDispatch();
-    const { token } = useSelector(x=>x.authReducer)
-    console.log(token);
+  const dispatch = useDispatch();
+  const { token } = useSelector(x => x.authReducer)
+  console.log(token);
 
-  const {mutate, isLoading} = useMutation((values) => login(values),{
-    onSuccess: (resp)=>{
-    //   console.log(resp.data);
-    dispatch( loginAction(resp.data))
+  const { mutate, isLoading } = useMutation((values) => login(values), {
+    onSuccess: (resp) => {
+      //   console.log(resp.data);
+      dispatch(loginAction(resp.data))
     }
   });
 

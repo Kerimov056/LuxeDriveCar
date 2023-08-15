@@ -20,7 +20,7 @@ const Navbartwo = () => {
                     <ul class="menu-items" id='nd'>
                         <li><a href="#"><Link to={'./'} id='Linkkk'>Home</Link></a></li>
                         <li><a href="#"><Link to={'./AboutUs'} id='Linkkk'>About Us</Link></a></li>
-                        <li><a href="#">VEHICLE FLEET</a></li>
+                        <li><a href="#"><Link to={'./VehicleFleet'}>VEHICLE FLEET</Link></a></li>
                         <li><a href="#">BLOG</a></li>
                         <li><a href="#">SHOP</a></li>
                     </ul>

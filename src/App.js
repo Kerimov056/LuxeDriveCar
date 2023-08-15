@@ -7,6 +7,7 @@ import Footer from './components/Footer/Footer';
 import AboutUs from './components/AboutUs/AboutUs';
 import Login from './components/Auth/Login'
 import Register from './components/Auth/Register'
+import VehicleFleet from './components/VehicleFleet/VehicleFleet';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
             <Route path='/AboutUs' element={<AboutUs/>} />
             <Route path='/Login' element={<Login/>} />
             <Route path='/Register' element={<Register/>} />
+            <Route path='/VehicleFleet' element={<VehicleFleet/>} />
           </Routes>
 
           <Footer />
