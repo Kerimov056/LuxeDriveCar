@@ -1,16 +1,16 @@
 import React from 'react';
 import './RecentPost.scss'
 
-const RecentPost = () => {
+const RecentPost = (props) => {
     return (
         <>
             <div id='RecentPost'>
                 <div className='PostImg'>
-                    <img src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/side-b-l-img-2.jpg' />
+                    <img src={props.img} />
                 </div>
                 <div className='PostText'>
-                    <h3>manage Time</h3>
-                    <h4>Jun 30. 2022</h4>
+                    <h3>{props.name}</h3>
+                    <h4>{props.date}</h4>
                 </div>
             </div>
         </>

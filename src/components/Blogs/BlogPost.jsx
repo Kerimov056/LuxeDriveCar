@@ -39,7 +39,6 @@ const BlogPost = (props) => {
                             <div class="tracker tr-25"></div>
                             <div id="card">
                                 <img src={props.img} />
-
                             </div>
                         </div>
                     </div>

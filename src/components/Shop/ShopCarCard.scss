@@ -28,7 +28,7 @@
     width: 60%;
     border-radius: 1rem;
     border: none;
-    background-color: #008bf8;
+    background-color: #bfa37c;
     color: #fff;
     font-size: 1rem;
     padding: .5rem 1rem;
@@ -51,11 +51,27 @@
 
 /*Hover*/
 .card:hover {
-    border-color: #008bf8;
+    border-color: #bfa37c;
     box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+}
+
+.AddToCard{
+    margin-top: 40px;
+    padding: 15px 30px;
+    border: 1px solid #bfa37c;
+    text-align: center;
+    font-size: 24px;
+    color: #fff;
 }
 
 .card:hover .card-button {
     transform: translate(-50%, -20%);
     opacity: 1;
+}
+
+.card:hover .AddToCard {
+    transform: translate(14%, -400%);
+    opacity: 1;
+    background-color: #bfa37c;
+    opacity: 0.8;
 }
