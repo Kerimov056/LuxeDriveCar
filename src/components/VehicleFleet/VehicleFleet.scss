@@ -47,6 +47,17 @@
                 font-size: 47px;
                 color: black;
             }
+
+            #Stack{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                &>div{
+                    margin-right: 40px;
+                    width: 200px;
+                }
+            }
         }
 
         .Cards{

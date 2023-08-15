@@ -2,6 +2,7 @@ import React from 'react';
 import "./VehicleFleet.scss";
 import Navbar from '../Navbar/Navbar'
 import Car from '../Card//Car'
+import { Select, Stack } from '@chakra-ui/react'
 
 
 const VehicleFleet = () => {
@@ -21,10 +22,22 @@ const VehicleFleet = () => {
                 <div>
                     <div className='CarTitle'>
                         <h1>Browse Your Cars</h1>
-                        <div>
-                            <input placeholder='asdada' />
-                            <input placeholder='asdada' />
-                            <input placeholder='asdada' />
+                        <div id='Stack'>
+                            <Select variant='flushed' placeholder='Flushed'>
+                                <option>Salam</option>
+                                <option>Necesen</option>
+                                <option>Sagol</option>
+                            </Select>
+                            <Select variant='flushed' placeholder='Flushed'>
+                                <option>Salam</option>
+                                <option>Necesen</option>
+                                <option>Sagol</option>
+                            </Select>
+                            <Select variant='flushed' placeholder='Flushed'>
+                                <option>Salam</option>
+                                <option>Necesen</option>
+                                <option>Sagol</option>
+                            </Select>
                         </div>
                     </div>
                     <div className='Cards'>
