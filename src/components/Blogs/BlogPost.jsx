@@ -1,13 +1,13 @@
 import React from 'react';
 import './blogpost.scss'
 
-const BlogPost = () => {
+const BlogPost = (props) => {
     return (
         <>
             <div id='BlogPost'>
                 <div className='postName'>
-                    <h1>What Are The Benefits Of Hiring A Private Driver And Traveling	</h1>
-                    <h4>Jan 8.   2022./   DRIVE, LUXURY</h4>
+                    <h1>{props.title}</h1>
+                    <h4>{props.date}</h4>
                 </div>
                 <div className='postImg'>
                     <div class="container noselect">
@@ -38,14 +38,14 @@ const BlogPost = () => {
                             <div class="tracker tr-24"></div>
                             <div class="tracker tr-25"></div>
                             <div id="card">
-                                <img src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/b-l-img-1.jpg' />
+                                <img src={props.img} />
 
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className='postDesc'>
-                    <h4>Nisl condimentum id venenatis a condimentum vitae sapien pellent esque habitant. Massa id neque aliquam vestibulum. Diam quam nulla porttitor massa id neque aliquam. Tortor at auctor urna nunc id cursus metus aliquam eleifend. At tellus at urna condimentum mattis pellentesque. Tristique sollicitudin nibh sit amet commodo nulla. Erat nam at lectus urna duis convallis. Vestibulum lectus mauris ultrices eros in cursus turpis. Volutpat commodo</h4>
+                    <h4>{props.desc}</h4>
                 </div>
                 <div className='postButton'>
                     <button>+ DISCOVER</button>
