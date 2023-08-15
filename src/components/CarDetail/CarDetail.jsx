@@ -1,6 +1,8 @@
 import React from 'react';
 import Navbar from '../Navbar/Navbar';
 import './CarDetail.scss'
+import CursorZoom from 'react-cursor-zoom';
+
 
 const CarDetail = () => {
     return (
@@ -10,7 +12,23 @@ const CarDetail = () => {
                 <div>
                     <div className='CarD'>
                         <div className='CarImg'>
-                            <div className='mainImg'><img src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/shop-single-img-03.jpg' /></div>
+                            <div className='mainImg'>
+                                <CursorZoom
+                                    image={{
+                                        src: "https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/shop-single-img-03.jpg",
+                                        width: 600,
+                                        height: 750
+                                    }}
+                                    zoomImage={{
+                                        src: "https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/shop-single-img-03.jpg",
+                                        width: 1300,
+                                        height: 1000
+                                    }}
+                                    cursorOffset={{ x: 180, y: 0 }}
+                                    
+                                />
+                                {/* <img src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/shop-single-img-03.jpg' /> */}
+                            </div>
                             <div className='SecImg'>
                                 <div><img src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/shop-single-gallery-img-02.jpg' /></div>
                                 <div><img src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/shop-single-gallery-img-01.jpg' /></div>
