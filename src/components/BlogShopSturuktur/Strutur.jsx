@@ -10,6 +10,8 @@ const Strutur = () => {
                 <div>
                     <div className='LeftBar'>
                         <BlogPost />
+                        <BlogPost />
+                        <BlogPost />
                     </div>
 
 

@@ -9,20 +9,16 @@
         width: 86%;
         height: auto;
         display: flex;
-        justify-content: space-between;
-        align-items: center;
+        // justify-content: space-between;
+        // align-items: center;
 
 
         .LeftBar {
             width: 67%;
             height: auto;
+            display: inline-block;
+            
             //---------
-
-
-
-
-
-
 
             //----------
         }
@@ -30,8 +26,8 @@
         .RightBar {
             width: 25%;
             height: auto;
-            display: flex;
-            flex-direction: column;
+            display: inline-block;
+            margin-left: 80px;
 
             .Search {
                 margin-top: 50px;
