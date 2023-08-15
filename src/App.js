@@ -10,6 +10,7 @@ import Register from './components/Auth/Register'
 import VehicleFleet from './components/VehicleFleet/VehicleFleet';
 import Blogs from './components/Blogs/Blogs';
 import Shop from './components/Shop/Shop';
+import CarDetail from './components/CarDetail/CarDetail';
 
 function App() {
 
@@ -23,11 +24,12 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/AboutUs' element={<AboutUs/>} />
-            <Route path='/Login' element={<Login/>} />
+            <Route  path='/Login' element={<Login/>} />
             <Route path='/Register' element={<Register/>} />
             <Route path='/VehicleFleet' element={<VehicleFleet/>} />
             <Route path='/Blogs' element={<Blogs/>} />
             <Route path='/Shop' element={<Shop/>} />
+            <Route path='/CarDetail' element={<CarDetail/>} />
           </Routes>
 
           <Footer />
