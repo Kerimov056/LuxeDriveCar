@@ -2,6 +2,7 @@ import React from 'react';
 import './strutur.scss'
 import RecentPost from './RecentPost';
 import BlogPost from '../Blogs/BlogPost';
+import ShopCarCard from '../Shop/ShopCarCard';
 
 const Strutur = (props) => {
     return (
@@ -17,7 +18,11 @@ const Strutur = (props) => {
                                     <BlogPost />
                                 </div> :
                                 <div className='Shoppp'>
-                                    
+                                    <ShopCarCard />
+                                    <ShopCarCard />
+                                    <ShopCarCard />
+                                    <ShopCarCard />
+                                    <ShopCarCard />
                                 </div>
                         }
                     </div>
