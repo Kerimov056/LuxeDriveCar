@@ -21,7 +21,7 @@ const Navbartwo = () => {
                         <li><a href="#"><Link to={'./'} id='Linkkk'>Home</Link></a></li>
                         <li><a href="#"><Link to={'./AboutUs'} id='Linkkk'>About Us</Link></a></li>
                         <li><a href="#"><Link to={'./VehicleFleet'}>VEHICLE FLEET</Link></a></li>
-                        <li><a href="#">BLOG</a></li>
+                        <li><a href="#"><Link to={'./Blogs'}>BLOG</Link></a></li>
                         <li><a href="#">SHOP</a></li>
                     </ul>
                     <h1 class="logo"><BsSearch/></h1>

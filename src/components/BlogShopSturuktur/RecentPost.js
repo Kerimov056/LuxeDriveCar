@@ -6,7 +6,7 @@ const RecentPost = () => {
         <>
             <div id='RecentPost'>
                 <div className='PostImg'>
-                    <img src='' />
+                    <img src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/side-b-l-img-2.jpg' />
                 </div>
                 <div className='PostText'>
                     <h3>manage Time</h3>

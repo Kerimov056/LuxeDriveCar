@@ -1,17 +1,17 @@
 #RecentPost{
     width: 200px;
-    height: 80px;
+    height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
  
     .PostImg{
-        width: 80px;
+        width: 30%;
         height: 100%;
     }
 
     .PostText{
-        width: 100px;
+        width: 66%;
         height: 100%;
         font-size: 18px;
     }
