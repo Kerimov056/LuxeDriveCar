@@ -6,7 +6,7 @@ const Blogs = () => {
     return (
         <>
             <div>
-                <Strutur />
+                <Strutur blog={true} />
             </div>
         </>
     );
