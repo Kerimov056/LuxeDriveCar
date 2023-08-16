@@ -12,6 +12,8 @@ import {
     useDisclosure,
     Button
 } from '@chakra-ui/react'
+import Accardion from './Accardion';
+import ShopCarCard from '../Shop/ShopCarCard';
 
 const CarDetail = () => {
     const [img, setImg] = useState(null);
@@ -104,6 +106,22 @@ const CarDetail = () => {
                             </div>
                         </div>
                     </div>
+
+                    <div className='CDA'>
+                        <Accardion name={"Salam"} body={"Salam jsnand adjna djaind ai da dinad an daid ai daid ia dai dai dadadada"} />
+                        <Accardion name={"Salam"} body={"Salam jsnand adjna djaind aiSajsnandjsnandlam jsnand djaind aiSajsnandjsnandlam jsnand adjna dja djaind aiSajsnandjsnandlam jsnand adjna dja djaind aiSajsnandjsnandlam jsnand adjna dja adjna djaind ai da dinaSalam jsnand adjna djaind ai da dina da dinad an daid ai daid ia dai dai dadadada"} />
+                        <Accardion name={"Salam"} body={"Salam jsnand adjna djaind ai da dinad an daid ai daid ia dai dai dadadada"} />
+                    </div>
+
+                    <div className='EndCar'>
+                        <h1>Related products</h1>
+                        <div>
+                            <ShopCarCard img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/shop-single-img-03.jpg"} />
+                            <ShopCarCard img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/shop-single-img-03.jpg"} />
+                            <ShopCarCard img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/shop-single-img-03.jpg"} />
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </>
