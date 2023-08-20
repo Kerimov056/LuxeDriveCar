@@ -5,12 +5,12 @@ import './ShopCarCard.scss'
 const ShopCarCard = (props) => {
     return (
         <>
-            <div class="card">
+            <div class="cardDDD">
                 <div class="card-details">
                     <img src={props.img} />
                 </div>
                 <button class="card-button">More info</button>
-                <button class="AddToCard">+ ADD TO CART</button>
+                <button class="AddToCard">+ ADD TO ORDER</button>
             </div>
         </>
     );

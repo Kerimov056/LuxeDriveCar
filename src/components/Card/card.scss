@@ -1,14 +1,14 @@
 .card {
     margin-top: 60px;
-    width: 390px;
-    height: 504px;
+    width: 445px;
+    height: 514px;
     background: black;
     transition: all 0.4s;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.705);
     font-size: 30px;
     font-weight: 900;
-    margin-left: 24px;
+    margin-left: 40px;
     overflow: hidden;
     margin-bottom: 50px;
 }
@@ -35,6 +35,7 @@
     &>img {
         width: 100%;
         height: 100%;
+        overflow: hidden;
         object-fit: cover;
     }
 }
@@ -56,12 +57,13 @@
     transition: all 0.4s;
     font-size: 0px;
     transform: rotate(90deg) scale(-1);
-    overflow: hidden;
     text-align: center;
+    overflow: hidden;
 
     &>span {
         color: gray;
         font-size: 26px;
+        overflow: hidden;
     }
 }
 

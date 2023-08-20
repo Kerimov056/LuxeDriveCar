@@ -197,11 +197,11 @@ const Home = ({ color, onNavStateChange }) => {
           </div>
         </div>
         <div className='cards'>
-          <Card img='https://scontent.fgyd20-2.fna.fbcdn.net/v/t39.30808-6/366553636_180143438414709_6926694422587111710_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=730e14&_nc_ohc=AivouCEcumAAX9stFCC&_nc_ht=scontent.fgyd20-2.fna&oh=00_AfCh_q1M0Rd6CcdRUVKaa62mEpUX_76PehPoncrWDjthiA&oe=64D7E079' catagorie="Limusine" name={"BMW"} price="200" description={"Lorem ipsum dolor sit do amet"} />
           <Card img='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Main-home-vehicle-list-img-01.jpg' catagorie="4x4" name="E63" price="200" description={"Lorem ipsum dolor sit do amet, consectetur, adipiscing elit, sed "} />
           <Card img='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Main-home-vehicle-list-img-02.jpg' catagorie="Sport" name="FORD F-150" price="320" description={"Lorem ipsum dolor sit do amet, consectetur, adipiscing elit, sed "} />
           <Card img='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Main-home-vehicle-list-img-03.jpg' catagorie="Sport" name="BMW M3 Coupe" price="430" description={"Lorem ipsum dolor sit do amet, consectetur, adipiscing elit, sed "} />
           <Card img='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Main-home-vehicle-list-img-04.jpg' catagorie="Limusine" name="FORD F-150" price="400" description={"Lorem ipsum dolor sit do amet, consectetur, adipiscing elit, sed "} />
+          <Card img='https://di-uploads-pod3.dealerinspire.com/fletcherjonesmbnewport/uploads/2022/10/2023-S-Class-MLP-Performance-Turbo-Mobile-2.jpg' catagorie="Sport" name="FORD F-150" price="300" description={"Lorem ipsum dolor sit do amet, consectetur, adipiscing elit, sed "} />
           <Card img='https://di-uploads-pod3.dealerinspire.com/fletcherjonesmbnewport/uploads/2022/10/2023-S-Class-MLP-Performance-Turbo-Mobile-2.jpg' catagorie="Sport" name="FORD F-150" price="300" description={"Lorem ipsum dolor sit do amet, consectetur, adipiscing elit, sed "} />
         </div>
       </div>
