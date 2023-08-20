@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import './login.scss';
+// import './register.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useFormik } from 'formik';
@@ -21,13 +21,13 @@ const Register = () => {
         validationSchema: registerSchema,
 
         onSubmit: async (values) => {
-                const url = `${process.env.REACT_APP_API_HOST}/api/Auth/register`;
-                 axios.post(url, values).then((result) => {
-                    alert(result.values)
-                }).catch((error) => {
-                    alert(error)
-                })
-            
+            const url = `${process.env.REACT_APP_API_HOST}/api/Auth/register`;
+            axios.post(url, values).then((result) => {
+                alert(result.values)
+            }).catch((error) => {
+                alert(error)
+            })
+
         }
     })
 
@@ -38,18 +38,15 @@ const Register = () => {
     return (
         <>
             <div className='login_section'>
-                <div class="container">
+                {/* <div class="container">
                     <div class="circle circle1"></div>
                     <div class="circle circle2"></div>
                     <div class="circle circle3"></div>
                     <div class="circle circle4"></div>
-                </div>
-
+                </div> */}
 
 
                 <div>
-                    <div className="background">
-                    </div>
                     <form className='login_form' onSubmit={formik.handleSubmit} style={{ marginTop: "10px", height: "700px" }}>
                         <Fragment>
                             <h3>Sign Up</h3>
@@ -105,22 +102,9 @@ const Register = () => {
                                 size='sm'
                             />
 
-                            <Button type='submit' onClick={formik.handleSubmit}>Log In</Button>
+                            <Button type='submit' onClick={formik.handleSubmit}>Register</Button>
                         </Fragment>
                     </form>
-                </div>
-
-                <div className='Socialllll'>
-                    <section>
-                        <div class="content">
-                            <Link to='/'><h2>SocialV</h2></Link>
-                            <h2>SocialV</h2>
-                        </div>
-                    </section>
-                    <Link to='/Login'><div class="txt" id="txt">
-                        <b>L</b><b>O</b><b>G</b><b>I</b><b>N</b>
-                    </div>
-                    </Link>
                 </div>
             </div>
 

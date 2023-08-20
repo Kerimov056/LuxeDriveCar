@@ -18,7 +18,7 @@ const Navbartwo = () => {
                         <span class="line line3"></span>
                     </div>
                     <ul class="menu-items" id='nd'>
-                        <li><a><Link to={'./'} id='Linkkk'>Home</Link></a></li>
+                        <li><a href='http://localhost:3000/'>Home</a></li>
                         <li><a><Link to={'./AboutUs'} id='Linkkk'>About Us</Link></a></li>
                         <li><a><Link to={'./VehicleFleet'}>VEHICLE FLEET</Link></a></li>
                         <li><a><Link to={'./Blogs'}>BLOG</Link></a></li>

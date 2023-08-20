@@ -10,6 +10,7 @@ import { useMutation } from 'react-query'
 import { login } from "../Services/authServices";
 import { useDispatch, useSelector } from 'react-redux';
 import { loginAction } from "../Redux/Slices/authSlice";
+import Navbar from '../Navbar/Navbar';
 
 const Login = () => {
   const history = useNavigate();
@@ -75,21 +76,15 @@ const Login = () => {
 
   return (
     <>
-
       <div className='login_section'>
-        <div class="container">
+        {/* <div class="container">
           <div class="circle circle1"></div>
           <div class="circle circle2"></div>
           <div class="circle circle3"></div>
           <div class="circle circle4"></div>
-        </div>
+        </div> */}
 
-
-
-        <div>
-          <div className="background">
-          </div>
-          <form className='login_form' onSubmit={formik.handleSubmit}>
+        <form className='login_form' onSubmit={formik.handleSubmit}>
             <h3>Login Here</h3>
             <label htmlFor="email">Email</label>
             <Text fontSize={"15px"} color={"red"} mb="8px">
@@ -117,22 +112,12 @@ const Login = () => {
             />
             <Button isLoading={isLoading} type='submit' onClick={formik.handleSubmit}>Log In</Button>
           </form>
-        </div>
 
-        <div className='Socialllll'>
-          <section>
-            <div class="content">
-              <Link to='/'><h2>SocialV</h2></Link>
-              <h2>SocialV</h2>
-            </div>
-          </section>
-          <Link to='/Register'><div class="txt" id="txt" style={{ marginLeft: "-60px" }}>
-            <b>R</b><b>E</b><b>G</b><b>I</b><b>S</b><b>T</b><b>E</b><b>R</b>
+          <div>
+            <h1>LuxeDrive</h1>
           </div>
-          </Link>
-        </div>
-      </div>
 
+      </div>
     </>
   )
 }

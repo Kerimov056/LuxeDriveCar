@@ -96,11 +96,10 @@ const CarDetail = () => {
                                         <div onClick={RemoveCar}>-</div>
                                     </div>
                                 </div>
-                                <button>+ ADD TO CART</button>
+                                <button>+ ADD TO ORDER</button>
                             </div>
 
                             <div className='Det'>
-                                <div><span>SKU:</span><span className='Answer'>0058</span></div>
                                 <div><span>Catagory:</span><span className='Answer Category'>EXPENSIVE</span></div>
                                 <div><span>Tags:</span><span className='Answer'><button>#Car</button></span></div>
                             </div>

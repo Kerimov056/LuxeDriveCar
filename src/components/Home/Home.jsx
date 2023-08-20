@@ -327,7 +327,7 @@ const Home = ({ color, onNavStateChange }) => {
       </div>
 
       <div id='carimagP'>
-        <img src='https://scontent.fgyd20-2.fna.fbcdn.net/v/t39.30808-6/364685152_180820611680325_467963882875698557_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=7f8c78&_nc_ohc=pUKLAJFnz8QAX-b4Oj4&_nc_ht=scontent.fgyd20-2.fna&oh=00_AfCI12lrEj3X_IeDCyzPxYQlgdwcXhp4Hj63kOOrk0o17Q&oe=64D8176B' />
+        <img src='https://scontent.fgyd18-1.fna.fbcdn.net/v/t39.30808-6/364685152_180820611680325_467963882875698557_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=730e14&_nc_ohc=xSkq4rXXrN8AX-Wz9Qn&_nc_ht=scontent.fgyd18-1.fna&oh=00_AfAwgnZQr296oFrMFZvVBvnSJ3WBUzKQXEk6lLZ9JEQ88Q&oe=64E7E96B' />
       </div>
     </>
   )
