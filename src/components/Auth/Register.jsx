@@ -32,19 +32,9 @@ const Register = () => {
     })
 
 
-
-
-
     return (
         <>
             <div className='login_sectionN'>
-                {/* <div class="container">
-                    <div class="circle circle1"></div>
-                    <div class="circle circle2"></div>
-                    <div class="circle circle3"></div>
-                    <div class="circle circle4"></div>
-                </div> */}
-
 
                 <div>
                     <form className='login_form' onSubmit={formik.handleSubmit} style={{ marginTop: "10px", height: "700px" }}>

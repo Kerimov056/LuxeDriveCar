@@ -10,6 +10,7 @@ const Shop = () => {
             <Navbar />
             <div>
                 <Strutur blog={false} />
+                <h1 className='Arale'></h1>
             </div>
         </>
     );
