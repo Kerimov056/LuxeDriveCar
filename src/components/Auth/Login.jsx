@@ -21,9 +21,8 @@ const Login = () => {
 
   const { mutate, isLoading } = useMutation((values) => login(values), {
     onSuccess: (resp) => {
-      //   console.log(resp.data);
-      dispatch(loginAction(resp.data))
-    }
+      dispatch(loginAction(resp.data));
+    },
   });
 
   const formik = useFormik({
@@ -31,45 +30,10 @@ const Login = () => {
       email: '',
       password: '',
     },
-    validationSchema: loginSchema,
-    onSubmit: async (values) => {
-
+    onSubmit: (values) => {
       mutate(values);
-
-      // try {
-      //   const response = await axios.post(
-      //     `${process.env.REACT_APP_API_HOST}/api/Auth/Login`,
-      //     {
-      //       UsernameOrEmail: values.email,
-      //       password: values.password,
-      //     }
-      //   );
-
-      //   if (response.status === 200) {
-      //     localStorage.setItem("token", JSON.stringify(response.data));
-      //     Swal.fire({
-      //       position: "top-center",
-      //       icon: "success",
-      //       title: "Signed in successfully!",
-      //       showConfirmButton: false,
-      //       timer: 1500,
-      //     });
-      //     history.push('/Home');
-      //   } else {
-      //     Swal.fire({
-      //       position: "top-center",
-      //       icon: "error",
-      //       title: "Email or password is wrong!",
-      //       showConfirmButton: false,
-      //       timer: 1500,
-      //     });
-      //   }
-      //   console.log(response);
-      // } catch (error) {
-      //   // Handle errors here if needed
-      //   console.error(error);
-      // }
-    }
+    },
+    validationSchema: loginSchema
   });
 
 
@@ -85,37 +49,37 @@ const Login = () => {
         </div> */}
 
         <form className='login_form' onSubmit={formik.handleSubmit}>
-            <h3>Login Here</h3>
-            <label htmlFor="email">Email</label>
-            <Text fontSize={"15px"} color={"red"} mb="8px">
-              {formik.touched.email && formik.errors.email}
-            </Text>
-            <Input
-              isInvalid={formik.errors.email && formik.touched.email}
-              name='email'
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              placeholder='Here is a sample placeholder'
-              size='sm'
-            />
-            <label htmlFor="password">Password</label>
-            <Text fontSize={"15px"} color={"red"} mb="8px">
-              {formik.touched.password && formik.errors.password}
-            </Text>
-            <Input
-              isInvalid={formik.errors.password && formik.touched.password}
-              name='password'
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              placeholder='Here is a sample placeholder'
-              size='sm'
-            />
-            <Button isLoading={isLoading} type='submit' onClick={formik.handleSubmit}>Log In</Button>
-          </form>
+          <h3>Login Here</h3>
+          <label htmlFor="email">Email</label>
+          <Text fontSize={"15px"} color={"red"} mb="8px">
+            {formik.touched.email && formik.errors.email}
+          </Text>
+          <Input
+            isInvalid={formik.errors.email && formik.touched.email}
+            name='email'
+            // value={formik.values.email}
+            onChange={formik.handleChange}
+            placeholder='Here is a sample placeholder'
+            size='sm'
+          />
+          <label htmlFor="password">Password</label>
+          <Text fontSize={"15px"} color={"red"} mb="8px">
+            {formik.touched.password && formik.errors.password}
+          </Text>
+          <Input
+            isInvalid={formik.errors.password && formik.touched.password}
+            name='password'
+            // value={formik.values.password}
+            onChange={formik.handleChange}
+            placeholder='Here is a sample placeholder'
+            size='sm'
+          />
+          <Button isLoading={isLoading} type='submit' onClick={formik.handleSubmit}>Log In</Button>
+        </form>
 
-          <div>
-            <h1>LuxeDrive</h1>
-          </div>
+        <div>
+          <h1>LuxeDrive</h1>
+        </div>
 
       </div>
     </>
@@ -128,3 +92,40 @@ export default Login
 
 
 
+
+
+
+
+// try {
+//   const response = await axios.post(
+//     `${process.env.REACT_APP_API_HOST}/api/Auth/Login`,
+//     {
+//       UsernameOrEmail: values.email,
+//       password: values.password,
+//     }
+//   );
+
+//   if (response.status === 200) {
+//     localStorage.setItem("token", JSON.stringify(response.data));
+//     Swal.fire({
+//       position: "top-center",
+//       icon: "success",
+//       title: "Signed in successfully!",
+//       showConfirmButton: false,
+//       timer: 1500,
+//     });
+//     history.push('/Home');
+//   } else {
+//     Swal.fire({
+//       position: "top-center",
+//       icon: "error",
+//       title: "Email or password is wrong!",
+//       showConfirmButton: false,
+//       timer: 1500,
+//     });
+//   }
+//   console.log(response);
+// } catch (error) {
+//   // Handle errors here if needed
+//   console.error(error);
+// }

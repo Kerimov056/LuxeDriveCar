@@ -32,6 +32,7 @@ import Carcatogorie from '../CarCatogorie/Carcatogorie';
 
 const Home = ({ color, onNavStateChange }) => {
 
+
   const bcolor = () => {
     const BColor = "black";
     color = BColor;

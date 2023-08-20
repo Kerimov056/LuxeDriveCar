@@ -1,8 +1,8 @@
 import { httpClient } from "../utils/HttpClient";
 
 export const login=(data) =>{
-    return httpClient.post('api/Auth/Login',data)
-}
+    return httpClient.post('api/Auth/Login',data);
+};
 
 
 

@@ -2,13 +2,22 @@ import { BsSearch } from 'react-icons/bs'
 import React from 'react'
 import { Link } from "react-router-dom";
 import './navbarr.scss'
+import { useDispatch, useSelector } from "react-redux";
+import { logoutAction } from '../Redux/Slices/authSlice'
+import { Button, Text } from "@chakra-ui/react";
+
 
 
 const Navbar = () => {
 
 
+    const { name, surname, token } = useSelector((x) => x.authReducer);
+    const dispatch = useDispatch();
+
+
+
     return (
-        <> 
+        <>
             <nav class="navbar">
                 <div class="navbar-container container" >
                     <input type="checkbox" name="" id="" />
@@ -25,7 +34,11 @@ const Navbar = () => {
                         <li><a href='/Blogs'>BLOG</a></li>
                         <li><a href='Shop'>SHOP</a></li>
                     </ul>
+                    {/* <Text fontSize={"5xl"}>
+                        Welcome, {name} {surname}
+                    </Text>
                     <h1 class="logo"><BsSearch /></h1>
+                    <Button onClick={() => dispatch(logoutAction())}>Log out</Button> */}
                 </div>
             </nav>
         </>
