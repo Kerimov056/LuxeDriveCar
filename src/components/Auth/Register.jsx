@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-// import './register.scss';
+import './register.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useFormik } from 'formik';
@@ -37,7 +37,7 @@ const Register = () => {
 
     return (
         <>
-            <div className='login_section'>
+            <div className='login_sectionN'>
                 {/* <div class="container">
                     <div class="circle circle1"></div>
                     <div class="circle circle2"></div>

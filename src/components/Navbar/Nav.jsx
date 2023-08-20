@@ -20,11 +20,11 @@ const Nav = () => {
                     </div>
                     <div><a id="Luxxx" href="#"><Link to={'./'} id='Linkkk'>LUXEDRIVE</Link></a></div>
                     <ul class="menu-items">
-                        <li><a><Link to={'./'} id='Linkkk'>Home</Link></a></li>
-                        <li><a><Link to={'./AboutUs'} id='Linkkk'>About Us</Link></a></li>
-                        <li><a><Link to={'./VehicleFleet'}>VEHICLE FLEET</Link></a></li>
-                        <li><a><Link to={'./Blogs'}>BLOG</Link></a></li>
-                        <li><a><Link to={'./Shop'}>SHOP</Link></a></li>
+                        <li><a href='/'>Home</a></li>
+                        <li><a href='/AboutUs'>About Us</a></li>
+                        <li><a href='VehicleFleet'>VEHICLE FLEET</a></li>
+                        <li><a href='/Blogs'>BLOG</a></li>
+                        <li><a href='Shop'>SHOP</a></li>
                     </ul>
                     <h1 class="logo"><BsSearch /></h1>
                 </div>
