@@ -9,7 +9,7 @@ const RecentPost = (props) => {
                     <img src={props.img} />
                 </div>
                 <div className='PostText'>
-                    <h3>{props.name}</h3>
+                    <h3>{props.name} {props.category}</h3>
                     <h4>{props.date}</h4>
                 </div>
             </div>

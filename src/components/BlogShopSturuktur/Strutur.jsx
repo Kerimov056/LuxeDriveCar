@@ -7,6 +7,8 @@ import ShopCarCard from '../Shop/ShopCarCard';
 import { getCarImage } from "../Services/shopCarardServices";
 import { getBlog, getByBlog } from "../Services/blogServices";
 import { useNavigate, useParams } from 'react-router-dom';
+import { getCar } from "../Services/carServices";
+
 
 const Strutur = (props) => {
 
@@ -17,6 +19,12 @@ const Strutur = (props) => {
     const { data: byCars } = useQuery(["Blogs", id], () =>
         getByBlog(id)
     );
+
+    const { data: cars } = useQuery({
+        queryKey: ["Cars"],
+        queryFn: getCar,
+        staleTime: 0,
+    });
 
 
     const { data } = useQuery({
@@ -95,14 +103,14 @@ const Strutur = (props) => {
                             {
                                 props.blog === true ?
                                     <div>
-                                        {cars?.data.map((byCar, index) => (
-                                            <RecentPost img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/side-b-l-img-2.jpg"} name={"BMW M4 croup"} date={"28 may 2023"} />
+                                        {blogs?.data.slice(-3).map((byBlogs, index) => (
+                                            <RecentPost key={index} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/b-l-img-1.jpg" } Id={byBlogs.id} title={byBlogs.title} date={"28 may 2023"} />
                                         ))}
                                     </div> :
                                     <div>
-                                        <RecentPost img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/side-b-l-img-2.jpg"} name={"BMW M4 croup"} date={"28 may 2023"} />
-                                        <RecentPost img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/side-b-l-img-2.jpg"} name={"BMW M4 croup"} date={"28 may 2023"} />
-                                        <RecentPost img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/side-b-l-img-2.jpg"} name={"BMW M4 croup"} date={"28 may 2023"} />
+                                        {cars?.data.slice(-3).map((byCar, index) => (
+                                            <RecentPost  key={index} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/side-b-l-img-2.jpg"} name={byCar.model} category={byCar.carCategory ? byCar.carCategory.category : "No Category"} date={"28 may 2023"} />
+                                        ))}
                                     </div>
                             }
                         </div>
