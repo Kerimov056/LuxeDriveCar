@@ -27,13 +27,14 @@ const Login = () => {
 
   const formik = useFormik({
     initialValues: {
-      email: '',
+      UsernameOrEmail: '',
       password: '',
     },
     onSubmit: (values) => {
+      console.log(values);
       mutate(values);
-    },
-    validationSchema: loginSchema
+    }
+    // validationSchema: 
   });
 
 
@@ -57,7 +58,7 @@ const Login = () => {
           <Input
             isInvalid={formik.errors.email && formik.touched.email}
             name='email'
-            // value={formik.values.email}
+            value={formik.values.email}
             onChange={formik.handleChange}
             placeholder='Here is a sample placeholder'
             size='sm'
@@ -69,7 +70,7 @@ const Login = () => {
           <Input
             isInvalid={formik.errors.password && formik.touched.password}
             name='password'
-            // value={formik.values.password}
+            value={formik.values.password}
             onChange={formik.handleChange}
             placeholder='Here is a sample placeholder'
             size='sm'
@@ -87,10 +88,6 @@ const Login = () => {
 }
 
 export default Login
-
-
-
-
 
 
 

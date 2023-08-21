@@ -2,7 +2,7 @@
 import Axios from "axios";
 
 const api = Axios.create({
-  baseURL: process.env.REACT_APP_API_HOST,
+  baseURL: "https://localhost:7152/",
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json", // Fixed header value

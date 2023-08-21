@@ -1,5 +1,4 @@
-
-#Destinations{
+#Destinations {
     width: 100%;
     height: 700px;
     display: flex;
@@ -7,11 +6,11 @@
     align-items: center;
     background-color: black;
 
-    &>div{
+    &>div {
         width: 88%;
         height: 100%;
 
-        .Basliq{
+        .Basliq {
             width: 100%;
             height: 30%;
             border-bottom: 1px solid rgb(154, 154, 154);
@@ -19,22 +18,22 @@
             flex-direction: column;
             align-content: flex-end;
 
-            &>p{
+            &>p {
                 height: 120px;
             }
 
-            &>h1{
+            &>h1 {
                 font-size: 34px;
                 color: white;
             }
 
-            &>h3{
+            &>h3 {
                 font-size: 18px;
                 color: #bfa37c;
             }
         }
 
-        .DestinationsCardIn{
+        .DestinationsCardIn {
             width: 100%;
             height: 70%;
             grid-column: 20px;
@@ -42,12 +41,12 @@
             display: flex;
             justify-content: space-between;
             overflow: hidden;
-            
-            .bossss{
+
+            .bossss {
                 width: 12%;
             }
 
-            .griddd{
+            .griddd {
                 margin-right: -120px;
                 width: 88%;
                 display: grid;
@@ -66,17 +65,18 @@
 
 
 
-#DestinationsCard{
+#DestinationsCard {
     width: 400px;
     height: 200px;
-    
-    &>h3{
+
+
+    &>h3 {
         font-size: 26px;
         font-weight: 699;
         color: white;
     }
 
-    &>p{
+    &>p {
         margin-top: 10px;
         color: gray;
         font-size: 18px;
