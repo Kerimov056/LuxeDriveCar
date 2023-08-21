@@ -8,21 +8,21 @@ import { useQuery } from "react-query";
 import axios from "axios";
 
 const Destinations = (props) => {
-    
+
     const Color = props.color;
-    
+
     const { data } = useQuery({
         queryKey: ["Faqs"],
         queryFn: getFaqs,
         staleTime: 0,
     });
-    const { data:chaurffers } = useQuery({
+    const { data: chaurffers } = useQuery({
         queryKey: ["chauffers"],
         queryFn: getChauffeurs,
         staleTime: 0,
-        
+
     });
-        // useEffect(() => {
+    // useEffect(() => {
     // const [faqss, setFaqss] = useState([])
     // const [chauff, setChauff] = useState([])
     //     // axios.get('https://localhost:7152/api/Faqs')
@@ -54,13 +54,13 @@ const Destinations = (props) => {
                 </div>
                 <div className='DestinationsCardIn'>
                     <div className='bossss'></div>
-                    <div className='griddd'>
-                        {props.isAnswer && data?.data.map((faqs, index) => (( 
+                    <div className={props.isHuman ? "griddd" : "gridddD"}>
+                        {props.isAnswer && data?.data.slice(-4).map((faqs, index) => ((
                             [
-                                <DestinationsCard key={index} color={Color === "white" ? "black" : "white"} descrption={faqs.descrption} name={faqs.title} />
+                                <DestinationsCard key={index} color={Color === "white" ? "black" : "white"} descrption={faqs.descrption.slice(0, 130)} name={faqs.title} />
                             ]
                         )))}
-                        {props.isHuman && chaurffers?.data.map((chauff) => ((
+                        {props.isHuman && chaurffers?.data.slice(-3).map((chauff) => ((
                             [
                                 <Chauffeurs img={chauff.imagePath} name={chauff.name} number={chauff.number} />
                             ]

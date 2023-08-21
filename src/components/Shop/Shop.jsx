@@ -9,7 +9,7 @@ const Shop = () => {
         <>
             <Navbar />
             <div>
-                <Strutur blog={false} />
+                <Strutur details={false} blog={false} />
                 <h1 className='Arale'></h1>
             </div>
         </>

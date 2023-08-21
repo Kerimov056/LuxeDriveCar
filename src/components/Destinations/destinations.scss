@@ -52,6 +52,13 @@
                 display: grid;
                 grid-template-columns: auto auto auto;
             }
+
+            .gridddD {
+                margin-right: -120px;
+                width: 92%;
+                display: grid;
+                grid-template-columns: auto auto;
+            }
         }
     }
 }
@@ -67,9 +74,8 @@
 
 #DestinationsCard {
     margin-top: 20px;
-    width: 330px;
+    width: 380px;
     height: 200px;
-    background-color: red;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -77,6 +83,7 @@
     &>div {
         width: 95%;
         height: 100%;
+        overflow: hidden;
 
         &>h3 {
             font-size: 24px;

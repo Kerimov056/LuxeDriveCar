@@ -11,6 +11,7 @@ import VehicleFleet from './components/VehicleFleet/VehicleFleet';
 import Blogs from './components/Blogs/Blogs';
 import Shop from './components/Shop/Shop';
 import CarDetail from './components/CarDetail/CarDetail';
+import BlogDetails from './components/blogDetails/BlogDetails';
 
 function App() {
 
@@ -29,7 +30,8 @@ function App() {
             <Route path='/VehicleFleet' element={<VehicleFleet/>} />
             <Route path='/Blogs' element={<Blogs/>} />
             <Route path='/Shop' element={<Shop/>} />
-            <Route path='/CarDetail' element={<CarDetail/>} />
+            <Route path='/CarDetail/:id' element={<CarDetail/>} />
+            <Route path='/BlogDetails' element={<BlogDetails/>} />
           </Routes>
 
           <Footer />

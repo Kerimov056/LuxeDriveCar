@@ -101,6 +101,7 @@
 
         .tracker {
             position: absolute;
+            overflow: hidden;
             z-index: 200;
             width: 100%;
             height: 100%;
@@ -126,9 +127,10 @@
         }
 
         .canvas {
+            overflow: hidden;
             perspective: 800px;
             inset: 0;
-            z-index: 200;
+            z-index: 0;
             position: absolute;
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -139,7 +141,6 @@
                 "tr-11 tr-12 tr-13 tr-14 tr-15"
                 "tr-16 tr-17 tr-18 tr-19 tr-20"
                 "tr-21 tr-22 tr-23 tr-24 tr-25";
-            
         }
 
         #card::before {

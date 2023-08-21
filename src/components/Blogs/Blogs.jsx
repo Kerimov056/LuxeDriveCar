@@ -10,7 +10,7 @@ const Blogs = () => {
                 <Navbar />
             </div>
             <div>
-                <Strutur blog={true} />
+                <Strutur details={false} blog={true} />
             </div>
         </>
     );

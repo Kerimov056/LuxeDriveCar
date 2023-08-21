@@ -21,44 +21,55 @@ const Strutur = (props) => {
                 <div>
                     <div className='LeftBar'>
                         {
-                            props.blog === true ?
-                                <div>
+                            props.details === true ?
+                                <div className='blogDetails'>
+                                    <div className='blogDetails_1'>
+                                        <p>
+                                            <h1>What Are The Benefits Of Hiring A Private Driver And Traveling</h1>
+                                            <h3>JAN 8. 2022. DRIVELUXURY</h3>
+                                        </p>
+                                        <div>
+                                            <img src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/b-l-img-1.jpg' />
+                                        </div>
+                                    </div>
+
+                                    <div className='blogDetails_2'>
+                                        <div>
+                                            Suspendisse ultrices gravida dictum fusce ut placerat orci nulla. Enim ut tellus elementum sagittis vitae et le duiso ut. Habitasse platea dictumst quisque sagitti puruse sit. Lorem ipsum dolor sit amet consectetur adip icing elit ut. Amet justo donec enim diam vulputate. Donec adipiscing tristique risus nec. Egestas purus viver a accu san in. Feugiat vivamus at augue eget arcu dictum varius duis at. Purs usit amet luctus venenatis. Lectu smagn do diam maecenas se denim ut sem. Vive ra mauris in aliquam sem feugiat in ani. <br /><br />
+
+                                            Semper auctor neque vitae tempus quam pellentesque. Vel facilisis volut at est velit. Porta lorem mollis aliquail uto porttitor. Feugiat pretium nibh ipsum conseq ut nisl vel pretium lectus. Est pa leract in egestas erat imperd sed. Adipiscing elit duis tristique sollici udinn nibh. Ultrices eros in cursus turpis tincidunt massa. Dui ut dign ssimo suspendisse in est ante. Auctor urna nunc id cursus metus aliquam. Dui nunc mattiso nim ut tellus eleme sagitt is vitae. Lectus ves tiblum ullamcorper mattis velit. Viverra aliquet eget.
+                                        </div>
+                                        <div className='ortaq'>
+                                            <div>Sed viverra tellus in hac habitasse platea lacus ai dictumst vesti buli sed arcu non odio euismod at lacinia sem nulla pharetra diam sit ame mattis ullamcorper velit sed ulam. </div>
+                                        </div>
+                                        <div>Sit amet commodo nulla facilisi nullam vehicula ipsum a. At volutpat venenatis diam ut tellus in. Tristique sollici tudin nibh sit amet commodo. Fames ac turpis egestas integer eget. Aliquet mau ris augue in neque gravid fi emen tum. Blandit quis turpis cursus in hac habitasse platea. Fames ac turpis egestas integer eget.</div>
+                                        <div className='endimg'>
+                                            <img src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/b-s-img-2.jpg' />
+                                        </div>
+                                        <div>Dui vivamus arcu felis bibendum ut tristique et. Urna porttitor rhoncus non dolor purus. Et netus malesuada et fai es ac turpis egestas maecenas pharetra. Nunc sed velit dignissim sodales conv.</div>
+                                    </div>
+
                                     <BlogPost title={"What Are The Benefits Of Hiring A Private Driver And Traveling"} date={"Jan 8.   2022./   DRIVE, LUXURY"} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/b-l-img-1.jpg"} desc={"Nisl condimentum id venenatis a condimentum vitae sapien pellent esque habitant. Massa id neque aliquam vestibulum. Diam quam nulla porttitor massa id neque aliquam. Tortor at auctor urna nunc id cursus metus aliquam eleifend. At tellus at urna condimentum mattis pellentesque. Tristique sollicitudin nibh sit amet commodo nulla. Erat nam at lectus urna duis convallis. Vestibulum lectus mauris ultrices eros in cursus turpis. Volutpat commodo"} />
-                                    <BlogPost title={"What Are The Benefits Of Hiring A Private Driver And Traveling"} date={"Jan 8.   2022./   DRIVE, LUXURY"} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/b-l-img-1.jpg"} desc={"Nisl condimentum id venenatis a condimentum vitae sapien pellent esque habitant. Massa id neque aliquam vestibulum. Diam quam nulla porttitor massa id neque aliquam. Tortor at auctor urna nunc id cursus metus aliquam eleifend. At tellus at urna condimentum mattis pellentesque. Tristique sollicitudin nibh sit amet commodo nulla. Erat nam at lectus urna duis convallis. Vestibulum lectus mauris ultrices eros in cursus turpis. Volutpat commodo"} />
-                                    <BlogPost title={"What Are The Benefits Of Hiring A Private Driver And Traveling"} date={"Jan 8.   2022./   DRIVE, LUXURY"} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/b-l-img-1.jpg"} desc={"Nisl condimentum id venenatis a condimentum vitae sapien pellent esque habitant. Massa id neque aliquam vestibulum. Diam quam nulla porttitor massa id neque aliquam. Tortor at auctor urna nunc id cursus metus aliquam eleifend. At tellus at urna condimentum mattis pellentesque. Tristique sollicitudin nibh sit amet commodo nulla. Erat nam at lectus urna duis convallis. Vestibulum lectus mauris ultrices eros in cursus turpis. Volutpat commodo"} />
+
                                 </div> :
-                                <div className='Shoppp'>
-                                    {data?.data.map((carImages, index) => (
-                                         <ShopCarCard marka={carImages.id} img={carImages.imagePath[1]} />
-                                    ))}
-                                </div>
+
+
+                                props.blog === true ?
+                                    <div>
+                                        <BlogPost title={"What Are The Benefits Of Hiring A Private Driver And Traveling"} date={"Jan 8.   2022./   DRIVE, LUXURY"} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/b-l-img-1.jpg"} desc={"Nisl condimentum id venenatis a condimentum vitae sapien pellent esque habitant. Massa id neque aliquam vestibulum. Diam quam nulla porttitor massa id neque aliquam. Tortor at auctor urna nunc id cursus metus aliquam eleifend. At tellus at urna condimentum mattis pellentesque. Tristique sollicitudin nibh sit amet commodo nulla. Erat nam at lectus urna duis convallis. Vestibulum lectus mauris ultrices eros in cursus turpis. Volutpat commodo"} />
+                                        <BlogPost title={"What Are The Benefits Of Hiring A Private Driver And Traveling"} date={"Jan 8.   2022./   DRIVE, LUXURY"} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/b-l-img-1.jpg"} desc={"Nisl condimentum id venenatis a condimentum vitae sapien pellent esque habitant. Massa id neque aliquam vestibulum. Diam quam nulla porttitor massa id neque aliquam. Tortor at auctor urna nunc id cursus metus aliquam eleifend. At tellus at urna condimentum mattis pellentesque. Tristique sollicitudin nibh sit amet commodo nulla. Erat nam at lectus urna duis convallis. Vestibulum lectus mauris ultrices eros in cursus turpis. Volutpat commodo"} />
+                                        <BlogPost title={"What Are The Benefits Of Hiring A Private Driver And Traveling"} date={"Jan 8.   2022./   DRIVE, LUXURY"} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/b-l-img-1.jpg"} desc={"Nisl condimentum id venenatis a condimentum vitae sapien pellent esque habitant. Massa id neque aliquam vestibulum. Diam quam nulla porttitor massa id neque aliquam. Tortor at auctor urna nunc id cursus metus aliquam eleifend. At tellus at urna condimentum mattis pellentesque. Tristique sollicitudin nibh sit amet commodo nulla. Erat nam at lectus urna duis convallis. Vestibulum lectus mauris ultrices eros in cursus turpis. Volutpat commodo"} />
+                                    </div> :
+                                    <div className='Shoppp'>
+                                        {data?.data.map((carImages, index) => (
+                                            <ShopCarCard marka={carImages.id} img={carImages.imagePath[1]} />
+                                        ))}
+                                    </div>
                         }
                     </div>
 
 
                     <div className='RightBar'>
-
-                        <div className='Search'>
-                            <h1>Search Post</h1>
-                            <form class="form">
-                                <label for="search">
-                                    <input class="input" type="text" required="" placeholder="Search twitter" id="search" />
-                                    <div class="fancy-bg"></div>
-                                    <div class="search">
-                                        <svg viewBox="0 0 24 24" aria-hidden="true" class="r-14j79pv r-4qtqp9 r-yyyyoo r-1xvli5t r-dnmrzs r-4wgw6l r-f727ji r-bnwqim r-1plcrui r-lrvibr">
-                                            <g>
-                                                <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
-                                            </g>
-                                        </svg>
-                                    </div>
-                                    <button class="close-btn" type="reset">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </button>
-                                </label>
-                            </form>
-                        </div>
 
 
                         <div className='Posts'>

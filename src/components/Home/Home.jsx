@@ -103,7 +103,7 @@ const Home = ({ color, onNavStateChange }) => {
 
 
   const { sliders } = useQuery({
-    queryKey: ["Faqs"],
+    queryKey: ["Slider"],
     queryFn: getSlider,
     staleTime: 0,
   });
@@ -117,10 +117,10 @@ const Home = ({ color, onNavStateChange }) => {
 
       <div className='home'>
         <Slider {...settings} className='sliderrr'>
-          {sliders?.data.map((carImages, index) => (
+          {sliders?.data.map((sliderimg, index) => (
             <div key={index}>
               <div>
-                <img src="https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/04/h1-rev-img-1b.jpg" alt="Slide 1" />
+                <img src={sliderimg.imagePath} alt="Slide 1" />
               </div>
               <div>
                 <img src="https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/04/h1-rev-img-2b.jpg" alt="Slide 2" />
@@ -222,11 +222,11 @@ const Home = ({ color, onNavStateChange }) => {
         </div>
         <div className='cards'>
           {cars?.data.map((byCar, index) => (
-            <Card key={index} img='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Main-home-vehicle-list-img-01.jpg' catagorie={byCar.category} name={byCar.model} price={byCar.price} description={byCar.description} />
+            <Card key={index} Id={byCar.id} img='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Main-home-vehicle-list-img-01.jpg' catagorie={byCar.carCategory ? byCar.carCategory.category : "No Category"} name={byCar.model} price={byCar.price} description={byCar.description.slice(0,60) } />
           ))}
         </div>
-      </div>
 
+      </div>
 
       <div id='DestinationsS'>
         <p id='hrrrr'></p>
