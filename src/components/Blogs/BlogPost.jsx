@@ -1,5 +1,6 @@
 import React from 'react';
 import './blogpost.scss'
+import { Link } from 'react-router-dom';
 
 const BlogPost = (props) => {
     return (
@@ -47,7 +48,9 @@ const BlogPost = (props) => {
                     <h4>{props.desc}</h4>
                 </div>
                 <div className='postButton'>
-                    <button>+ DISCOVER</button>
+                    <Link to={`/BlogDetails/${props.Id}`} >
+                        <button>+ DISCOVER</button>
+                    </Link>
                 </div>
             </div>
         </>
