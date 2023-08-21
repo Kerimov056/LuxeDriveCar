@@ -29,9 +29,19 @@ import {
   AlertDialogCloseButton,
 } from '@chakra-ui/react'
 import Carcatogorie from '../CarCatogorie/Carcatogorie';
+import { useQuery } from "react-query";
+import { getSlider } from "../Services/sliderServices";
+import { getCar } from "../Services/carServices";
+
 
 const Home = ({ color, onNavStateChange }) => {
 
+
+  const { cars } = useQuery({
+    queryKey: ["Faqs"],
+    queryFn: getCar,
+    staleTime: 0,
+  });
 
   const bcolor = () => {
     const BColor = "black";
@@ -81,7 +91,7 @@ const Home = ({ color, onNavStateChange }) => {
   }, []);
 
   const settings = {
-    dots: false, 
+    dots: false,
     infinite: true,
     speed: 1800,
     slidesToShow: 1,
@@ -91,6 +101,14 @@ const Home = ({ color, onNavStateChange }) => {
     fade: true,
   };
 
+
+  const { sliders } = useQuery({
+    queryKey: ["Faqs"],
+    queryFn: getSlider,
+    staleTime: 0,
+  });
+
+
   return (
     <>
       <div className={isVisible ? 'navbar' : 'navbar hidden'}>
@@ -99,22 +117,27 @@ const Home = ({ color, onNavStateChange }) => {
 
       <div className='home'>
         <Slider {...settings} className='sliderrr'>
-          <div>
-            <img src="https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/04/h1-rev-img-1b.jpg" alt="Slide 1" />
-          </div>
-          <div>
-            <img src="https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/04/h1-rev-img-2b.jpg" alt="Slide 2" />
-          </div>
-          <div>
-            <img src="https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/04/h1-rev-img-3b.jpg" alt="Slide 3" />
-          </div>
-          <div>
-            <img src="https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/04/h1-rev-img-4b.jpg" alt="Slide 3" />
-          </div>
-          <div>
-            <img style={{ width: "100%", height: "99vh", objectFit: 'cover' }} src="https://i.ytimg.com/vi/D6B6A1SF14o/maxresdefault.jpg" alt="Slide 3" />
-          </div>
+          {sliders?.data.map((carImages, index) => (
+            <div key={index}>
+              <div>
+                <img src="https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/04/h1-rev-img-1b.jpg" alt="Slide 1" />
+              </div>
+              <div>
+                <img src="https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/04/h1-rev-img-2b.jpg" alt="Slide 2" />
+              </div>
+              <div>
+                <img src="https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/04/h1-rev-img-3b.jpg" alt="Slide 3" />
+              </div>
+              <div>
+                <img src="https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/04/h1-rev-img-4b.jpg" alt="Slide 4" />
+              </div>
+              <div>
+                <img style={{ width: "100%", height: "99vh", objectFit: 'cover' }} src="https://i.ytimg.com/vi/D6B6A1SF14o/maxresdefault.jpg" alt="Slide 5" />
+              </div>
+            </div>
+          ))}
         </Slider>
+
         <div className="fixed-div">
           <div className='Navbar'>
             <div>
@@ -197,14 +220,16 @@ const Home = ({ color, onNavStateChange }) => {
             </div>
           </div>
         </div>
-        <div className='cards'>
-          <Card img='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Main-home-vehicle-list-img-01.jpg' catagorie="4x4" name="E63" price="200" description={"Lorem ipsum dolor sit do amet, consectetur, adipiscing elit, sed "} />
-          <Card img='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Main-home-vehicle-list-img-02.jpg' catagorie="Sport" name="FORD F-150" price="320" description={"Lorem ipsum dolor sit do amet, consectetur, adipiscing elit, sed "} />
-          <Card img='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Main-home-vehicle-list-img-03.jpg' catagorie="Sport" name="BMW M3 Coupe" price="430" description={"Lorem ipsum dolor sit do amet, consectetur, adipiscing elit, sed "} />
-          <Card img='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Main-home-vehicle-list-img-04.jpg' catagorie="Limusine" name="FORD F-150" price="400" description={"Lorem ipsum dolor sit do amet, consectetur, adipiscing elit, sed "} />
-          <Card img='https://di-uploads-pod3.dealerinspire.com/fletcherjonesmbnewport/uploads/2022/10/2023-S-Class-MLP-Performance-Turbo-Mobile-2.jpg' catagorie="Sport" name="FORD F-150" price="300" description={"Lorem ipsum dolor sit do amet, consectetur, adipiscing elit, sed "} />
-          <Card img='https://di-uploads-pod3.dealerinspire.com/fletcherjonesmbnewport/uploads/2022/10/2023-S-Class-MLP-Performance-Turbo-Mobile-2.jpg' catagorie="Sport" name="FORD F-150" price="300" description={"Lorem ipsum dolor sit do amet, consectetur, adipiscing elit, sed "} />
-        </div>
+        {cars?.data.map((byCar, index) => (
+          <div className='cards'>
+            <Card key={index} img='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Main-home-vehicle-list-img-01.jpg' catagorie="4x4" name={byCar.model} price={byCar.price} description={"Lorem ipsum dolor sit do amet, consectetur, adipiscing elit, sed "} />
+            {/* <Card img='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Main-home-vehicle-list-img-02.jpg' catagorie="Sport" name="FORD F-150" price="320" description={"Lorem ipsum dolor sit do amet, consectetur, adipiscing elit, sed "} /> */}
+            {/* <Card img='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Main-home-vehicle-list-img-03.jpg' catagorie="Sport" name="BMW M3 Coupe" price="430" description={"Lorem ipsum dolor sit do amet, consectetur, adipiscing elit, sed "} /> */}
+            {/* <Card img='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Main-home-vehicle-list-img-04.jpg' catagorie="Limusine" name="FORD F-150" price="400" description={"Lorem ipsum dolor sit do amet, consectetur, adipiscing elit, sed "} /> */}
+            {/* <Card img='https://di-uploads-pod3.dealerinspire.com/fletcherjonesmbnewport/uploads/2022/10/2023-S-Class-MLP-Performance-Turbo-Mobile-2.jpg' catagorie="Sport" name="FORD F-150" price="300" description={"Lorem ipsum dolor sit do amet, consectetur, adipiscing elit, sed "} /> */}
+            {/* <Card img='https://di-uploads-pod3.dealerinspire.com/fletcherjonesmbnewport/uploads/2022/10/2023-S-Class-MLP-Performance-Turbo-Mobile-2.jpg' catagorie="Sport" name="FORD F-150" price="300" description={"Lorem ipsum dolor sit do amet, consectetur, adipiscing elit, sed "} /> */}
+          </div>
+        ))}
       </div>
 
 
@@ -278,7 +303,7 @@ const Home = ({ color, onNavStateChange }) => {
       </div>
 
       <div className='Premium '>
-      <Premiumcars about={false} backColor={"black"}  one={1} two={2} NumColor={"white"} imgUrl={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/01/h1-img-6.jpg"} />
+        <Premiumcars about={false} backColor={"black"} one={1} two={2} NumColor={"white"} imgUrl={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/01/h1-img-6.jpg"} />
       </div>
 
       <div id='HomeAbout'>

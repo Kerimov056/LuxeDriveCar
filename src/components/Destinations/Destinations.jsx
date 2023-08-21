@@ -1,22 +1,48 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './destinations.scss'
 import DestinationsCard from './DestinationsCard'
 import Chauffeurs from '../Chauffeurs/Chauffeurs'
 import { getFaqs } from '../Services/faqsServices'
+import { getChauffeurs } from "../Services/chauffeursServices";
 import { useQuery } from "react-query";
-
-
-
+import axios from "axios";
 
 const Destinations = (props) => {
-
+    
     const Color = props.color;
-
+    
     const { data } = useQuery({
-        queryKey: ["faqs"],
+        queryKey: ["Faqs"],
         queryFn: getFaqs,
         staleTime: 0,
     });
+    const { data:chaurffers } = useQuery({
+        queryKey: ["chauffers"],
+        queryFn: getChauffeurs,
+        staleTime: 0,
+        
+    });
+        // useEffect(() => {
+    // const [faqss, setFaqss] = useState([])
+    // const [chauff, setChauff] = useState([])
+    //     // axios.get('https://localhost:7152/api/Faqs')
+    //     //     .then(response => {
+    //     //         setFaqss(response.data)
+    //     //     })
+    //     //     .catch(error => {
+    //     //         console.log(error);
+    //     //     });
+
+    //     axios.get('https://localhost:7152/api/Chauffeurss')
+    //         .then(response => {
+    //             setChauff(response.data)
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         });
+    // }, []);
+
+
 
     return (
         <div id='Destinations' style={{ backgroundColor: Color }}>
@@ -29,18 +55,16 @@ const Destinations = (props) => {
                 <div className='DestinationsCardIn'>
                     <div className='bossss'></div>
                     <div className='griddd'>
-                        {props.isAnswer && data?.data.map((faqs) => ((
+                        {props.isAnswer && data?.data.map((faqs, index) => (( 
                             [
-                                <DestinationsCard color={Color === "white" ? "black" : "white"} key="1" descrption={faqs.descrption} name={faqs.title} />,
+                                <DestinationsCard key={index} color={Color === "white" ? "black" : "white"} descrption={faqs.descrption} name={faqs.title} />
                             ]
                         )))}
-                        {props.isHuman && (
+                        {props.isHuman && chaurffers?.data.map((chauff) => ((
                             [
-                                <Chauffeurs img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/01/h1-team-img-1.jpg"} name={"Marco Watkivi"} number={"+123 234 43 23"} />,
-                                <Chauffeurs img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/01/h1-team-img-2.jpg"} name={"Marily Sulli"} number={"+123 234 24 23"} />,
-                                <Chauffeurs img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/01/h1-team-img-3.jpg"} name={"Zakary Tapun"} number={"+123 333 22 11"} />
+                                <Chauffeurs img={chauff.imagePath} name={chauff.name} number={chauff.number} />
                             ]
-                        )}
+                        )))}
                     </div>
                 </div>
             </div>

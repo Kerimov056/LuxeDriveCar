@@ -2,9 +2,19 @@ import React from 'react';
 import './strutur.scss'
 import RecentPost from './RecentPost';
 import BlogPost from '../Blogs/BlogPost';
+import { useQuery } from "react-query";
 import ShopCarCard from '../Shop/ShopCarCard';
+import { getCarImage } from "../Services/shopCarardServices";
 
 const Strutur = (props) => {
+
+
+    const { data } = useQuery({
+        queryKey: ["Faqs"],
+        queryFn: getCarImage,
+        staleTime: 0,
+    });
+
     return (
         <>
             <div id='Strutur'>
@@ -18,11 +28,9 @@ const Strutur = (props) => {
                                     <BlogPost title={"What Are The Benefits Of Hiring A Private Driver And Traveling"} date={"Jan 8.   2022./   DRIVE, LUXURY"} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/b-l-img-1.jpg"} desc={"Nisl condimentum id venenatis a condimentum vitae sapien pellent esque habitant. Massa id neque aliquam vestibulum. Diam quam nulla porttitor massa id neque aliquam. Tortor at auctor urna nunc id cursus metus aliquam eleifend. At tellus at urna condimentum mattis pellentesque. Tristique sollicitudin nibh sit amet commodo nulla. Erat nam at lectus urna duis convallis. Vestibulum lectus mauris ultrices eros in cursus turpis. Volutpat commodo"} />
                                 </div> :
                                 <div className='Shoppp'>
-                                    <ShopCarCard img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/shop-single-img-03.jpg"} />
-                                    <ShopCarCard img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/shop-single-img-03.jpg"} />
-                                    <ShopCarCard img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/shop-single-img-03.jpg"} />
-                                    <ShopCarCard img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/shop-single-img-03.jpg"} />
-                                    <ShopCarCard img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/shop-single-img-03.jpg"} />
+                                    {data?.data.map((carImages, index) => (
+                                         <ShopCarCard marka={carImages.id} img={carImages.imagePath[1]} />
+                                    ))}
                                 </div>
                         }
                     </div>

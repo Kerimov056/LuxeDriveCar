@@ -43,12 +43,12 @@
             overflow: hidden;
 
             .bossss {
-                width: 12%;
+                width: 8%;
             }
 
             .griddd {
                 margin-right: -120px;
-                width: 88%;
+                width: 92%;
                 display: grid;
                 grid-template-columns: auto auto auto;
             }
@@ -66,19 +66,28 @@
 
 
 #DestinationsCard {
-    width: 400px;
+    margin-top: 20px;
+    width: 330px;
     height: 200px;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+    &>div {
+        width: 95%;
+        height: 100%;
 
-    &>h3 {
-        font-size: 26px;
-        font-weight: 699;
-        color: white;
-    }
+        &>h3 {
+            font-size: 24px;
+            font-weight: 699;
+            color: white;
+        }
 
-    &>p {
-        margin-top: 10px;
-        color: gray;
-        font-size: 18px;
+        &>p {
+            margin-top: 10px;
+            color: gray;
+            font-size: 18px;
+        }
     }
 }
