@@ -171,7 +171,13 @@ const CarDetail = () => {
 
                                 <div className='Det'>
                                     <div><span>Catagory:</span><span className='Answer Category'>{byCars.data.carCategory.category ? byCars.data.carCategory.category : "No Category"}</span></div>
-                                    <div><span>Tags:</span><span className='Answer'><button>#Car</button><button>#Car</button></span></div>
+                                    <div><span>Tags:</span><span className='Answer'>
+                                        {byCars.data.carTags.forEach(element => {
+                                            <button>{element.data.Tag.tag}</button>
+                                        })}
+                                        <button>#Car</button>
+                                        <button>#{byCars.data.carCategory.category ? byCars.data.carCategory.category : "No Category"}</button>
+                                        </span></div>
                                 </div>
                                 <div className='ByReservACar'>
 
