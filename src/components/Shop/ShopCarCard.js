@@ -9,7 +9,7 @@ const ShopCarCard = (props) => {
                 <div class="card-details">
                     <img src={props.img} />
                 </div>
-                <button class="card-button">{props.marka}</button>
+                <button class="card-button">More Info</button>
                 <button class="AddToCard">+ ADD TO ORDER</button>
             </div>
         </>

@@ -88,7 +88,7 @@ const Strutur = (props) => {
                                     </div> :
                                     <div className='Shoppp'>
                                         {data?.data.map((carImages, index) => (
-                                            <ShopCarCard marka={carImages.id} img={carImages.imagePath[1]} />
+                                            <ShopCarCard img={carImages.imagePath[1]} />
                                         ))}
                                     </div>
                         }
@@ -104,12 +104,12 @@ const Strutur = (props) => {
                                 props.blog === true ?
                                     <div>
                                         {blogs?.data.slice(-3).map((byBlogs, index) => (
-                                            <RecentPost key={index} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/b-l-img-1.jpg" } Id={byBlogs.id} title={byBlogs.title} date={"28 may 2023"} />
+                                            <RecentPost key={index} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/b-l-img-1.jpg"} Id={byBlogs.id} title={byBlogs.title} date={"28 may 2023"} />
                                         ))}
                                     </div> :
                                     <div>
                                         {cars?.data.slice(-3).map((byCar, index) => (
-                                            <RecentPost  key={index} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/side-b-l-img-2.jpg"} name={byCar.model} category={byCar.carCategory ? byCar.carCategory.category : "No Category"} date={"28 may 2023"} />
+                                            <RecentPost key={index} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/side-b-l-img-2.jpg"} name={byCar.model} category={byCar.carCategory ? byCar.carCategory.category : "No Category"} date={"28 may 2023"} />
                                         ))}
                                     </div>
                             }
