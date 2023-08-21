@@ -3,9 +3,21 @@ import "./VehicleFleet.scss";
 import Navbar from '../Navbar/Navbar'
 import Car from '../Card//Car'
 import { Select, Stack } from '@chakra-ui/react'
+import { useQuery } from 'react-query'
+import { getCar } from "../Services/carServices";
 
 
 const VehicleFleet = () => {
+
+    const { data: cars } = useQuery({
+        queryKey: ["Cars"],
+        queryFn: getCar,
+        staleTime: 0,
+      });
+    
+    
+
+
     return (
         <>
             <div>
@@ -41,14 +53,9 @@ const VehicleFleet = () => {
                         </div>
                     </div>
                     <div className='Cards'>
-                        <Car img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Vihecle-list-image-04.jpg"} name={"Ferrari 365 Daytona"} desc={"Lorem ipsum dolor sit do amet, elit sed, adipiscing "} price={180} />
-                        <Car img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Vihecle-list-image-03.jpg"} name={"Range Rover Evoque"} desc={"Lorem ipsum dolor sit do amet, elit sed, adipiscing "} price={190} />
-                        <Car img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Vihecle-list-image-01.jpg"} name={"Roll Royce Ghots 3"} desc={"Lorem ipsum dolor sit do amet, elit sed, adipiscing "} price={220} />
-                        <Car img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Vihecle-list-image-02.jpg"} name={"Porce Taycan Sport"} desc={"Lorem ipsum dolor sit do amet, elit sed, adipiscing "} price={110} />
-                        <Car img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Vihecle-list-image-04.jpg"} name={"Ferrari 365 Daytona"} desc={"Lorem ipsum dolor sit do amet, elit sed, adipiscing "} price={180} />
-                        <Car img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Vihecle-list-image-03.jpg"} name={"Range Rover Evoque"} desc={"Lorem ipsum dolor sit do amet, elit sed, adipiscing "} price={190} />
-                        <Car img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Vihecle-list-image-01.jpg"} name={"Roll Royce Ghots 3"} desc={"Lorem ipsum dolor sit do amet, elit sed, adipiscing "} price={220} />
-                        <Car img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Vihecle-list-image-02.jpg"} name={"Porce Taycan Sport"} desc={"Lorem ipsum dolor sit do amet, elit sed, adipiscing "} price={110} />
+                        {cars?.data.map((byCar, index) => (
+                            <Car key={index} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Vihecle-list-image-04.jpg"} name={byCar.marka} desc={byCar.description.slice(0, 30)} price={byCar.price} />
+                        ))}
                     </div>
                 </div>
             </div>

@@ -8,6 +8,7 @@ import { getCarImage } from "../Services/shopCarardServices";
 import { getBlog, getByBlog } from "../Services/blogServices";
 import { useNavigate, useParams } from 'react-router-dom';
 import { getCar } from "../Services/carServices";
+import { getCategorie } from "../Services/categorieServices";
 
 
 const Strutur = (props) => {
@@ -23,6 +24,12 @@ const Strutur = (props) => {
     const { data: cars } = useQuery({
         queryKey: ["Cars"],
         queryFn: getCar,
+        staleTime: 0,
+    });
+
+    const { data: categorie } = useQuery({
+        queryKey: ["Categorie"],
+        queryFn: getCategorie,
         staleTime: 0,
     });
 
@@ -118,13 +125,11 @@ const Strutur = (props) => {
 
                         <div className='Catagories'>
                             <h1>Catagories</h1>
-                            <span>salam</span>
-                            <span>Qaqa</span>
-                            <span>Necesen</span>
-                            <span>Saqol</span>
-                            <span>Brat</span>
+                            {categorie?.data.map((category, index) => (
+                                <span key={index}>{category.category}</span>
+                            ))}
                         </div>
-
+                                
                         <div className='ReklamImg'>
                             <img src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/b-s-s-img-1.jpg' />
                         </div>
