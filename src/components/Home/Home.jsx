@@ -37,8 +37,8 @@ import { getCar } from "../Services/carServices";
 const Home = ({ color, onNavStateChange }) => {
 
 
-  const { cars } = useQuery({
-    queryKey: ["Faqs"],
+  const { data: cars } = useQuery({
+    queryKey: ["Cars"],
     queryFn: getCar,
     staleTime: 0,
   });
@@ -220,16 +220,11 @@ const Home = ({ color, onNavStateChange }) => {
             </div>
           </div>
         </div>
-        {cars?.data.map((byCar, index) => (
-          <div className='cards'>
-            <Card key={index} img='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Main-home-vehicle-list-img-01.jpg' catagorie="4x4" name={byCar.model} price={byCar.price} description={"Lorem ipsum dolor sit do amet, consectetur, adipiscing elit, sed "} />
-            {/* <Card img='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Main-home-vehicle-list-img-02.jpg' catagorie="Sport" name="FORD F-150" price="320" description={"Lorem ipsum dolor sit do amet, consectetur, adipiscing elit, sed "} /> */}
-            {/* <Card img='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Main-home-vehicle-list-img-03.jpg' catagorie="Sport" name="BMW M3 Coupe" price="430" description={"Lorem ipsum dolor sit do amet, consectetur, adipiscing elit, sed "} /> */}
-            {/* <Card img='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Main-home-vehicle-list-img-04.jpg' catagorie="Limusine" name="FORD F-150" price="400" description={"Lorem ipsum dolor sit do amet, consectetur, adipiscing elit, sed "} /> */}
-            {/* <Card img='https://di-uploads-pod3.dealerinspire.com/fletcherjonesmbnewport/uploads/2022/10/2023-S-Class-MLP-Performance-Turbo-Mobile-2.jpg' catagorie="Sport" name="FORD F-150" price="300" description={"Lorem ipsum dolor sit do amet, consectetur, adipiscing elit, sed "} /> */}
-            {/* <Card img='https://di-uploads-pod3.dealerinspire.com/fletcherjonesmbnewport/uploads/2022/10/2023-S-Class-MLP-Performance-Turbo-Mobile-2.jpg' catagorie="Sport" name="FORD F-150" price="300" description={"Lorem ipsum dolor sit do amet, consectetur, adipiscing elit, sed "} /> */}
-          </div>
-        ))}
+        <div className='cards'>
+          {cars?.data.map((byCar, index) => (
+            <Card key={index} img='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Main-home-vehicle-list-img-01.jpg' catagorie={byCar.category} name={byCar.model} price={byCar.price} description={byCar.description} />
+          ))}
+        </div>
       </div>
 
 
