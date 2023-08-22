@@ -3,6 +3,7 @@ import './blogpost.scss'
 import { Link } from 'react-router-dom';
 
 const BlogPost = (props) => {
+    console.log(props.Id);
     return (
         <>
             <div id='BlogPost'>
@@ -48,9 +49,9 @@ const BlogPost = (props) => {
                     <h4>{props.desc}</h4>
                 </div>
                 <div className='postButton'>
-                    <Link to={`/BlogDetails/${props.Id}`} >
+                    {/* <Link to={`/BlogDetails/${props.Id}`} > */}
                         <button>+ DISCOVER</button>
-                    </Link>
+                    {/* </Link> */}
                 </div>
             </div>
         </>

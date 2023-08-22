@@ -3,37 +3,39 @@ import './basketCard.scss'
 
 const BasketCard = (props) => {
 
-    const [Premium, setPremium] = useState("https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/01/h1-img-9.png");
-    const [Super, setSuper] = useState("https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/01/h1-img-10.png");
-    const [Luxury, setLuxury] = useState("https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/01/Vihecle-single-corner-img-.png");
-    const [Business, setBusiness] = useState("https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/01/h1-img-12.png");
+    const sport = "SPORT";
+    const Premium = "Premium";
+    const Luxury = "Luxury";
+    const Business = "Business";
 
-    if (props.categori === "Premium") {
-        props.categori = Premium;
-    }
-    if (props.categori == "Super") {
-        props.categori = Super;
-    }
-    if (props.categori == "Luxury") {
-        props.categori = Luxury;
-    }
-    if (props.categori == "Business") {
-        props.categori = Business;
-    }
+    const [imgUrl, setImgUrl] = useState(() => {
+        if (props.category.toUpperCase() === sport.toUpperCase()) {
+            return "https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/01/h1-img-9.png";
+        } else if (props.category.toUpperCase() === Premium.toUpperCase()) {
+            return "https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/01/h1-img-10.png";
+        } else if (props.category.toUpperCase() === Luxury.toUpperCase()) {
+            return "https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/01/Vihecle-single-corner-img-.png";
+        } else if (props.category.toUpperCase() === Business.toUpperCase()) {
+            return "https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/01/h1-img-12.png";
+        } else {
+            return "";
+        }
+    });
 
+    console.log(props.category);
     return (
         <>
             <div className='BasketCard'>
                 <div class="card">
                     <img src={props.img} />
                     <div class="card__content">
-                        <p class="card__title">{props.marka} {props.model}</p>
+                        <h4 class="card__title">{props.model}</h4>
                         <p class="card__description">{props.desc}</p>
                     </div>
                 </div>
 
                 <div>
-                    <img src={props.categori} />
+                    <img src={imgUrl} />
                 </div>
 
                 <div className='Price'>

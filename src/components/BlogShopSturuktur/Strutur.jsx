@@ -2,13 +2,13 @@ import React from 'react';
 import './strutur.scss'
 import RecentPost from './RecentPost';
 import BlogPost from '../Blogs/BlogPost';
-import { useQuery, useQueryClient } from "react-query";
 import ShopCarCard from '../Shop/ShopCarCard';
 import { getCarImage } from "../Services/shopCarardServices";
-import { getBlog, getByBlog } from "../Services/blogServices";
 import { useNavigate, useParams } from 'react-router-dom';
-import { getCar } from "../Services/carServices";
 import { getCategorie } from "../Services/categorieServices";
+import { getCar } from "../Services/carServices";
+import { getBlog, getByBlog } from "../Services/blogServices";
+import { useQuery, useQueryClient } from "react-query";
 
 
 const Strutur = (props) => {
@@ -34,7 +34,7 @@ const Strutur = (props) => {
     });
 
 
-    const { data } = useQuery({
+    const { data:Faqs } = useQuery({
         queryKey: ["Faqs"],
         queryFn: getCarImage,
         staleTime: 0,
@@ -46,7 +46,7 @@ const Strutur = (props) => {
         queryFn: getBlog,
         staleTime: 0,
     });
-    console.log(byCars);
+    
 
     return (
         <>
@@ -66,7 +66,7 @@ const Strutur = (props) => {
                                         </div>
                                     </div>
 
-                                    <div className='blogDetails_2'>
+                                     <div className='blogDetails_2'>
                                         <div>
                                             {byCars.data.description.slice(0, 9)} <br /><br />
                                             {byCars.data.description.slice(9, 23)}
@@ -79,13 +79,14 @@ const Strutur = (props) => {
                                             <img src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/b-s-img-2.jpg' />
                                         </div>
                                         <div>{byCars.data.description.slice(32)}</div>
-                                    </div>
+                                    </div> 
 
-                                    {blogs?.data.slice(-2).map((byBlogs, index) => (
+                                    {blogs?.data.slice(-1).map((byBlogs, index) => (
                                         <BlogPost Id={byBlogs.id} title={byBlogs.title} date={"Jan 8.   2022./   DRIVE, LUXURY"} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/b-l-img-1.jpg"} desc={byBlogs.description} />
                                     ))}
-                                </div> :
+                                </div> 
 
+                                            :
 
                                 props.blog === true ?
                                     <div>
@@ -94,7 +95,7 @@ const Strutur = (props) => {
                                         ))}
                                     </div> :
                                     <div className='Shoppp'>
-                                        {data?.data.map((carImages, index) => (
+                                        {Faqs?.data.map((carImages, index) => (
                                             <ShopCarCard Id={carImages.carId} img={carImages.imagePath[1]} />
                                         ))}
                                     </div>

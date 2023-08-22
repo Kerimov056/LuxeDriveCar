@@ -6,14 +6,21 @@ import './navbarr.scss'
 import { useDispatch, useSelector } from "react-redux";
 import { logoutAction } from '../Redux/Slices/authSlice'
 import { Button, Text } from "@chakra-ui/react";
-
+import { useQuery } from "react-query";
+import { getBasketItemCount } from "../Services/basketServices";
 
 
 const Navbar = () => {
 
-
     const { name, surname, token } = useSelector((x) => x.authReducer);
     const dispatch = useDispatch();
+
+    const { data: basketCount } = useQuery({
+        queryKey: ["basketsCountT"],
+        queryFn: getBasketItemCount,
+        staleTime: 0,
+    });
+
 
 
 
@@ -27,7 +34,7 @@ const Navbar = () => {
                         <span class="line line2"></span>
                         <span class="line line3"></span>
                     </div>
-                    <ul style={{order: 1}} class="menu-items">
+                    <ul style={{ order: 1 }} class="menu-items">
                         <li><a href='/'>LUXEDRIVE</a></li>
                         <li><a href='/'>Home</a></li>
                         <li><a href='/AboutUs'>About Us</a></li>
@@ -35,8 +42,8 @@ const Navbar = () => {
                         <li><a href='/Blogs'>BLOG</a></li>
                         <li><a href='Shop'>SHOP</a></li>
                     </ul>
-                    <ul style={{order: 2}}>
-                        <li><Link to={'/Basket'} className='BasketCar'><AiOutlineCar id='SumCar'/><span className='SumC'>4</span></Link></li>
+                    <ul style={{ order: 2 }}>
+                        <li><Link to={'/Basket'} className='BasketCar'><AiOutlineCar id='SumCar' /><span className='SumC'>{3}</span></Link></li>
                     </ul>
                     {/* <Text fontSize={"5xl"}>
                         Welcome, {name} {surname}

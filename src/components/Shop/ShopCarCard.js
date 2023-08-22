@@ -12,7 +12,7 @@ const ShopCarCard = (props) => {
                 console.log("Car added to order", response.data);
             })
             .catch(error => {
-                console.error("Error adding car to order", error);
+                console.error("Error adding car to order", error)
             });
     }
 
