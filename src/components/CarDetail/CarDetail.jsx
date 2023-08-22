@@ -13,11 +13,12 @@ import {
     Button
 } from '@chakra-ui/react'
 import Accardion from './Accardion';
+import { Map } from "leaflet";
 import ShopCarCard from '../Shop/ShopCarCard';
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import 'leaflet/dist/leaflet.css'
 import osm from "./osm-providers";
-import { getByCar } from "../Services/carServices";
+import { getByCar, getCar } from "../Services/carServices";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 
@@ -31,6 +32,11 @@ const CarDetail = () => {
         getByCar(id)
     );
 
+    const { data: cars } = useQuery({
+        queryKey: ["Cars"],
+        queryFn: getCar,
+        staleTime: 0,
+    });
 
 
     const [center, setCenter] = useState({ lat: 42.0970, lng: 79.2353 });
@@ -172,12 +178,12 @@ const CarDetail = () => {
                                 <div className='Det'>
                                     <div><span>Catagory:</span><span className='Answer Category'>{byCars.data.carCategory.category ? byCars.data.carCategory.category : "No Category"}</span></div>
                                     <div><span>Tags:</span><span className='Answer'>
-                                        {byCars.data.carTags.forEach(element => {
+                                        {/* {byCars.data.carTags.forEach(element => {
                                             <button>{element.data.Tag.tag}</button>
-                                        })}
+                                        })} */}
                                         <button>#Car</button>
                                         <button>#{byCars.data.carCategory.category ? byCars.data.carCategory.category : "No Category"}</button>
-                                        </span></div>
+                                    </span></div>
                                 </div>
                                 <div className='ByReservACar'>
 
@@ -274,9 +280,9 @@ const CarDetail = () => {
                         <div className='EndCar'>
                             <h1>Related products</h1>
                             <div>
-                                <ShopCarCard img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/shop-single-img-03.jpg"} />
-                                <ShopCarCard img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/shop-single-img-03.jpg"} />
-                                <ShopCarCard img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/shop-single-img-03.jpg"} />
+                                {cars?.data.slice(-3).map((byCar, index) => (
+                                    <ShopCarCard Id={byCar.id} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/shop-single-img-03.jpg"} />
+                                ))}
                             </div>
                         </div>
 

@@ -12,6 +12,7 @@ import Blogs from './components/Blogs/Blogs';
 import Shop from './components/Shop/Shop';
 import CarDetail from './components/CarDetail/CarDetail';
 import BlogDetails from './components/blogDetails/BlogDetails';
+import Basket from './components/Basket/Basket';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
             <Route path='/Shop' element={<Shop/>} />
             <Route path='/CarDetail/:id' element={<CarDetail/>} />
             <Route path='/BlogDetails/:id' element={<BlogDetails/>} />
+            <Route path='/Basket' element={<Basket/>} />
           </Routes>
 
           <Footer />

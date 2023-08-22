@@ -1,0 +1,39 @@
+.basket{
+    margin-top: 70px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: bisque;
+
+    &>div{
+        width: 88%;
+        height: auto;
+        background-color: cadetblue;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .Productss{
+            width: 65%;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &>div{
+                width: 95%;
+                height: 95%;
+                background-color: cornsilk;
+            }
+        }
+
+        .paypal{
+            width: 32%;
+            height: 700px;
+            font-size: 40px;
+            background-color: chocolate;
+        }
+    }
+}
