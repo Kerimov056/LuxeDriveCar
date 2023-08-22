@@ -76,10 +76,11 @@ const Login = () => {
             size='sm'
           />
           <Button isLoading={isLoading} type='submit' onClick={formik.handleSubmit}>Log In</Button>
+          <Button id='regGo'>Register </Button>
         </form>
 
-        <div>
-          <h1>LuxeDrive</h1>
+        <div className='Samaxi'>
+          <Button style={{backgroundColor:"white"}}>Samaxi</Button>
         </div>
 
       </div>

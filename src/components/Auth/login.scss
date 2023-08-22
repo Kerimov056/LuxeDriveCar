@@ -57,7 +57,7 @@
     }
 
     .login_form {
-        height: 520px;
+        height: auto;
         width: 400px;
         background-color: rgba(255, 255, 255, 0.13);
         position: absolute;
@@ -118,8 +118,18 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
+       #regGo{
+        margin-top: 10px;
+       }
     }
 
-    
+    .Samaxi{
+        position: relative;
+        margin-left: 60.6%;
+        margin-top: 34.3%;
+
+        
+    }
 
 }

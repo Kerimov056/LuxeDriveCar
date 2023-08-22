@@ -95,7 +95,7 @@ const Strutur = (props) => {
                                     </div> :
                                     <div className='Shoppp'>
                                         {data?.data.map((carImages, index) => (
-                                            <ShopCarCard img={carImages.imagePath[1]} />
+                                            <ShopCarCard Id={carImages.carId} img={carImages.imagePath[1]} />
                                         ))}
                                     </div>
                         }
@@ -129,7 +129,7 @@ const Strutur = (props) => {
                                 <span key={index}>{category.category}</span>
                             ))}
                         </div>
-                                
+
                         <div className='ReklamImg'>
                             <img src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/b-s-s-img-1.jpg' />
                         </div>
