@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useFormik } from 'formik';
 import { Input, Text, Button } from '@chakra-ui/react'
 import registerSchema from '../Validators/registerSchema'
+import { GrPrevious } from "react-icons/gr";
 
 const Register = () => {
 
@@ -93,7 +94,7 @@ const Register = () => {
                             />
 
                             <Button type='submit' onClick={formik.handleSubmit}>Register</Button>
-                            <Link to={"/Login"}><Button>Login</Button></Link>
+                            <Link to={"/Login"}><Button><GrPrevious/>Login</Button></Link>
                         </Fragment>
                     </form>
                 </div>
