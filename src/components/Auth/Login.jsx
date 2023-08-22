@@ -11,6 +11,7 @@ import { login } from "../Services/authServices";
 import { useDispatch, useSelector } from 'react-redux';
 import { loginAction } from "../Redux/Slices/authSlice";
 import Navbar from '../Navbar/Navbar';
+import {  } from "react-icons";
 
 const Login = () => {
   const history = useNavigate();
@@ -76,7 +77,7 @@ const Login = () => {
             size='sm'
           />
           <Button isLoading={isLoading} type='submit' onClick={formik.handleSubmit}>Log In</Button>
-          <Button id='regGo'>Register </Button>
+          <Link to={"/Register"}><Button id='regGo'>Register</Button></Link>
         </form>
 
         <div className='Samaxi'>

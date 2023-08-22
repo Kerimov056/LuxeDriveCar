@@ -93,6 +93,7 @@ const Register = () => {
                             />
 
                             <Button type='submit' onClick={formik.handleSubmit}>Register</Button>
+                            <Link to={"/Login"}><Button>Login</Button></Link>
                         </Fragment>
                     </form>
                 </div>
