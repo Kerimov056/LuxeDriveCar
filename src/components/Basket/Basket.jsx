@@ -11,6 +11,12 @@ const Basket = () => {
             <div className='basket'>
                 <div>
                     <div className='Productss'>
+                        <div className='TableStructur'>
+                            <span>Car</span>
+                            <span>Category</span>
+                            <span>Price</span>
+                            <span>Order</span>
+                        </div>
                         <div>
                            <BasketCard />
                            <BasketCard />

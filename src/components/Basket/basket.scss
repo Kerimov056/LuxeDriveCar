@@ -13,15 +13,32 @@
         background-color: cadetblue;
         display: flex;
         justify-content: space-around;
-        align-items: center;
+        flex-direction: column;
 
         .Productss {
-            padding: 30px 0;
-            width: 65%;
+            padding: 30px 30px;
+            width: 95%;
             height: auto;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+
+            .TableStructur{
+                width: 99%;
+                height: 50px;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                overflow: hidden;
+
+                &>span{
+                    margin-left: 90px;
+                    padding: 10px 10px;
+                    font-size: 29px;
+                    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                }
+            }
 
             &>div {
                 width: 99%;
