@@ -1,7 +1,11 @@
-&>div {
+.BasketCard{
+    margin-top: 20px;
     width: 100%;
     height: auto;
     background-color: red;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     .card {
         position: relative;
