@@ -96,7 +96,7 @@ const Strutur = (props) => {
                                     </div> :
                                     <div className='Shoppp'>
                                         {Faqs?.data.map((carImages, index) => (
-                                            <ShopCarCard Id={carImages.carId} img={carImages.imagePath[1]} />
+                                            <ShopCarCard Id={carImages?.carId} img={carImages.imagePath[1]} />
                                         ))}
                                     </div>
                         }

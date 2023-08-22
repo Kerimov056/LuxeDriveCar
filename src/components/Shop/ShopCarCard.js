@@ -2,18 +2,23 @@ import React from 'react';
 import './ShopCarCard.scss'
 import { Link } from 'react-router-dom';
 import { PostCar } from "../Services/basketServices";
+import { useMutation, useQueryClient } from 'react-query';
 
 
 const ShopCarCard = (props) => {
+    const queryClient = useQueryClient();
+
+    const { mutate, isLoading, isError, error } = useMutation(PostCar, {
+        onSuccess: (data) => {
+            queryClient.invalidateQueries(["basketsCountT"]);
+        },
+        onError: (error) => {
+            console.error("Error adding car to order", error);
+        }
+    });
 
     const handleAddToOrder = () => {
-        PostCar(props.Id)
-            .then(response => {
-                console.log("Car added to order", response.data);
-            })
-            .catch(error => {
-                console.error("Error adding car to order", error)
-            });
+        mutate(props.Id);
     }
 
     return (
