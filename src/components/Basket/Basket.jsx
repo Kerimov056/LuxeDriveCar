@@ -16,13 +16,11 @@ const Basket = () => {
                             <span>Category</span>
                             <span>Price</span>
                             <span>Order</span>
-                        </div> 
+                        </div>
                         <div>
-                           <BasketCard />
-                           <BasketCard />
-                           <BasketCard />
-                           <BasketCard />
-                           <BasketCard />
+
+                            <BasketCard img={""} marka={""} model={""} desc={""} categori={""} price={""} />
+
                         </div>
                     </div>
                     <div className='paypal'>Paypal</div>
