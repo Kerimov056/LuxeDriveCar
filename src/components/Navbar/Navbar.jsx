@@ -36,7 +36,7 @@ const Navbar = () => {
                         <li><a href='Shop'>SHOP</a></li>
                     </ul>
                     <ul style={{order: 2}}>
-                        <li><Link><AiOutlineCar id='SumCar'/></Link></li>
+                        <li><Link className='BasketCar'><AiOutlineCar id='SumCar'/><span className='SumC'>4</span></Link></li>
                     </ul>
                     {/* <Text fontSize={"5xl"}>
                         Welcome, {name} {surname}

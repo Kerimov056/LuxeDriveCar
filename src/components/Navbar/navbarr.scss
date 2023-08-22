@@ -214,6 +214,21 @@
     }
 }
 
-#SumCar{
-    font-size: 24px;
+.BasketCar{
+    width: auto;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    #SumCar{
+        font-size: 24px;
+    }
+
+    .SumC{
+        position: relative;
+        margin-top: -18px;
+        font-size: 18px;
+    }
 }
+
