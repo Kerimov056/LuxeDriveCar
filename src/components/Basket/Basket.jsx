@@ -16,7 +16,7 @@ const Basket = () => {
                             <span>Category</span>
                             <span>Price</span>
                             <span>Order</span>
-                        </div>
+                        </div> 
                         <div>
                            <BasketCard />
                            <BasketCard />
