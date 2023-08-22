@@ -1,6 +1,6 @@
 import { BsSearch } from 'react-icons/bs'
 import { AiOutlineCar } from 'react-icons/ai'
-import React from 'react'
+import React, {useState} from 'react'
 import { Link } from "react-router-dom";
 import './navbarr.scss'
 import { useDispatch, useSelector } from "react-redux";
@@ -14,15 +14,14 @@ const Navbar = () => {
 
     const { name, surname, token } = useSelector((x) => x.authReducer);
     const dispatch = useDispatch();
+    
 
     const { data: basketCount } = useQuery({
         queryKey: ["basketsCountT"],
         queryFn: getBasketItemCount,
         staleTime: 0,
     });
-
-
-
+    
 
     return (
         <>
@@ -43,7 +42,7 @@ const Navbar = () => {
                         <li><a href='Shop'>SHOP</a></li>
                     </ul>
                     <ul style={{ order: 2 }}>
-                        <li><Link to={'/Basket'} className='BasketCar'><AiOutlineCar id='SumCar' /><span className='SumC'>{3}</span></Link></li>
+                        <li><Link to={'/Basket'} className='BasketCar'><AiOutlineCar id='SumCar' /><span className='SumC'>                                        {basketCount && basketCount.data !== 0 ? basketCount.data : ""}</span></Link></li>
                     </ul>
                     {/* <Text fontSize={"5xl"}>
                         Welcome, {name} {surname}
