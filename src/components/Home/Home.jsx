@@ -18,7 +18,6 @@ import Navbartwo from '../Navbar/Navbartwo';
 import Navbar from '../Navbar/Navbar';
 import Nav from '../Navbar/Nav'
 
-
 import {
   AlertDialog,
   AlertDialogBody,
@@ -221,11 +220,11 @@ const Home = ({ color, onNavStateChange }) => {
           </div>
         </div>
         <div className='cards'>
-          {cars?.data.map((byCar, index) => (
-            <Card key={index} Id={byCar.id} img='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Main-home-vehicle-list-img-01.jpg' catagorie={byCar.carCategory ? byCar.carCategory.category : "No Category"} name={byCar.model} price={byCar.price} description={byCar.description.slice(0,60) } />
+          {cars?.data.map((byCar, index) => (  //https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Main-home-vehicle-list-img-01.jpg
+            console.log("Imageeeeee", byCar.carImages[0]?.imagePath),
+            <Card key={index} Id={byCar.id} img={`data:image/jpeg;base64,${byCar.carImages[0]?.imagePath}`} catagorie={byCar.carCategory ? byCar.carCategory.category : "No Category"} name={byCar.model} price={byCar.price} description={byCar.description.slice(0,60) } />
           ))}
-        </div>
-
+        </div> 
       </div>
 
       <div id='DestinationsS'>
