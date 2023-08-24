@@ -39,7 +39,7 @@ const Navbar = () => {
                         <li><a href='/AboutUs'>About Us</a></li>
                         <li><a href='VehicleFleet'>VEHICLE FLEET</a></li>
                         <li><a href='/Blogs'>BLOG</a></li>
-                        <li><a href='Shop'>SHOP</a></li>
+                        <li><a href='/Shop'>SHOP</a></li>
                     </ul>
                     <ul style={{ order: 2 }}>
                         <li><Link to={'/Basket'} className='BasketCar'><AiOutlineCar id='SumCar' /><span className='SumC'>                                        {basketCount && basketCount.data !== 0 ? basketCount.data : ""}</span></Link></li>

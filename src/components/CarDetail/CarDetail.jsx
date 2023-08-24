@@ -8,12 +8,11 @@ import {
     AlertDialogFooter,
     AlertDialogContent,
     AlertDialogOverlay,
-    AlertDialogCloseButton,
+    AlertDialogCloseButton, 
     useDisclosure, Input, Text,
     Button
 } from '@chakra-ui/react'
 import Accardion from './Accardion';
-import { Map } from "leaflet";
 import ShopCarCard from '../Shop/ShopCarCard';
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import 'leaflet/dist/leaflet.css'
@@ -118,7 +117,6 @@ const CarDetail = () => {
                                     />
                                 </div>
                                 <div className='SecImg'>
-                                    <div><img onClick={() => Imgaetrasfer("https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/shop-single-gallery-img-02.jpg")} src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/shop-single-gallery-img-02.jpg' alt="Image 1" /></div>
                                     <AlertDialog
                                         isOpen={isOpen}
                                         leastDestructiveRef={cancelRef.current}
@@ -140,7 +138,9 @@ const CarDetail = () => {
                                             </AlertDialogContent>
                                         </AlertDialogOverlay>
                                     </AlertDialog>
-                                    <div><img onClick={() => Imgaetrasfer("https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/shop-single-gallery-img-01.jpg")} src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/shop-single-gallery-img-01.jpg' alt="Image 2" /></div>
+                                    {byCars.data?.carImages?.map(byImage => (
+                                        <div><img onClick={() => Imgaetrasfer("https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/shop-single-gallery-img-02.jpg")} src={`data:image/jpeg;base64,${byImage?.imagePath}`} alt="Image 1" /></div>
+                                    ))}
                                 </div>
 
                                 <div className='ReactLeafLet'>
