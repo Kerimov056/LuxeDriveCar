@@ -58,7 +58,7 @@ const Strutur = (props) => {
                                 <div className='blogDetails'>
                                     <div className='blogDetails_1'>
                                         <p>
-                                            <h1>{byCars.data.title}</h1>
+                                            <h1>{byCars?.data?.title}</h1>
                                             <h3>JAN 8. 2022. DRIVELUXURY</h3>
                                         </p>
                                         <div>
@@ -68,20 +68,20 @@ const Strutur = (props) => {
 
                                      <div className='blogDetails_2'>
                                         <div>
-                                            {byCars.data.description.slice(0, 9)} <br /><br />
-                                            {byCars.data.description.slice(9, 23)}
+                                            {byCars?.data?.description?.slice(0, 9)} <br /><br />
+                                            {byCars?.data?.description?.slice(9, 23)}
                                         </div>
                                         <div className='ortaq'>
-                                            <div>{byCars.data.description.slice(23, 27)}</div>
+                                            <div>{byCars?.data?.description?.slice(23, 27)}</div>
                                         </div>
-                                        <div>{byCars.data.description.slice(27, 32)}</div>
+                                        <div>{byCars?.data?.description?.slice(27, 32)}</div>
                                         <div className='endimg'>
                                             <img src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/b-s-img-2.jpg' />
                                         </div>
-                                        <div>{byCars.data.description.slice(32)}</div>
+                                        <div>{byCars?.data?.description?.slice(32)}</div>
                                     </div> 
 
-                                    {blogs?.data.slice(-1).map((byBlogs, index) => (
+                                    {blogs?.data?.slice(-1).map((byBlogs, index) => (
                                         <BlogPost Id={byBlogs.id} title={byBlogs.title} date={"Jan 8.   2022./   DRIVE, LUXURY"} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/b-l-img-1.jpg"} desc={byBlogs.description} />
                                     ))}
                                 </div> 

@@ -9,7 +9,7 @@ import { persistStore } from 'redux-persist'
 import store from './components/Redux/store'
 import { QueryClient, QueryClientProvider } from "react-query";
 
-const queryClinet = new QueryClient();
+  const queryClinet = new QueryClient();
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

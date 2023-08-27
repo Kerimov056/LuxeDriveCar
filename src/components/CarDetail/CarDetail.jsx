@@ -8,20 +8,31 @@ import {
     AlertDialogFooter,
     AlertDialogContent,
     AlertDialogOverlay,
-    AlertDialogCloseButton, 
+    AlertDialogCloseButton,
     useDisclosure, Input, Text,
     Button
 } from '@chakra-ui/react'
 import Accardion from './Accardion';
 import ShopCarCard from '../Shop/ShopCarCard';
-import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import 'leaflet/dist/leaflet.css'
 import osm from "./osm-providers";
 import { getByCar, getCar } from "../Services/carServices";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "react-query";
+import MapComponent from '../Map/MapComponent';
 
 const CarDetail = () => {
+
+    const [pickupLocation, setPickupLocation] = useState(null);
+    const [returnLocation, setReturnLocation] = useState(null);
+
+    const handlePickupLocationSelect = (location) => {
+        setPickupLocation(location);
+    };
+
+    const handleReturnLocationSelect = (location) => {
+        setReturnLocation(location);
+    };
 
     const { id } = useParams();
     const queryClient = useQueryClient();
@@ -145,17 +156,10 @@ const CarDetail = () => {
 
                                 <div className='ReactLeafLet'>
 
-
-
-                                    <MapContainer
-                                        center={center}
-                                        zoom={ZOOM_LEVEL}
-                                        ref={mapRef}
-                                    >
-                                        <TileLayer url={osm.maptiler.url} attribution={osm.maptiler.attribution} />
-                                    </MapContainer>
-
-
+                                     <MapComponent
+                                        onPickupLocationSelect={handlePickupLocationSelect}
+                                        onReturnLocationSelect={handleReturnLocationSelect}
+                                    /> 
 
                                 </div>
 
