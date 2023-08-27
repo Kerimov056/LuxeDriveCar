@@ -20,6 +20,8 @@ import { getByCar, getCar } from "../Services/carServices";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import MapComponent from '../Map/MapComponent';
+import CarComment from './CarComment'
+
 
 const CarDetail = () => {
 
@@ -156,10 +158,10 @@ const CarDetail = () => {
 
                                 <div className='ReactLeafLet'>
 
-                                     <MapComponent
+                                    <MapComponent
                                         onPickupLocationSelect={handlePickupLocationSelect}
                                         onReturnLocationSelect={handleReturnLocationSelect}
-                                    /> 
+                                    />
 
                                 </div>
 
@@ -289,10 +291,16 @@ const CarDetail = () => {
                                 ))}
                             </div>
                         </div>
-
                     </div>
                 </div>
-
+                <div id='carDetailsComment'>
+                    <div>
+                        <div>
+                            <h1>2 Comments</h1>
+                            <CarComment />
+                        </div>
+                    </div>
+                </div>
             </>
         );
     }

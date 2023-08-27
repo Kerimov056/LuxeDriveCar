@@ -1,0 +1,61 @@
+.CarComment {
+    width: 100%;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid gray;
+
+    &>div {
+        width: 96%;
+        height: 90%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .CommentPerson {
+            width: 20%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &>img {
+                width: 140px;
+                height: 140px;
+                border-radius: 50%;
+            }
+        }
+
+        .Commenttext {
+            width: 76%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &>div {
+
+                &>h3 {
+                    font-size: 18px;
+                    color: #efebeb;
+                }
+
+                &>p {
+                    font-size: 16px;
+                    color: gray;
+                }
+            }
+
+            .LikeButton{
+
+                &>button{
+
+                    &>svg{
+                        font-size: 27px;
+                    }
+                }
+            }            
+        }
+    }
+}
