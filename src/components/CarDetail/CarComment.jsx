@@ -1,8 +1,9 @@
 import React from 'react'
 import './carcomment.scss'
 import { BiLike } from "react-icons/bi";
+// import { postLike } from "../Services/likeService";
 
-const CarComment = () => {
+const CarComment = (props) => {
     return (
         <>
             <div className='CarComment'>
@@ -13,10 +14,10 @@ const CarComment = () => {
                     <div className='Commenttext'>
                         <div>
                             <h3>Leyla Dauge</h3>
-                            <p>Massa placerat duis ultricies lacus. Volutpat blandit aliquam etiam er velite.</p>
+                            <p>{props.comment}</p>
                         </div>
                         <div className='LikeButton'>
-                            <button><BiLike /></button>
+                            <button><span>{props.likeSum<1 ?"" : props.likeSum}</span><BiLike /></button>
                         </div>
                     </div>
                 </div>

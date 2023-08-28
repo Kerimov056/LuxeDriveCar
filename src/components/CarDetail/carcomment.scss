@@ -50,9 +50,16 @@
             .LikeButton{
 
                 &>button{
+                    display: flex;
+                    justify-content: center;
 
                     &>svg{
                         font-size: 27px;
+                    }
+
+                    &>span{
+                        margin-top: -6px;
+                        font-size: 25px;
                     }
                 }
             }            

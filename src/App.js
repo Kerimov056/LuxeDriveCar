@@ -14,6 +14,7 @@ import CarDetail from './components/CarDetail/CarDetail';
 import BlogDetails from './components/blogDetails/BlogDetails';
 import Basket from './components/Basket/Basket';
 import Chat from './components/Chat/Chat';
+import Profile from "./components/myProfile/Profile";
 
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
             <Route path='/BlogDetails/:id' element={<BlogDetails/>} />
             <Route path='/Basket' element={<Basket/>} />
             <Route path='/Chat' element={<Chat/>} />
+            <Route path='/Profile' element={<Profile/>} />
           </Routes>
 
           <Footer />

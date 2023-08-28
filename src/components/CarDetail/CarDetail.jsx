@@ -10,8 +10,9 @@ import {
     AlertDialogOverlay,
     AlertDialogCloseButton,
     useDisclosure, Input, Text,
-    Button
+    Button, FormLabel, FormControl
 } from '@chakra-ui/react'
+
 import Accardion from './Accardion';
 import ShopCarCard from '../Shop/ShopCarCard';
 import 'leaflet/dist/leaflet.css'
@@ -21,6 +22,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import MapComponent from '../Map/MapComponent';
 import CarComment from './CarComment'
+import { postComments } from "../Services/commentServices";
+import { useFormik } from "formik";
 
 
 const CarDetail = () => {
@@ -105,6 +108,33 @@ const CarDetail = () => {
             setSum(sum - 1);
         }
     }
+
+    const commentCount = byCars?.data?.carCommentGetDTO.length;
+
+
+
+    const mutation = useMutation(postComments, {
+        onSuccess: () => {
+            navigate("/");
+            queryClient.invalidateQueries("comments");
+        },
+    });
+
+    const formik = useFormik({
+        initialValues: {
+            Comment: "asddsa",
+            CarId: byCars?.data?.id,
+            AppUserId: "b9e6bbc7-b080-4405-880d-4aa8e35a5aee"
+        },
+        onSubmit: async (values) => {
+            try {
+                mutation.mutateAsync(values);
+            } catch (error) {
+                console.log(error);
+            }
+        },
+    });
+
     if (byCars) {
 
         return (
@@ -296,8 +326,27 @@ const CarDetail = () => {
                 <div id='carDetailsComment'>
                     <div>
                         <div>
-                            <h1>2 Comments</h1>
-                            <CarComment />
+                            <h1>{commentCount} Comments</h1>
+                            <div className='CommentCreate'>
+                                <form onSubmit={formik.handleSubmit}>
+                                    <FormControl>
+                                        <FormLabel>Comment</FormLabel>
+                                        <Input
+                                            name="Comment"
+                                            value={formik.values.Comment}
+                                            onChange={formik.handleChange}
+                                            trype="text"
+                                        ></Input>
+                                    </FormControl>
+                                    <Button type="submit" onClick={formik.handleSubmit}>
+                                        Submit
+                                    </Button>
+                                </form>
+                            </div>
+                            {byCars?.data?.carCommentGetDTO?.map((comment, index) => (
+                                <CarComment key={index} comment={comment.comment} likeSum={comment.likeSum} />
+                            ))}
+                            <h6></h6>
                         </div>
                     </div>
                 </div>
