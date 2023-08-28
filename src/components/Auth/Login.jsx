@@ -23,6 +23,8 @@ const Login = () => {
   const { mutate, isLoading } = useMutation((values) => login(values), {
     onSuccess: (resp) => {
       dispatch(loginAction(resp.data));
+      history('/');
+      history.push('/');
     },
   });
 
@@ -43,12 +45,6 @@ const Login = () => {
   return (
     <>
       <div className='login_section'>
-        {/* <div class="container">
-          <div class="circle circle1"></div>
-          <div class="circle circle2"></div>
-          <div class="circle circle3"></div>
-          <div class="circle circle4"></div>
-        </div> */}
 
         <form className='login_form' onSubmit={formik.handleSubmit}>
           <FormControl>
@@ -97,36 +93,3 @@ export default Login
 
 
 
-// try {
-//   const response = await axios.post(
-//     `${process.env.REACT_APP_API_HOST}/api/Auth/Login`,
-//     {
-//       UsernameOrEmail: values.email,
-//       password: values.password,
-//     }
-//   );
-
-//   if (response.status === 200) {
-//     localStorage.setItem("token", JSON.stringify(response.data));
-//     Swal.fire({
-//       position: "top-center",
-//       icon: "success",
-//       title: "Signed in successfully!",
-//       showConfirmButton: false,
-//       timer: 1500,
-//     });
-//     history.push('/Home');
-//   } else {
-//     Swal.fire({
-//       position: "top-center",
-//       icon: "error",
-//       title: "Email or password is wrong!",
-//       showConfirmButton: false,
-//       timer: 1500,
-//     });
-//   }
-//   console.log(response);
-// } catch (error) {
-//   // Handle errors here if needed
-//   console.error(error);
-// }

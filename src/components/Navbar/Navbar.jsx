@@ -12,17 +12,20 @@ import { getBasketItemCount } from "../Services/basketServices";
 
 const Navbar = () => {
 
-    const { name, surname, token } = useSelector((x) => x.authReducer);
+    const { name, surname,FullName } = useSelector((x) => x.authReducer);
     const dispatch = useDispatch();
     
-
     const { data: basketCount } = useQuery({
         queryKey: ["basketsCountT"],
         queryFn: getBasketItemCount,
         staleTime: 0,
     });
     
+    const logOut = () => {
+        
+    }
 
+// console.log(name,surname);
     return (
         <>
             <nav class="navbar">
@@ -44,11 +47,11 @@ const Navbar = () => {
                     <ul style={{ order: 2 }}>
                         <li><Link to={'/Basket'} className='BasketCar'><AiOutlineCar id='SumCar' /><span className='SumC'>                                        {basketCount && basketCount.data !== 0 ? basketCount.data : ""}</span></Link></li>
                     </ul>
-                    {/* <Text fontSize={"5xl"}>
-                        Welcome, {name} {surname}
+                     <Text fontSize={"2xl"}>
+                        Welcome {name} {surname} {FullName}
                     </Text>
                     <h1 class="logo"><BsSearch /></h1>
-                    <Button onClick={() => dispatch(logoutAction())}>Log out</Button> */}
+                    <Link to={'/Login'}><Button onClick={() => dispatch(logoutAction())}>Log out</Button></Link>
                 </div>
             </nav>
         </>
