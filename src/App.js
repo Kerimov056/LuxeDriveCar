@@ -2,7 +2,6 @@ import './App.css';
 import * as React from 'react'
 import { ChakraProvider } from '@chakra-ui/react'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useSelector } from "react-redux";
 import Home from './components/Home/Home'
 import Footer from './components/Footer/Footer';
 import AboutUs from './components/AboutUs/AboutUs';
@@ -21,9 +20,7 @@ import Profile from "./components/myProfile/Profile";
 
 function App() {
 
-  const { token } = useSelector((x) => x.authReducer);
 
-  console.log("------------",token);
   return (
     <>
       <ChakraProvider>

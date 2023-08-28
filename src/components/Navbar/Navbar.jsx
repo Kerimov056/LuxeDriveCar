@@ -1,6 +1,6 @@
 import { BsSearch } from 'react-icons/bs'
 import { AiOutlineCar } from 'react-icons/ai'
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { Link } from "react-router-dom";
 import './navbarr.scss'
 import { useDispatch, useSelector } from "react-redux";
@@ -12,20 +12,16 @@ import { getBasketItemCount } from "../Services/basketServices";
 
 const Navbar = () => {
 
-    const { name, surname,FullName } = useSelector((x) => x.authReducer);
+    const { name, surname, FullName, token } = useSelector((x) => x.authReducer);
     const dispatch = useDispatch();
-    
+
     const { data: basketCount } = useQuery({
         queryKey: ["basketsCountT"],
         queryFn: getBasketItemCount,
         staleTime: 0,
     });
-    
-    const logOut = () => {
-        
-    }
 
-// console.log(name,surname);
+    console.log(token);
     return (
         <>
             <nav class="navbar">
@@ -47,11 +43,16 @@ const Navbar = () => {
                     <ul style={{ order: 2 }}>
                         <li><Link to={'/Basket'} className='BasketCar'><AiOutlineCar id='SumCar' /><span className='SumC'>                                        {basketCount && basketCount.data !== 0 ? basketCount.data : ""}</span></Link></li>
                     </ul>
-                     <Text fontSize={"2xl"}>
-                        Welcome {name} {surname} {FullName}
+                    <Text fontSize={"2xl"}>
+                        {name} {surname} {FullName}
                     </Text>
                     <h1 class="logo"><BsSearch /></h1>
-                    <Link to={'/Login'}><Button onClick={() => dispatch(logoutAction())}>Log out</Button></Link>
+                    {!token &&
+                     <Link to={'/Login'}><Button backgroundColor={"white"}>LogIn</Button></Link>   
+                    }
+                    {token &&
+                        <Link to={'/Login'}><Button onClick={() => dispatch(logoutAction())}>Log out</Button></Link>
+                    }
                 </div>
             </nav>
         </>
