@@ -678,4 +678,35 @@
         width: 220px;
         margin-left: 20px;
     }
+
+    #CardsRes{
+        margin-left: 40px;
+        margin-top: 10px;
+        width: 88%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: auto auto;
+        overflow: hidden;
+
+        &>div{
+            width: 300px;
+        }
+    }
+
+    #Convenience{
+        height: 900px;
+        margin-top: -50px;
+    }
+
+    .ConvenienceLeft{
+        height: auto;
+
+        &>button{
+            width: 140px;
+        }
+    }
+
+    #ConvenReserv{
+        font-size: 30px;
+    }
 }
