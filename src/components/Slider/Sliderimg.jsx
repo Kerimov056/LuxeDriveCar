@@ -9,7 +9,7 @@ const Sliderimg = (props) => {
         <div class="caption">
          {props.name} <br/>
           <br/>
-          <button> + VIEW MORE </button>
+          <button id='resBut'> + VIEW MORE </button>
         </div>
       </div>
 

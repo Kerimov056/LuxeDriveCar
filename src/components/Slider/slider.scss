@@ -63,3 +63,17 @@
         transition-property: width, left;
     }
 }
+
+
+@media (min-width: 770px) and (max-width: 900px) {
+
+
+    .caption {
+        width: 300px;
+        height: auto;
+    }
+
+    #resBut{
+        margin-top: -50px;
+    }
+}

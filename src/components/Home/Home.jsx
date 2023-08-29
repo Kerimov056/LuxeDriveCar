@@ -278,7 +278,7 @@ const Home = ({ color, onNavStateChange }) => {
             <h1 id='ConvenReserv'>We Care Of Your Safety <br /> And Convenience</h1>
             <h4>PREMIUM DRIVERS</h4>
             <p>Facilisi cras fermentum odio eu feugiat. In fermentum et sollicitudin ac ori accumsan sit amet nulla facilisi morbi tempus iaculis urna id. Aenean euismod elementum nisi quis eleifend quam adipiscing vitae dipiscing</p>
-            <button> + BOOK NOW </button>
+            <button className='ReserButton'> + BOOK NOW </button>
           </div>
           <div className='ConvenienceRight'>
             <img src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/01/h1-img-3.jpg' />
