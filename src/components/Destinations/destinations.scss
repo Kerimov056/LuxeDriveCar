@@ -161,9 +161,9 @@
 @media (min-width: 320px) and (max-width: 700px) {
 
     #Destinations {
-        width: max-content;
+        width: 100%;
         height: auto;
-        margin-left: -50px;
+        // margin-left: -50px;
 
         &>div {
             width: 80%;
