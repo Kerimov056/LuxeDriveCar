@@ -12,7 +12,7 @@ export const getBasketCars = () => {
     return httpClient.get("api/Baskets")
 };
 
-export const getBasketItemCount = () => {
-    return httpClient.get("api/Baskets/Get-Basket-Count")
+export const getBasketItemCount = (AppUserId) => {
+    return httpClient.get(`api/Baskets/Get-Basket-Count?AppUserId=${AppUserId}`)
 };
 

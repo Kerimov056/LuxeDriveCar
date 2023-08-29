@@ -12,12 +12,12 @@ import { getBasketItemCount } from "../Services/basketServices";
 
 const Navbar = () => {
 
-    const { token, username } = useSelector((x) => x.authReducer);
+    const { token, username, appuserid } = useSelector((x) => x.authReducer);
     const dispatch = useDispatch();
 
     const { data: basketCount } = useQuery({
-        queryKey: ["basketsCountT"],
-        queryFn: getBasketItemCount,
+        queryKey: ["basketsCountT", appuserid], 
+        queryFn: () => getBasketItemCount(appuserid), 
         staleTime: 0,
     });
 
@@ -40,14 +40,18 @@ const Navbar = () => {
                         <li><a href='/Shop'>SHOP</a></li>
                     </ul>
                     <ul style={{ order: 2 }}>
-                        <li><Link to={'/Basket'} className='BasketCar'><AiOutlineCar id='SumCar' /><span className='SumC'>                                        {basketCount && basketCount.data !== 0 ? basketCount.data : ""}</span></Link></li>
+                        <li>
+                            <Link to={'/Basket'} className='BasketCar'><AiOutlineCar id='SumCar' /><span className='SumC'>
+                                {basketCount && basketCount.data !== 0 ? basketCount.data : ""}</span>
+                            </Link>
+                        </li>
                     </ul>
                     <Text fontSize={"2xl"}>
                         {username}
                     </Text>
                     <h1 class="logo"><BsSearch /></h1>
                     {!token &&
-                     <Link to={'/Login'}><Button backgroundColor={"white"}>LogIn</Button></Link>   
+                        <Link to={'/Login'}><Button backgroundColor={"white"}>LogIn</Button></Link>
                     }
                     {token &&
                         <Link to={'/Login'}><Button onClick={() => dispatch(logoutAction())}>Log out</Button></Link>
