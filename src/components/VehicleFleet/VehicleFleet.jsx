@@ -1,6 +1,7 @@
 import React from 'react';
 import "./VehicleFleet.scss";
 import Navbar from '../Navbar/Navbar'
+import NavbarTwo from "../Navbar/Navbartwo";
 import Car from '../Card//Car'
 import { Select, Stack } from '@chakra-ui/react'
 import { useQuery } from 'react-query'
@@ -13,19 +14,23 @@ const VehicleFleet = () => {
         queryKey: ["Cars"],
         queryFn: getCar,
         staleTime: 0,
-      });
-    
-    
+    });
+
+
 
 
     return (
         <>
-            <div>
+            <div className='ReponsiveNav'>
                 <Navbar />
             </div>
+            <div className='DisplayNavbar'>
+                <NavbarTwo />
+            </div>
+
             <div id="Fleet">
                 <img src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/vehicle-list-title-img.jpg' />
-                <div>
+                <div id='responePhone'>
                     <h1>Fleet Standard</h1>
                 </div>
             </div>

@@ -323,26 +323,26 @@
         }
     }
 
-    .left{
+    .left {
         height: auto !important;
     }
 
 
-    .ThreeImg{
+    .ThreeImg {
         width: 100%;
         height: auto;
         display: flex;
         justify-content: center;
         align-items: center;
-        
-        &>div{
+
+        &>div {
             width: 96%;
             height: auto;
             display: flex;
             justify-content: center;
             align-items: center;
 
-            
+
         }
     }
 }
@@ -351,5 +351,105 @@
 
 @media (min-width: 320px) and (max-width: 700px) {
 
-    
+    .CarCards {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        &>div {
+            width: 96%;
+            height: auto;
+
+            .CatalogName {
+                height: auto;
+
+                &>h1 {
+                    font-size: 44px;
+                }
+            }
+
+            .HomeAbout {
+                width: 100%;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                &>div {
+                    width: 96%;
+                    height: auto;
+                }
+            }
+        }
+    }
+
+
+    #feaderss {
+        display: none !important;
+    }
+
+    #itemRes {
+        width: 100% !important;
+        display: block !important;
+        height: auto;
+    }
+
+    .Safety {
+        width: 100%;
+        display: block;
+        height: auto;
+
+        &>div {
+            width: 100%;
+
+            &>img {
+                width: 100%;
+
+            }
+        }
+
+        .left {
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &>div {
+                width: 94%;
+                height: auto;
+            }
+        }
+    }
+
+    #Accordions {
+        display: none;
+    }
+
+    .ThreeImg {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &>div {
+            width: 96%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            &>img{
+                margin-top: 30px;
+                width: 400px !important;
+                height: 300px;
+            }
+        }
+    }
 }

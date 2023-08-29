@@ -56,12 +56,12 @@ const AboutUs = () => {
 
             <div id='HomeAbout'>
               <div class="container">
-                <div class="faders">
-                  <div class="left"></div>
-                  <div class="right"></div>
+                <div id='feaderss' class="faders">
+                  <div id='feaderss' class="left"></div>
+                  <div id='feaderss' class="right"></div>
                 </div>
 
-                <div class="items">
+                <div id='itemRes' class="items">
                   {cars?.data.map((byCar, index) => (
                     <Car key={index} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Vihecle-list-image-04.jpg"} name={byCar.marka} desc={byCar.description.slice(0, 30)} price={byCar.price} />
                   ))}
