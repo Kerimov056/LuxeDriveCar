@@ -1,5 +1,6 @@
+import { Button, FormControl, InputGroup } from '@chakra-ui/react';
 import React, { useState } from 'react';
-import { Form, Button, FormControl, InputGroup } from 'react-bootstrap';
+import { Form } from 'react-router-dom';
 
 const SendMessageForms = ({ sendMessage }) => {
     const [message, setMessage] = useState('');

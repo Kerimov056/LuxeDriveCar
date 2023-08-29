@@ -1,7 +1,7 @@
 import MessageContainer from './MessageContainer'
 import SendMessageForms from './SendMessageForms'
 import ConnectedUsers from './ConnectedUsers '
-import { Button } from 'react-bootstrap'
+import { Button } from '@chakra-ui/react'
 
 
 const Chaatt = ({ sendMessage, messages, users, closeConnection }) => <div>

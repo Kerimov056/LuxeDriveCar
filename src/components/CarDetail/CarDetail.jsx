@@ -18,7 +18,7 @@ import ShopCarCard from '../Shop/ShopCarCard';
 import 'leaflet/dist/leaflet.css'
 import osm from "./osm-providers";
 import { getByCar, getCar } from "../Services/carServices";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import MapComponent from '../Map/MapComponent';
 import CarComment from './CarComment'
@@ -33,6 +33,7 @@ const CarDetail = () => {
 
     const { token, username, appuserid } = useSelector((x) => x.authReducer);
     const dispatch = useDispatch();
+
 
     const [pickupLocation, setPickupLocation] = useState(null);
     const [returnLocation, setReturnLocation] = useState(null);
@@ -60,7 +61,7 @@ const CarDetail = () => {
     });
 
 
-    
+
 
     const [center, setCenter] = useState({ lat: 42.0970, lng: 79.2353 });
     const ZOOM_LEVEL = 9;
@@ -163,10 +164,11 @@ const CarDetail = () => {
         },
     });
 
+
     const formik = useFormik({
         initialValues: {
             comment: "",
-            carid: byCars?.data.id ,
+            carid: byCars?.data?.id != null && byCars?.data?.id,
             appuserid: appuserid,
         },
         onSubmit: async (values) => {
@@ -178,7 +180,7 @@ const CarDetail = () => {
         },
     });
 
-    
+
 
 
     // console.log(appuserid);
@@ -235,7 +237,7 @@ const CarDetail = () => {
                                 </div>
 
                                 <div className='ReactLeafLet'>
-{/* 
+                                    {/* 
                                     <MapComponent
                                         onPickupLocationSelect={handlePickupLocationSelect}
                                         onReturnLocationSelect={handleReturnLocationSelect}
@@ -403,9 +405,16 @@ const CarDetail = () => {
                                             trype="text"
                                         ></Input>
                                     </FormControl>
-                                    <Button type="submit" onClick={formik.handleSubmit}>
-                                        Submit
-                                    </Button>
+                                    {token == null &&
+                                        <Link to={'/Login'}><Button type="submit" >
+                                            Submit
+                                        </Button></Link>
+                                    }
+                                    {token != null &&
+                                        <Button type="submit" onClick={formik.handleSubmit}>
+                                            Submit
+                                        </Button>
+                                    }
                                 </form>
                             </div>
                             {byCars?.data?.carCommentGetDTO?.map((comment, index) => (
