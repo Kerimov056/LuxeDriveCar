@@ -206,15 +206,15 @@ const Home = ({ color, onNavStateChange }) => {
         <div className='Description'>
           <div>
             <div>
-              <h1>
+              <h1 className='ExIntoG'>
                 What We Provide Is The Luxury Transport And Most Comfortable Experience
               </h1>
             </div>
             <div>
-              <p>Vivamus arcu felis bibendum ut tristique et egestas. Ultricies leo intege in malesuada nunc vel risus commodo. Sapien nec sagittis aliquam male bibendum arcu vitae. In ornare quam viverra orci sagittis eu volutpat odio facilisis. Fringilla est ullamcorper eget nulla facilisi nul.</p>
+              <p className='ExInto'>Vivamus arcu felis bibendum ut tristique et egestas. Ultricies leo intege in malesuada nunc vel risus commodo. Sapien nec sagittis aliquam male bibendum arcu vitae. In ornare quam viverra orci sagittis eu volutpat odio facilisis. Fringilla est ullamcorper eget nulla facilisi nul.</p>
               <div>
                 <span id='Center'><TfiHeadphoneAlt /></span>
-                <span>CALL CENTER: +994 51 385 07 07</span>
+                <span className='CallRes'>CALL CENTER: +994 51 385 07 07</span>
               </div>
             </div>
           </div>

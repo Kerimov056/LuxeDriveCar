@@ -24,9 +24,15 @@ import MapComponent from '../Map/MapComponent';
 import CarComment from './CarComment'
 import { postComments } from "../Services/commentServices";
 import { useFormik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+import { PostReservation } from "../Services/reservationService";
+
 
 
 const CarDetail = () => {
+
+    const { token, username, appuserid } = useSelector((x) => x.authReducer);
+    const dispatch = useDispatch();
 
     const [pickupLocation, setPickupLocation] = useState(null);
     const [returnLocation, setReturnLocation] = useState(null);
@@ -54,6 +60,8 @@ const CarDetail = () => {
     });
 
 
+    
+
     const [center, setCenter] = useState({ lat: 42.0970, lng: 79.2353 });
     const ZOOM_LEVEL = 9;
     const mapRef = useRef()
@@ -69,6 +77,7 @@ const CarDetail = () => {
         }
 
         setSelectedDate(e.target.value);
+        // reservFormik.handleChange();
     };
 
     const currentDate1 = new Date().toISOString().slice(0, 16);
@@ -77,12 +86,46 @@ const CarDetail = () => {
         const selected = new Date(e.target.value);
         const now = new Date();
 
+
         if (selected < now) {
             return;
         }
 
         setSelectedDate1(e.target.value);
+        // reservFormik.handleChange();
     };
+
+    const reservMutation = useMutation(PostReservation, {
+        onSuccess: () => {
+            queryClient.invalidateQueries("Reservation");
+            navigate("/");
+        },
+    });
+    const user = appuserid;
+    const reservFormik = useFormik({
+        initialValues: {
+            Image: "",
+            Email: "",
+            Number: "",
+            PickupDate: selectedDate,
+            ReturnDate: selectedDate1,
+            Notes: "",
+            AppUserId: user,
+            CarId: byCars?.data?.id,
+            Latitude: null,
+            Longitude: null,
+            Latitude: null,
+            Longitude: null,
+            ChauffeursId: null
+        },
+        onSubmit: async (values) => {
+            try {
+                reservMutation.mutateAsync(values);
+            } catch (error) {
+                console.log(error);
+            }
+        },
+    });
 
 
 
@@ -115,16 +158,16 @@ const CarDetail = () => {
 
     const mutation = useMutation(postComments, {
         onSuccess: () => {
+            queryClient.invalidateQueries("Comments");
             navigate("/");
-            queryClient.invalidateQueries("comments");
         },
     });
 
     const formik = useFormik({
         initialValues: {
-            Comment: "asddsa",
-            CarId: byCars?.data?.id,
-            AppUserId: "b9e6bbc7-b080-4405-880d-4aa8e35a5aee"
+            comment: "",
+            carid: "21f47802-cb9a-4215-28c0-08dba6fa51af",
+            appuserid: appuserid,
         },
         onSubmit: async (values) => {
             try {
@@ -134,6 +177,11 @@ const CarDetail = () => {
             }
         },
     });
+
+    
+
+
+    console.log(appuserid);
 
     if (byCars) {
 
@@ -187,11 +235,11 @@ const CarDetail = () => {
                                 </div>
 
                                 <div className='ReactLeafLet'>
-
+{/* 
                                     <MapComponent
                                         onPickupLocationSelect={handlePickupLocationSelect}
                                         onReturnLocationSelect={handleReturnLocationSelect}
-                                    />
+                                    /> */}
 
                                 </div>
 
@@ -224,83 +272,100 @@ const CarDetail = () => {
                                 <div className='ByReservACar'>
 
                                     <form className='login_form'>
-                                        <h3>Reservation A Car</h3>
-                                        <label htmlFor="email">Email</label>
-                                        <Text fontSize={"15px"} color={"red"} mb="8px">
-                                        </Text>
-                                        <Input
-                                            type='email'
-                                            placeholder='Here is a sample placeholder'
-                                            size='sm'
-                                        />
+                                        <FormControl>
+                                            <h3>Reservation A Car</h3>
+                                            <label htmlFor="Image">Email</label>
+                                            <Text fontSize={"15px"} color={"red"} mb="8px">
+                                            </Text>
+                                            <Input
+                                                type='email'
+                                                name='Email'
+                                                value={reservFormik.values.Email}
+                                                onChange={reservFormik.handleChange}
+                                                placeholder='Here is a sample placeholder'
+                                                size='sm'
+                                            />
 
-                                        <label htmlFor="password">Number</label>
-                                        <Text fontSize={"15px"} color={"red"} mb="8px">
-                                        </Text>
-                                        <Input
-                                            placeholder='Here is a sample placeholder'
-                                            size='sm'
-                                        />
+                                            <label htmlFor="password">Number</label>
+                                            <Text fontSize={"15px"} color={"red"} mb="8px">
+                                            </Text>
+                                            <Input
+                                                name='Number'
+                                                value={reservFormik.values.Number}
+                                                onChange={reservFormik.handleChange}
+                                                placeholder='Here is a sample placeholder'
+                                                size='sm'
+                                            />
+                                            {/* 
+                                            <label htmlFor="password">Number</label>
+                                            <Text fontSize={"15px"} color={"red"} mb="8px">
+                                            </Text>
+                                            <Input
+                                                name='Image'
+                                                value={reservFormik.values.Image}
+                                                onChange={reservFormik.handleChange}
+                                                placeholder='Here is a sample placeholder'
+                                                size='sm'
+                                            /> */}
 
-                                        <label htmlFor="password">Number</label>
-                                        <Text fontSize={"15px"} color={"red"} mb="8px">
-                                        </Text>
-                                        <Input
-                                            placeholder='Here is a sample placeholder'
-                                            size='sm'
-                                        />
+                                            <label htmlFor="password">Suruculuk Vesiqesi</label>
+                                            <Text fontSize={"15px"} color={"red"} mb="8px">
+                                            </Text>
+                                            <Input type='file' id='Cfile'
+                                                name='Image'
+                                                value={reservFormik.values.Image}
+                                                onChange={reservFormik.handleChange}
+                                                placeholder='Here is a sample placeholder'
+                                                size='sm'
+                                            />
 
-                                        <label htmlFor="password">Suruculuk Vesiqesi</label>
-                                        <Text fontSize={"15px"} color={"red"} mb="8px">
-                                        </Text>
-                                        <Input type='file' id='Cfile'
-                                            placeholder='Here is a sample placeholder'
-                                            size='sm'
-                                        />
+                                            <label htmlFor="password">Pickup Date</label>
+                                            <Text fontSize={"15px"} color={"red"} mb="8px">
+                                            </Text>
+                                            <Input
+                                                placeholder="Select Date and Time"
+                                                size="2md"
+                                                type="datetime-local"
+                                                value={selectedDate}
+                                                onChange={handleDateChange}
+                                                style={{
+                                                    borderTop: "none",
+                                                    borderRight: "none",
+                                                    borderLeft: "none",
+                                                    borderBottom: "1px solid white",
+                                                }}
+                                            />
 
-                                        <label htmlFor="password">Pickup Date</label>
-                                        <Text fontSize={"15px"} color={"red"} mb="8px">
-                                        </Text>
-                                        <Input
-                                            placeholder="Select Date and Time"
-                                            size="2md"
-                                            type="datetime-local"
-                                            value={selectedDate}
-                                            onChange={handleDateChange}
-                                            style={{
-                                                borderTop: "none",
-                                                borderRight: "none",
-                                                borderLeft: "none",
-                                                borderBottom: "1px solid white",
-                                            }}
-                                        />
+                                            <label htmlFor="password">Retur nDate</label>
+                                            <Text fontSize={"15px"} color={"red"} mb="8px">
+                                            </Text>
+                                            <Input
+                                                placeholder="Select Date and Time"
+                                                size="2md"
+                                                type="datetime-local"
+                                                value={selectedDate1}
+                                                onChange={handleDateChange1}
+                                                style={{
+                                                    borderTop: "none",
+                                                    borderRight: "none",
+                                                    borderLeft: "none",
+                                                    borderBottom: "1px solid white",
+                                                }}
+                                            />
 
-                                        <label htmlFor="password">Retur nDate</label>
-                                        <Text fontSize={"15px"} color={"red"} mb="8px">
-                                        </Text>
-                                        <Input
-                                            placeholder="Select Date and Time"
-                                            size="2md"
-                                            type="datetime-local"
-                                            value={selectedDate1}
-                                            onChange={handleDateChange1}
-                                            style={{
-                                                borderTop: "none",
-                                                borderRight: "none",
-                                                borderLeft: "none",
-                                                borderBottom: "1px solid white",
-                                            }}
-                                        />
+                                            <label htmlFor="password">Notes</label>
+                                            <Text fontSize={"15px"} color={"red"} mb="8px">
+                                            </Text>
+                                            <Input type='text'
+                                                name='Notes'
+                                                value={reservFormik.values.Notes}
+                                                onChange={reservFormik.handleChange}
+                                                placeholder='Here is a sample placeholder'
+                                                size='sm'
+                                            />
 
-                                        <label htmlFor="password">Notes</label>
-                                        <Text fontSize={"15px"} color={"red"} mb="8px">
-                                        </Text>
-                                        <Input type='text'
-                                            placeholder='Here is a sample placeholder'
-                                            size='sm'
-                                        />
-
-                                        <Button type='submit'>Order</Button>
+                                            <Button onClick={reservFormik.handleSubmit} type='submit'>Order</Button>
+                                        </FormControl>
                                     </form>
 
                                 </div>
@@ -332,8 +397,8 @@ const CarDetail = () => {
                                     <FormControl>
                                         <FormLabel>Comment</FormLabel>
                                         <Input
-                                            name="Comment"
-                                            value={formik.values.Comment}
+                                            name="comment"
+                                            value={formik.values.comment}
                                             onChange={formik.handleChange}
                                             trype="text"
                                         ></Input>
@@ -344,7 +409,7 @@ const CarDetail = () => {
                                 </form>
                             </div>
                             {byCars?.data?.carCommentGetDTO?.map((comment, index) => (
-                                <CarComment key={index} comment={comment.comment} likeSum={comment.likeSum} />
+                                <CarComment key={index} commentId={comment?.id} comment={comment.comment} likeSum={comment.likeSum} />
                             ))}
                             <h6></h6>
                         </div>

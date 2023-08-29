@@ -12,7 +12,7 @@ import { getBasketItemCount } from "../Services/basketServices";
 
 const Navbar = () => {
 
-    const { name, surname, FullName, token } = useSelector((x) => x.authReducer);
+    const { token, username } = useSelector((x) => x.authReducer);
     const dispatch = useDispatch();
 
     const { data: basketCount } = useQuery({
@@ -21,7 +21,6 @@ const Navbar = () => {
         staleTime: 0,
     });
 
-    console.log(token);
     return (
         <>
             <nav class="navbar">
@@ -44,7 +43,7 @@ const Navbar = () => {
                         <li><Link to={'/Basket'} className='BasketCar'><AiOutlineCar id='SumCar' /><span className='SumC'>                                        {basketCount && basketCount.data !== 0 ? basketCount.data : ""}</span></Link></li>
                     </ul>
                     <Text fontSize={"2xl"}>
-                        {name} {surname} {FullName}
+                        {username}
                     </Text>
                     <h1 class="logo"><BsSearch /></h1>
                     {!token &&

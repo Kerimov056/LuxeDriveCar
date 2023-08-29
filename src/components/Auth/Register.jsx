@@ -3,28 +3,29 @@ import './register.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useFormik } from 'formik';
-import { Input, Text, Button } from '@chakra-ui/react'
+import { Input, Text, Button, FormControl } from '@chakra-ui/react'
 import registerSchema from '../Validators/registerSchema'
 import { GrPrevious } from "react-icons/gr";
 
 const Register = () => {
 
-
-
+    const history = useNavigate();
 
     const formik = useFormik({
         initialValues: {
-            fullName: '',
-            userName: '',
-            email: '',
+            Fullname: '',
+            Username: '',
+            Email: '',
             password: ''
         },
-        validationSchema: registerSchema,
+        // validationSchema: registerSchema,
 
         onSubmit: async (values) => {
-            const url = `${process.env.REACT_APP_API_HOST}/api/Auth/register`;
+            const url = `https://localhost:7152/api/Auth/register`;
             axios.post(url, values).then((result) => {
                 alert(result.values)
+                history('/Login');
+                history.push('/Login');
             }).catch((error) => {
                 alert(error)
             })
@@ -39,42 +40,42 @@ const Register = () => {
 
                 <div>
                     <form className='login_form' onSubmit={formik.handleSubmit} style={{ marginTop: "10px", height: "700px" }}>
-                        <Fragment>
+                        <FormControl>
                             <h3>Sign Up</h3>
-                            <label htmlFor='fullName'>Your Full Name</label><br />
+                            <label htmlFor='Fullname'>Your Full Name</label><br />
                             <Text>
-                                {formik.touched.fullName && formik.errors.fullName}
+                                {formik.touched.Fullname && formik.errors.Fullname}
                             </Text>
                             <Input
-                                isInvalid={formik.errors.fullName && formik.touched.fullName}
-                                name='fullName'
-                                value={formik.values.fullName}
+                                isInvalid={formik.errors.Fullname && formik.touched.Fullname}
+                                name='Fullname'
+                                value={formik.values.Fullname}
                                 onChange={formik.handleChange}
                                 placeholder='Here is a sample placeholder'
                                 size='sm'
                             />
 
-                            <label htmlFor='userName'>UserName</label><br />
+                            <label htmlFor='Username'>UserName</label><br />
                             <Text>
-                                {formik.touched.userName && formik.errors.userName}
+                                {formik.touched.Username && formik.errors.Username}
                             </Text>
                             <Input
-                                isInvalid={formik.errors.userName && formik.touched.userName}
-                                name='userName'
-                                value={formik.values.userName}
+                                isInvalid={formik.errors.Username && formik.touched.Username}
+                                name='Username'
+                                value={formik.values.Username}
                                 onChange={formik.handleChange}
                                 placeholder='Here is a sample placeholder'
                                 size='sm'
                             />
 
-                            <label htmlFor="email">Email</label>
+                            <label htmlFor="Email">Email</label>
                             <Text>
-                                {formik.touched.email && formik.errors.email}
+                                {formik.touched.Email && formik.errors.Email}
                             </Text>
                             <Input
-                                isInvalid={formik.errors.email && formik.touched.email}
-                                name='email'
-                                value={formik.values.email}
+                                isInvalid={formik.errors.Email && formik.touched.Email}
+                                name='Email'
+                                value={formik.values.Email}
                                 onChange={formik.handleChange}
                                 placeholder='Here is a sample placeholder'
                                 size='sm'
@@ -82,7 +83,7 @@ const Register = () => {
 
                             <label htmlFor="password">Password</label>
                             <Text>
-                                {formik.touched.email && formik.errors.email}
+                                {formik.touched.password && formik.errors.password}
                             </Text>
                             <Input
                                 isInvalid={formik.errors.password && formik.touched.password}
@@ -94,8 +95,8 @@ const Register = () => {
                             />
 
                             <Button type='submit' onClick={formik.handleSubmit}>Register</Button>
-                            <Link to={"/Login"}><Button><GrPrevious/>Login</Button></Link>
-                        </Fragment>
+                            <Link to={"/Login"}><Button><GrPrevious />Login</Button></Link>
+                        </FormControl>
                     </form>
                 </div>
             </div>
