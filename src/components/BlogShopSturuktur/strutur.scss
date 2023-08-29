@@ -343,3 +343,17 @@
         }
     }
 }
+
+
+@media (min-width: 770px) and (max-width: 1000px) {
+  
+    .Shoppp{
+        margin-top: 100px;
+        width: 100%;
+        height: auto;
+        display: grid;
+        grid-template-columns: auto !important; 
+        overflow: hidden;
+        margin-left: 25px;
+    }
+}
