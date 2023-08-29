@@ -19,7 +19,7 @@
         height: 100vh;
 
         &>div {
-        
+
             &>div {
                 width: 100%;
                 height: 100vh;
@@ -248,9 +248,7 @@
         overflow: hidden;
         margin-left: 40px;
 
-        &>div{
-            
-        }
+        &>div {}
     }
 }
 
@@ -633,53 +631,55 @@
 
 @media (min-width: 770px) and (max-width: 900px) {
 
-    .LuxCar{
+    .LuxCar {
         width: 600px;
         overflow: hidden;
     }
-    .ReservationForm{
+
+    .ReservationForm {
         width: 100%;
 
-        &>input{
+        &>input {
             width: 100px !important;
         }
     }
 
 
-    .Experience{
+    .Experience {
         width: 100%;
         height: auto;
 
-        &>div{
+        &>div {
             width: 88%;
             height: auto;
         }
     }
-    .ExIntoG{
+
+    .ExIntoG {
         font-size: 34px !important;
         position: absolute;
         width: 350px;
         margin-top: -180px;
     }
 
-    .ExInto{
+    .ExInto {
         font-size: 22px !important;
     }
 
-    #Center{
+    #Center {
 
-        &>svg{
+        &>svg {
             font-size: 30px;
             z-index: 99;
         }
     }
 
-    .CallRes{
+    .CallRes {
         width: 220px;
         margin-left: 20px;
     }
 
-    #CardsRes{
+    #CardsRes {
         margin-left: 40px;
         margin-top: 10px;
         width: 88%;
@@ -688,20 +688,20 @@
         grid-template-columns: auto auto;
         overflow: hidden;
 
-        &>div{
+        &>div {
             width: 300px;
         }
     }
 
-    #Convenience{
+    #Convenience {
         height: 900px;
         margin-top: -50px;
     }
 
-    .ConvenienceLeft{
+    .ConvenienceLeft {
         height: auto;
 
-        .ReserButton{
+        .ReserButton {
             width: 140px;
             height: 50px;
             padding: 0 !important;
@@ -711,8 +711,34 @@
         }
     }
 
-    #ConvenReserv{
+    #ConvenReserv {
         font-size: 30px;
+    }
+
+
+
+    .CarCatagoria {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+
+        &>div {
+            width: 96%;
+            height: auto;
+
+            .CarOptons {
+                width: 100%;
+                height: 210px;
+                display: flex;
+                flex-direction: column;
+                align-content: flex-end;
+                border-bottom: 1px solid gray;
+            }
+
+        }
     }
 
 }

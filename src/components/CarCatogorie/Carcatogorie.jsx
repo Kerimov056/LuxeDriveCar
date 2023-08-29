@@ -23,7 +23,7 @@ const Carcatogorie = (props) => {
   return (
     <>
       <div className='CarCatagorieE'>
-        <p></p>
+        <p id='resNul'></p>
         <div style={{ borderBottom: "1px solid rgb(63, 63, 63)" }}>
 
           <div className='Car'>
