@@ -302,6 +302,7 @@
         background-color: rgb(0, 0, 0) !important;
         display: block;
         position: fixed;
+        z-index: 999;
     }
 
     .CarCards {
@@ -344,4 +345,11 @@
             
         }
     }
+}
+
+
+
+@media (min-width: 320px) and (max-width: 700px) {
+
+    
 }
