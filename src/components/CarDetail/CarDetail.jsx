@@ -166,7 +166,7 @@ const CarDetail = () => {
     const formik = useFormik({
         initialValues: {
             comment: "",
-            carid: "21f47802-cb9a-4215-28c0-08dba6fa51af",
+            carid: byCars?.data.id ,
             appuserid: appuserid,
         },
         onSubmit: async (values) => {
@@ -181,7 +181,7 @@ const CarDetail = () => {
     
 
 
-    console.log(appuserid);
+    // console.log(appuserid);
 
     if (byCars) {
 

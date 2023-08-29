@@ -21,22 +21,19 @@ const CarComment = (props) => {
         },
     });
 
-    const formik = useFormik({
-        initialValues: {
-            CarCommentId: "037fd0b1-cd14-4a2e-3731-08dba71c16d6",
-            AppUserId: appuserid,
+    const { mutate, isLoading, isError, error } = useMutation(() => postLike(props.commentId, appuserid), {
+        onSuccess: (data) => {
+            queryClient.invalidateQueries(['Likes']);
+            queryClient.invalidateQueries(['Comments']);
         },
-        onSubmit: async (values) => {
-            try {
-                mutation.mutateAsync(values);
-            } catch (error) {
-                console.log(error);
-            }
-        },
+        onError: (error) => {
+            console.error("Error adding car to order", error);
+        }
     });
 
+   
     const likeCreate = async () => {
-        await formik.handleSubmit(); // Beğeni gönderimi için formik işlemini çağır
+        mutate({ carCommentId: props.Id, AppUserId: appuserid });
     }
 
     return (

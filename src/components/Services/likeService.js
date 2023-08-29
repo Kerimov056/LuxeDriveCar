@@ -1,5 +1,5 @@
 import { httpClient } from "../utils/HttpClient";
 
-export const postLike = (data) => {
-    return httpClient.post("api/Likes",data)
+export const postLike = (carCommentId,AppUserId) => {
+    return httpClient.post(`api/Likes?AppUserId=${AppUserId}&CarCommentId=${carCommentId}`)
 };  
