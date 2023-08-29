@@ -20,69 +20,69 @@
 
 
 
-            .blogDetails{
+            .blogDetails {
                 margin-top: 100px;
                 width: 100%;
-                height: auto; 
+                height: auto;
 
-                .blogDetails_1{
+                .blogDetails_1 {
                     width: 100%;
                     height: 950px;
-                    
-                    &>p{
+
+                    &>p {
                         width: 100%;
                         height: 20%;
 
-                        &>h1{
+                        &>h1 {
                             font-size: 52px;
                             color: white;
                         }
 
-                        &>h3{
+                        &>h3 {
                             margin-top: 10px;
                             color: #bfa37c;
                         }
                     }
 
-                    &>div{
+                    &>div {
                         margin-top: 10px;
                         width: 100%;
                         height: 78%;
 
-                        &>img{
+                        &>img {
                             width: 100%;
                             height: 100%;
                         }
                     }
                 }
 
-                .blogDetails_2{
+                .blogDetails_2 {
                     margin-top: 20px;
                     width: 100%;
-                    height: auto; 
+                    height: auto;
                     font-size: 20px;
 
-                    .ortaq{
-                        padding: 30px  0;
+                    .ortaq {
+                        padding: 30px 0;
                         width: 100%;
                         height: auto;
                         display: flex;
                         justify-content: center;
                         align-items: center;
 
-                        &>div{
+                        &>div {
                             width: 86%;
                             font-size: 24px;
                         }
                     }
 
-                    .endimg{
+                    .endimg {
                         margin-top: 30px;
                         margin-bottom: 30px;
                         width: 100%;
                         height: 550px;
 
-                        &>img{
+                        &>img {
                             width: 100%;
                             height: 100%;
                             object-fit: cover;
@@ -91,7 +91,7 @@
                 }
             }
 
-            .Shoppp{
+            .Shoppp {
                 margin-top: 100px;
                 width: 100%;
                 height: auto;
@@ -133,7 +133,7 @@
                     --gap: 0.9rem;
                     width: 100%;
                 }
-                
+
                 /* form style */
                 .form {
                     font-size: 0.9rem;
@@ -144,7 +144,7 @@
                     position: relative;
                     isolation: isolate;
                 }
-                
+
                 /* a fancy bg for showing background and border when focus. */
                 .fancy-bg {
                     position: absolute;
@@ -157,7 +157,7 @@
                     pointer-events: none;
                     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
                 }
-                
+
                 /* label styling */
                 label {
                     width: 100%;
@@ -165,27 +165,27 @@
                     height: 40px;
                     padding-inline: var(--inline-padding-of-input);
                     display: flex;
-                    overflow: hidden;   
+                    overflow: hidden;
                     align-items: center;
                 }
-                
+
                 .search,
                 .close-btn {
                     position: absolute;
                 }
-                
+
                 /* styling search-icon */
                 .search {
                     fill: var(--text-color);
                     left: var(--inline-padding-of-input);
                 }
-                
+
                 /* svg -- size */
                 svg {
                     width: 17px;
                     display: block;
                 }
-                
+
                 /* styling of close button */
                 .close-btn {
                     border: none;
@@ -203,7 +203,7 @@
                     opacity: 0;
                     visibility: hidden;
                 }
-                
+
                 /* styling of input */
                 .input {
                     color: var(--input-text-color);
@@ -212,11 +212,11 @@
                     background: none;
                     border: none;
                 }
-                
+
                 .input:focus {
                     outline: none;
                 }
-                
+
                 .input::placeholder {
                     color: var(--text-color)
                 }
@@ -346,14 +346,96 @@
 
 
 @media (min-width: 770px) and (max-width: 1000px) {
-  
-    .Shoppp{
+
+    .Shoppp {
         margin-top: 100px;
         width: 100%;
         height: auto;
         display: grid;
-        grid-template-columns: auto !important; 
+        grid-template-columns: auto !important;
         overflow: hidden;
         margin-left: 25px;
+    }
+}
+
+
+
+@media (min-width: 320px) and (max-width: 700px) {
+
+    #Strutur {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &>div {
+            width: 96%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    .blogDetails {
+        display: none;
+    }
+
+    .Shoppp {
+        margin-top: 100px;
+        width: 100%;
+        height: auto;
+        display: grid;
+        grid-template-columns: auto !important;
+        overflow: hidden;
+        margin-left: -55px;
+        position: relative;
+    }
+
+
+    .RightBar {
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+    }
+
+    .Posts {
+        display: none !important;
+    }
+
+    .Catagories {
+       position: absolute;
+    width: auto;
+    height: auto;
+    }
+
+    .ReklamImg {
+        margin-top: 200px !important;
+        width: 90%;
+        height: auto;
+        position: absolute;
+        margin-left: -210px;
+
+        &>img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .tags{
+        margin-top: 500px !important;
+        width: auto;
+        height: auto;
+
+        &>div{
+            position: absolute;
+            margin-left: -200px;
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: auto auto auto auto auto;
+        }
     }
 }
