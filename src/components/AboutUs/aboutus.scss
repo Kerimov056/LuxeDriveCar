@@ -325,4 +325,23 @@
     .left{
         height: auto !important;
     }
+
+
+    .ThreeImg{
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        &>div{
+            width: 96%;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            
+        }
+    }
 }
