@@ -125,7 +125,7 @@ const Strutur = (props) => {
 
 
                         <div className='Catagories'>
-                            <h1>Catagories</h1>
+                            <h1>Catagories</h1> <br/>
                             {categorie?.data.map((category, index) => (
                                 <span key={index}>{category.category}</span>
                             ))}

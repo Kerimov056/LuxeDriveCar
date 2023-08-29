@@ -392,6 +392,10 @@
         overflow: hidden;
         margin-left: -55px;
         position: relative;
+
+        &>div{
+            z-index: 999;
+        }
     }
 
 
@@ -406,9 +410,16 @@
     }
 
     .Catagories {
-       position: absolute;
-    width: auto;
-    height: auto;
+        position: absolute;
+        width: auto;
+        height: auto;
+        display: grid !important;
+        margin-left: -100px;
+        grid-template-columns: auto auto !important;
+
+        &>span{
+            font-size: 19px;
+        }
     }
 
     .ReklamImg {
@@ -424,12 +435,12 @@
         }
     }
 
-    .tags{
+    .tags {
         margin-top: 500px !important;
         width: auto;
         height: auto;
 
-        &>div{
+        &>div {
             position: absolute;
             margin-left: -200px;
             width: 100%;

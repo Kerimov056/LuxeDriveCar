@@ -83,3 +83,11 @@
 button{
     cursor: pointer;
 }
+
+
+@media (min-width: 320px) and (max-width: 700px) {
+
+    .cardDDD{
+        width: 250px;
+    }
+}
