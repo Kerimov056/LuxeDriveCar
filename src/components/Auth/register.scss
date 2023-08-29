@@ -129,39 +129,35 @@
 
 
 @media (min-width: 770px) and (max-width: 1000px) {
-    .login_section {
+    .login_sectionN {
         width: 100%;
         height: 100vh;
+        background-attachment: fixed;
+        margin-bottom: 330px !important;
 
         .login_form {
-            left: 30% !important;
-            width: 450px;
+            top: 45%;
+            left: 50% !important;
+            width: 100%;
             height: auto;
         }
     }
-
-    .Samaxi {
-        display: none;
-    }
-
 }
 
 
 @media (min-width: 320px) and (max-width: 700px) {
-    .login_section {
+    .login_sectionN {
         width: 100%;
         height: 100vh;
         background-attachment: fixed;
+        margin-bottom: 300px !important;
 
-        .login_form {
-            margin-top: -260px !important;
-            left: 50% !important;
+        #RegResponPhone {
+            margin-top: -40px !important;
             width: 350px;
             height: auto;
+            margin-left: -130px;
         }
     }
 
-    .Samaxi {
-        display: none;
-    }
 }

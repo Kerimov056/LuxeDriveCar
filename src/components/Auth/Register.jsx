@@ -39,7 +39,7 @@ const Register = () => {
             <div className='login_sectionN'>
 
                 <div>
-                    <form className='login_form' onSubmit={formik.handleSubmit} style={{ marginTop: "10px", height: "700px" }}>
+                    <form id='RegResponPhone' className='login_form' onSubmit={formik.handleSubmit} style={{ marginTop: "10px", height: "700px" }}>
                         <FormControl>
                             <h3>Sign Up</h3>
                             <label htmlFor='Fullname'>Your Full Name</label><br />
@@ -100,57 +100,6 @@ const Register = () => {
                     </form>
                 </div>
             </div>
-
-
-
-
-            {/* <div id="Register">
-                <div className="Left"></div>
-                <div className="Medium">
-                    <div>
-                        <div>
-                            <h1 style={{ color: "gray", marginBottom: "10px", fontWeight: "500" }}>Sign Up</h1>
-                            <p>Enter your email address and password to access admin panel.</p>
-                        </div>
-                        <div className='form'>
-                            <Fragment>
-                                <div>
-                                    <label>Your Full Name</label><br />
-                                    <input type='text' placeholder=' Full Name' onChange={(e) => handleFullNameChange(e.target.value)} />
-                                </div>
-
-                                <div>
-                                    <label>UserName</label><br />
-                                    <input type='text' placeholder=' User Name' onChange={(e) => handleUserChange(e.target.value)} />
-                                </div>
-
-                                <div>
-                                    <label>Email address</label><br />
-                                    <input type='text' placeholder=' Email' onChange={(e) => handleEmailChange(e.target.value)} />
-                                </div>
-
-                                <div>
-                                    <label>Password</label><br />
-                                    <input type='text' placeholder=' Password' onChange={(e) => handlePasswordChange(e.target.value)} />
-                                </div>
-                                <br /><br />
-                                <button onClick={() => handleSave()}>Sign Up</button>
-                                <hr style={{ marginTop: "20px", backgroundColor: "gray" }} />
-                                <p>
-                                    <p>Already Have Account ?<Link to='/Login' style={{ color: "gray" }}>Log In</Link>    </p>
-                                    <p>
-                                        <span><BsFacebook /></span>
-                                        <span><BsTwitter /></span>
-                                        <span><BsInstagram /></span>
-                                    </p>
-                                </p>
-                            </Fragment>
-                        </div>
-                        <div></div>
-                    </div>
-                </div>
-                <div className="Right"></div>
-            </div> */}
         </>
     );
 };
