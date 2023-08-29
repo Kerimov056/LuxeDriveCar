@@ -302,12 +302,12 @@ const Home = ({ color, onNavStateChange }) => {
 
       <div id='HomeAbout'>
         <div className='opinions'>
-          <h1>We trive to meet the needs <br />
+          <h1 id="resphSone">We trive to meet the needs <br />
             of our clients and we value their <br />
             opinions about our work</h1>
         </div>
-        <div class="container">
-          <div class="faders">
+        <div id='Homrespids' class="container">
+          <div id='resPhone' class="faders">
             <div class="left"></div>
             <div class="right"></div>
           </div>
