@@ -65,3 +65,62 @@
 #Vha{
     color: #d3cfcf;
 }
+
+
+@media (min-width: 320px) and (max-width: 700px) {
+
+    .footer{
+        width: 100%;
+
+        &>div{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            &>div{
+                width: 90%;
+                margin-top: 20px;
+                display: flex;
+                justify-content: center;
+
+                &>span{
+
+                    &>svg{
+                        font-size: 28px;
+                    }
+                }
+
+                &>div{
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}
+  
+
+@media (min-width: 770px) and (max-width: 100px) {
+
+    .footer{
+        width: 100%;
+
+        &>div{
+            width: 99%;
+
+            &>div{
+                display: flex;
+                justify-content: space-between !important;
+
+                &>span{
+                    margin-right: 16px !important;
+                }
+
+                &>div{
+                    font-size: 16px !important;
+                }
+            }
+        }
+    }
+}

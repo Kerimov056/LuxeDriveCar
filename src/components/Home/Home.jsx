@@ -166,8 +166,6 @@ const Home = ({ color, onNavStateChange }) => {
             </div>
           </div>
 
-
-
           <div className='DropMenu'>
             <Navbartwo />
           </div>

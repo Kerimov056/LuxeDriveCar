@@ -12,6 +12,7 @@ import Questions from '../Questions/Questions'
 import Premiumcars from '../PremiumCars/Premiumcars'
 import { useQuery } from 'react-query'
 import { getCar } from "../Services/carServices";
+import Navbartwo from '../Navbar/Navbartwo'
 
 
 const AboutUs = () => {
@@ -36,7 +37,13 @@ const AboutUs = () => {
   return (
     <>
       <div>
-        <Navbar />
+        <div className='ReponsiveNav'>
+          <Navbar />
+        </div>
+        <div className='DisplayNavbar'>
+          <Navbartwo />
+        </div>
+
         <ImageCom img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/inner-ab-img-1.jpg"} />
         <Destinations name={"We Value Our Clients And  Want Them To Have A Nice Experience"} topic={"FINEST TRANSPORT"} isAnswer={true} isHuman={false} color={"white"} />
         <Imagecompanents img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/01/h1-img-8.jpg"} />
@@ -56,7 +63,7 @@ const AboutUs = () => {
 
                 <div class="items">
                   {cars?.data.map((byCar, index) => (
-                    <Car key={index} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Vihecle-list-image-04.jpg"} name={byCar.marka} desc={byCar.description.slice(0,30)} price={byCar.price} />
+                    <Car key={index} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Vihecle-list-image-04.jpg"} name={byCar.marka} desc={byCar.description.slice(0, 30)} price={byCar.price} />
                   ))}
                 </div>
               </div>

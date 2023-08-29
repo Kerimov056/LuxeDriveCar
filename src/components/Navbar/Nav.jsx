@@ -9,8 +9,8 @@ const Nav = () => {
 
     return (
         <>
-            <nav class="navbar" style={{ backgroundColor: "black" }}>
-                <div class="navbar-container container" >
+            <nav class="navbar" id='ResponsivePhone' style={{ backgroundColor: "black" }}>
+                <div id='responNav' class="navbar-container container" >
                     <input type="checkbox" name="" id="" />
                     <div class="hamburger-lines">
                         <span class="line line1"></span>
@@ -18,7 +18,7 @@ const Nav = () => {
                         <span class="line line3"></span>
                     </div>
                     <div><a id="Luxxx" href="#"><Link to={'./'} id='Linkkk'>LUXEDRIVE</Link></a></div>
-                    <ul class="menu-items">
+                    <ul id='CllassResponsive' class="menu-items">
                         <li><a href='/'>Home</a></li>
                         <li><a href='/AboutUs'>About Us</a></li>
                         <li><a href='VehicleFleet'>VEHICLE FLEET</a></li>

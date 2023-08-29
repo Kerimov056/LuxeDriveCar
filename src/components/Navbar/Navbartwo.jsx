@@ -9,8 +9,8 @@ const Navbartwo = () => {
 
     return (
         <>
-            <nav class="navbar" style={{background:"transparent"}}>
-                <div class="navbar-container container" >
+            <nav class="navbar" id='ResponsivePhone' style={{background:"transparent"}}>
+                <div  class="navbar-container container" >
                     <input type="checkbox" name="" id="" />
                     <div class="hamburger-lines">
                         <span class="line line1"></span>

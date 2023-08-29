@@ -174,3 +174,46 @@
         display: none;
     }
 }
+
+
+
+@media (min-width: 320px) and (max-width: 700px) {
+
+    #responNav {
+        width: 100%;
+        height: auto !important;
+    }
+
+    #ResponsivePhone {
+        width: 100%;
+
+        &>ul {
+            height: auto;
+            z-index: 999;
+        }
+    }
+
+
+    #nd {
+        overflow: hidden;
+        width: 100%;
+        z-index: 1000 !important;
+    }
+
+    #CllassResponsive {
+        width: 100%;
+        position: relative;
+        z-index: 999;
+        width: 100% !important;
+
+        &>li{
+            width: 100%;
+        }
+    }
+}
+
+
+@media (min-width: 770px) and (max-width: 100px) {
+
+    
+}

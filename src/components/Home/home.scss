@@ -630,7 +630,7 @@
 
 
 
-@media (min-width: 770px) and (max-width: 900px) {
+@media (min-width: 770px) and (max-width: 1000px) {
 
     .LuxCar {
         width: 600px;
@@ -876,5 +876,10 @@
 
     #Repsod{
         width: 100%;
+    }
+
+    #carimagP{
+        width: 100% !important;
+        height: auto;
     }
 }
