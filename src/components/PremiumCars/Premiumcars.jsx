@@ -42,7 +42,7 @@ const Premiumcars = (props) => {
                             <h1 style={{color: props.NumColor}}>Premium Cars Rental</h1>
                             <h3 style={{color: props.NumColor}}>ONLY THE BEST</h3>
                             <p>Praesent elementum facilisis leo vel fringilla est. Vest bulum lectus a urise ultrices eros in cursus turpi uto.</p>
-                            <div>
+                            <div id='responsive'>
                                 <div>
                                     <span style={{color: props.NumColor}}><Number n={21} /><span>+</span></span>
                                     <p>Years of experience</p>
