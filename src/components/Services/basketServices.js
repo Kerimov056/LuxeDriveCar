@@ -4,8 +4,8 @@ export const removeByCar = (carId) => {
     return httpClient.delete(`api/Baskets/ProductItem?Id=${carId}`)
 };
 //basketsler sefdi aa sssssssssssssssssssssssssssssssssss
-export const PostCar = (carId) => {
-    return httpClient.post(`api/Baskets?Id=${carId}`);
+export const PostCar = (carId,AppUserId) => {
+    return httpClient.post(`api/Baskets?Id=${carId}&AppUserId=${AppUserId}`);
 };
 
 export const getBasketCars = () => {

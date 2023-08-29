@@ -1,14 +1,16 @@
 import React from 'react';
-import './ShopCarCard.scss'
+import './ShopCarCard.scss';
 import { Link } from 'react-router-dom';
 import { PostCar } from "../Services/basketServices";
 import { useMutation, useQueryClient } from 'react-query';
-
+import { useDispatch, useSelector } from "react-redux";
 
 const ShopCarCard = (props) => {
+    const { appuserid } = useSelector((x) => x.authReducer);
+    const dispatch = useDispatch();
     const queryClient = useQueryClient();
 
-    const { mutate, isLoading, isError, error } = useMutation(PostCar, {
+    const { mutate, isLoading, isError, error } = useMutation(() => PostCar(props.Id, appuserid), {
         onSuccess: (data) => {
             queryClient.invalidateQueries(["basketsCountT"]);
         },
@@ -16,19 +18,19 @@ const ShopCarCard = (props) => {
             console.error("Error adding car to order", error);
         }
     });
-
+    
     const handleAddToOrder = () => {
-        mutate(props.Id);
+        mutate({ carId: props.Id, AppUserId: appuserid });
     }
-
+    
     return (
         <>
-            <div class="cardDDD">
-                <div class="card-details">
-                    <img src={props.img} />
+            <div className="cardDDD">
+                <div className="card-details">
+                    <img src={props.img} alt="Car" />
                 </div>
-                <button class="card-button"><Link to={`/CarDetail/${props.Id}`}>More Info</Link></button>
-                <button onClick={handleAddToOrder} class="AddToCard">+ ADD TO ORDER</button>
+                <button className="card-button"><Link to={`/CarDetail/${props.Id}`}>More Info</Link></button>
+                <button onClick={handleAddToOrder} className="AddToCard">+ ADD TO ORDER</button>
             </div>
         </>
     );
