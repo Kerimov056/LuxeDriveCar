@@ -847,4 +847,34 @@
     #resPhone {
         font-size: 24px;
     }
+
+
+    .CarCatagoria {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column !important;
+        background-color: black;
+
+        &>div {
+            width: 96%;
+            height: auto;
+
+            .CarOptons {
+                width: 100%;
+                height: 310px;
+                display: flex;
+                flex-direction: column;
+                align-content: flex-end;
+                border-bottom: 1px solid gray;
+            }
+
+        }
+    }
+
+    #Repsod{
+        width: 100%;
+    }
 }
