@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     &>p {
         width: 24%;
         height: 100%;
@@ -24,7 +24,7 @@
             overflow: hidden;
             color: white;
 
-            &>img{
+            &>img {
                 width: 300px;
                 height: 100%;
                 margin-right: 80px;
@@ -47,15 +47,15 @@
                     font-weight: 500;
                 }
 
-                &>span{
+                &>span {
                     color: rgb(183, 177, 177);
 
-                    &>span{
+                    &>span {
                         color: #bfa37c;
                         font-size: 23px;
                         margin-left: 10px;
 
-                        &>b{
+                        &>b {
                             font-size: 55px;
                             color: #bfa37c;
                         }
@@ -64,7 +64,7 @@
             }
         }
 
-        .Car2{
+        .Car2 {
             width: auto;
             height: 100%;
             color: white;
@@ -73,26 +73,69 @@
             align-items: center;
             flex-direction: column;
 
-            &>p{
+            &>p {
                 margin-top: 20px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 color: rgb(183, 177, 177);
 
-                &>span{
+                &>span {
                     margin-right: 10px;
                 }
             }
         }
 
-        .Car3{
+        .Car3 {
 
-            &>button{
+            &>button {
                 padding: 20px 40px;
                 border: 1px solid #bfa37c;
                 color: white;
             }
         }
+    }
+}
+
+
+
+
+@media (min-width: 770px) and (max-width: 900px) {
+
+    .CarCatagorieE {
+        width: 90%;
+        height: 240px;
+
+        #resNul {
+            display: none;
+        }
+
+        &>div {
+            width: 100%;
+            margin-left: 40px;
+
+            .Car{
+                width: 290px;
+
+                #namRes{
+                    display: none;
+                }
+            }
+
+            .Car2{
+                width: 200px;
+            }
+
+            .Car3{
+                width: 190px;
+                font-size: 15px;
+                height: auto;
+
+                &>button{
+
+                }
+            }
+        }
+
     }
 }

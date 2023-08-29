@@ -178,7 +178,7 @@ const Home = ({ color, onNavStateChange }) => {
                 <h1>Need to Rent a Luxury Car? <br /> Send A Request</h1>
                 <h6>Complete the form below and we'll contact you as soon as possible</h6>
               </div>
-              <div className='ReservationForm'>
+              <div id='ReseNu' className='ReservationForm'>
                 <input placeholder='Choose location' />
                 <Input
                   placeholder="Select Date and Time"
@@ -204,7 +204,7 @@ const Home = ({ color, onNavStateChange }) => {
 
       <div className='Experience'>
         <div className='Description'>
-          <div>
+          <div className='resPhone'>
             <div>
               <h1 className='ExIntoG'>
                 What We Provide Is The Luxury Transport And Most Comfortable Experience
@@ -297,7 +297,7 @@ const Home = ({ color, onNavStateChange }) => {
       </div>
 
       <div className='Premium '>
-        <Premiumcars absout={false} backColor={"black"} one={1} two={2} NumColor={"white"} imgUrl={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/01/h1-img-6.jpg"} />
+        <Premiumcars about={false} backColor={"black"} one={1} two={2} NumColor={"white"} imgUrl={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/01/h1-img-6.jpg"} />
       </div>
 
       <div id='HomeAbout'>
@@ -347,7 +347,7 @@ const Home = ({ color, onNavStateChange }) => {
       </div>
 
       <div id='carimagP'>
-        <img src='https://scontent.fgyd18-1.fna.fbcdn.net/v/t39.30808-6/364685152_180820611680325_467963882875698557_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=730e14&_nc_ohc=xSkq4rXXrN8AX-Wz9Qn&_nc_ht=scontent.fgyd18-1.fna&oh=00_AfAwgnZQr296oFrMFZvVBvnSJ3WBUzKQXEk6lLZ9JEQ88Q&oe=64E7E96B' />
+        <img src='https://c4.wallpaperflare.com/wallpaper/493/256/10/2014-4-series-bmw-coupe-wallpaper-preview.jpg' />
       </div>
     </>
   )

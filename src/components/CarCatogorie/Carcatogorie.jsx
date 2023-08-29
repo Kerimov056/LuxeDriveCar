@@ -28,7 +28,7 @@ const Carcatogorie = (props) => {
 
           <div className='Car'>
             <img data-aos="fade-right" src={props.img} />
-            <div>
+            <div id='namRes'>
               <h1>{props.catagorie}</h1>
               <span>from<span>$<b>{props.price}</b>/h</span></span>
             </div>

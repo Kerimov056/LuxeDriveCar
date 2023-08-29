@@ -116,9 +116,7 @@
                 align-content: flex-end;
             }
 
-            .DestinationsCardIn{
-
-            }
+            .DestinationsCardIn {}
         }
     }
 
@@ -127,9 +125,9 @@
         height: 70%;
         grid-column: 20px;
         grid-row: 20px;
-        
 
-        .bossss{
+
+        .bossss {
             width: 1%;
         }
 
@@ -144,7 +142,7 @@
         .gridddD {
             margin-left: -130px !important;
             width: 100%;
-            display: grid; 
+            display: grid;
             grid-template-columns: auto auto;
             word-wrap: break-word;
             overflow: hidden;
@@ -152,7 +150,55 @@
     }
 
 
-    #DestinationsCard{
+    #DestinationsCard {
         width: 280px;
+    }
+}
+
+
+
+
+@media (min-width: 320px) and (max-width: 700px) {
+
+    #Destinations {
+        width: max-content;
+        height: auto;
+        margin-left: -50px;
+
+        &>div {
+            width: 80%;
+            height: 100%;
+
+            .Basliq {
+                width: 100%;
+                height: 30%;
+                border-bottom: 1px solid rgb(154, 154, 154);
+                flex-wrap: wrap;
+                flex-direction: column;
+                align-content: flex-end;
+            }
+
+            .bossss {
+                display: none;
+            }
+
+            .DestinationsCardIn {
+                width: 100%;
+                height: 30%;
+
+
+                .griddd {
+                    display: grid;
+                    grid-template-columns: auto;
+                }
+
+                .gridddD {
+                    display: grid;
+                    grid-template-columns: auto;
+                }
+            }
+
+
+        }
     }
 }

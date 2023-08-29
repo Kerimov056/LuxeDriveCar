@@ -618,11 +618,12 @@
 
 #carimagP {
     width: 100%;
-    height: 300px;
+    height: 750px;
 
     &>img {
         width: 100%;
         height: 100%;
+        object-fit: cover;
     }
 
 }
@@ -741,4 +742,88 @@
         }
     }
 
+
+    #carimagP {
+        width: 100%;
+        height: 570px;
+    }
+}
+
+
+
+
+@media (min-width: 320px) and (max-width: 700px) {
+
+    .hidden {
+        display: block;
+    }
+
+    .fixed-div {
+        overflow: hidden;
+    }
+
+    .home {}
+
+    .LuxCar {
+        overflow: hidden;
+    }
+
+    #ReseNu {
+        display: none;
+    }
+
+    .resPhone {
+        display: block !important;
+
+        &>div{
+            width: auto !important;
+            &>h1{
+                width: auto;
+            }
+        }
+    }
+
+    #CardsRes{
+        display: grid !important;
+        grid-template-columns: auto !important;
+
+        &>div{
+            margin-left: 0px;
+        }
+    }
+
+    .btn{
+        width: 200px !important;
+        height: 100px !important;
+    }
+
+    #Convenience{
+        width: 100%;
+        height: auto;
+
+        &>div{
+            width: 100%;
+            height: 100%;
+            display: block;
+
+            .ConvenienceLeft{
+                width: auto;
+                margin-left: 40px;
+            }
+
+            .ConvenienceRight{
+                margin-top: 30px;
+                margin-left: 30px;
+                width: 90%;
+                height: 100%;
+                display: block;
+                overflow: hidden;
+                
+            }
+        }
+    }
+
+    .SLIDER{
+        display: none;
+    }
 }
