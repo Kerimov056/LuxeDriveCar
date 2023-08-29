@@ -8,8 +8,8 @@ export const PostCar = (carId,AppUserId) => {
     return httpClient.post(`api/Baskets?Id=${carId}&AppUserId=${AppUserId}`);
 };
 
-export const getBasketCars = () => {
-    return httpClient.get("api/Baskets")
+export const getBasketCars = (AppUserId) => {
+    return httpClient.get(`api/Baskets?AppUserId=${AppUserId}`)
 };
 
 export const getBasketItemCount = (AppUserId) => {

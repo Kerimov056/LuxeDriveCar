@@ -5,17 +5,19 @@ import BasketCard from "./BasketCard";
 import { useQuery } from "react-query";
 import { getBasketCars } from "../Services/basketServices";
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
 
 
 const Basket = () => {
 
+    const { appuserid } = useSelector((x) => x.authReducer);
+    const dispatch = useDispatch();
 
     const { data: basketCars } = useQuery({
-        queryKey: ["Cars"],
-        queryFn: getBasketCars,
+        queryKey: ["Cars", appuserid], // appuserid'yi queryKey'e ekliyoruz
+        queryFn: () => getBasketCars(appuserid), // appuserid'yi getBasketCars işlevine gönderiyoruz
         staleTime: 0,
     });
-
 
     return (
         <>
@@ -30,8 +32,8 @@ const Basket = () => {
                             <span>X</span>
                             <span>Order</span>
                         </div>
-                        <div>
-                            {basketCars?.data.map((bycars, index) => (
+                         <div>
+                            {basketCars?.data !=null && basketCars?.data.map((bycars, index) => (
                                 <BasketCard
                                     key={index}
                                     img={'https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Main-home-vehicle-list-img-01.jpg'}
@@ -48,15 +50,14 @@ const Basket = () => {
                                 <div Id='emptyBasket'>
                                     <h1>You have never ordered a car</h1>
                                     <div>
-                                    <Link to={'/Shop'}><button class="Btn"></button></Link>
+                                        <Link to={'/Shop'}><button class="Btn"></button></Link>
                                     </div>
                                 </div>
                             }
-                        </div>
-
+                        </div> 
                     </div>
                     {
-                        basketCars.data.lenght != null &&
+                        basketCars?.data.lenght != null &&
                         <div className='paypal'>Paypal</div>
                     }
                 </div>
