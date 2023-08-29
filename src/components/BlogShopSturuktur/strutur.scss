@@ -356,8 +356,79 @@
         overflow: hidden;
         margin-left: 25px;
     }
+
+    .Respppnnn {
+        display: block !important;
+    }
 }
 
+
+@media (min-width: 770px) and (max-width: 1000px) {
+
+    #responSive {
+        margin-top: 100px;
+        width: 100%;
+        height: auto;
+        display: grid;
+        grid-template-columns: auto !important;
+        overflow: hidden;
+        margin-left: 25px;
+    }
+
+    .RightBar {
+        .Posts {
+            display: none !important;
+        }
+
+    }
+
+    .Catagories {
+        position: absolute;
+        width: auto;
+        height: auto;
+        display: grid !important;
+        grid-template-columns: auto auto;
+        margin-left: 100px;
+        
+
+        &>h1{
+            font-size: 46px !important;
+        }
+
+        &>span {
+            font-size: 29px;
+        }
+    }
+
+    .ReklamImg {
+        margin-top: 200px !important;
+        width: 90%;
+        height: auto;
+        position: absolute;
+        margin-left: -136px;
+
+        &>img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .tags {
+        margin-top: 540px !important;
+        width: auto;
+        height: auto;
+
+        &>div {
+            position: absolute;
+            margin-left: -200px;
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: auto auto auto auto auto auto auto auto !important;
+        }
+        margin-bottom: 200px !important;
+    }
+}
 
 
 @media (min-width: 320px) and (max-width: 700px) {
@@ -393,7 +464,7 @@
         margin-left: -55px;
         position: relative;
 
-        &>div{
+        &>div {
             z-index: 999;
         }
     }
@@ -417,7 +488,7 @@
         margin-left: -100px;
         grid-template-columns: auto auto !important;
 
-        &>span{
+        &>span {
             font-size: 19px;
         }
     }

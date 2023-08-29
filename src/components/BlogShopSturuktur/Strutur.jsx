@@ -34,7 +34,7 @@ const Strutur = (props) => {
     });
 
 
-    const { data:Faqs } = useQuery({
+    const { data: Faqs } = useQuery({
         queryKey: ["Faqs"],
         queryFn: getCarImage,
         staleTime: 0,
@@ -46,12 +46,12 @@ const Strutur = (props) => {
         queryFn: getBlog,
         staleTime: 0,
     });
-    
+
 
     return (
         <>
             <div id='Strutur'>
-                <div>
+                <div className='Respppnnn'>
                     <div className='LeftBar'>
                         {
                             props.details === true ?
@@ -66,7 +66,7 @@ const Strutur = (props) => {
                                         </div>
                                     </div>
 
-                                     <div className='blogDetails_2'>
+                                    <div className='blogDetails_2'>
                                         <div>
                                             {byCars?.data?.description?.slice(0, 9)} <br /><br />
                                             {byCars?.data?.description?.slice(9, 23)}
@@ -79,17 +79,17 @@ const Strutur = (props) => {
                                             <img src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/b-s-img-2.jpg' />
                                         </div>
                                         <div>{byCars?.data?.description?.slice(32)}</div>
-                                    </div> 
+                                    </div>
 
                                     {blogs?.data?.slice(-1).map((byBlogs, index) => (
                                         <BlogPost Id={byBlogs.id} title={byBlogs.title} date={"Jan 8.   2022./   DRIVE, LUXURY"} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/b-l-img-1.jpg"} desc={byBlogs.description} />
                                     ))}
-                                </div> 
+                                </div>
 
-                                            :
+                                :
 
                                 props.blog === true ?
-                                    <div>
+                                    <div id='responSive'>
                                         {blogs?.data.map((byBlogs, index) => (
                                             <BlogPost Id={byBlogs.id} title={byBlogs.title} date={"Jan 8.   2022./   DRIVE, LUXURY"} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/b-l-img-1.jpg"} desc={byBlogs.description} />
                                         ))}
@@ -125,7 +125,7 @@ const Strutur = (props) => {
 
 
                         <div className='Catagories'>
-                            <h1>Catagories</h1> <br/>
+                            <h1>Catagories</h1> <br />
                             {categorie?.data.map((category, index) => (
                                 <span key={index}>{category.category}</span>
                             ))}
