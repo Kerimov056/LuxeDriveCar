@@ -24,7 +24,7 @@ const CarComment = (props) => {
     const { mutate, isLoading, isError, error } = useMutation(() => postLike(props.commentId, appuserid), {
         onSuccess: (data) => {
             queryClient.invalidateQueries(['Likes']);
-            queryClient.invalidateQueries(['Comments']);
+            queryClient.invalidateQueries(['Car']);
         },
         onError: (error) => {
             console.error("Error adding car to order", error);
