@@ -4,21 +4,26 @@ import { Button } from '@chakra-ui/react';
 import { removeByCar } from "../Services/basketServices";
 import { useMutation, useQueryClient } from 'react-query';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
 
 
 const BasketCard = (props) => {
-
+    const { appuserid } = useSelector((x) => x.authReducer);
+    const dispatch = useDispatch();
     const queryClient = useQueryClient();
 
-    const removeMutation = useMutation(removeByCar, {
-        onSuccess: () => {
+    const { mutate, isLoading, isError, error } = useMutation(() => removeByCar(props.Id, appuserid), {
+        onSuccess: (data) => {
             queryClient.invalidateQueries(['Cars']);
             queryClient.invalidateQueries(['basketsCountT']);
         },
+        onError: (error) => {
+            console.error("Error adding car to order", error);
+        }
     });
 
     const handleRemove = () => {
-        removeMutation.mutate(props.Id);
+        mutate({ carId: props.Id, AppUserId: appuserid });
     };
 
 
@@ -69,7 +74,7 @@ const BasketCard = (props) => {
 
                 <div className='Getorder'>
                     <button class="cssbuttons-io-button"><Link to={`/CarDetail/${props.Id}`}> Get order
-                        <div style={{marginTop:"-30px"}}  sty class="icon">
+                        <div style={{ marginTop: "-30px" }} sty class="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"></path></svg>
                         </div>
                     </Link>

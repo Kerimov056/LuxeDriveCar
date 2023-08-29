@@ -1,9 +1,9 @@
 import { httpClient } from "../utils/HttpClient";
 
-export const removeByCar = (carId) => {
-    return httpClient.delete(`api/Baskets/ProductItem?Id=${carId}`)
+export const removeByCar = (carId,AppUserId) => {
+    return httpClient.delete(`api/Baskets/ProductItem?Id=${carId}&AppUserId=${AppUserId}`)
 };
-//basketsler sefdi aa sssssssssssssssssssssssssssssssssss
+
 export const PostCar = (carId,AppUserId) => {
     return httpClient.post(`api/Baskets?Id=${carId}&AppUserId=${AppUserId}`);
 };
