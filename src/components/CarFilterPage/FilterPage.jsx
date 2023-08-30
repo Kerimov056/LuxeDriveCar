@@ -9,9 +9,12 @@ const FilterPage = () => {
             <div>
                 <Nav />
             </div>
-            <div className='DropMenu'>
-                <Navbartwo />
+            <div style={{width:"100%",height:"100vh"}}>
+
             </div>
+            {/* <div className='DropMenu'>
+                <Navbartwo />
+            </div> */}
         </>
     )
 }
