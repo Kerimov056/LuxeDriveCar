@@ -3,7 +3,7 @@ import "./VehicleFleet.scss";
 import Navbar from '../Navbar/Navbar'
 import NavbarTwo from "../Navbar/Navbartwo";
 import Car from '../Card//Car'
-import { Select, Stack } from '@chakra-ui/react'
+import { CheckboxIcon, Input, InputGroup, InputLeftElement, InputRightElement, Select, Stack } from '@chakra-ui/react'
 import { useQuery } from 'react-query'
 import { getCar, getAllMarka, getAllModel } from "../Services/carServices";
 
@@ -49,24 +49,51 @@ const VehicleFleet = () => {
 
             <div className='Carsss'>
                 <div>
+                    <h1>Browse Your Cars</h1>
                     <div className='CarTitle'>
-                        <h1>Browse Your Cars</h1>
                         <div id='Stack'>
-                            <Select variant='flushed' placeholder='All'>
+                            <Select variant='flushed' placeholder='All Marka'>
                                 {allMarka?.data?.map((byMarka, index) => (
                                     <option key={index}>{byMarka}</option>
                                 ))}
                             </Select>
-                            <Select variant='flushed' placeholder='All'>
+                            <Select variant='flushed' placeholder='All Model'>
                                 {allModel?.data?.map((byModel, index) => (
                                     <option key={index}>{byModel}</option>
                                 ))}
                             </Select>
-                            <Select variant='flushed' placeholder='All'>
+                            <Select variant='flushed' placeholder='All Category'>
                                 <option>Salam</option>
                                 <option>Necesen</option>
                                 <option>Sagol</option>
                             </Select>
+                            <Select variant='flushed' placeholder='All Type'>
+                                <option>Salam</option>
+                                <option>Necesen</option>
+                                <option>Sagol</option>
+                            </Select><br/>
+                            <InputGroup>
+                                <InputLeftElement
+                                    pointerEvents='none'
+                                    color='gray.300'
+                                    fontSize='1.2em'
+                                    children='$'
+                                />
+                                <Input placeholder='Enter min amount' />
+                                <InputRightElement>
+                                </InputRightElement>
+                            </InputGroup>
+                            <InputGroup>
+                                <InputLeftElement
+                                    pointerEvents='none'
+                                    color='gray.300'
+                                    fontSize='1.2em'
+                                    children='$'
+                                />
+                                <Input placeholder='Enter max amount' />
+                                <InputRightElement>
+                                </InputRightElement>
+                            </InputGroup>
                         </div>
                     </div>
                     <div className='Cards'>
