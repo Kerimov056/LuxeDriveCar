@@ -82,7 +82,7 @@ const VehicleFleet = () => {
 
     const { data: cars, refetch } = useQuery({
         queryKey: ["Cars"],
-        queryFn: () => getCar('', '', '', selectedModel, minPriceQueryParam, maxPriceQueryParam),
+        queryFn: () => getCar( selectedCategory, selectedType, selectedMarka, selectedModel, minPriceQueryParam, maxPriceQueryParam),
         staleTime: 0,
     });
 
