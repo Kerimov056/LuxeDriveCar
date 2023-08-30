@@ -5,25 +5,43 @@ import { Link } from "react-router-dom";
 import './navbarr.scss'
 import { useDispatch, useSelector } from "react-redux";
 import { logoutAction } from '../Redux/Slices/authSlice'
-import { Button, Text } from "@chakra-ui/react";
+import { Button, Input, Text } from "@chakra-ui/react";
 import { useQuery } from "react-query";
 import { getBasketItemCount } from "../Services/basketServices";
+import { MdYoutubeSearchedFor } from "react-icons/md";
 
 
 const Navbar = () => {
+
+    const [search, setSearch] = useState(false);
 
     const { token, username, appuserid } = useSelector((x) => x.authReducer);
     const dispatch = useDispatch();
 
     const { data: basketCount } = useQuery({
-        queryKey: ["basketsCountT", appuserid], 
-        queryFn: () => getBasketItemCount(appuserid), 
+        queryKey: ["basketsCountT", appuserid],
+        queryFn: () => getBasketItemCount(appuserid),
         staleTime: 0,
     });
+
 
     return (
         <>
             <nav class="navbar">
+                <div id='SearcParlax' style={search == true ? { display: "block" } : { display: "none" }}>
+                    <div className='XButton'>
+                        <p></p>
+                        <Button backgroundColor={"gray"} onClick={() => setSearch(!search)}>X</Button>
+                    </div>
+                    <div className='Serachhh'>
+                        <div>
+                            <Input placeholder='Search' type='text' />
+                            <button className="buttonSearcCarS">
+                                <MdYoutubeSearchedFor />
+                            </button>
+                        </div>
+                    </div>
+                </div>
                 <div class="navbar-container container" >
                     <input type="checkbox" name="" id="" />
                     <div class="hamburger-lines">
@@ -49,7 +67,7 @@ const Navbar = () => {
                     <Text fontSize={"2xl"}>
                         {username}
                     </Text>
-                    <h1 class="logo"><BsSearch /></h1>
+                    <h1 class="logo"><BsSearch onClick={() => setSearch(!search)} /></h1>
                     {!token &&
                         <Link to={'/Login'}><Button backgroundColor={"white"}>LogIn</Button></Link>
                     }

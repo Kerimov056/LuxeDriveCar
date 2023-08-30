@@ -40,7 +40,7 @@ function App() {
             <Route path='/Basket' element={<Basket/>} />
             <Route path='/Chat' element={<Chat/>} />
             <Route path='/Profile' element={<Profile/>} />
-            <Route path='/FilterPage' element={<FilterPage/>} />
+            <Route path='/FilterPage/?=car' element={<FilterPage/>} />
           </Routes>
 
           <Footer />
