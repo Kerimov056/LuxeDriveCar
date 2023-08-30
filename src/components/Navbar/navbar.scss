@@ -254,6 +254,13 @@
                 width: 90%;
                 height: 60px;
                 border: none;
+
+                &::placeholder{
+                    font-size: 30px;
+                    align-items: center;
+                    color: white;
+                    text-decoration: dotted;
+                }
             }
 
             .buttonSearcCarS{
@@ -261,6 +268,7 @@
 
                 &>svg{
                     font-size: 50px;
+                    color: white;
                 }
             }
         }
