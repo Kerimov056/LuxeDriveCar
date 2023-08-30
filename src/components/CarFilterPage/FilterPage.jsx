@@ -49,7 +49,7 @@ const FilterPage = () => {
                 <div>
                     <div className='SearchResult'>
                         <h1></h1>
-                        <h3>Home / Search result for "{searchResult?.data?.marka}"</h3>
+                        <h3>Home / Search result for "{searchResult?.data[0]?.marka}"</h3>
                     </div>
                     <div className='NewSearch'>
                         <h1>New search:</h1>
@@ -64,9 +64,9 @@ const FilterPage = () => {
                     </div>
 
                     <div className='FilterResultCars'>
-                        {searchResult?.data?.length > 0 ? (
+                        {searchResult?.data?.length > 0 ? (       
                             searchResult.data.map((byCar, index) => (
-                                <FilterCar key={index} marka={byCar?.marka} model={byCar.model} desc={byCar?.description} />
+                                <FilterCar key={index} Id={byCar?.id} marka={byCar?.marka} model={byCar.model} desc={byCar?.description} />
                             ))
                         ) : marka !== '' && model !== '' && (
                             <div className='NotFindACar'>
