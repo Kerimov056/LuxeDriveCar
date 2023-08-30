@@ -19,8 +19,8 @@ const FilterPage = () => {
     console.log(markaLocation);
     console.log(modelLocation);
 
-    const [marka, setMarka] = useState(markaLocation != null ? markaLocation : '');
-    const [model, setModel] = useState(modelLocation != null ? modelLocation : '');
+    const [marka, setMarka] = useState(markaLocation == "undefined" ? '' : markaLocation);
+    const [model, setModel] = useState(modelLocation == "undefined" ? '' : modelLocation);
 
     const handleMarkaChange = (event) => {
         setMarka(event.target.value);
@@ -30,7 +30,7 @@ const FilterPage = () => {
         setModel(event.target.value);
     };
 
-    const { data: searchResult, isLoading, isError } = useQuery(
+    const { data: searchResult} = useQuery(
         ['searchCar', marka, model],
         () => getNameCar(marka, model),
         {
@@ -49,7 +49,7 @@ const FilterPage = () => {
                 <div>
                     <div className='SearchResult'>
                         <h1></h1>
-                        <h3>Home / Search result for "BMW"</h3>
+                        <h3>Home / Search result for "{searchResult?.data?.marka}"</h3>
                     </div>
                     <div className='NewSearch'>
                         <h1>New search:</h1>
