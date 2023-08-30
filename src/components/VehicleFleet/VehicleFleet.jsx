@@ -44,6 +44,11 @@ const VehicleFleet = () => {
     const [maxPrice, setMaxPrice] = useState();
     console.log(selectedModel);
 
+    const handleCategoryChange = (event) => {
+        setSelectedCategory(event.target.value);
+        refetch();
+    };
+
     const handleTypeChange = (event) => {
         setSelectedType(event.target.value);
         refetch();
@@ -112,14 +117,14 @@ const VehicleFleet = () => {
                                     <option value={byModel} key={index}>{byModel}</option>
                                 ))}
                             </Select>
-                            <Select variant='flushed' placeholder='All Category'>
+                            <Select variant='flushed' placeholder='All Category' value={selectedCategory} onChange={handleCategoryChange}>
                                 {allCategorie?.data?.map((byCategory, index) => (
-                                    <option key={index}>{byCategory?.category}</option>
+                                    <option value={byCategory?.category} key={index}>{byCategory?.category}</option>
                                 ))}
                             </Select>
                             <Select variant='flushed' placeholder='All Type' value={selectedType}  onChange={handleTypeChange} >
                                 {allType?.data?.map((byType, index) => (
-                                    <option value={byType} key={index}>{byType?.type}</option>
+                                    <option value={byType?.type} key={index}>{byType?.type}</option>
                                 ))}
                             </Select><br />
                             <InputGroup>
