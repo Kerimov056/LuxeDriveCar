@@ -51,14 +51,15 @@ const FilterPage = () => {
                     </div>
 
                     <div className='FilterResultCars'>
-                        {searchResult?.data?.map((byCar, index) => (
-                            <FilterCar marka={byCar?.marka} model={byCar.model} desc={byCar?.description} />
-                        ))}
-                        {searchResult?.data?.value == null && deyer.value != null &&
+                        {searchResult?.data?.length > 0 ? (
+                            searchResult.data.map((byCar, index) => (
+                                <FilterCar key={index} marka={byCar?.marka} model={byCar.model} desc={byCar?.description} />
+                            ))
+                        ) : deyer !== '' && (
                             <div className='NotFindACar'>
-                                <img src='https://www.kar-men.com/assets/images/no_cars_search.png' />
+                                <img src='https://www.kar-men.com/assets/images/no_cars_search.png' alt='No cars found' />
                             </div>
-                        }
+                        )}
                     </div>
                 </div>
             </div>
