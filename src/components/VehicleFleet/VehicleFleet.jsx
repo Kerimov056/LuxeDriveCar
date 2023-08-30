@@ -5,7 +5,7 @@ import NavbarTwo from "../Navbar/Navbartwo";
 import Car from '../Card//Car'
 import { Select, Stack } from '@chakra-ui/react'
 import { useQuery } from 'react-query'
-import { getCar } from "../Services/carServices";
+import { getCar, getAllMarka, getAllModel } from "../Services/carServices";
 
 
 const VehicleFleet = () => {
@@ -13,6 +13,18 @@ const VehicleFleet = () => {
     const { data: cars } = useQuery({
         queryKey: ["Cars"],
         queryFn: getCar,
+        staleTime: 0,
+    });
+
+    const { data: allMarka } = useQuery({
+        queryKey: ["Marka"],
+        queryFn: getAllMarka,
+        staleTime: 0,
+    });
+
+    const { data: allModel } = useQuery({
+        queryKey: ["Model"],
+        queryFn: getAllMarka,
         staleTime: 0,
     });
 
@@ -40,17 +52,17 @@ const VehicleFleet = () => {
                     <div className='CarTitle'>
                         <h1>Browse Your Cars</h1>
                         <div id='Stack'>
-                            <Select variant='flushed' placeholder='Flushed'>
+                            <Select variant='flushed' placeholder='All'>
+                                {allMarka?.data?.map((byMarka, index) => (
+                                    <option key={index}>{byMarka}</option>
+                                ))}
+                            </Select>
+                            <Select variant='flushed' placeholder='All'>
                                 <option>Salam</option>
                                 <option>Necesen</option>
                                 <option>Sagol</option>
                             </Select>
-                            <Select variant='flushed' placeholder='Flushed'>
-                                <option>Salam</option>
-                                <option>Necesen</option>
-                                <option>Sagol</option>
-                            </Select>
-                            <Select variant='flushed' placeholder='Flushed'>
+                            <Select variant='flushed' placeholder='All'>
                                 <option>Salam</option>
                                 <option>Necesen</option>
                                 <option>Sagol</option>
