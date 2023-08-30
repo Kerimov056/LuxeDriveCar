@@ -75,6 +75,11 @@ const VehicleFleet = () => {
     };
 
 
+    const handleFilterSearch = () => {
+        refetch();
+    };
+
+
     const minPriceQueryParam = minPrice !== undefined ? minPrice : '';
     const maxPriceQueryParam = maxPrice !== undefined ? maxPrice : '';
 
@@ -82,7 +87,7 @@ const VehicleFleet = () => {
 
     const { data: cars, refetch } = useQuery({
         queryKey: ["Cars"],
-        queryFn: () => getCar( selectedCategory, selectedType, selectedMarka, selectedModel, minPriceQueryParam, maxPriceQueryParam),
+        queryFn: () => getCar(selectedCategory, selectedType, selectedMarka, selectedModel, minPriceQueryParam, maxPriceQueryParam),
         staleTime: 0,
     });
 
@@ -122,7 +127,7 @@ const VehicleFleet = () => {
                                     <option value={byCategory?.category} key={index}>{byCategory?.category}</option>
                                 ))}
                             </Select>
-                            <Select variant='flushed' placeholder='All Type' value={selectedType}  onChange={handleTypeChange} >
+                            <Select variant='flushed' placeholder='All Type' value={selectedType} onChange={handleTypeChange} >
                                 {allType?.data?.map((byType, index) => (
                                     <option value={byType?.type} key={index}>{byType?.type}</option>
                                 ))}
@@ -149,6 +154,9 @@ const VehicleFleet = () => {
                                 <InputRightElement>
                                 </InputRightElement>
                             </InputGroup>
+                            <button onClick={handleFilterSearch} className="buttonSearchVFilter">
+                                <span class="span">\ō͡≡o˞̶ </span>
+                            </button>
                         </div>
                     </div>
                     <div className='Cards'>
