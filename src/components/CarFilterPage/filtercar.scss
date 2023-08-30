@@ -4,6 +4,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 28px;
 
     .SearchCarCardImg{
         width: 14%;
@@ -16,10 +17,10 @@
     }
 
     .SearchCarCardText{
-        width: 82%;
+        width: 83%;
         height: 100%;
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         flex-direction: column;
 
         &>h3{
@@ -32,4 +33,5 @@
             height: auto;
         }        
     }    
+
 }

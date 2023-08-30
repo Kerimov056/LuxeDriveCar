@@ -37,12 +37,12 @@
             width: 100%;
             height: 200px;
 
-            &>h1{
+            &>h1 {
                 font-family: 'Times New Roman', Times, serif;
                 font-size: 40px;
             }
 
-            &>p{
+            &>p {
                 margin-top: 10px;
             }
 
@@ -53,9 +53,9 @@
                 justify-content: center;
                 align-items: center;
 
-                &>input{
+                &>input {
                     width: 95%;
-                    height:60px;
+                    height: 60px;
                     border-top: none;
                     border-left: none;
                     border-right: none;
@@ -63,16 +63,27 @@
 
                 .buttonSearcCar {
                     width: 5%;
-                    
-                    &>svg{
+
+                    &>svg {
                         width: 100%;
                         font-size: 30px;
                     }
                 }
 
-                
+
 
             }
+        }
+
+
+        .FilterResultCars {
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 100px;
         }
     }
 }
