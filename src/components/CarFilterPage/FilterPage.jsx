@@ -1,16 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./filterpage.scss";
-import Nav from "../Navbar/Nav";
-import Navbartwo from "../Navbar/Navbartwo";
 import { Input } from '@chakra-ui/react';
-import {MdYoutubeSearchedFor} from "react-icons/md";
+import { MdYoutubeSearchedFor } from "react-icons/md";
 import FilterCar from "./FilterCar";
 import Navbar from '../Navbar/Navbar';
+import { useQuery } from "react-query";
+import { getNameCar } from "../Services/carServices";
+
 
 const FilterPage = () => {
+    const [deyer, setDeyer] = useState('');
 
+    const handleInputChange = (event) => {
+        setDeyer(event.target.value);
+    };
 
+    const { data: searchResult, isLoading, isError } = useQuery(
+        ['searchCar', deyer],
+        () => getNameCar(deyer),
+        {
+            enabled: deyer !== '',
+        }
+    );
 
+    const handleSearchClick = () => {
+        if (deyer !== '') {
+
+        }
+    };
     return (
         <>
             <div>
@@ -25,8 +42,8 @@ const FilterPage = () => {
                     <div className='NewSearch'>
                         <h1>New search:</h1>
                         <div>
-                            <Input type='text' />
-                            <button class="buttonSearcCar">
+                            <Input value={deyer} onChange={handleInputChange} placeholder='Search for...' type='text' />
+                            <button onClick={handleSearchClick} class="buttonSearcCar">
                                 <MdYoutubeSearchedFor />
                             </button>
                         </div>
@@ -34,10 +51,14 @@ const FilterPage = () => {
                     </div>
 
                     <div className='FilterResultCars'>
-                        <FilterCar />
-                        <FilterCar />
-                        <FilterCar />
-                        <FilterCar />
+                        {searchResult?.data?.map((byCar, index) => (
+                            <FilterCar marka={byCar?.marka} model={byCar.model} desc={byCar?.description} />
+                        ))}
+                        {searchResult?.data?.value == null && deyer.value != null &&
+                            <div className='NotFindACar'>
+                                <img src='https://www.kar-men.com/assets/images/no_cars_search.png' />
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

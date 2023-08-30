@@ -22,10 +22,10 @@ const Navbar = () => {
     };
 
     const { data: searchResult, isLoading, isError } = useQuery(
-        ['searchCar', deyer], // queryKey
-        () => getNameCar(deyer), // queryFn
+        ['searchCar', deyer], 
+        () => getNameCar(deyer), 
         {
-            enabled: deyer !== '', // Sadece deyer dolu olduğunda çalışır
+            enabled: deyer !== '',
         }
     );
 

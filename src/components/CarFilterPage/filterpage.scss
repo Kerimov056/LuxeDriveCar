@@ -88,3 +88,14 @@
         }
     }
 }
+
+.NotFindACar{
+    margin-top: 30px;
+    width: 80%;
+    height: auto;
+
+    &>img{
+        width: 100%;
+        height: 280px;
+    }
+}
