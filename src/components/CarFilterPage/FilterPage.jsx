@@ -9,12 +9,14 @@ const FilterPage = () => {
             <div>
                 <Nav />
             </div>
-            <div style={{width:"100%",height:"100vh"}}>
-
+            <div className='SearchCar'>
+                <div>
+                    <div className='SearchResult'>
+                        <h1></h1>
+                        <h3>Salamasdassadasdasdasdjnasjkdkasndksandskjanjkd</h3>
+                    </div>
+                </div>
             </div>
-            {/* <div className='DropMenu'>
-                <Navbartwo />
-            </div> */}
         </>
     )
 }
