@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./VehicleFleet.scss";
 import Navbar from '../Navbar/Navbar'
 import NavbarTwo from "../Navbar/Navbartwo";
@@ -11,12 +11,6 @@ import { getType } from "../Services/typeServices";
 
 
 const VehicleFleet = () => {
-
-    const { data: cars } = useQuery({
-        queryKey: ["Cars"],
-        queryFn: getCar,
-        staleTime: 0,
-    });
 
     const { data: allMarka } = useQuery({
         queryKey: ["Marka"],
@@ -42,6 +36,42 @@ const VehicleFleet = () => {
         staleTime: 0,
     });
 
+    const [selectedMarka, setSelectedMarka] = useState('');
+    const [selectedModel, setSelectedModel] = useState('');
+    const [minPrice, setMinPrice] = useState();
+    const [maxPrice, setMaxPrice] = useState();
+    console.log(selectedModel);
+
+    const handleMarkaChange = (event) => {
+        setSelectedMarka(event.target.value);
+        refetch();
+    };
+    const handleModelChange = (event) => {
+        setSelectedModel(event.target.value);
+        refetch();
+    };
+
+    const handleMinPriceChange = (event) => {
+        setMinPrice(event.target.value);
+        refetch();
+    };
+
+    const handleMaxPriceChange = (event) => {
+        setMaxPrice(event.target.value);
+        refetch();
+    };
+
+
+    const minPriceQueryParam = minPrice !== undefined ? minPrice : '';
+    const maxPriceQueryParam = maxPrice !== undefined ? maxPrice : '';
+
+
+
+    const { data: cars, refetch } = useQuery({
+        queryKey: ["Cars"],
+        queryFn: () => getCar('', '', '', selectedModel, minPriceQueryParam, maxPriceQueryParam),
+        staleTime: 0,
+    });
 
     return (
         <>
@@ -64,14 +94,14 @@ const VehicleFleet = () => {
                     <h1>Browse Your Cars</h1>
                     <div className='CarTitle'>
                         <div id='Stack'>
-                            <Select variant='flushed' placeholder='All Marka'>
+                            <Select variant='flushed' placeholder='All Marka' value={selectedMarka} onChange={handleMarkaChange}>
                                 {allMarka?.data?.map((byMarka, index) => (
-                                    <option key={index}>{byMarka}</option>
+                                    <option value={byMarka} key={index}>{byMarka}</option>
                                 ))}
                             </Select>
-                            <Select variant='flushed' placeholder='All Model'>
+                            <Select variant='flushed' placeholder='All Model' value={selectedModel} onChange={handleModelChange}>
                                 {allModel?.data?.map((byModel, index) => (
-                                    <option key={index}>{byModel}</option>
+                                    <option value={byModel} key={index}>{byModel}</option>
                                 ))}
                             </Select>
                             <Select variant='flushed' placeholder='All Category'>
@@ -79,9 +109,9 @@ const VehicleFleet = () => {
                                     <option key={index}>{byCategory?.category}</option>
                                 ))}
                             </Select>
-                            <Select variant='flushed' placeholder='All Type'>
+                            <Select variant='flushed' placeholder='All Type' >
                                 {allType?.data?.map((byType, index) => (
-                                    <option key={index}>{byType?.type}</option>
+                                    <option value={byType} onChange={handleTypeChange} key={index}>{byType?.type}</option>
                                 ))}
                             </Select><br />
                             <InputGroup>
@@ -91,7 +121,7 @@ const VehicleFleet = () => {
                                     fontSize='1.2em'
                                     children='$'
                                 />
-                                <Input placeholder='Enter min amount' />
+                                <Input value={minPrice} onChange={handleMinPriceChange} placeholder='Enter min amount' />
                                 <InputRightElement>
                                 </InputRightElement>
                             </InputGroup>
@@ -102,7 +132,7 @@ const VehicleFleet = () => {
                                     fontSize='1.2em'
                                     children='$'
                                 />
-                                <Input placeholder='Enter max amount' />
+                                <Input value={maxPrice} onChange={handleMaxPriceChange} placeholder='Enter max amount' />
                                 <InputRightElement>
                                 </InputRightElement>
                             </InputGroup>
