@@ -4,13 +4,23 @@ import { Input } from '@chakra-ui/react';
 import { MdYoutubeSearchedFor } from "react-icons/md";
 import FilterCar from "./FilterCar";
 import Navbar from '../Navbar/Navbar';
+import { useLocation } from 'react-router-dom';
 import { useQuery } from "react-query";
 import { getNameCar } from "../Services/carServices";
 
 
 const FilterPage = () => {
-    const [marka, setMarka] = useState('');
-    const [model, setModel] = useState('');
+    const location = useLocation();
+    const params = location.pathname.split('/').filter(param => param !== '');
+
+    const markaLocation = params[1] || '';
+    const modelLocation = params[2] || '';
+
+    console.log(markaLocation);
+    console.log(modelLocation);
+
+    const [marka, setMarka] = useState(markaLocation != null ? markaLocation : '');
+    const [model, setModel] = useState(modelLocation != null ? modelLocation : '');
 
     const handleMarkaChange = (event) => {
         setMarka(event.target.value);

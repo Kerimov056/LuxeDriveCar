@@ -1,7 +1,7 @@
 import { BsSearch } from 'react-icons/bs'
 import { AiOutlineCar } from 'react-icons/ai'
 import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import './navbarr.scss'
 import { useDispatch, useSelector } from "react-redux";
 import { logoutAction } from '../Redux/Slices/authSlice'
@@ -17,6 +17,7 @@ import { getNameCar } from "../Services/carServices";
 const Navbar = () => {
 
     const navigate = useNavigate();
+    const location = useLocation();
 
     const [marka, setMarka] = useState('');
     const [model, setModel] = useState('');
@@ -40,14 +41,14 @@ const Navbar = () => {
     const handleSearchClick = () => {
         let url = '/FilterPage';
 
-        if (marka && model) {
-            url += `/${marka}${model}`;
-        } else if (marka) {
-            url += `/${marka}`;
-        } else if (model) {
-            url += `/${model}`;
-        }
 
+        if (marka && model) {
+            url += `/${marka}/${model}`;
+        } else if (marka) {
+            url += `/${marka}/${searchResult?.data?.model}`;
+        } else if (model) {
+            url += `/${searchResult?.data?.marka}/${model}`;
+        }
         navigate(url);
     };
     const [search, setSearch] = useState(false);
