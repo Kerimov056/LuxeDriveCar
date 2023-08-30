@@ -5,12 +5,16 @@ import Navbartwo from "../Navbar/Navbartwo";
 import { Input } from '@chakra-ui/react';
 import {MdYoutubeSearchedFor} from "react-icons/md";
 import FilterCar from "./FilterCar";
+import Navbar from '../Navbar/Navbar';
 
 const FilterPage = () => {
+
+
+
     return (
         <>
             <div>
-                <Nav />
+                <Navbar />
             </div>
             <div className='SearchCar'>
                 <div>
