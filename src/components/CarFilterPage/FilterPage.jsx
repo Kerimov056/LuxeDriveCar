@@ -35,7 +35,7 @@ const FilterPage = () => {
             <div>
                 <Navbar />
             </div>
-            {/* <div className='SearchCar'>
+             <div className='SearchCar'>
                 <div>
                     <div className='SearchResult'>
                         <h1></h1>
@@ -65,7 +65,7 @@ const FilterPage = () => {
                         )}
                     </div>
                 </div>
-            </div> */}
+            </div>
         </>
     )
 }

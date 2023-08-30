@@ -206,13 +206,13 @@
         z-index: 999;
         width: 100% !important;
 
-        &>li{
+        &>li {
             width: 100%;
         }
     }
 }
 
-#SearcParlax{
+#SearcParlax {
     position: fixed;
     width: 100%;
     height: 100vh;
@@ -220,17 +220,17 @@
     z-index: 99999;
     backface-visibility: visible;
 
-    .XButton{
+    .XButton {
         width: 100%;
         height: 7%;
         display: flex;
         justify-content: space-between;
 
-        &>p{
+        &>p {
             width: 92%;
         }
 
-        &>button{
+        &>button {
             width: 4%;
             font-size: 25px;
             margin-top: 10px;
@@ -238,37 +238,45 @@
         }
     }
 
-    .Serachhh{
+    .Serachhh {
         width: 100%;
         height: 93%;
         display: flex;
         justify-content: center;
         align-items: center;
 
-        &>div{
+        &>div {
             width: 70%;
             height: auto;
             display: flex;
             justify-content: center;
             align-items: center;
 
-            &>input{
-                width: 90%;
-                height: 60px;
-                border: none;
+            &>div {
+                width: 100%;
 
-                &::placeholder{
-                    font-size: 30px;
-                    align-items: center;
-                    color: white;
-                    text-decoration: dotted;
+                &>input {
+                    width: 90%;
+                    height: 60px;
+                    border-top: none;
+                    border-left: none;
+                    border-right: none;
+
+                    &::placeholder {
+                        font-size: 30px;
+                        align-items: center;
+                        color: white;
+                        text-decoration: dotted;
+                    }
                 }
             }
 
-            .buttonSearcCarS{
+            .buttonSearcCarS {
                 width: 10%;
+                margin-left: -50px;
+                margin-top: 50px;
 
-                &>svg{
+                &>svg {
                     font-size: 50px;
                     color: white;
                 }
@@ -278,7 +286,4 @@
 }
 
 
-@media (min-width: 770px) and (max-width: 100px) {
-
-    
-}
+@media (min-width: 770px) and (max-width: 100px) {}

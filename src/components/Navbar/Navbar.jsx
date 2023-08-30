@@ -80,8 +80,10 @@ const Navbar = () => {
                     </div>
                     <div className='Serachhh'>
                         <div>
-                            <Input value={marka} onChange={handleMarkaChange} placeholder='Search for marka...' type='text' />
-                            <Input value={model} onChange={handleModelChange} placeholder='Search for model...' type='text' />
+                            <div>
+                                <Input value={marka} onChange={handleMarkaChange} placeholder='Search for marka...' type='text' /><br />
+                                <Input value={model} onChange={handleModelChange} placeholder='Search for model...' type='text' />
+                            </div>
                             <button onClick={handleSearchClick} className="buttonSearcCarS">
                                 <MdYoutubeSearchedFor />
                             </button>
