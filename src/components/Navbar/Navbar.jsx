@@ -31,10 +31,10 @@ const Navbar = () => {
 
     const handleSearchClick = () => {
         if (deyer !== '') {
-          // Burada ekstra işlemler yapabilirsiniz, örneğin:
-          // Yeni bir useQuery çağrısı veya başka bir işlem
+            // Burada ekstra işlemler yapabilirsiniz, örneğin:
+            // Yeni bir useQuery çağrısı veya başka bir işlem
         }
-      };
+    };
     const [search, setSearch] = useState(false);
     useEffect(() => {
         AOS.init({
@@ -66,9 +66,11 @@ const Navbar = () => {
                     <div className='Serachhh'>
                         <div>
                             <Input value={deyer} onChange={handleInputChange} placeholder='Search for...' type='text' />
-                            <button onClick={handleSearchClick} className="buttonSearcCarS">
-                                <MdYoutubeSearchedFor />
-                            </button>
+                            <Link to={`/FilterPage/:${deyer}`}>
+                                <button onClick={handleSearchClick} className="buttonSearcCarS">
+                                    <MdYoutubeSearchedFor />
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </div>
