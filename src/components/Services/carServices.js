@@ -8,6 +8,6 @@ export const getByCar = (id) => {
   return httpClient.get(`api/Car/${id}`);
 };
 
-export const getNameCar = (carName) => {
-  return httpClient.get(`api/Car/car?car=${carName}`)
+export const getNameCar = (marka, model) => {
+  return httpClient.get(`api/Car/car?car=${marka}&model=${model}`)
 };

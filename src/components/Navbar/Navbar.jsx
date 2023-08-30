@@ -15,25 +15,28 @@ import { getNameCar } from "../Services/carServices";
 
 
 const Navbar = () => {
-    const [deyer, setDeyer] = useState('');
 
-    const handleInputChange = (event) => {
-        setDeyer(event.target.value);
+    const [marka, setMarka] = useState('');
+    const [model, setModel] = useState('');
+
+    const handleMarkaChange = (event) => {
+        setMarka(event.target.value);
+    };
+
+    const handleModelChange = (event) => {
+        setModel(event.target.value);
     };
 
     const { data: searchResult, isLoading, isError } = useQuery(
-        ['searchCar', deyer], 
-        () => getNameCar(deyer), 
+        ['searchCar', marka, model],
+        () => getNameCar(marka, model),
         {
-            enabled: deyer !== '',
+            enabled: marka !== '' || model !== '',
         }
     );
 
     const handleSearchClick = () => {
-        if (deyer !== '') {
-            // Burada ekstra işlemler yapabilirsiniz, örneğin:
-            // Yeni bir useQuery çağrısı veya başka bir işlem
-        }
+        // Handle search click if needed
     };
     const [search, setSearch] = useState(false);
     useEffect(() => {
@@ -65,8 +68,9 @@ const Navbar = () => {
                     </div>
                     <div className='Serachhh'>
                         <div>
-                            <Input value={deyer} onChange={handleInputChange} placeholder='Search for...' type='text' />
-                            <Link to={`/FilterPage/:${deyer}`}>
+                            <Input value={marka} onChange={handleMarkaChange} placeholder='Search for marka...' type='text' />
+                            <Input value={model} onChange={handleModelChange} placeholder='Search for model...' type='text' />
+                            <Link to={`/FilterPage/${marka}/${model}`}>
                                 <button onClick={handleSearchClick} className="buttonSearcCarS">
                                     <MdYoutubeSearchedFor />
                                 </button>

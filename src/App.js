@@ -29,18 +29,18 @@ function App() {
 
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/AboutUs' element={<AboutUs/>} />
-            <Route path='/Login' element={<Login/>} />
-            <Route path='/Register' element={<Register/>} />
-            <Route path='/VehicleFleet' element={<VehicleFleet/>} />
-            <Route path='/Blogs' element={<Blogs/>} />
-            <Route path='/Shop' element={<Shop/>} />
-            <Route path='/CarDetail/:id' element={<CarDetail/>} />
-            <Route path='/BlogDetails/:id' element={<BlogDetails/>} />
-            <Route path='/Basket' element={<Basket/>} />
-            <Route path='/Chat' element={<Chat/>} />
-            <Route path='/Profile' element={<Profile/>} />
-            <Route path='/FilterPage/:car' element={<FilterPage/>} />
+            <Route path='/AboutUs' element={<AboutUs />} />
+            <Route path='/Login' element={<Login />} />
+            <Route path='/Register' element={<Register />} />
+            <Route path='/VehicleFleet' element={<VehicleFleet />} />
+            <Route path='/Blogs' element={<Blogs />} />
+            <Route path='/Shop' element={<Shop />} />
+            <Route path='/CarDetail/:id' element={<CarDetail />} />
+            <Route path='/BlogDetails/:id' element={<BlogDetails />} />
+            <Route path='/Basket' element={<Basket />} />
+            <Route path='/Chat' element={<Chat />} />
+            <Route path='/Profile' element={<Profile />} />
+            <Route path='/FilterPage/:car/:model' element={<FilterPage />} />
           </Routes>
 
           <Footer />
