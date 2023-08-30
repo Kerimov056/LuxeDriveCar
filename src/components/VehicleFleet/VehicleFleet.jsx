@@ -24,7 +24,7 @@ const VehicleFleet = () => {
 
     const { data: allModel } = useQuery({
         queryKey: ["Model"],
-        queryFn: getAllMarka,
+        queryFn: getAllModel,
         staleTime: 0,
     });
 
@@ -58,9 +58,9 @@ const VehicleFleet = () => {
                                 ))}
                             </Select>
                             <Select variant='flushed' placeholder='All'>
-                                <option>Salam</option>
-                                <option>Necesen</option>
-                                <option>Sagol</option>
+                                {allModel?.data?.map((byModel, index) => (
+                                    <option key={index}>{byModel}</option>
+                                ))}
                             </Select>
                             <Select variant='flushed' placeholder='All'>
                                 <option>Salam</option>
