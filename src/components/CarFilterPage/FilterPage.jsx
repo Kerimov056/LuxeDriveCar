@@ -68,7 +68,7 @@ const FilterPage = () => {
                             searchResult.data.map((byCar, index) => (
                                 <FilterCar key={index} Id={byCar?.id} marka={byCar?.marka} model={byCar.model} desc={byCar?.description} />
                             ))
-                        ) : marka !== '' && model !== '' && (
+                        ) : (marka !== '' || model !== '') && (
                             <div className='NotFindACar'>
                                 <img src='https://www.kar-men.com/assets/images/no_cars_search.png' alt='No cars found' />
                             </div>
