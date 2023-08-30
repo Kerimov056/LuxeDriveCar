@@ -15,10 +15,10 @@ import { getNameCar } from "../Services/carServices";
 
 
 const Navbar = () => {
-
+    
     const [marka, setMarka] = useState('');
     const [model, setModel] = useState('');
-
+    
     const handleMarkaChange = (event) => {
         setMarka(event.target.value);
     };
@@ -68,8 +68,8 @@ const Navbar = () => {
                     </div>
                     <div className='Serachhh'>
                         <div>
-                            <Input value={marka} onChange={handleMarkaChange} placeholder='Search for marka...' type='text' />
-                            <Input value={model} onChange={handleModelChange} placeholder='Search for model...' type='text' />
+                        <Input value={marka} onChange={handleMarkaChange} placeholder='Search for marka...' type='text' />
+                        <Input value={model} onChange={handleModelChange} placeholder='Search for model...' type='text' />
                             <Link to={`/FilterPage/${marka}/${model}`}>
                                 <button onClick={handleSearchClick} className="buttonSearcCarS">
                                     <MdYoutubeSearchedFor />

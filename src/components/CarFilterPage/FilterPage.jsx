@@ -28,14 +28,14 @@ const FilterPage = () => {
         }
     );
 
-    const handleSearchClick = () => {
+    const handleSearchClick = () => {}
 
         return (
             <>
                 <div>
                     <Navbar />
-                </div>
-                <div className='SearchCar'>
+                </div> Salam
+                {/* <div className='SearchCar'>
                     <div>
                         <div className='SearchResult'>
                             <h1></h1>
@@ -64,7 +64,7 @@ const FilterPage = () => {
                             )}
                         </div>
                     </div>
-                </div>
+                </div> */}
             </>
         )
     }
