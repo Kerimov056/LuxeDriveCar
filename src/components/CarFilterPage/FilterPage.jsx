@@ -28,45 +28,46 @@ const FilterPage = () => {
         }
     );
 
-    const handleSearchClick = () => {}
+    const handleSearchClick = () => { }
 
-        return (
-            <>
+    return (
+        <>
+            <div>
+                <Navbar />
+            </div>
+            {/* <div className='SearchCar'>
                 <div>
-                    <Navbar />
-                </div> Salam
-                {/* <div className='SearchCar'>
-                    <div>
-                        <div className='SearchResult'>
-                            <h1></h1>
-                            <h3>Home / Search result for "BMW"</h3>
-                        </div>
-                        <div className='NewSearch'>
-                            <h1>New search:</h1>
-                            <div>
-                                <Input value={marka} onChange={handleMarkaChange} placeholder='Search for marka...' type='text' />
-                                <Input value={model} onChange={handleModelChange} placeholder='Search for model...' type='text' />                            <button onClick={handleSearchClick} class="buttonSearcCar">
-                                    <MdYoutubeSearchedFor />
-                                </button>
-                            </div>
-                            <p>If you are not happy with the results below please do another search</p>
-                        </div>
-
-                        <div className='FilterResultCars'>
-                            {searchResult?.data?.length > 0 ? (
-                                searchResult.data.map((byCar, index) => (
-                                    <FilterCar key={index} marka={byCar?.marka} model={byCar.model} desc={byCar?.description} />
-                                ))
-                            ) : marka !== '' && model !== '' && (
-                                <div className='NotFindACar'>
-                                    <img src='https://www.kar-men.com/assets/images/no_cars_search.png' alt='No cars found' />
-                                </div>
-                            )}
-                        </div>
+                    <div className='SearchResult'>
+                        <h1></h1>
+                        <h3>Home / Search result for "BMW"</h3>
                     </div>
-                </div> */}
-            </>
-        )
-    }
+                    <div className='NewSearch'>
+                        <h1>New search:</h1>
+                        <div>
+                            <Input value={marka} onChange={handleMarkaChange} placeholder='Search for marka...' type='text' />
+                            <Input value={model} onChange={handleModelChange} placeholder='Search for model...' type='text' />
+                            <button onClick={handleSearchClick} class="buttonSearcCar">
+                                <MdYoutubeSearchedFor />
+                            </button>
+                        </div>
+                        <p>If you are not happy with the results below please do another search</p>
+                    </div>
+
+                    <div className='FilterResultCars'>
+                        {searchResult?.data?.length > 0 ? (
+                            searchResult.data.map((byCar, index) => (
+                                <FilterCar key={index} marka={byCar?.marka} model={byCar.model} desc={byCar?.description} />
+                            ))
+                        ) : marka !== '' && model !== '' && (
+                            <div className='NotFindACar'>
+                                <img src='https://www.kar-men.com/assets/images/no_cars_search.png' alt='No cars found' />
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </div> */}
+        </>
+    )
 }
+
 export default FilterPage

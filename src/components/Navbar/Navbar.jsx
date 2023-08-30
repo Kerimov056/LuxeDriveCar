@@ -1,7 +1,7 @@
 import { BsSearch } from 'react-icons/bs'
 import { AiOutlineCar } from 'react-icons/ai'
 import React, { useState, useEffect } from 'react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import './navbarr.scss'
 import { useDispatch, useSelector } from "react-redux";
 import { logoutAction } from '../Redux/Slices/authSlice'
@@ -15,10 +15,12 @@ import { getNameCar } from "../Services/carServices";
 
 
 const Navbar = () => {
-    
+
+    const navigate = useNavigate();
+
     const [marka, setMarka] = useState('');
     const [model, setModel] = useState('');
-    
+
     const handleMarkaChange = (event) => {
         setMarka(event.target.value);
     };
@@ -36,7 +38,17 @@ const Navbar = () => {
     );
 
     const handleSearchClick = () => {
-        // Handle search click if needed
+        let url = '/FilterPage';
+
+        if (marka && model) {
+            url += `/${marka}${model}`;
+        } else if (marka) {
+            url += `/${marka}`;
+        } else if (model) {
+            url += `/${model}`;
+        }
+
+        navigate(url);
     };
     const [search, setSearch] = useState(false);
     useEffect(() => {
@@ -68,13 +80,11 @@ const Navbar = () => {
                     </div>
                     <div className='Serachhh'>
                         <div>
-                        <Input value={marka} onChange={handleMarkaChange} placeholder='Search for marka...' type='text' />
-                        <Input value={model} onChange={handleModelChange} placeholder='Search for model...' type='text' />
-                            <Link to={`/FilterPage/${marka}/${model}`}>
-                                <button onClick={handleSearchClick} className="buttonSearcCarS">
-                                    <MdYoutubeSearchedFor />
-                                </button>
-                            </Link>
+                            <Input value={marka} onChange={handleMarkaChange} placeholder='Search for marka...' type='text' />
+                            <Input value={model} onChange={handleModelChange} placeholder='Search for model...' type='text' />
+                            <button onClick={handleSearchClick} className="buttonSearcCarS">
+                                <MdYoutubeSearchedFor />
+                            </button>
                         </div>
                     </div>
                 </div>

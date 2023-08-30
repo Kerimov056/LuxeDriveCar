@@ -40,11 +40,11 @@ function App() {
             <Route path='/Basket' element={<Basket />} />
             <Route path='/Chat' element={<Chat />} />
             <Route path='/Profile' element={<Profile />} />
-            <Route path='/FilterPage/:car?/:model?' element={<FilterPage />} />
+            <Route path='/FilterPage/:car' element={<FilterPage />} />
           </Routes>
 
           <Footer />
-        </Router>
+        </  Router>
 
       </ChakraProvider>
     </>
