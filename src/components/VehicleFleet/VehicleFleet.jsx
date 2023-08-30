@@ -6,6 +6,8 @@ import Car from '../Card//Car'
 import { CheckboxIcon, Input, InputGroup, InputLeftElement, InputRightElement, Select, Stack } from '@chakra-ui/react'
 import { useQuery } from 'react-query'
 import { getCar, getAllMarka, getAllModel } from "../Services/carServices";
+import { getCategorie } from "../Services/categorieServices";
+import { getType } from "../Services/typeServices";
 
 
 const VehicleFleet = () => {
@@ -28,7 +30,17 @@ const VehicleFleet = () => {
         staleTime: 0,
     });
 
+    const { data: allCategorie } = useQuery({
+        queryKey: ["Category"],
+        queryFn: getCategorie,
+        staleTime: 0,
+    });
 
+    const { data: allType } = useQuery({
+        queryKey: ["type"],
+        queryFn: getType,
+        staleTime: 0,
+    });
 
 
     return (
@@ -63,15 +75,15 @@ const VehicleFleet = () => {
                                 ))}
                             </Select>
                             <Select variant='flushed' placeholder='All Category'>
-                                <option>Salam</option>
-                                <option>Necesen</option>
-                                <option>Sagol</option>
+                                {allCategorie?.data?.map((byCategory, index) => (
+                                    <option key={index}>{byCategory?.category}</option>
+                                ))}
                             </Select>
                             <Select variant='flushed' placeholder='All Type'>
-                                <option>Salam</option>
-                                <option>Necesen</option>
-                                <option>Sagol</option>
-                            </Select><br/>
+                                {allType?.data?.map((byType, index) => (
+                                    <option key={index}>{byType?.type}</option>
+                                ))}
+                            </Select><br />
                             <InputGroup>
                                 <InputLeftElement
                                     pointerEvents='none'
@@ -98,7 +110,7 @@ const VehicleFleet = () => {
                     </div>
                     <div className='Cards'>
                         {cars?.data.map((byCar, index) => (
-                            <Car key={index} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Vihecle-list-image-04.jpg"} name={byCar.marka} desc={byCar.description.slice(0, 30)} price={byCar.price} />
+                            <Car key={index} Id={byCar?.id} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Vihecle-list-image-04.jpg"} name={byCar.marka} desc={byCar.description.slice(0, 30)} price={byCar.price} />
                         ))}
                     </div>
                 </div>
