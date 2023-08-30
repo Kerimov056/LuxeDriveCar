@@ -1,6 +1,6 @@
 import { BsSearch } from 'react-icons/bs'
 import { AiOutlineCar } from 'react-icons/ai'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import './navbarr.scss'
 import { useDispatch, useSelector } from "react-redux";
@@ -9,9 +9,19 @@ import { Button, Input, Text } from "@chakra-ui/react";
 import { useQuery } from "react-query";
 import { getBasketItemCount } from "../Services/basketServices";
 import { MdYoutubeSearchedFor } from "react-icons/md";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Navbar = () => {
+
+    useEffect(() => {
+        AOS.init({
+          offset: 130,
+          duration: 1500,
+          delay: 60,
+        });
+        AOS.refresh();
+      }, []);
 
     const [search, setSearch] = useState(false);
 
@@ -28,7 +38,7 @@ const Navbar = () => {
     return (
         <>
             <nav class="navbar">
-                <div id='SearcParlax' style={search == true ? { display: "block" } : { display: "none" }}>
+                <div data-aos="fade-right" id='SearcParlax' style={search == true ? { display: "block" } : { display: "none" }}>
                     <div className='XButton'>
                         <p></p>
                         <Button backgroundColor={"gray"} onClick={() => setSearch(!search)}>X</Button>
