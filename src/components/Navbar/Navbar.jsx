@@ -11,19 +11,39 @@ import { getBasketItemCount } from "../Services/basketServices";
 import { MdYoutubeSearchedFor } from "react-icons/md";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { getNameCar } from "../Services/carServices";
+
 
 const Navbar = () => {
+    const [deyer, setDeyer] = useState('');
 
+    const handleInputChange = (event) => {
+        setDeyer(event.target.value);
+    };
+
+    const { data: searchResult, isLoading, isError } = useQuery(
+        ['searchCar', deyer], // queryKey
+        () => getNameCar(deyer), // queryFn
+        {
+            enabled: deyer !== '', // Sadece deyer dolu olduğunda çalışır
+        }
+    );
+
+    const handleSearchClick = () => {
+        if (deyer !== '') {
+          // Burada ekstra işlemler yapabilirsiniz, örneğin:
+          // Yeni bir useQuery çağrısı veya başka bir işlem
+        }
+      };
+    const [search, setSearch] = useState(false);
     useEffect(() => {
         AOS.init({
-          offset: 130,
-          duration: 1500,
-          delay: 60,
+            offset: 130,
+            duration: 3500,
+            delay: 60,
         });
         AOS.refresh();
-      }, []);
-
-    const [search, setSearch] = useState(false);
+    }, [search]);
 
     const { token, username, appuserid } = useSelector((x) => x.authReducer);
     const dispatch = useDispatch();
@@ -38,15 +58,15 @@ const Navbar = () => {
     return (
         <>
             <nav class="navbar">
-                <div data-aos="fade-right" id='SearcParlax' style={search == true ? { display: "block" } : { display: "none" }}>
+                <div data-aos="fade-down" id='SearcParlax' style={search == true ? { display: "block" } : { display: "none" }}>
                     <div className='XButton'>
                         <p></p>
                         <Button backgroundColor={"gray"} onClick={() => setSearch(!search)}>X</Button>
                     </div>
                     <div className='Serachhh'>
                         <div>
-                            <Input placeholder='Search for...' type='text' />
-                            <button className="buttonSearcCarS">
+                            <Input value={deyer} onChange={handleInputChange} placeholder='Search for...' type='text' />
+                            <button onClick={handleSearchClick} className="buttonSearcCarS">
                                 <MdYoutubeSearchedFor />
                             </button>
                         </div>
