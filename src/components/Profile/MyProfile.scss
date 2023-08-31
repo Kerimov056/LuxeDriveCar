@@ -1,0 +1,63 @@
+.MyFrofile {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &>div {
+        width: 88%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+
+        .ProfileDetails {
+            width: 90%;
+            height: 50%;
+            border-radius: 20px;
+
+            &>div {
+                width: 90%;
+                height: 100%;
+
+                .BackIamge {
+                    width: 100%;
+                    height: 40%;
+                }
+
+                .DeatilsProfil {
+                    width: 100%;
+                    height: 60%;
+
+                    .DeatilsProfilUP {
+                        width: 100%;
+                        height: auto;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        &>p{
+                            width: 240px;
+                            height: 140px;
+                            border-radius: 50%;
+
+                            &>img{
+                                width: 100%;
+                                height: 100%;
+                                border-radius: 50%;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+
+        .PReserrvationsCars {
+            width: 100%;
+            height: 46%;
+        }
+    }
+}
