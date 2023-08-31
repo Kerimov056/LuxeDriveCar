@@ -14,8 +14,8 @@ import CarDetail from './components/CarDetail/CarDetail';
 import BlogDetails from './components/blogDetails/BlogDetails';
 import Basket from './components/Basket/Basket';
 import Chat from './components/Chat/Chat';
-import Profile from "./components/myProfile/Profile";
 import FilterPage from "./components/CarFilterPage/FilterPage";
+import MyProfile from "./components/Profile/MyProfile";
 
 
 function App() {
@@ -39,8 +39,8 @@ function App() {
             <Route path='/BlogDetails/:id' element={<BlogDetails />} />
             <Route path='/Basket' element={<Basket />} />
             <Route path='/Chat' element={<Chat />} />
-            <Route path='/Profile' element={<Profile />} />
             <Route path='/FilterPage/:car/:model' element={<FilterPage />} />
+            <Route path='/MyProfile' element={<MyProfile />} />
           </Routes>
 
           <Footer />

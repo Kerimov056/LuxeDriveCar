@@ -1,6 +1,7 @@
 .MyFrofile {
+    margin-top: 78px;
     width: 100%;
-    height: 100vh;
+    height: 200vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,29 +25,67 @@
 
                 .BackIamge {
                     width: 100%;
-                    height: 40%;
+                    height: 64%;
+
+                    &>img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
                 }
 
                 .DeatilsProfil {
+                    background-color: red;
                     width: 100%;
-                    height: 60%;
+                    height: 36%;
+
 
                     .DeatilsProfilUP {
+                        margin-left: 40px;
+                        position: absolute;
+                        top: 23%;
                         width: 100%;
                         height: auto;
                         display: flex;
                         justify-content: space-between;
                         align-items: center;
 
-                        &>p{
-                            width: 240px;
-                            height: 140px;
+                        &>p {
+                            width: 200px;
+                            height: 200px;
                             border-radius: 50%;
 
-                            &>img{
+                            &>img {
                                 width: 100%;
                                 height: 100%;
                                 border-radius: 50%;
+                            }
+                        }
+
+                        .ttt {
+                            font-size: 20px;
+                            color: white;
+                        }
+                    }
+
+                    .Detailsss {
+                        margin-top: 130px;
+                        width: 100%;
+                        height: auto;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        &>div {
+                            width: 90%;
+                            height: auto;
+                            background-color: blue;
+
+                            &>h1 {
+                                font-size: 24px;
+                                color: white;
+                                font-family: Georgia, 'Times New Roman', Times, serif;
+
                             }
                         }
                     }
@@ -58,6 +97,18 @@
         .PReserrvationsCars {
             width: 100%;
             height: 46%;
+            background-color: orange;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+
+            &>div {
+                width: 90%;
+                height: 50%;
+                border-radius: 20px;
+                background-color: burlywood;
+            }
         }
     }
 }
