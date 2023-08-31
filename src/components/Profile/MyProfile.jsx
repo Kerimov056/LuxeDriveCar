@@ -2,10 +2,12 @@ import React from 'react'
 import "./MyProfile.scss";
 import Navbar from "../Navbar/Navbar";
 import MyReserv from './MyReserv';
+import { getReservation } from "../Services/reservationService";
+
 
 const MyProfile = () => {
 
-    
+
     return (
         <>
             <div>
