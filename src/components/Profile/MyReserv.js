@@ -1,7 +1,7 @@
 import React from 'react'
 import "./MyReserv.scss";
 
-const MyReserv = () => {
+const MyReserv = (props) => {
     return (
         <>
             <div class="cardMyReserv">

@@ -4,6 +4,8 @@ import Navbar from "../Navbar/Navbar";
 import MyReserv from './MyReserv';
 
 const MyProfile = () => {
+
+    
     return (
         <>
             <div>
@@ -37,10 +39,7 @@ const MyProfile = () => {
                             <h1>Your Reservations</h1>
                             <hr/>
                             <div>
-                                <MyReserv />
-                                <MyReserv />
-                                <MyReserv />
-                                <MyReserv />
+                                <MyReserv status={""} marka={""} model={""} remainingTime={""} />
                             </div>
                         </div>
                     </div>
