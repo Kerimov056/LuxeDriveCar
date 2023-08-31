@@ -1,6 +1,7 @@
 import React from 'react'
 import "./MyProfile.scss";
 import Navbar from "../Navbar/Navbar";
+import MyReserv from './MyReserv';
 
 const MyProfile = () => {
     return (
@@ -33,7 +34,14 @@ const MyProfile = () => {
 
                     <div className='PReserrvationsCars'>
                         <div>
-                            
+                            <h1>Your Reservations</h1>
+                            <hr/>
+                            <div>
+                                <MyReserv />
+                                <MyReserv />
+                                <MyReserv />
+                                <MyReserv />
+                            </div>
                         </div>
                     </div>
                 </div>
