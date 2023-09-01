@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "./MyReserv.scss";
+import { Link } from 'react-router-dom';
 
 const MyReserv = (props) => {
 
@@ -55,7 +56,8 @@ const MyReserv = (props) => {
             <div class="cardMyReserv">
                 <a class="card1" style={{ backgroundColor: statusColor }} href="#">
                     <p>{drum}</ p>
-                    <p class="small">{props.marka} {props.model} </p>
+                    <p class="small">
+                        <Link to={`/CarDetail/${props.Id}`}> {props.marka} {props.model} </Link> </p>
                     <p>
                         {timeLeft.days > 0 && (
                             <p>Kalan süre: {timeLeft.days} gün {timeLeft.hours} saat {timeLeft.minutes} dakika {timeLeft.seconds} saniye</p>
@@ -66,7 +68,7 @@ const MyReserv = (props) => {
                     </p>
                     <div class="go-corner" href="#">
                         <div class="go-arrow">
-                            →
+                        <Link to={`/CarDetail/${props.Id}`}>→</Link>
                         </div>
                     </div>
                 </a>
