@@ -245,7 +245,7 @@ const CarDetail = () => {
                                     <Map />
                                     <div className='ChauferrsShop'>
                                         {chaurffers?.data?.slice(0, 2).map((chauf, index) => (
-                                            <ChauffeursCard key={index} Id={chauf?.id}  name={chauf?.name} price={chauf?.price} />
+                                            <ChauffeursCard key={index} Id={chauf?.id} name={chauf?.name} price={chauf?.price} />
                                         ))}
                                     </div>
                                 </div>

@@ -3,9 +3,19 @@ import "./MyProfile.scss";
 import Navbar from "../Navbar/Navbar";
 import MyReserv from './MyReserv';
 import { getReservation } from "../Services/reservationService";
-
+import { useQuery } from "react-query";
+import { useDispatch, useSelector } from "react-redux";
 
 const MyProfile = () => {
+    
+    const { appuserid ,username } = useSelector((x) => x.authReducer);
+    const dispatch = useDispatch();
+
+    const { data: Reservation } = useQuery({
+        queryKey: ["getReservation", appuserid], 
+        queryFn: () => getReservation(appuserid), 
+        staleTime: 0,
+    });
 
 
     return (
@@ -27,8 +37,8 @@ const MyProfile = () => {
                                 </div>
                                 <div className='Detailsss'>
                                     <div>
-                                        <h1>Fuadov Fuad</h1>
-                                        <h1>fuad@gmail.com</h1>
+                                        <h1>{username}</h1>
+                                        <h1>{Reservation?.data[0].email}</h1>
                                         <h1>+994 51 324 43 43</h1>
                                     </div>
                                 </div>
@@ -39,9 +49,11 @@ const MyProfile = () => {
                     <div className='PReserrvationsCars'>
                         <div>
                             <h1>Your Reservations</h1>
-                            <hr/>
+                            <hr />
                             <div>
-                                <MyReserv status={""} marka={""} model={""} remainingTime={""} />
+                                {Reservation?.data?.map((reserv, index) => (
+                                    <MyReserv key={index} status={reserv.status} marka={reserv?.reservCar?.marka} model={reserv?.reservCar?.model} remainingTime={reserv?.pickupDate} />
+                                ))}
                             </div>
                         </div>
                     </div>
