@@ -154,7 +154,7 @@ const VehicleFleet = () => {
                                 <InputRightElement>
                                 </InputRightElement>
                             </InputGroup>
-                            <button onClick={handleFilterSearch} className="buttonSearchVFilter">
+                            <button  style={{marginTop:"20px"}} onClick={handleFilterSearch} className="buttonSearchVFilter">
                                 <span class="span">\ō͡≡o˞̶ </span>
                             </button>
                         </div>

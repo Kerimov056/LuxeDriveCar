@@ -4,6 +4,10 @@ export const getCar = (category, type, marka, model, minPrice, maxPrice) => {
   return httpClient.get(`api/Car/searchCar?category=${category}&type=${type}&marka=${marka}&model=${model}&minPrice=${minPrice}&maxPrice=${maxPrice}`)
 };
 
+export const getCarAll = () => {
+  return httpClient.get("api/Car")
+};
+
 export const getAllMarka = () => {
   return httpClient.get("api/Car/AllMarka")
 };

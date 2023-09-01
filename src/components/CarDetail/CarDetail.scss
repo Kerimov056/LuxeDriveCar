@@ -1,3 +1,8 @@
+.CarDeatilsNavbar{
+    margin-top: -70px;
+}
+
+
 #CarDetail {
     margin-top: 150px;
     width: 100%;
@@ -50,18 +55,12 @@
                 }
 
                 .ReactLeafLet {
+                    z-index: -1;
                     margin-top: 50px;
-                    // margin-top: 50px;
-                    // width: 100%;
-                    // height: 500px;
-                    // overflow: hidden;
-                    // z-index: -99;
+                    width: 100%;
+                    height: 500px;
 
-                    .leaflet-container {
-                        height: 500px;
-                        width: 100%;
-                        z-index: 999;
-                    }
+                   
                 }
 
             }
@@ -83,6 +82,7 @@
 
                 &>p {
                     margin-top: 40px;
+                    margin-left: 10px;
                     font-size: 19px;
                 }
 
@@ -94,40 +94,8 @@
                     justify-content: space-around;
                     align-items: center;
 
-                    &>div {
-                        width: 60px;
-                        height: 60px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        border: 1px solid #bfa37c;
-                        text-align: center;
-
-                        .Sum {
-                            width: 60%;
-                            height: 100%;
-                            font-size: 20px;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                        }
-
-                        .hesab {
-                            width: 40%;
-                            height: 100%;
-
-                            &>div {
-                                width: 100%;
-                                height: 50%;
-                                cursor: pointer;
-                                text-align: center;
-                                border: 1px solid #bfa37c;
-                            }
-                        }
-
-                    }
-
                     &>button {
+                        margin-left: -40px;
                         padding: 15px 80px;
                         border: 1px solid #bfa37c;
                         font-size: 20px;

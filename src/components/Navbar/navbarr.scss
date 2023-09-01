@@ -67,7 +67,7 @@
 
 
 
-.AddNav{
+.AddNav {
     width: 100%;
     height: 40px;
     display: flex;
@@ -75,8 +75,8 @@
     align-items: center;
     background-color: #000000;
     overflow: hidden;
-    
-    &>div{
+
+    &>div {
         align-items: center;
         font-size: 19px;
         color: white;
@@ -84,16 +84,16 @@
         justify-content: center;
         align-items: center;
 
-        &>span{
+        &>span {
             display: flex;
             margin-left: 30px;
 
-            &>svg{
+            &>svg {
                 margin-right: 20px;
             }
         }
 
-        &>p{
+        &>p {
             width: 2px;
             height: 20px;
         }
@@ -180,7 +180,12 @@
     .navbar .menu-items li {
         margin-bottom: 1.8rem;
         font-size: 1.1rem;
+        color: rgb(0, 0, 0) !important;
         font-weight: 500;
+    }
+
+    .navbar .menu-items li a {
+        color: rgb(0, 0, 0) !important;
     }
 
     .logo {
@@ -214,21 +219,21 @@
     }
 }
 
-.BasketCar{
+.BasketCar {
     width: auto;
     height: 35px;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: black;
 
-    #SumCar{
+    #SumCar {
         font-size: 24px;
     }
 
-    .SumC{
+    .SumC {
         position: relative;
         margin-top: -18px;
         font-size: 18px;
     }
 }
-

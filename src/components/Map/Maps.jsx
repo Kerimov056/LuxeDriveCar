@@ -5,7 +5,6 @@ import { EditControl } from "react-leaflet-draw";
 import 'leaflet/dist/leaflet.css';
 import "leaflet-draw/dist/leaflet.draw.css";
 import L from "leaflet";
-import useGeoLocation from './useGeoLocation';
 
 
 
@@ -31,9 +30,18 @@ const markerIcon = new L.Icon({
 const Maps = () => {
     const [center, setCenter] = useState({ lat: 40.4093, lng: 49.8671 });
 
-    const location = useGeoLocation();
 
-    const _created = (e) => console.log(e);
+
+    const handleShapeCreated = (e) => {
+        const type = e.layerType;
+        if (type === 'marker') {
+            const latlng = e.layer.getLatLng();
+            console.log('Marker Lat:', latlng.lat);
+            console.log('Marker Lng:', latlng.lng);
+        }
+    };
+
+
 
     return (
         <>
@@ -44,7 +52,7 @@ const Maps = () => {
                         url="https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}.png?key=S3UF58mBkVoHt2UkKpEL"
                     />
                     <FeatureGroup>
-                        <EditControl position='topright' onCreated={_created} draw={{ rectangle: false, circlemarker: false, polygon: false }} />
+                        <EditControl position='topright' onCreated={handleShapeCreated} draw={{ rectangle: false, circlemarker: false, polygon: false }} />
                     </FeatureGroup>
                     <Marker position={center} icon={markerIcon}>
                         <Popup>

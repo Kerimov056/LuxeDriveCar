@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import Navbar from '../Navbar/Navbar';
 import './CarDetail.scss'
-// import CursorZoom from 'react-cursor-zoom';
+import CursorZoom from 'react-cursor-zoom';
 import {
     AlertDialog,
     AlertDialogBody,
@@ -16,7 +16,6 @@ import {
 import Accardion from './Accardion';
 import ShopCarCard from '../Shop/ShopCarCard';
 import 'leaflet/dist/leaflet.css'
-import osm from "./osm-providers";
 import { getByCar, getCar } from "../Services/carServices";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "react-query";
@@ -25,6 +24,8 @@ import { postComments } from "../Services/commentServices";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { PostReservation } from "../Services/reservationService";
+import Map from '../Map/Map';
+import { PostCar } from "../Services/basketServices";
 
 
 
@@ -32,7 +33,6 @@ const CarDetail = () => {
 
     const { token, username, appuserid } = useSelector((x) => x.authReducer);
     const dispatch = useDispatch();
-
 
     const [pickupLocation, setPickupLocation] = useState(null);
     const [returnLocation, setReturnLocation] = useState(null);
@@ -58,9 +58,6 @@ const CarDetail = () => {
         queryFn: getCar,
         staleTime: 0,
     });
-
-
-
 
     const [center, setCenter] = useState({ lat: 42.0970, lng: 79.2353 });
     const ZOOM_LEVEL = 9;
@@ -104,6 +101,7 @@ const CarDetail = () => {
     const user = appuserid;
     const reservFormik = useFormik({
         initialValues: {
+            FullName: "",
             Image: "",
             Email: "",
             Number: "",
@@ -131,8 +129,6 @@ const CarDetail = () => {
 
 
     const [img, setImg] = useState(null);
-    const [sum, setSum] = useState(1);
-
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const cancelRef = React.useRef()
@@ -142,18 +138,7 @@ const CarDetail = () => {
         onOpen()
     }
 
-    const AddCar = () => {
-        setSum(sum + 1);
-    }
-
-    const RemoveCar = () => {
-        if (sum > 1) {
-            setSum(sum - 1);
-        }
-    }
-
     const commentCount = byCars?.data?.carCommentGetDTO.length;
-
 
 
     const mutation = useMutation(postComments, {
@@ -172,7 +157,7 @@ const CarDetail = () => {
         },
         onSubmit: async (values) => {
             try {
-                mutation.mutateAsync(values);
+                await mutation.mutateAsync(values);
             } catch (error) {
                 console.log(error);
             }
@@ -180,21 +165,33 @@ const CarDetail = () => {
     });
 
 
+    const { mutate, isLoading, isError, error } = useMutation(() => PostCar(byCars?.data?.id, appuserid), {
+        onSuccess: (data) => {
+            queryClient.invalidateQueries(["basketsCountT"]);
+        },
+        onError: (error) => {
+            console.error("Error adding car to order", error);
+        }
+    });
 
+    const handleAddToOrder = () => {
+        mutate({ carId: byCars?.data?.id, AppUserId: appuserid });
+    }
 
-    // console.log(appuserid);
 
     if (byCars) {
 
         return (
             <>
-                <Navbar />
+                <div className='CarDeatilsNavbar'>
+                    <Navbar />
+                </div>
                 <div id='CarDetail'>
                     <div>
                         <div className='CarD'>
                             <div className='CarImg'>
                                 <div className='mainImg'>
-                                   {/* <CursorZoom
+                                    <CursorZoom
                                         image={{
                                             src: "https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/shop-single-img-03.jpg",
                                             width: 600,
@@ -206,7 +203,7 @@ const CarDetail = () => {
                                             height: 1000
                                         }}
                                         cursorOffset={{ x: 180, y: 0 }}
-                                    /> */}
+                                    />
                                 </div>
                                 <div className='SecImg'>
                                     <AlertDialog
@@ -236,12 +233,8 @@ const CarDetail = () => {
                                 </div>
 
                                 <div className='ReactLeafLet'>
-                                    {/* 
-                                    <MapComponent
-                                        onPickupLocationSelect={handlePickupLocationSelect}
-                                        onReturnLocationSelect={handleReturnLocationSelect}
-                                    /> */}
-
+                                    <Map />
+                                    
                                 </div>
 
                             </div>
@@ -250,14 +243,7 @@ const CarDetail = () => {
                                 <h2>{byCars.data.price}</h2>
                                 <p>{byCars.data.description}</p>
                                 <div className='addCart'>
-                                    <div>
-                                        <div className='Sum'>{sum}</div>
-                                        <div className='hesab'>
-                                            <div onClick={AddCar}>+</div>
-                                            <div onClick={RemoveCar}>-</div>
-                                        </div>
-                                    </div>
-                                    <button>+ ADD TO ORDER</button>
+                                    <button  onClick={handleAddToOrder} >+ ADD TO ORDER</button>
                                 </div>
 
                                 <div className='Det'>
@@ -275,6 +261,19 @@ const CarDetail = () => {
                                     <form className='login_form'>
                                         <FormControl>
                                             <h3>Reservation A Car</h3>
+
+
+                                            <label htmlFor="password">Full Name</label>
+                                            <Text fontSize={"15px"} color={"red"} mb="8px">
+                                            </Text>
+                                            <Input
+                                                name='FullName'
+                                                value={reservFormik.values.FullName}
+                                                onChange={reservFormik.handleChange}
+                                                placeholder='Here is a sample placeholder'
+                                                size='sm'
+                                            />
+
                                             <label htmlFor="Image">Email</label>
                                             <Text fontSize={"15px"} color={"red"} mb="8px">
                                             </Text>
@@ -297,17 +296,6 @@ const CarDetail = () => {
                                                 placeholder='Here is a sample placeholder'
                                                 size='sm'
                                             />
-                                            {/* 
-                                            <label htmlFor="password">Number</label>
-                                            <Text fontSize={"15px"} color={"red"} mb="8px">
-                                            </Text>
-                                            <Input
-                                                name='Image'
-                                                value={reservFormik.values.Image}
-                                                onChange={reservFormik.handleChange}
-                                                placeholder='Here is a sample placeholder'
-                                                size='sm'
-                                            /> */}
 
                                             <label htmlFor="password">Suruculuk Vesiqesi</label>
                                             <Text fontSize={"15px"} color={"red"} mb="8px">

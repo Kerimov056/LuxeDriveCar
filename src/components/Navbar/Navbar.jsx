@@ -73,7 +73,7 @@ const Navbar = () => {
 
     return (
         <>
-            <nav class="navbar">
+            <nav class="navbar" style={{marginTop:"-81px"}}>
                 <div data-aos="fade-down" id='SearcParlax' style={search == true ? { display: "block" } : { display: "none" }}>
                     <div className='XButton'>
                         <p></p>
@@ -102,7 +102,7 @@ const Navbar = () => {
                         <li><a href='/'>LUXEDRIVE</a></li>
                         <li><a href='/'>Home</a></li>
                         <li><a href='/AboutUs'>About Us</a></li>
-                        <li><a href='VehicleFleet'>VEHICLE FLEET</a></li>
+                        <li><a href='/VehicleFleet'>VEHICLE FLEET</a></li>
                         <li><a href='/Blogs'>BLOG</a></li>
                         <li><a href='/Shop'>SHOP</a></li>
                     </ul>
