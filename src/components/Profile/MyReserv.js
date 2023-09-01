@@ -3,6 +3,8 @@ import "./MyReserv.scss";
 
 const MyReserv = (props) => {
 
+    const [statusColor, setStatusColor] = useState(null);
+    const [drum, setDrum] = useState(null);
     const [pickupDate, setPickupDate] = useState(props.remainingTime);
     const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
@@ -33,11 +35,26 @@ const MyReserv = (props) => {
     }, [pickupDate]);
 
 
+    useEffect(() => {
+        if (props.status !== null) {
+            if (props.status === 0) {
+                setStatusColor("#fcad00");
+                setDrum("Pending");
+            } else if (props.status === 1) {
+                setStatusColor("#0dfc00");
+                setDrum("Confirm");
+            } else if (props.status === 3) {
+                setStatusColor("#ff0000");
+                setDrum("Canceled");
+            }
+        }
+    }, [props.status]);
+
     return (
         <>
             <div class="cardMyReserv">
-                <a class="card1" style={{ backgroundColor: "white" }} href="#">
-                    <p>{props.status}</ p>
+                <a class="card1" style={{ backgroundColor: statusColor }} href="#">
+                    <p>{drum}</ p>
                     <p class="small">{props.marka} {props.model} </p>
                     <p>
                         {timeLeft.days > 0 && (
