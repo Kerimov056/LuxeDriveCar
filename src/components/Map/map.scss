@@ -1,8 +1,9 @@
-#map {
-    opacity: 1;
-}
+.ss {
+  width: 100%;
+  height: 93vh;
 
-.leaflet-container {
-  height: 400px;
-  width: 400px;
+  .leaflet-container {
+    width: 100%;
+    height: 100%;
+  }
 }

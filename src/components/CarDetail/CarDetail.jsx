@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import Navbar from '../Navbar/Navbar';
 import './CarDetail.scss'
-import CursorZoom from 'react-cursor-zoom';
+// import CursorZoom from 'react-cursor-zoom';
 import {
     AlertDialog,
     AlertDialogBody,
@@ -20,7 +20,6 @@ import osm from "./osm-providers";
 import { getByCar, getCar } from "../Services/carServices";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "react-query";
-import MapComponent from '../Map/MapComponent';
 import CarComment from './CarComment'
 import { postComments } from "../Services/commentServices";
 import { useFormik } from "formik";
@@ -195,7 +194,7 @@ const CarDetail = () => {
                         <div className='CarD'>
                             <div className='CarImg'>
                                 <div className='mainImg'>
-                                    <CursorZoom
+                                   {/* <CursorZoom
                                         image={{
                                             src: "https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/shop-single-img-03.jpg",
                                             width: 600,
@@ -207,7 +206,7 @@ const CarDetail = () => {
                                             height: 1000
                                         }}
                                         cursorOffset={{ x: 180, y: 0 }}
-                                    />
+                                    /> */}
                                 </div>
                                 <div className='SecImg'>
                                     <AlertDialog
