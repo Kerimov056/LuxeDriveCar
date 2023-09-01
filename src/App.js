@@ -17,6 +17,8 @@ import Chat from './components/Chat/Chat';
 import FilterPage from "./components/CarFilterPage/FilterPage";
 import MyProfile from "./components/Profile/MyProfile";
 import Maps from "./components/Map/Maps"
+import Map from "./components/Map/Map"
+import YouMap from "./components/Map/YouMap"
 
 
 
@@ -45,6 +47,8 @@ function App() {
             <Route path='/FilterPage/:car/:model' element={<FilterPage />} />
             <Route path='/MyProfile' element={<MyProfile />} />
             <Route path='/Maps' element={<Maps />} />
+            <Route path='/Map' element={<Map />} />
+            <Route path='/YouMap' element={<YouMap />} />
           </Routes>
 
           <Footer />

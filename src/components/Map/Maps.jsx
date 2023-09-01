@@ -3,6 +3,7 @@ import './map.scss'
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import 'leaflet/dist/leaflet.css';
 import L from "leaflet";
+import useGeoLocation from './useGeoLocation';
  
 
 const markerIcon = new L.Icon({
@@ -14,6 +15,8 @@ const markerIcon = new L.Icon({
 
 const Maps = () => {
     const [center, setCenter] = useState({ lat: 40.4093, lng: 49.8671});
+
+    const location =useGeoLocation();
 
     return (
         <>
