@@ -26,6 +26,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { PostReservation } from "../Services/reservationService";
 import Map from '../Map/Map';
 import { PostCar } from "../Services/basketServices";
+import ChauffeursCard from '../Chauffeurs/ChauffeursCard';
+import { getChauffeurs } from "../Services/chauffeursServices";
+
 
 
 
@@ -126,6 +129,12 @@ const CarDetail = () => {
     });
 
 
+    const { data: chaurffers } = useQuery({
+        queryKey: ["chauffers"],
+        queryFn: getChauffeurs,
+        staleTime: 0,
+
+    });
 
 
     const [img, setImg] = useState(null);
@@ -234,7 +243,11 @@ const CarDetail = () => {
 
                                 <div className='ReactLeafLet'>
                                     <Map />
-                                    
+                                    <div className='ChauferrsShop'>
+                                        {chaurffers?.data?.slice(0, 2).map((chauf, index) => (
+                                            <ChauffeursCard key={index} Id={chauf?.id}  name={chauf?.name} price={chauf?.price} />
+                                        ))}
+                                    </div>
                                 </div>
 
                             </div>
@@ -243,7 +256,7 @@ const CarDetail = () => {
                                 <h2>{byCars.data.price}</h2>
                                 <p>{byCars.data.description}</p>
                                 <div className='addCart'>
-                                    <button  onClick={handleAddToOrder} >+ ADD TO ORDER</button>
+                                    <button onClick={handleAddToOrder} >+ ADD TO ORDER</button>
                                 </div>
 
                                 <div className='Det'>

@@ -16,6 +16,7 @@ const Destinations = (props) => {
         queryFn: getFaqs,
         staleTime: 0,
     });
+    
     const { data: chaurffers } = useQuery({
         queryKey: ["chauffers"],
         queryFn: getChauffeurs,
