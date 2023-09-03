@@ -167,26 +167,34 @@ const CarDetail = () => {
             FullName: "",
             Email: "",
             Number: "",
+            Notes: "",
+            CarId: byCars?.data?.id,
+            AppUserId: appuserid,
+            ChauffeursId: "",
             PickupDate: "",
             ReturnDate: "",
-            Notes: "",
-            AppUserId: appuserid,
-            CarId: byCars?.data?.id,
-            ChauffeursId: "",
             PickupLocation: { Latitude: '', Longitude: '' },
-            CarCategory: { Latitude: '', Longitude: '' },
+            ReturnLocation: { Latitude: '', Longitude: '' },
         },
         onSubmit: async (values) => {
             const formData = new FormData();
+            
+            formData.append('Image', image); 
+            formData.append("FullName", values.FullName);
+            formData.append("Email", values.Email);
+            formData.append("Number", values.Number);
+            formData.append("Notes", values.Notes);
+            formData.append("CarId", values.CarId);
+            formData.append("AppUserId", values.AppUserId);
+            formData.append("ChauffeursId", values.ChauffeursId);
+            formData.append("PickupDate", values.PickupDate);
+            formData.append("ReturnDate", values.ReturnDate);
 
-            formData.append("Marka", values.Marka);
-            formData.append("Model", values.Model);
-            formData.append("Price", values.Price);
-            formData.append("Year", values.Year);
-            formData.append("Description", values.Description);
-            formData.append("CarType.type", values.CarType.type);
-            formData.append("CarCategory.Category", values.CarCategory.Category);
-            formData.append("tags", values.tags);
+            formData.append("PickupLocation.Latitude", values.PickupLocation.Latitude);
+            formData.append("PickupLocation.Longitude", values.PickupLocation.Longitude);
+
+            formData.append("ReturnLocation.Latitude", values.ReturnLocation.Latitude);
+            formData.append("ReturnLocation.Longitude", values.ReturnLocation.Longitude);
 
 
 
