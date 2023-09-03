@@ -158,13 +158,16 @@ const CarDetail = () => {
     }
 
     const [image, setImage] = useState(null);
+    const [CarId, setCarId] = useState(byCars?.data?.id ? byCars?.data?.id : "");
+
+    useEffect(()=>{
+        setCarId(byCars?.data?.id ? byCars?.data?.id : "");
+    },[CarId]);
 
     const fileUploadHandler = (e) => {
         const file = e.target.files[0];
         setImage(file);
     };
-
-    const [test, setTest] = useState(byCars?.data?.id !== null ? byCars?.data?.id : "");
 
     const reservFormik = useFormik({
         initialValues: {
@@ -173,16 +176,21 @@ const CarDetail = () => {
             Email: "",
             Number: "",
             Notes: "",
-            CarId: test,
+            CarId: CarId,
             AppUserId: appuserid,
             ChauffeursId: "",
             PickupDate: selectedDate ? selectedDate : "",
             ReturnDate: selectedDate1 ? selectedDate1 : "",
-            // PickupLocation: { Latitude: '', Longitude: '' },
-            // ReturnLocation: { Latitude: '', Longitude: '' },
+            PickupLocation: { Latitude: 12.3, Longitude: 12.3 },
+            ReturnLocation: { Latitude: 12.3, Longitude: 12.3 },
         },
         onSubmit: async (values) => {
             const formData = new FormData();
+            console.log(values);
+            //console.log(values.PickupLocation.Latitude);
+            //console.log(values.PickupLocation.Longitude);
+            //console.log(values.ReturnLocation.Latitude);
+            //console.log(values.ReturnLocation.Longitude);
 
             formData.append('Image', image);
             formData.append("FullName", values.FullName);
@@ -194,25 +202,25 @@ const CarDetail = () => {
             formData.append("ChauffeursId", values.ChauffeursId);
             formData.append("PickupDate", values.PickupDate);
             formData.append("ReturnDate", values.ReturnDate);
-            //formData.append("PickupLocation.Latitude", values.PickupLocation.Latitude);
-            //formData.append("PickupLocation.Longitude", values.PickupLocation.Longitude);
-            //formData.append("ReturnLocation.Latitude", values.ReturnLocation.Latitude);
-            //formData.append("ReturnLocation.Longitude", values.ReturnLocation.Longitude);
+            formData.append("PickupLocation.Latitude", values.PickupLocation.Latitude);
+            formData.append("PickupLocation.Longitude", values.PickupLocation.Longitude);
+            formData.append("ReturnLocation.Latitude", values.ReturnLocation.Latitude);
+            formData.append("ReturnLocation.Longitude", values.ReturnLocation.Longitude);
             //////////////////////////////////
-            console.log("Image-------" + formData.getAll("Image"));
-            console.log("FullName-------" + formData.getAll("FullName"));
-            console.log("Email-------" + formData.getAll("Email"));
-            console.log("Number-------" + formData.getAll("Number"));
-            console.log("Notes-------" + formData.getAll("Notes"));
-            console.log("CarId-------" + formData.getAll("CarId"));
-            console.log("AppUserId-------" + formData.getAll("AppUserId"));
-            console.log("ChauffeursId-------" + formData.getAll("ChauffeursId"));
-            console.log("PickupDate-------" + formData.getAll("PickupDate"));
-            console.log("ReturnDate-------" + formData.getAll("ReturnDate"));
-            console.log("PickupLocation.Latitude-------" + formData.getAll("PickupLocation.Latitude"));
-            console.log("PickupLocation.Longitude-------" + formData.getAll("PickupLocation.Longitude"));
-            console.log("ReturnLocation.Latitude-------" + formData.getAll("ReturnLocation.Latitude"));
-            console.log("ReturnLocation.Longitude-------" + formData.getAll("ReturnLocation.Longitude"));
+           // console.log("Image-------" + formData.getAll("Image"));
+           // console.log("FullName-------" + formData.getAll("FullName"));
+           // console.log("Email-------" + formData.getAll("Email"));
+           // console.log("Number-------" + formData.getAll("Number"));
+           // console.log("Notes-------" + formData.getAll("Notes"));
+           // console.log("CarId-------" + formData.getAll("CarId"));
+           // console.log("AppUserId-------" + formData.getAll("AppUserId"));
+           // console.log("ChauffeursId-------" + formData.getAll("ChauffeursId"));
+           // console.log("PickupDate-------" + formData.getAll("PickupDate"));
+           // console.log("ReturnDate-------" + formData.getAll("ReturnDate"));
+           // console.log("PickupLocation.Latitude-------" + formData.getAll("PickupLocation.Latitude"));
+           // console.log("PickupLocation.Longitude-------" + formData.getAll("PickupLocation.Longitude"));
+           // console.log("ReturnLocation.Latitude-------" + formData.getAll("ReturnLocation.Latitude"));
+           // console.log("ReturnLocation.Longitude-------" + formData.getAll("ReturnLocation.Longitude"));
             //////////////////////////////////
 
             try {
