@@ -79,8 +79,8 @@ const Map = () => {
             console.log('Marker Lng:', latlng.lng);
         }
     };
-    console.log("userLoacation lat", userLocation !== null ? userLocation.lat : "not lat");
-    console.log("userLoacation lng", userLocation !== null ? userLocation.lng : "not lng");
+    // console.log("userLoacation lat", userLocation !== null ? userLocation.lat : "not lat");
+    // console.log("userLoacation lng", userLocation !== null ? userLocation.lng : "not lng");
 
 
     return (

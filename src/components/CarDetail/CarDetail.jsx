@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Navbar from '../Navbar/Navbar';
 import './CarDetail.scss'
 import CursorZoom from 'react-cursor-zoom';
@@ -27,6 +27,7 @@ import Map from '../Map/Map';
 import { PostCar } from "../Services/basketServices";
 import ChauffeursCard from '../Chauffeurs/ChauffeursCard';
 import { getChauffeurs } from "../Services/chauffeursServices";
+import axios from 'axios';
 
 
 
@@ -65,8 +66,17 @@ const CarDetail = () => {
     const ZOOM_LEVEL = 9;
     const mapRef = useRef()
 
-    const currentDate = new Date().toISOString().slice(0, 16);
-    const [selectedDate, setSelectedDate] = useState(currentDate);
+    const [selectedDate, setSelectedDate] = useState(null);
+    const [selectedDate1, setSelectedDate1] = useState(null);
+
+    useEffect(() => {
+        reservFormik.setValues({
+            ...reservFormik.values,
+            PickupDate: selectedDate ? selectedDate : "",
+            ReturnDate: selectedDate1 ? selectedDate1 : "",
+        });
+    }, [selectedDate, selectedDate1]);
+
     const handleDateChange = (e) => {
         const selected = new Date(e.target.value);
         const now = new Date();
@@ -74,23 +84,18 @@ const CarDetail = () => {
         if (selected < now) {
             return;
         }
-
         setSelectedDate(e.target.value);
-        // reservFormik.handleChange();
     };
 
-    const currentDate1 = new Date().toISOString().slice(0, 16);
-    const [selectedDate1, setSelectedDate1] = useState(currentDate1);
     const handleDateChange1 = (e) => {
         const selected = new Date(e.target.value);
-        const now = new Date();
-
-        if (selected < now) {
+        if (selectedDate === null) {
             return;
         }
-
+        if (selected < selectedDate) {
+            return;
+        }
         setSelectedDate1(e.target.value);
-        // reservFormik.handleChange();
     };
 
 
@@ -159,7 +164,7 @@ const CarDetail = () => {
         setImage(file);
     };
 
-
+    const [test, setTest] = useState(byCars?.data?.id !== null ? byCars?.data?.id : "");
 
     const reservFormik = useFormik({
         initialValues: {
@@ -168,18 +173,18 @@ const CarDetail = () => {
             Email: "",
             Number: "",
             Notes: "",
-            CarId: byCars?.data?.id,
+            CarId: test,
             AppUserId: appuserid,
             ChauffeursId: "",
-            PickupDate: "",
-            ReturnDate: "",
-            PickupLocation: { Latitude: '', Longitude: '' },
-            ReturnLocation: { Latitude: '', Longitude: '' },
+            PickupDate: selectedDate ? selectedDate : "",
+            ReturnDate: selectedDate1 ? selectedDate1 : "",
+            // PickupLocation: { Latitude: '', Longitude: '' },
+            // ReturnLocation: { Latitude: '', Longitude: '' },
         },
         onSubmit: async (values) => {
             const formData = new FormData();
-            
-            formData.append('Image', image); 
+
+            formData.append('Image', image);
             formData.append("FullName", values.FullName);
             formData.append("Email", values.Email);
             formData.append("Number", values.Number);
@@ -189,29 +194,36 @@ const CarDetail = () => {
             formData.append("ChauffeursId", values.ChauffeursId);
             formData.append("PickupDate", values.PickupDate);
             formData.append("ReturnDate", values.ReturnDate);
+            //formData.append("PickupLocation.Latitude", values.PickupLocation.Latitude);
+            //formData.append("PickupLocation.Longitude", values.PickupLocation.Longitude);
+            //formData.append("ReturnLocation.Latitude", values.ReturnLocation.Latitude);
+            //formData.append("ReturnLocation.Longitude", values.ReturnLocation.Longitude);
+            //////////////////////////////////
+            console.log("Image-------" + formData.getAll("Image"));
+            console.log("FullName-------" + formData.getAll("FullName"));
+            console.log("Email-------" + formData.getAll("Email"));
+            console.log("Number-------" + formData.getAll("Number"));
+            console.log("Notes-------" + formData.getAll("Notes"));
+            console.log("CarId-------" + formData.getAll("CarId"));
+            console.log("AppUserId-------" + formData.getAll("AppUserId"));
+            console.log("ChauffeursId-------" + formData.getAll("ChauffeursId"));
+            console.log("PickupDate-------" + formData.getAll("PickupDate"));
+            console.log("ReturnDate-------" + formData.getAll("ReturnDate"));
+            console.log("PickupLocation.Latitude-------" + formData.getAll("PickupLocation.Latitude"));
+            console.log("PickupLocation.Longitude-------" + formData.getAll("PickupLocation.Longitude"));
+            console.log("ReturnLocation.Latitude-------" + formData.getAll("ReturnLocation.Latitude"));
+            console.log("ReturnLocation.Longitude-------" + formData.getAll("ReturnLocation.Longitude"));
+            //////////////////////////////////
 
-            formData.append("PickupLocation.Latitude", values.PickupLocation.Latitude);
-            formData.append("PickupLocation.Longitude", values.PickupLocation.Longitude);
-
-            formData.append("ReturnLocation.Latitude", values.ReturnLocation.Latitude);
-            formData.append("ReturnLocation.Longitude", values.ReturnLocation.Longitude);
-
-
-
-            // try {
-            //     const response = await axios.post('https://localhost:7152/api/Car/postCar', formData, {
-            //         headers: {
-            //             'Content-Type': 'multipart/form-data',
-            //         },
-            //     });
-
-            //     if (response.status === 201) {
-            //         queryClient.invalidateQueries('newCar');
-            //         navigate.push('/AllCar');
-            //     }
-            // } catch (error) {
-            //     console.log(error);
-            // }
+            try {
+                const response = await axios.post('https://localhost:7152/api/CarReservations', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                })
+            } catch (error) {
+                console.log(error);
+            }
         },
     });
 
@@ -274,7 +286,7 @@ const CarDetail = () => {
                                 </div>
 
                                 <div className='ReactLeafLet'>
-                                    <Map />
+                                    {/* <Map /> */}
                                     <div className='ChauferrsShop'>
                                         {chaurffers?.data?.slice(0, 2).map((chauf, index) => (
                                             <ChauffeursCard key={index} Id={chauf?.id} name={chauf?.name} price={chauf?.price} />
