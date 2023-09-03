@@ -170,27 +170,25 @@ const CarDetail = () => {
             PickupDate: "",
             ReturnDate: "",
             Notes: "",
-            AppUserId: "",
-            CarId: "",
+            AppUserId: appuserid,
+            CarId: byCars?.data?.id,
             ChauffeursId: "",
             PickupLocation: { Latitude: '', Longitude: '' },
             CarCategory: { Latitude: '', Longitude: '' },
         },
         onSubmit: async (values) => {
-            // const formData = new FormData();
+            const formData = new FormData();
 
-            // formData.append("Marka", values.Marka);
-            // formData.append("Model", values.Model);
-            // formData.append("Price", values.Price);
-            // formData.append("Year", values.Year);
-            // formData.append("Description", values.Description);
-            // formData.append("CarType.type", values.CarType.type);
-            // formData.append("CarCategory.Category", values.CarCategory.Category);
-            // formData.append("tags", values.tags);
+            formData.append("Marka", values.Marka);
+            formData.append("Model", values.Model);
+            formData.append("Price", values.Price);
+            formData.append("Year", values.Year);
+            formData.append("Description", values.Description);
+            formData.append("CarType.type", values.CarType.type);
+            formData.append("CarCategory.Category", values.CarCategory.Category);
+            formData.append("tags", values.tags);
 
-            // for (let i = 0; i < values.CarImages.length; i++) {
-            //     formData.append('CarImages', values.CarImages[i]);
-            // }
+
 
             // try {
             //     const response = await axios.post('https://localhost:7152/api/Car/postCar', formData, {
@@ -297,7 +295,7 @@ const CarDetail = () => {
                                 </div>
                                 <div className='ByReservACar'>
 
-                                    <form className='login_form'>
+                                    <form className='login_form' onSubmit={reservFormik.handleSubmit} >
                                         <FormControl>
                                             <h3>Reservation A Car</h3>
 
@@ -344,7 +342,7 @@ const CarDetail = () => {
                                                 id='Cfile'
                                                 name='Image'
                                                 accept="image/*"
-                                                onChange={(e) => fileUploadHandler(e)} 
+                                                onChange={(e) => fileUploadHandler(e)}
                                                 placeholder='Here is a sample placeholder'
                                                 size='sm'
                                             />
@@ -386,7 +384,8 @@ const CarDetail = () => {
                                             <label htmlFor="password">Notes</label>
                                             <Text fontSize={"15px"} color={"red"} mb="8px">
                                             </Text>
-                                            <Input type='text'
+                                            <Input
+                                                type='text'
                                                 name='Notes'
                                                 value={reservFormik.values.Notes}
                                                 onChange={reservFormik.handleChange}
@@ -394,7 +393,7 @@ const CarDetail = () => {
                                                 size='sm'
                                             />
 
-                                            <Button onClick={reservFormik.handleSubmit} type='submit'>Order</Button>
+                                            <Button type='submit'>Order</Button>
                                         </FormControl>
                                     </form>
 
