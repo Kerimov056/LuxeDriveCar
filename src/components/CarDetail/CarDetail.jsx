@@ -16,7 +16,7 @@ import Accardion from './Accardion';
 import ShopCarCard from '../Shop/ShopCarCard';
 import 'leaflet/dist/leaflet.css'
 import { getByCar, getCar } from "../Services/carServices";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import CarComment from './CarComment'
 import { postComments } from "../Services/commentServices";
@@ -67,6 +67,10 @@ const CarDetail = () => {
     const [userLocation, setUserLocation] = useState(null);
     const [showModal, setShowModal] = useState(false);
 
+    useEffect(() => {
+        setUserLocation(userLocation)
+    }, [useLocation]);
+
     const openModal = () => {
         setShowModal(true);
     };
@@ -88,11 +92,11 @@ const CarDetail = () => {
                     setUserLocation({ lat: latitude, lng: longitude });
                 },
                 (error) => {
-                    console.error("Konum alınamadı: ", error);
+                    console.error("location not found: ", error);
                 }
             );
         } else {
-            alert("Tarayıcınız konum hizmetini desteklemiyor.");
+            alert("Your browser does not support the location service.");
         }
         closeModal();
     };
@@ -103,14 +107,33 @@ const CarDetail = () => {
         setData(newData);
     };
 
-    const handleShapeCreated = (e) => {
-        const type = e.layerType;
-        if (type === 'marker') {
-            const latlng = e.layer.getLatLng();
-            //console.log('Marker Lat:', latlng.lat);
-            // console.log('Marker Lng:', latlng.lng);
+    const [pickUpLocationMap, setPickUpLocationMap] = useState(null);
+    const [returnUpLocationMap, setReturnUpLocationMap] = useState(null);
+  
+    const handleShapeCreated = async (e) => {
+      const type = e.layerType;
+      const latlng = e.layer.getLatLng();
+  
+      if (type === 'marker') {
+        if (!pickUpLocationMap) {
+
+        await  setPickUpLocationMap(latlng);  ///icerde null gelir 
+          console.log("icerde:::", pickUpLocationMap);
+        } else if (!returnUpLocationMap) {
+            console.log("icerde::++++:", pickUpLocationMap);
+
+       await   setReturnUpLocationMap(latlng);
         }
+      }
     };
+  
+  
+
+
+    console.log("Picik::::::::::", pickUpLocationMap);
+    console.log("Return::::::::::", returnUpLocationMap);
+    //console.log('Marker Lat:', latlng.lat);
+    // console.log('Marker Lng:', latlng.lng);
     //console.log("userLoacation lat", userLocation !== null ? userLocation.lat : "not lat");
     //console.log("userLoacation lng", userLocation !== null ? userLocation.lng : "not lng");
 
@@ -261,7 +284,7 @@ const CarDetail = () => {
             ChauffeursId: "",
             PickupDate: selectedDate ? selectedDate : "",
             ReturnDate: selectedDate1 ? selectedDate1 : "",
-            PickupLocation: { Latitude: 12.3, Longitude: 12.3 },
+            PickupLocation: { Latitude: userLocation !== null ? userLocation.lat : null, Longitude: userLocation !== null ? userLocation.lng : null },
             ReturnLocation: { Latitude: 12.3, Longitude: 12.3 },
         },
         onSubmit: async (values) => {
@@ -391,7 +414,7 @@ const CarDetail = () => {
                                                 url="https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}.png?key=S3UF58mBkVoHt2UkKpEL"
                                             />
                                             <FeatureGroup>
-                                                <EditControl position='topright' onCreated={handleShapeCreated} draw={{ rectangle: false, circlemarker: false, polygon: false }} />
+                                                <EditControl position='topright' onCreated={handleShapeCreated} draw={{ rectangle: false, circlemarker: false, polygon: false, marker: true, }} />
                                             </FeatureGroup>
                                             {userLocation && (
                                                 <Marker
