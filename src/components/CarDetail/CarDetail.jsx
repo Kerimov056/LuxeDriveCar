@@ -32,7 +32,7 @@ import { getChauffeurs } from "../Services/chauffeursServices";
 
 
 
-const CarDetail = () => {
+const CarDetail = (props) => {
 
     const { token, username, appuserid } = useSelector((x) => x.authReducer);
     const dispatch = useDispatch();
@@ -85,8 +85,6 @@ const CarDetail = () => {
     const handleDateChange1 = (e) => {
         const selected = new Date(e.target.value);
         const now = new Date();
-
-
         if (selected < now) {
             return;
         }
@@ -95,39 +93,8 @@ const CarDetail = () => {
         // reservFormik.handleChange();
     };
 
-    const reservMutation = useMutation(PostReservation, {
-        onSuccess: () => {
-            queryClient.invalidateQueries("Reservation");
-            navigate("/");
-        },
-    });
-    const user = appuserid;
-    const reservFormik = useFormik({
-        initialValues: {
-            FullName: "",
-            Image: "",
-            Email: "",
-            Number: "",
-            PickupDate: selectedDate,
-            ReturnDate: selectedDate1,
-            Notes: "",
-            AppUserId: user,
-            CarId: byCars?.data?.id,
-            Latitude: null,
-            Longitude: null,
-            Latitude: null,
-            Longitude: null,
-            ChauffeursId: null
-        },
-        onSubmit: async (values) => {
-            try {
-                reservMutation.mutateAsync(values);
-            } catch (error) {
-                console.log(error);
-            }
-        },
-    });
 
+   
 
     const { data: chaurffers } = useQuery({
         queryKey: ["chauffers"],
@@ -156,9 +123,12 @@ const CarDetail = () => {
             navigate("/");
         },
     });
+    const handleButtonClick = () => {
+        props.onUpdateData('Yeni Veri B');
+      };
 
 
-    const formik = useFormik({
+    const formikReserv = useFormik({
         initialValues: {
             comment: "",
             carid: byCars?.data?.id != null && byCars?.data?.id,
@@ -186,6 +156,62 @@ const CarDetail = () => {
     const handleAddToOrder = () => {
         mutate({ carId: byCars?.data?.id, AppUserId: appuserid });
     }
+
+
+    
+    const formik = useFormik({
+        initialValues: {
+            Image: null,
+            FullName: selectedBrand,
+            Email: selectedModel,
+            Number: undefined,
+            PickupDate: undefined,
+            ReturnDate: "",
+            Notes: "",
+            AppUserId: "",
+            CarId: "",
+            ChauffeursId: "",
+            PickupLocation: { Latitude: '', Longitude: ''},
+            CarCategory: { Latitude: '', Longitude: '' },
+        },
+        onSubmit: async (values) => {
+            // const formData = new FormData();
+
+            // formData.append("Marka", values.Marka);
+            // formData.append("Model", values.Model);
+            // formData.append("Price", values.Price);
+            // formData.append("Year", values.Year);
+            // formData.append("Description", values.Description);
+            // formData.append("CarType.type", values.CarType.type);
+            // formData.append("CarCategory.Category", values.CarCategory.Category);
+            // formData.append("tags", values.tags);
+
+            // for (let i = 0; i < values.CarImages.length; i++) {
+            //     formData.append('CarImages', values.CarImages[i]);
+            // }
+
+            // try {
+            //     const response = await axios.post('https://localhost:7152/api/Car/postCar', formData, {
+            //         headers: {
+            //             'Content-Type': 'multipart/form-data',
+            //         },
+            //     });
+
+            //     if (response.status === 201) {
+            //         queryClient.invalidateQueries('newCar');
+            //         navigate.push('/AllCar');
+            //     }
+            // } catch (error) {
+            //     console.log(error);
+            // }
+        },
+    });
+
+
+
+
+
+
 
 
     if (byCars) {
@@ -244,6 +270,7 @@ const CarDetail = () => {
                                 <div className='ReactLeafLet'>
                                     <Map />
                                     <div className='ChauferrsShop'>
+                                    <button onClick={handleButtonClick}>Veriyi Güncelle</button>
                                         {chaurffers?.data?.slice(0, 2).map((chauf, index) => (
                                             <ChauffeursCard key={index} Id={chauf?.id} name={chauf?.name} price={chauf?.price} />
                                         ))}
@@ -271,7 +298,7 @@ const CarDetail = () => {
                                 </div>
                                 <div className='ByReservACar'>
 
-                                    <form className='login_form'>
+                                    <form onSubmit={formik.handleSubmit} className='login_form'>
                                         <FormControl>
                                             <h3>Reservation A Car</h3>
 

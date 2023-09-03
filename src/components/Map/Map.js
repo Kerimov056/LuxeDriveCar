@@ -65,8 +65,11 @@ const Map = () => {
         closeModal();
     };
 
+    const [data, setData] = useState('Veri A');
 
-
+    const updateData = (newData) => {
+        setData(newData);
+      };
 
     const handleShapeCreated = (e) => {
         const type = e.layerType;
