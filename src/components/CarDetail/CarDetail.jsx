@@ -23,7 +23,6 @@ import CarComment from './CarComment'
 import { postComments } from "../Services/commentServices";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { PostReservation } from "../Services/reservationService";
 import Map from '../Map/Map';
 import { PostCar } from "../Services/basketServices";
 import ChauffeursCard from '../Chauffeurs/ChauffeursCard';
@@ -32,7 +31,7 @@ import { getChauffeurs } from "../Services/chauffeursServices";
 
 
 
-const CarDetail = (props) => {
+const CarDetail = () => {
 
     const { token, username, appuserid } = useSelector((x) => x.authReducer);
     const dispatch = useDispatch();
@@ -85,6 +84,7 @@ const CarDetail = (props) => {
     const handleDateChange1 = (e) => {
         const selected = new Date(e.target.value);
         const now = new Date();
+
         if (selected < now) {
             return;
         }
@@ -93,8 +93,6 @@ const CarDetail = (props) => {
         // reservFormik.handleChange();
     };
 
-
-   
 
     const { data: chaurffers } = useQuery({
         queryKey: ["chauffers"],
@@ -123,12 +121,9 @@ const CarDetail = (props) => {
             navigate("/");
         },
     });
-    const handleButtonClick = () => {
-        props.onUpdateData('Yeni Veri B');
-      };
 
 
-    const formikReserv = useFormik({
+    const formik = useFormik({
         initialValues: {
             comment: "",
             carid: byCars?.data?.id != null && byCars?.data?.id,
@@ -157,21 +152,28 @@ const CarDetail = (props) => {
         mutate({ carId: byCars?.data?.id, AppUserId: appuserid });
     }
 
+    const [image, setImage] = useState(null);
 
-    
-    const formik = useFormik({
+    const fileUploadHandler = (e) => {
+        const file = e.target.files[0];
+        setImage(file);
+    };
+
+
+
+    const reservFormik = useFormik({
         initialValues: {
             Image: null,
-            FullName: selectedBrand,
-            Email: selectedModel,
-            Number: undefined,
-            PickupDate: undefined,
+            FullName: "",
+            Email: "",
+            Number: "",
+            PickupDate: "",
             ReturnDate: "",
             Notes: "",
             AppUserId: "",
             CarId: "",
             ChauffeursId: "",
-            PickupLocation: { Latitude: '', Longitude: ''},
+            PickupLocation: { Latitude: '', Longitude: '' },
             CarCategory: { Latitude: '', Longitude: '' },
         },
         onSubmit: async (values) => {
@@ -206,8 +208,6 @@ const CarDetail = (props) => {
             // }
         },
     });
-
-
 
 
 
@@ -270,7 +270,6 @@ const CarDetail = (props) => {
                                 <div className='ReactLeafLet'>
                                     <Map />
                                     <div className='ChauferrsShop'>
-                                    <button onClick={handleButtonClick}>Veriyi Güncelle</button>
                                         {chaurffers?.data?.slice(0, 2).map((chauf, index) => (
                                             <ChauffeursCard key={index} Id={chauf?.id} name={chauf?.name} price={chauf?.price} />
                                         ))}
@@ -298,7 +297,7 @@ const CarDetail = (props) => {
                                 </div>
                                 <div className='ByReservACar'>
 
-                                    <form onSubmit={formik.handleSubmit} className='login_form'>
+                                    <form className='login_form'>
                                         <FormControl>
                                             <h3>Reservation A Car</h3>
 
@@ -340,10 +339,12 @@ const CarDetail = (props) => {
                                             <label htmlFor="password">Suruculuk Vesiqesi</label>
                                             <Text fontSize={"15px"} color={"red"} mb="8px">
                                             </Text>
-                                            <Input type='file' id='Cfile'
+                                            <Input
+                                                type='file'
+                                                id='Cfile'
                                                 name='Image'
-                                                value={reservFormik.values.Image}
-                                                onChange={reservFormik.handleChange}
+                                                accept="image/*"
+                                                onChange={(e) => fileUploadHandler(e)} 
                                                 placeholder='Here is a sample placeholder'
                                                 size='sm'
                                             />
