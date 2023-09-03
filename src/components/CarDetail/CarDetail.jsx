@@ -187,10 +187,6 @@ const CarDetail = () => {
         onSubmit: async (values) => {
             const formData = new FormData();
             console.log(values);
-            //console.log(values.PickupLocation.Latitude);
-            //console.log(values.PickupLocation.Longitude);
-            //console.log(values.ReturnLocation.Latitude);
-            //console.log(values.ReturnLocation.Longitude);
 
             formData.append('Image', image);
             formData.append("FullName", values.FullName);
@@ -294,7 +290,7 @@ const CarDetail = () => {
                                 </div>
 
                                 <div className='ReactLeafLet'>
-                                    {/* <Map /> */}
+                                    <Map />
                                     <div className='ChauferrsShop'>
                                         {chaurffers?.data?.slice(0, 2).map((chauf, index) => (
                                             <ChauffeursCard key={index} Id={chauf?.id} name={chauf?.name} price={chauf?.price} />

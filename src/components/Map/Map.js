@@ -42,6 +42,7 @@ const Map = () => {
 
     const closeModal = () => {
         setShowModal(false);
+        setUserLocation(null);  
     };
 
     const handleMapClick = () => {
@@ -75,12 +76,12 @@ const Map = () => {
         const type = e.layerType;
         if (type === 'marker') {
             const latlng = e.layer.getLatLng();
-            console.log('Marker Lat:', latlng.lat);
-            console.log('Marker Lng:', latlng.lng);
+            //console.log('Marker Lat:', latlng.lat);
+           // console.log('Marker Lng:', latlng.lng);
         }
     };
-    // console.log("userLoacation lat", userLocation !== null ? userLocation.lat : "not lat");
-    // console.log("userLoacation lng", userLocation !== null ? userLocation.lng : "not lng");
+     //console.log("userLoacation lat", userLocation !== null ? userLocation.lat : "not lat");
+     //console.log("userLoacation lng", userLocation !== null ? userLocation.lng : "not lng");
 
 
     return (
@@ -92,15 +93,15 @@ const Map = () => {
                         <div className="modal-content">
                             <p>Want to share your location?</p>
                             <div>
-                                <Button backgroundColor={"green"} onClick={shareLocation}>Evet</Button>
-                                <Button backgroundColor={"red.700"} onClick={closeModal}>Hayir</Button>
+                                <Button backgroundColor={"green"} onClick={shareLocation}>Yes</Button>
+                                <Button backgroundColor={"red.700"} onClick={closeModal}>No</Button>
                             </div>
                         </div>
                     </div>
                 )}
             </div>
             <div className='ss'>
-                <MapContainer center={[40.3798, 49.8486]} zoom={13} scrollWheelZoom={false} ref={mapRef}>
+                <MapContainer center={userLocation===null ? [40.3798, 49.8486] : userLocation} zoom={13} scrollWheelZoom={false} ref={mapRef}>
                     <TileLayer
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                         url="https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}.png?key=S3UF58mBkVoHt2UkKpEL"
