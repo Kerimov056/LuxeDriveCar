@@ -430,13 +430,15 @@ const CarDetail = () => {
 
                                 <div className='PickUpDescription'>
                                     <div>
-                                        By choosing the Pickup Location, you can pick up your car from the location you have chosen.<br/><br/>
-                                        After selecting the Pickup Location, a popup will appear asking you to choose a return location, and you can choose the pick-up location if you want.
+                                        By choosing the Pickup Location, you can pick up your car from the location you have chosen.<br /><br />
+                                        After selecting the Pickup Location, a popup will appear asking you to choose a return location, and you can choose the return location if you want.
                                     </div>
                                 </div>
                                 <div className='ReactLeafLet'>
                                     <div id='myLocation'>
-                                        <Button onClick={openModalL}>View Location</Button>
+                                        <div>
+                                            <span style={{fontSize:"20px"}}>Pick-up Location</span> <Button onClick={openModalL}>View Location</Button>
+                                        </div>
                                         {showModal && (
                                             <div className="modal">
                                                 <div className="modal-content">
