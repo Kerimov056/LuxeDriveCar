@@ -369,7 +369,6 @@ const CarDetail = () => {
 
 
 
-
     if (byCars) {
 
         return (
