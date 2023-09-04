@@ -2,8 +2,8 @@ import './basket.scss'
 import Navbar from "../Navbar/Navbar";
 import BasketCard from "./BasketCard";
 import { getBasketCars } from "../Services/basketServices";
-import { Link } from 'react-router-dom';
 import { useFormik } from "formik";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
@@ -30,6 +30,50 @@ const Basket = () => {
         staleTime: 0,
     });
 
+    const queryClient = useQueryClient();
+    const navigate = useNavigate();
+
+
+    const [selectedDate, setSelectedDate] = useState(null);
+    const [selectedDate1, setSelectedDate1] = useState(null);
+
+    useEffect(() => {
+        reservFormik.setValues({
+            ...reservFormik.values,
+            PickupDate: selectedDate ? selectedDate : "",
+            ReturnDate: selectedDate1 ? selectedDate1 : "",
+        });
+    }, [selectedDate, selectedDate1]);
+
+    const handleDateChange = (e) => {
+        const selected = new Date(e.target.value);
+        const now = new Date();
+
+        if (selected < now) {
+            return;
+        }
+        setSelectedDate(e.target.value);
+    };
+
+    const handleDateChange1 = (e) => {
+        const selected = new Date(e.target.value);
+        if (selectedDate === null) {
+            return;
+        }
+        if (selected < selectedDate) {
+            return;
+        }
+        setSelectedDate1(e.target.value);
+    };
+
+    const [image, setImage] = useState(null);
+
+
+    const fileUploadHandler = (e) => {
+        const file = e.target.files[0];
+        setImage(file);
+    };
+
     const reservFormik = useFormik({
         initialValues: {
             Image: null,
@@ -37,9 +81,7 @@ const Basket = () => {
             Email: "",
             Number: "",
             Notes: "",
-            CarId: CarID || '',
             AppUserId: appuserid,
-            ChauffeursId: "",
             PickupDate: selectedDate ? selectedDate : "",
             ReturnDate: selectedDate1 ? selectedDate1 : "",
             PickupLocation: { Latitude: null, Longitude: null },
@@ -54,15 +96,13 @@ const Basket = () => {
             formData.append("Email", values.Email);
             formData.append("Number", values.Number);
             formData.append("Notes", values.Notes);
-            formData.append("CarId", CarID ? CarID : '');
             formData.append("AppUserId", values.AppUserId);
-            formData.append("ChauffeursId", values.ChauffeursId);
             formData.append("PickupDate", values.PickupDate);
             formData.append("ReturnDate", values.ReturnDate);
-            formData.append("PickupLocation.Latitude", pickUpLocationMap.lat ? pickUpLocationMap.lat : '');
-            formData.append("PickupLocation.Longitude", pickUpLocationMap.lng ? pickUpLocationMap.lng : '');
-            formData.append("ReturnLocation.Latitude", returnUpLocationMap.lat ? returnUpLocationMap.lat : '');
-            formData.append("ReturnLocation.Longitude", returnUpLocationMap.lng ? returnUpLocationMap.lng : '');
+            formData.append("PickupLocation.Latitude",  '');
+            formData.append("PickupLocation.Longitude", '');
+            formData.append("ReturnLocation.Latitude",  '');
+            formData.append("ReturnLocation.Longitude", '');
 
 
             try {

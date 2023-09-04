@@ -24,7 +24,7 @@
             justify-content: center;
             align-items: center;
 
-            .TableStructur{
+            .TableStructur {
                 width: 99%;
                 height: 50px;
                 display: flex;
@@ -32,7 +32,7 @@
                 align-items: center;
                 overflow: hidden;
 
-                &>span{
+                &>span {
                     margin-left: 110px;
                     padding: 10px 10px;
                     padding-top: 30px;
@@ -46,35 +46,101 @@
                 height: 99%;
                 background-color: rgb(236, 236, 236);
 
-                
+
             }
         }
 
         .paypal {
             margin-top: 0;
             width: 100%;
-            height: 700px;
+            height: 1000px;
             font-size: 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            
-            .PaypalCarReserv{
+
+            .PaypalCarReserv {
                 width: 34%;
                 height: 100%;
                 background-color: antiquewhite;
             }
-            
-            .BasketReservationCar{
+
+            .BasketReservationCar {
                 background-color: chocolate;
                 width: 62%;
                 height: 100%;
+
+                .login_form {
+                    height: auto;
+                    width: 600px;
+                    background-color: rgba(255, 255, 255, 0.13);
+                    position: absolute;
+                    transform: translate(-50%, -50%);
+                    top: 47%;
+                    left: 63%;
+                    border-radius: 10px;
+                    backdrop-filter: blur(10px);
+                    border: 2px solid rgba(255, 255, 255, 0.1);
+                    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+                    padding: 50px 35px;
+
+                    * {
+                        color: #ffffff;
+                        letter-spacing: 0.5px;
+                        outline: none;
+                        border: none;
+                    }
+
+                    h3 {
+                        font-size: 32px;
+                        font-weight: 500;
+                        line-height: 42px;
+                        text-align: center;
+                    }
+
+                    label {
+                        display: block;
+                        margin-top: 20px;
+                        font-size: 16px;
+                        font-weight: 500;
+                    }
+
+                    input {
+                        display: block;
+                        height: 50px;
+                        width: 100%;
+                        background-color: rgba(255, 255, 255, 0.07);
+                        border-radius: 3px;
+                        padding: 0 10px;
+                        margin-top: 8px;
+                        font-size: 14px;
+                        font-weight: 300;
+
+                        &::placeholder {
+                            color: #e5e5e5;
+                        }
+                    }
+
+                    #Cfile {}
+
+                    button {
+                        margin-top: 50px;
+                        width: 100%;
+                        background-color: #ffffff;
+                        color: #080710;
+                        padding: 15px 0;
+                        font-size: 18px;
+                        font-weight: 600;
+                        border-radius: 5px;
+                        cursor: pointer;
+                    }
+                }
             }
         }
     }
 }
 
-#emptyBasket{
+#emptyBasket {
     margin-top: 40px;
     width: 100%;
     height: 600px;
@@ -82,18 +148,18 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
-    &>h1{
+
+    &>h1 {
         font-size: 24px;
     }
-    
-    &>div{
+
+    &>div {
         .Btn {
             width: 140px;
             height: 40px;
             border: none;
             border-radius: 10px;
-            background: linear-gradient(to right,#77530a,#ffd277,#77530a,#77530a,#ffd277,#77530a);
+            background: linear-gradient(to right, #77530a, #ffd277, #77530a, #77530a, #ffd277, #77530a);
             background-size: 250%;
             background-position: left;
             color: #ffd277;
@@ -104,9 +170,9 @@
             cursor: pointer;
             transition-duration: 1s;
             overflow: hidden;
-          }
-          
-          .Btn::before {
+        }
+
+        .Btn::before {
             position: absolute;
             content: "Car Order";
             color: #ffd277;
@@ -119,20 +185,20 @@
             transition-duration: 1s;
             background-color: rgba(0, 0, 0, 0.842);
             background-size: 200%;
-          }
-          
-          .Btn:hover {
+        }
+
+        .Btn:hover {
             background-position: right;
             transition-duration: 1s;
-          }
-          
-          .Btn:hover::before {
+        }
+
+        .Btn:hover::before {
             background-position: right;
             transition-duration: 1s;
-          }
-          
-          .Btn:active {
+        }
+
+        .Btn:active {
             transform: scale(0.95);
-          }
+        }
     }
 }

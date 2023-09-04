@@ -179,16 +179,6 @@ const CarDetail = () => {
     const { token, username, appuserid } = useSelector((x) => x.authReducer);
     const dispatch = useDispatch();
 
-    const [pickupLocation, setPickupLocation] = useState(null);
-    const [returnLocation, setReturnLocation] = useState(null);
-
-    const handlePickupLocationSelect = (location) => {
-        setPickupLocation(location);
-    };
-
-    const handleReturnLocationSelect = (location) => {
-        setReturnLocation(location);
-    };
 
     const { id } = useParams();
     const queryClient = useQueryClient();
