@@ -99,14 +99,28 @@ const Basket = () => {
             formData.append("AppUserId", values.AppUserId);
             formData.append("PickupDate", values.PickupDate);
             formData.append("ReturnDate", values.ReturnDate);
-            formData.append("PickupLocation.Latitude",  '');
+            formData.append("PickupLocation.Latitude", '');
             formData.append("PickupLocation.Longitude", '');
-            formData.append("ReturnLocation.Latitude",  '');
+            formData.append("ReturnLocation.Latitude", '');
             formData.append("ReturnLocation.Longitude", '');
 
+            ////////////////////////////////
+            console.log("Image-------" + formData.getAll("Image"));
+            console.log("FullName-------" + formData.getAll("FullName"));
+            console.log("Email-------" + formData.getAll("Email"));
+            console.log("Number-------" + formData.getAll("Number"));
+            console.log("Notes-------" + formData.getAll("Notes"));
+            console.log("AppUserId-------" + formData.getAll("AppUserId"));
+            console.log("PickupDate-------" + formData.getAll("PickupDate"));
+            console.log("ReturnDate-------" + formData.getAll("ReturnDate"));
+            console.log("PickupLocation.Latitude-------" + formData.getAll("PickupLocation.Latitude"));
+            console.log("PickupLocation.Longitude-------" + formData.getAll("PickupLocation.Longitude"));
+            console.log("ReturnLocation.Latitude-------" + formData.getAll("ReturnLocation.Latitude"));
+            console.log("ReturnLocation.Longitude-------" + formData.getAll("ReturnLocation.Longitude"));
+            ////////////////////////////////
 
             try {
-                const response = await axios.post('https://localhost:7152/api/CarReservations', formData, {
+                const response = await axios.post('https://localhost:7152/api/CarReservations/AllResev', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                     },
