@@ -95,6 +95,10 @@ const Register = () => {
                             />
 
                             <Button type='submit' onClick={formik.handleSubmit}>Register</Button>
+                            <div className='GoogleAndAppleRegister'>
+                                <button className='GoogleRegister'></button>
+                                <button className='AppleRegister'></button>
+                            </div>
                             <Link to={"/Login"}><Button><GrPrevious />Login</Button></Link>
                         </FormControl>
                     </form>
