@@ -32,8 +32,8 @@ const Basket = () => {
                             <span>X</span>
                             <span>Order</span>
                         </div>
-                         <div>
-                            {basketCars?.data !=null && basketCars?.data.map((bycars, index) => (
+                        <div>
+                            {basketCars?.data !== null && basketCars?.data.map((bycars, index) => (
                                 <BasketCard
                                     key={index}
                                     img={'https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Main-home-vehicle-list-img-01.jpg'}
@@ -46,20 +46,23 @@ const Basket = () => {
                                 />
                             ))}
                             {
-                                basketCars?.data.lenght == null &&
-                                <div Id='emptyBasket'>
-                                    <h1>You have never ordered a car</h1>
-                                    <div>
-                                        <Link to={'/Shop'}><button class="Btn"></button></Link>
+                                basketCars?.data?.lenght === null ||  basketCars?.data.length === 0  && (
+                                    <div Id='emptyBasket'>
+                                        <h1>You have never ordered a car</h1>
+                                        <div>
+                                            <Link to={'/Shop'}><button class="Btn"></button></Link>
+                                        </div>
                                     </div>
-                                </div>
-                            }
-                        </div> 
+                                )}  {basketCars?.data?.length !== null  && (
+                                    <div className="paypal">
+                                        <div className='PaypalCarReserv'>Paypal</div>
+                                        <div className='BasketReservationCar'>
+                                            Reservation
+                                        </div>
+                                    </div>
+                                )}
+                        </div>
                     </div>
-                    {
-                        basketCars?.data.lenght != null &&
-                        <div className='paypal'>Paypal</div>
-                    }
                 </div>
             </div>
         </>
