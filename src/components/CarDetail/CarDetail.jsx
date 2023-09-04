@@ -334,22 +334,7 @@ const CarDetail = () => {
             formData.append("PickupLocation.Longitude", pickUpLocationMap.lng ? pickUpLocationMap.lng : '');
             formData.append("ReturnLocation.Latitude", returnUpLocationMap.lat ? returnUpLocationMap.lat: '');
             formData.append("ReturnLocation.Longitude", returnUpLocationMap.lng ? returnUpLocationMap.lng: '' );
-            ////////////////////////////////
-            console.log("Image-------" + formData.getAll("Image"));
-            console.log("FullName-------" + formData.getAll("FullName"));
-            console.log("Email-------" + formData.getAll("Email"));
-            console.log("Number-------" + formData.getAll("Number"));
-            console.log("Notes-------" + formData.getAll("Notes"));
-            console.log("CarId-------" + formData.getAll("CarId"));
-            console.log("AppUserId-------" + formData.getAll("AppUserId"));
-            console.log("ChauffeursId-------" + formData.getAll("ChauffeursId"));
-            console.log("PickupDate-------" + formData.getAll("PickupDate"));
-            console.log("ReturnDate-------" + formData.getAll("ReturnDate"));
-            console.log("PickupLocation.Latitude-------" + formData.getAll("PickupLocation.Latitude"));
-            console.log("PickupLocation.Longitude-------" + formData.getAll("PickupLocation.Longitude"));
-            console.log("ReturnLocation.Latitude-------" + formData.getAll("ReturnLocation.Latitude"));
-            console.log("ReturnLocation.Longitude-------" + formData.getAll("ReturnLocation.Longitude"));
-            ////////////////////////////////
+           
 
             try {
                 const response = await axios.post('https://localhost:7152/api/CarReservations', formData, {
@@ -357,6 +342,11 @@ const CarDetail = () => {
                         'Content-Type': 'multipart/form-data',
                     },
                 })
+                if (response.status === 201) {
+                    queryClient.invalidateQueries('getReservation');
+                    navigate.push('/MyProfile');
+                }
+                
             } catch (error) {
                 console.log(error);
             }
