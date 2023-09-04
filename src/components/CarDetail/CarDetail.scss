@@ -66,6 +66,11 @@
                         height: auto;
                         font-size: 17px;
                         border-bottom: 1px solid gray;
+
+                        &>button{
+                            margin-top: 10px;
+                            margin-bottom: 5px;
+                        }
                     }
                 }
 
