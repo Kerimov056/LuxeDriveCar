@@ -179,7 +179,6 @@ const CarDetail = () => {
     const { token, username, appuserid } = useSelector((x) => x.authReducer);
     const dispatch = useDispatch();
 
-
     const { id } = useParams();
     const queryClient = useQueryClient();
     const navigate = useNavigate();

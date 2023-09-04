@@ -167,7 +167,7 @@ const Basket = () => {
                                             <Link to={'/Shop'}><button class="Btn"></button></Link>
                                         </div>
                                     </div>
-                                )}  {basketCars?.data?.length !== null && (
+                                )}  {basketCars?.data?.length !== 0 && (
                                     <div className="paypal">
                                         <div className='PaypalCarReserv'>Paypal</div>
                                         <div className='BasketReservationCar'>
