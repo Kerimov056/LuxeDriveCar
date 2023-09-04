@@ -39,7 +39,7 @@ import '../Map/map.scss'
 
 const customStyles = {
     content: {
-        top: '50%',
+        top: '52%',
         left: '50%',
         right: 'auto',
         bottom: 'auto',
@@ -137,13 +137,14 @@ const CarDetail = () => {
         }
     };
 
-    console.log("Pickkkkk" + pickUpLocationMap.lat);
+     console.log("Pickkkkk" + pickUpLocationMap.lat);
 
 
     const [returnUpLocationMap, setReturnLocationMap] = useState({ lat: null, lng: null });
 
     const updatReturnpLocation = (lat, lng) => {
         setReturnLocationMap({ lat, lng });
+        closeModal(false);
     };
 
 
@@ -295,10 +296,10 @@ const CarDetail = () => {
     }
 
     const [image, setImage] = useState(null);
-    const [CarId, setCarId] = useState(byCars?.data?.id ? byCars?.data?.id : "");
+    const [CarId, setCarId] = useState(byCars?.data?.carId ? byCars?.data?.carId : "");
 
     useEffect(() => {
-        setCarId(byCars?.data?.id ? byCars?.data?.id : "");
+        setCarId(byCars?.data?.carId ? byCars?.data?.carId : "");
     }, [CarId]);
 
     const fileUploadHandler = (e) => {
@@ -313,13 +314,13 @@ const CarDetail = () => {
             Email: "",
             Number: "",
             Notes: "",
-            CarId: CarId,
+            CarId: CarId !==null ? CarId : "",
             AppUserId: appuserid,
             ChauffeursId: "",
             PickupDate: selectedDate ? selectedDate : "",
             ReturnDate: selectedDate1 ? selectedDate1 : "",
-            PickupLocation: { Latitude: userLocation !== null ? userLocation.lat : null, Longitude: userLocation !== null ? userLocation.lng : null },
-            ReturnLocation: { Latitude: 12.3, Longitude: 12.3 },
+            PickupLocation: { Latitude: null, Longitude: null},
+            ReturnLocation: { Latitude: null , Longitude: null},
         },
         onSubmit: async (values) => {
             const formData = new FormData();
@@ -335,25 +336,25 @@ const CarDetail = () => {
             formData.append("ChauffeursId", values.ChauffeursId);
             formData.append("PickupDate", values.PickupDate);
             formData.append("ReturnDate", values.ReturnDate);
-            formData.append("PickupLocation.Latitude", values.PickupLocation.Latitude);
-            formData.append("PickupLocation.Longitude", values.PickupLocation.Longitude);
-            formData.append("ReturnLocation.Latitude", values.ReturnLocation.Latitude);
-            formData.append("ReturnLocation.Longitude", values.ReturnLocation.Longitude);
+            formData.append("PickupLocation.Latitude", pickUpLocationMap.lat ? pickUpLocationMap.lat : '');
+            formData.append("PickupLocation.Longitude", pickUpLocationMap.lng ? pickUpLocationMap.lng : '');
+            formData.append("ReturnLocation.Latitude", returnUpLocationMap.lat ? returnUpLocationMap.lat: '');
+            formData.append("ReturnLocation.Longitude", returnUpLocationMap.lng ? returnUpLocationMap.lng: '' );
             //////////////////////////////////
-            // console.log("Image-------" + formData.getAll("Image"));
-            // console.log("FullName-------" + formData.getAll("FullName"));
-            // console.log("Email-------" + formData.getAll("Email"));
-            // console.log("Number-------" + formData.getAll("Number"));
-            // console.log("Notes-------" + formData.getAll("Notes"));
-            // console.log("CarId-------" + formData.getAll("CarId"));
-            // console.log("AppUserId-------" + formData.getAll("AppUserId"));
-            // console.log("ChauffeursId-------" + formData.getAll("ChauffeursId"));
-            // console.log("PickupDate-------" + formData.getAll("PickupDate"));
-            // console.log("ReturnDate-------" + formData.getAll("ReturnDate"));
-            // console.log("PickupLocation.Latitude-------" + formData.getAll("PickupLocation.Latitude"));
-            // console.log("PickupLocation.Longitude-------" + formData.getAll("PickupLocation.Longitude"));
-            // console.log("ReturnLocation.Latitude-------" + formData.getAll("ReturnLocation.Latitude"));
-            // console.log("ReturnLocation.Longitude-------" + formData.getAll("ReturnLocation.Longitude"));
+            console.log("Image-------" + formData.getAll("Image"));
+            console.log("FullName-------" + formData.getAll("FullName"));
+            console.log("Email-------" + formData.getAll("Email"));
+            console.log("Number-------" + formData.getAll("Number"));
+            console.log("Notes-------" + formData.getAll("Notes"));
+            console.log("CarId-------" + formData.getAll("CarId"));
+            console.log("AppUserId-------" + formData.getAll("AppUserId"));
+            console.log("ChauffeursId-------" + formData.getAll("ChauffeursId"));
+            console.log("PickupDate-------" + formData.getAll("PickupDate"));
+            console.log("ReturnDate-------" + formData.getAll("ReturnDate"));
+            console.log("PickupLocation.Latitude-------" + formData.getAll("PickupLocation.Latitude"));
+            console.log("PickupLocation.Longitude-------" + formData.getAll("PickupLocation.Longitude"));
+            console.log("ReturnLocation.Latitude-------" + formData.getAll("ReturnLocation.Latitude"));
+            console.log("ReturnLocation.Longitude-------" + formData.getAll("ReturnLocation.Longitude"));
             //////////////////////////////////
 
             try {
@@ -432,15 +433,15 @@ const CarDetail = () => {
                                     <div>
                                         By choosing the Pickup Location, you can pick up your car from the location you have chosen.<br /><br />
                                         After selecting the Pickup Location, a popup will appear asking you to choose a return location, and you can choose the return location if you want.
-                                    <Button onClick={openModal}>Change Return Location</Button>
+                                        <Button onClick={openModal}>Change Return Location</Button>
                                     </div>
                                 </div>
                                 <div className='ReactLeafLet'>
                                     <div id='myLocation'>
                                         <div>
-                                            <span style={{fontSize:"20px", color:"#ff7700"}}>Pick-up Location</span> 
-                                            <Button style={{marginLeft:"10px"}} onClick={openModalL}>View Location</Button>
-                                        </div> 
+                                            <span style={{ fontSize: "20px", color: "#ff7700",fontFamily:"Georgia, 'Times New Roman', Times, serif" }}>Pick-up Location</span>
+                                            <Button style={{ marginLeft: "10px" }} onClick={openModalL}>View Location</Button>
+                                        </div>
                                         {showModal && (
                                             <div className="modal">
                                                 <div className="modal-content">
@@ -622,14 +623,16 @@ const CarDetail = () => {
                         </div>
                     </div>
                 </div>
-                <button onClick={openModal}>Open Modal</button>
                 <Modal
                     isOpen={modalIsOpen}
                     onRequestClose={closeModal}
                     style={customStyles}
                     contentLabel="Example Modal"
                 >
-                    <button onClick={closeModal}>X</button>
+                    <div id='PopUpLocationR'>
+                        <span>Return Location</span>
+                        <button onClick={closeModal}>X</button>
+                    </div>
                     <MapContainer style={{ width: "1000px", height: "600px" }} center={userLocation === null ? [40.3798, 49.8486] : userLocation} zoom={13} scrollWheelZoom={false} ref={mapRef}>
                         <TileLayer
                             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

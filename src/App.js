@@ -46,8 +46,8 @@ function App() {
             <Route path='/Chat' element={<Chat />} />
             <Route path='/FilterPage/:car/:model' element={<FilterPage />} />
             <Route path='/MyProfile' element={<MyProfile />} />
-            <Route path='/Maps' element={<Maps />} />
-            {/* <Route path='/Map' element={<Map />} />
+           {/* <Route path='/Maps' element={<Maps />} />
+            <Route path='/Map' element={<Map />} />
             <Route path='/StaticMap' element={<StaticMap />} /> */}
           </Routes>
 
