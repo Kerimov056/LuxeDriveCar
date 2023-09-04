@@ -28,6 +28,8 @@ import ChauffeursCard from '../Chauffeurs/ChauffeursCard';
 import { getChauffeurs } from "../Services/chauffeursServices";
 import Modal from 'react-modal';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 //---LeafLet
 import L from "leaflet";
 import 'leaflet/dist/leaflet.css';
@@ -308,13 +310,13 @@ const CarDetail = () => {
             Email: "",
             Number: "",
             Notes: "",
-            CarId:  CarID || '',
+            CarId: CarID || '',
             AppUserId: appuserid,
             ChauffeursId: "",
             PickupDate: selectedDate ? selectedDate : "",
             ReturnDate: selectedDate1 ? selectedDate1 : "",
-            PickupLocation: { Latitude: null, Longitude: null},
-            ReturnLocation: { Latitude: null , Longitude: null},
+            PickupLocation: { Latitude: null, Longitude: null },
+            ReturnLocation: { Latitude: null, Longitude: null },
         },
         onSubmit: async (values) => {
             const formData = new FormData();
@@ -332,9 +334,9 @@ const CarDetail = () => {
             formData.append("ReturnDate", values.ReturnDate);
             formData.append("PickupLocation.Latitude", pickUpLocationMap.lat ? pickUpLocationMap.lat : '');
             formData.append("PickupLocation.Longitude", pickUpLocationMap.lng ? pickUpLocationMap.lng : '');
-            formData.append("ReturnLocation.Latitude", returnUpLocationMap.lat ? returnUpLocationMap.lat: '');
-            formData.append("ReturnLocation.Longitude", returnUpLocationMap.lng ? returnUpLocationMap.lng: '' );
-           
+            formData.append("ReturnLocation.Latitude", returnUpLocationMap.lat ? returnUpLocationMap.lat : '');
+            formData.append("ReturnLocation.Longitude", returnUpLocationMap.lng ? returnUpLocationMap.lng : '');
+
 
             try {
                 const response = await axios.post('https://localhost:7152/api/CarReservations', formData, {
@@ -344,9 +346,19 @@ const CarDetail = () => {
                 })
                 if (response.status === 201) {
                     queryClient.invalidateQueries('getReservation');
-                    navigate.push('/MyProfile');
+                    navigate('/MyProfile');
+                    // toast.success('🦄 Wow so easy!', {
+                    //     position: "top-center",
+                    //     autoClose: 5000,
+                    //     hideProgressBar: false,
+                    //     closeOnClick: true,
+                    //     pauseOnHover: true,
+                    //     draggable: true,
+                    //     progress: undefined,
+                    //     theme: "dark",
+                    // });
                 }
-                
+
             } catch (error) {
                 console.log(error);
             }
@@ -423,7 +435,7 @@ const CarDetail = () => {
                                 <div className='ReactLeafLet'>
                                     <div id='myLocation'>
                                         <div>
-                                            <span style={{ fontSize: "20px", color: "#ff7700",fontFamily:"Georgia, 'Times New Roman', Times, serif" }}>Pick-up Location</span>
+                                            <span style={{ fontSize: "20px", color: "#ff7700", fontFamily: "Georgia, 'Times New Roman', Times, serif" }}>Pick-up Location</span>
                                             <Button style={{ marginLeft: "10px" }} onClick={openModalL}>View Location</Button>
                                         </div>
                                         {showModal && (
