@@ -19,11 +19,13 @@ import MyProfile from "./components/Profile/MyProfile";
 import Maps from "./components/Map/Maps"
 import Map from "./components/Map/Map"
 import StaticMap from "./components/Map/StaticMap"
-
+import { useDispatch, useSelector } from 'react-redux';
 
 
 function App() {
 
+  const dispatch = useDispatch();
+  const { token } = useSelector(x => x.authReducer);
 
   return (
     <>
@@ -35,8 +37,12 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/AboutUs' element={<AboutUs />} />
-            <Route path='/Login' element={<Login />} />
-            <Route path='/Register' element={<Register />} />
+            {token === null &&
+              <Route path='/Login' element={<Login />} />
+            }
+            {token === null &&
+              <Route path='/Register' element={<Register />} />
+            }
             <Route path='/VehicleFleet' element={<VehicleFleet />} />
             <Route path='/Blogs' element={<Blogs />} />
             <Route path='/Shop' element={<Shop />} />
@@ -46,7 +52,7 @@ function App() {
             <Route path='/Chat' element={<Chat />} />
             <Route path='/FilterPage/:car/:model' element={<FilterPage />} />
             <Route path='/MyProfile' element={<MyProfile />} />
-           {/* <Route path='/Maps' element={<Maps />} />
+            {/* <Route path='/Maps' element={<Maps />} />
             <Route path='/Map' element={<Map />} />
             <Route path='/StaticMap' element={<StaticMap />} /> */}
           </Routes>
