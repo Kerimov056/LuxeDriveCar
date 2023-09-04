@@ -31,17 +31,32 @@ const Maps = () => {
     const [center, setCenter] = useState({ lat: 40.4093, lng: 49.8671 });
 
 
-
-    const handleShapeCreated = (e) => {
-        const type = e.layerType;
-        if (type === 'marker') {
-            const latlng = e.layer.getLatLng();
-            console.log('Marker Lat:', latlng.lat);
-            console.log('Marker Lng:', latlng.lng);
+    const [pickUpLocationMap, setPickUpLocationMap] = useState({ lat: null, lng: null });
+    const [returnUpLocationMap, setReturnUpLocationMap] = useState({ lat: null, lng: null })
+    const [returnUpLocationMap2, setReturnUpLocationMap2] = useState({ lat: null, lng: null })
+    const updatePickUpLocation = (lat, lng) => {
+        setPickUpLocationMap({ lat, lng });
+    }
+    const updateReturnUpLocation = (lat, lng) => {
+        // if (pickUpLocationMap.lat !== null) {
+        setReturnUpLocationMap({ lat, lng });
+        setReturnUpLocationMap2(returnUpLocationMap2.lat == null && { lat, lng });
+        // }    
+    }
+    console.log("222222222", returnUpLocationMap2);
+    const handleDrawCreated = (e) => {
+        const { layerType, layer } = e;
+        if (layerType === 'marker') {
+            const latlng = layer.getLatLng();
+            const lat = latlng.lat;
+            const lng = latlng.lng;
+            updatePickUpLocation(lat, lng);
+            updateReturnUpLocation(lat, lng);
+            console.log(`Latitude: ${lat}, Longitude: ${lng}`);
         }
-    };
-
-
+    }
+    console.log("pppppppp", pickUpLocationMap);
+    console.log("rrrrrrrrrr", returnUpLocationMap);
 
     return (
         <>
@@ -52,7 +67,7 @@ const Maps = () => {
                         url="https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}.png?key=S3UF58mBkVoHt2UkKpEL"
                     />
                     <FeatureGroup>
-                        <EditControl position='topright' onCreated={handleShapeCreated} draw={{ rectangle: false, circlemarker: false, polygon: false }} />
+                        <EditControl position='topright' onCreated={handleDrawCreated} draw={{ rectangle: false, circlemarker: false, polygon: false }} />
                     </FeatureGroup>
                     <Marker position={center} icon={markerIcon}>
                         <Popup>

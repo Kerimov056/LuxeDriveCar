@@ -26,7 +26,7 @@
 
             .CarImg {
                 display: inline-block;
-                width: auto;
+                width: 44%;
                 height: auto;
 
                 .mainImg {
@@ -54,11 +54,27 @@
                     }
                 }
 
+                .PickUpDescription{
+                    width: auto;
+                    height: auto;
+                    display: flex;
+                    justify-content: start;
+                    align-items: start;
+                
+                    &>div{
+                        width: 100%;
+                        height: auto;
+                        font-size: 17px;
+                        border-bottom: 1px solid gray;
+                    }
+                }
+
                 .ReactLeafLet {
                     z-index: -1;
                     margin-top: 50px;
                     width: 100%;
                     height: 500px;
+                    // margin-left: -40px;
 
                     .ChauferrsShop{
                         margin-top: 20px;
@@ -279,3 +295,4 @@
         }
     }
 }
+

@@ -47,8 +47,8 @@ function App() {
             <Route path='/FilterPage/:car/:model' element={<FilterPage />} />
             <Route path='/MyProfile' element={<MyProfile />} />
             <Route path='/Maps' element={<Maps />} />
-            <Route path='/Map' element={<Map />} />
-            <Route path='/StaticMap' element={<StaticMap />} />
+            {/* <Route path='/Map' element={<Map />} />
+            <Route path='/StaticMap' element={<StaticMap />} /> */}
           </Routes>
 
           <Footer />
@@ -61,36 +61,3 @@ function App() {
 
 export default App;
 
-
-
-
-
-
-
-
-
-{/* <ChakraProvider>
-
-        <Router>
-
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/AboutUs' element={<AboutUs />} />
-            <Route path='/Login' element={<Login />} />
-            <Route path='/Register' element={<Register />} />
-            <Route path='/VehicleFleet' element={<VehicleFleet />} />
-            <Route path='/Blogs' element={<Blogs />} />
-            <Route path='/Shop' element={<Shop />} />
-            <Route path='/CarDetail/:id' element={<CarDetail />} />
-            <Route path='/BlogDetails/:id' element={<BlogDetails />} />
-            <Route path='/Basket' element={<Basket />} />
-            <Route path='/Chat' element={<Chat />} />
-            <Route path='/FilterPage/:car/:model' element={<FilterPage />} />
-            <Route path='/MyProfile' element={<MyProfile />} />
-            <Route path='/Maps' element={<Maps />} />
-          </Routes>
-
-          <Footer />
-        </ Router>
-
-      </ChakraProvider> */}

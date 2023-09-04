@@ -26,6 +26,7 @@ import Map from '../Map/Map';
 import { PostCar } from "../Services/basketServices";
 import ChauffeursCard from '../Chauffeurs/ChauffeursCard';
 import { getChauffeurs } from "../Services/chauffeursServices";
+import Modal from 'react-modal';
 import axios from 'axios';
 //---LeafLet
 import L from "leaflet";
@@ -34,6 +35,18 @@ import "leaflet-draw/dist/leaflet.draw.css";
 import { MapContainer, TileLayer, Marker, Popup, FeatureGroup } from "react-leaflet";
 import { EditControl } from "react-leaflet-draw";
 import '../Map/map.scss'
+
+
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+    },
+};
 
 
 const markerIcon = new L.Icon({
@@ -71,17 +84,17 @@ const CarDetail = () => {
         setUserLocation(userLocation)
     }, [useLocation]);
 
-    const openModal = () => {
+    const openModalL = () => {
         setShowModal(true);
     };
 
-    const closeModal = () => {
+    const closeModalL = () => {
         setShowModal(false);
         setUserLocation(null);
     };
 
     const handleMapClick = () => {
-        openModal();
+        openModalL();
     };
 
     const shareLocation = () => {
@@ -98,7 +111,7 @@ const CarDetail = () => {
         } else {
             alert("Your browser does not support the location service.");
         }
-        closeModal();
+        closeModalL();
     };
 
     const [data, setData] = useState('Veri A');
@@ -107,40 +120,61 @@ const CarDetail = () => {
         setData(newData);
     };
 
-    const [pickUpLocationMap, setPickUpLocationMap] = useState(null);
-    const [returnUpLocationMap, setReturnUpLocationMap] = useState(null);
-  
-    const handleShapeCreated = async (e) => {
-      const type = e.layerType;
-      const latlng = e.layer.getLatLng();
-  
-      if (type === 'marker') {
-        if (!pickUpLocationMap) {
+    const [pickUpLocationMap, setPickUpLocationMap] = useState({ lat: null, lng: null });
 
-        await  setPickUpLocationMap(latlng);  ///icerde null gelir 
-          console.log("icerde:::", pickUpLocationMap);
-        } else if (!returnUpLocationMap) {
-            console.log("icerde::++++:", pickUpLocationMap);
-
-       await   setReturnUpLocationMap(latlng);
-        }
-      }
+    const updatePickUpLocation = (lat, lng) => {
+        setPickUpLocationMap({ lat, lng });
+        openModal(true);
     };
-  
-  
+
+    const handleDrawPickUpCreated = (e) => {
+        const { layerType, layer } = e;
+        if (layerType === 'marker') {
+            const latlng = layer.getLatLng();
+            const lat = latlng.lat;
+            const lng = latlng.lng;
+            updatePickUpLocation(lat, lng);
+        }
+    };
+
+    console.log("Pickkkkk" + pickUpLocationMap.lat);
 
 
-    console.log("Picik::::::::::", pickUpLocationMap);
-    console.log("Return::::::::::", returnUpLocationMap);
-    //console.log('Marker Lat:', latlng.lat);
-    // console.log('Marker Lng:', latlng.lng);
-    //console.log("userLoacation lat", userLocation !== null ? userLocation.lat : "not lat");
-    //console.log("userLoacation lng", userLocation !== null ? userLocation.lng : "not lng");
+    const [returnUpLocationMap, setReturnLocationMap] = useState({ lat: null, lng: null });
 
+    const updatReturnpLocation = (lat, lng) => {
+        setReturnLocationMap({ lat, lng });
+    };
+
+
+    const handleDrawReturnCreated = (e) => {
+        const { layerType, layer } = e;
+        if (layerType === 'marker') {
+            const latlng = layer.getLatLng();
+            const lat = latlng.lat;
+            const lng = latlng.lng;
+            updatReturnpLocation(lat, lng);
+        }
+    };
+
+    console.log("Return" + returnUpLocationMap.lat);
 
     //---------leaflet
 
 
+    //-----------------PopUpLeaflet
+    const [modalIsOpen, setIsOpen] = useState(false);
+
+    function openModal() {
+        setIsOpen(true);
+    }
+
+
+    function closeModal() {
+        setIsOpen(false);
+    }
+
+    //-----------------PopUpLeaflet
     const { token, username, appuserid } = useSelector((x) => x.authReducer);
     const dispatch = useDispatch();
 
@@ -346,6 +380,7 @@ const CarDetail = () => {
                 <div className='CarDeatilsNavbar'>
                     <Navbar />
                 </div>
+
                 <div id='CarDetail'>
                     <div>
                         <div className='CarD'>
@@ -392,16 +427,23 @@ const CarDetail = () => {
                                     ))}
                                 </div>
 
+
+                                <div className='PickUpDescription'>
+                                    <div>
+                                        By choosing the Pickup Location, you can pick up your car from the location you have chosen.<br/><br/>
+                                        After selecting the Pickup Location, a popup will appear asking you to choose a return location, and you can choose the pick-up location if you want.
+                                    </div>
+                                </div>
                                 <div className='ReactLeafLet'>
                                     <div id='myLocation'>
-                                        <Button onClick={openModal}>View Location</Button>
+                                        <Button onClick={openModalL}>View Location</Button>
                                         {showModal && (
                                             <div className="modal">
                                                 <div className="modal-content">
                                                     <p>Want to share your location?</p>
                                                     <div>
                                                         <Button backgroundColor={"green"} onClick={shareLocation}>Yes</Button>
-                                                        <Button backgroundColor={"red.700"} onClick={closeModal}>No</Button>
+                                                        <Button backgroundColor={"red.700"} onClick={closeModalL}>No</Button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -414,7 +456,7 @@ const CarDetail = () => {
                                                 url="https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}.png?key=S3UF58mBkVoHt2UkKpEL"
                                             />
                                             <FeatureGroup>
-                                                <EditControl position='topright' onCreated={handleShapeCreated} draw={{ rectangle: false, circlemarker: false, polygon: false, marker: true, }} />
+                                                <EditControl position='topright' onCreated={handleDrawPickUpCreated} draw={{ rectangle: false, circlemarker: false, polygon: false, marker: true, }} />
                                             </FeatureGroup>
                                             {userLocation && (
                                                 <Marker
@@ -576,6 +618,32 @@ const CarDetail = () => {
                         </div>
                     </div>
                 </div>
+                <button onClick={openModal}>Open Modal</button>
+                <Modal
+                    isOpen={modalIsOpen}
+                    onRequestClose={closeModal}
+                    style={customStyles}
+                    contentLabel="Example Modal"
+                >
+                    <button onClick={closeModal}>X</button>
+                    <MapContainer style={{ width: "1000px", height: "600px" }} center={userLocation === null ? [40.3798, 49.8486] : userLocation} zoom={13} scrollWheelZoom={false} ref={mapRef}>
+                        <TileLayer
+                            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                            url="https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}.png?key=S3UF58mBkVoHt2UkKpEL"
+                        />
+                        <FeatureGroup>
+                            <EditControl position='topright' onCreated={handleDrawReturnCreated} draw={{ rectangle: false, circlemarker: false, polygon: false, marker: true, }} />
+                        </FeatureGroup>
+                        {userLocation && (
+                            <Marker
+                                position={userLocation}
+                                icon={markerIcon}
+                            >
+                                <Popup>My Location</Popup>
+                            </Marker>
+                        )}
+                    </MapContainer>
+                </Modal>
                 <div id='carDetailsComment'>
                     <div>
                         <div>
