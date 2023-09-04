@@ -137,7 +137,6 @@ const CarDetail = () => {
         }
     };
 
-     console.log("Pickkkkk" + pickUpLocationMap.lat);
 
 
     const [returnUpLocationMap, setReturnLocationMap] = useState({ lat: null, lng: null });
@@ -158,7 +157,6 @@ const CarDetail = () => {
         }
     };
 
-    console.log("Return" + returnUpLocationMap.lat);
 
     //---------leaflet
 
@@ -197,6 +195,7 @@ const CarDetail = () => {
     const { data: byCars } = useQuery(["Car", id], () =>
         getByCar(id)
     );
+
 
     const { data: cars } = useQuery({
         queryKey: ["Cars"],
@@ -296,17 +295,12 @@ const CarDetail = () => {
     }
 
     const [image, setImage] = useState(null);
-    const [CarId, setCarId] = useState(byCars?.data?.carId ? byCars?.data?.carId : "");
-
-    useEffect(() => {
-        setCarId(byCars?.data?.carId ? byCars?.data?.carId : "");
-    }, [CarId]);
+    const CarID = byCars?.data?.id;
 
     const fileUploadHandler = (e) => {
         const file = e.target.files[0];
         setImage(file);
     };
-
     const reservFormik = useFormik({
         initialValues: {
             Image: null,
@@ -314,7 +308,7 @@ const CarDetail = () => {
             Email: "",
             Number: "",
             Notes: "",
-            CarId: CarId !==null ? CarId : "",
+            CarId:  CarID || '',
             AppUserId: appuserid,
             ChauffeursId: "",
             PickupDate: selectedDate ? selectedDate : "",
@@ -331,7 +325,7 @@ const CarDetail = () => {
             formData.append("Email", values.Email);
             formData.append("Number", values.Number);
             formData.append("Notes", values.Notes);
-            formData.append("CarId", values.CarId);
+            formData.append("CarId", CarID ? CarID : '');
             formData.append("AppUserId", values.AppUserId);
             formData.append("ChauffeursId", values.ChauffeursId);
             formData.append("PickupDate", values.PickupDate);
@@ -340,7 +334,7 @@ const CarDetail = () => {
             formData.append("PickupLocation.Longitude", pickUpLocationMap.lng ? pickUpLocationMap.lng : '');
             formData.append("ReturnLocation.Latitude", returnUpLocationMap.lat ? returnUpLocationMap.lat: '');
             formData.append("ReturnLocation.Longitude", returnUpLocationMap.lng ? returnUpLocationMap.lng: '' );
-            //////////////////////////////////
+            ////////////////////////////////
             console.log("Image-------" + formData.getAll("Image"));
             console.log("FullName-------" + formData.getAll("FullName"));
             console.log("Email-------" + formData.getAll("Email"));
@@ -355,7 +349,7 @@ const CarDetail = () => {
             console.log("PickupLocation.Longitude-------" + formData.getAll("PickupLocation.Longitude"));
             console.log("ReturnLocation.Latitude-------" + formData.getAll("ReturnLocation.Latitude"));
             console.log("ReturnLocation.Longitude-------" + formData.getAll("ReturnLocation.Longitude"));
-            //////////////////////////////////
+            ////////////////////////////////
 
             try {
                 const response = await axios.post('https://localhost:7152/api/CarReservations', formData, {
@@ -482,13 +476,11 @@ const CarDetail = () => {
 
                             </div>
                             <div className='CarText'>
-                                <h1>{byCars.data.marka}</h1><br />
+                                <h1>{byCars.data.marka}   {byCars.data.model}</h1><br />
                                 <h2>{byCars.data.price}</h2>
-                                <p>{byCars.data.description}</p>
                                 <div className='addCart'>
                                     <button onClick={handleAddToOrder} >+ ADD TO ORDER</button>
                                 </div>
-
                                 <div className='Det'>
                                     <div><span>Catagory:</span><span className='Answer Category'>{byCars.data.carCategory.category ? byCars.data.carCategory.category : "No Category"}</span></div>
                                     <div><span>Tags:</span><span className='Answer'>
@@ -499,6 +491,8 @@ const CarDetail = () => {
                                         <button>#{byCars.data.carCategory.category ? byCars.data.carCategory.category : "No Category"}</button>
                                     </span></div>
                                 </div>
+                                <p>{byCars.data.description}</p>
+
                                 <div className='ByReservACar'>
 
                                     <form className='login_form' onSubmit={reservFormik.handleSubmit} >
