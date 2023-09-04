@@ -6,6 +6,8 @@ import { useFormik } from 'formik';
 import { Input, Text, Button, FormControl } from '@chakra-ui/react'
 import registerSchema from '../Validators/registerSchema'
 import { GrPrevious } from "react-icons/gr";
+import { FcGoogle } from "react-icons/fc";
+import { BsApple } from "react-icons/bs";
 
 const Register = () => {
 
@@ -96,8 +98,8 @@ const Register = () => {
 
                             <Button type='submit' onClick={formik.handleSubmit}>Register</Button>
                             <div className='GoogleAndAppleRegister'>
-                                <button className='GoogleRegister'></button>
-                                <button className='AppleRegister'></button>
+                                <button className='GoogleRegister'><FcGoogle/> Google</button>
+                                <button className='AppleRegister'><BsApple/>Apple</button>
                             </div>
                             <Link to={"/Login"}><Button><GrPrevious />Login</Button></Link>
                         </FormControl>
