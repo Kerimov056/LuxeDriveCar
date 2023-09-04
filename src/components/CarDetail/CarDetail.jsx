@@ -491,7 +491,7 @@ const CarDetail = () => {
                                         <button>#{byCars.data.carCategory.category ? byCars.data.carCategory.category : "No Category"}</button>
                                     </span></div>
                                 </div>
-                                <p>{byCars.data.description}</p>
+                                <p id='ByCarDecs'>{byCars.data.description}</p>
 
                                 <div className='ByReservACar'>
 
