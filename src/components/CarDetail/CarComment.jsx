@@ -3,9 +3,7 @@ import './carcomment.scss'
 import { BiLike } from "react-icons/bi";
 import { postLike } from "../Services/likeService";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
-import { useFormik } from "formik";
-import { useQuery, useMutation, useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 
 const CarComment = (props) => {
 
@@ -45,7 +43,7 @@ const CarComment = (props) => {
                     </div>
                     <div className='Commenttext'>
                         <div>
-                            <h3>Leyla Dauge</h3>
+                            <h3>{props.username}</h3>
                             <p>{props.comment}</p>
                             <h3 style={{ display: "none" }}>{props.commentId}</h3>
                         </div>

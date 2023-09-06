@@ -255,18 +255,28 @@ const CarDetail = () => {
         },
     });
 
-
     const formik = useFormik({
         initialValues: {
             comment: "",
             carid: byCars?.data?.id != null && byCars?.data?.id,
             appuserid: appuserid,
+            UserName: username ? username : "",
         },
         onSubmit: async (values) => {
-            try {
-                await mutation.mutateAsync(values);
-            } catch (error) {
-                console.log(error);
+            const formData = new FormData();
+
+            formData.append('comment', values.comment);
+            formData.append("carid", byCars?.data?.id ? byCars?.data?.id : "");
+            formData.append("appuserid", appuserid);
+            formData.append("UserName", username);
+
+            const response = await axios.post('https://localhost:7152/api/CarCommets/commentPost', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            })
+            if (response.status === 201) {
+                queryClient.invalidateQueries('Car');
             }
         },
     });
@@ -663,7 +673,7 @@ const CarDetail = () => {
                                 </form>
                             </div>
                             {byCars?.data?.carCommentGetDTO?.map((comment, index) => (
-                                <CarComment key={index} commentId={comment?.id} comment={comment.comment} likeSum={comment.likeSum} />
+                                <CarComment key={index} username={comment.userName} commentId={comment?.id} comment={comment.comment} likeSum={comment.likeSum} />
                             ))}
                             <h6></h6>
                         </div>
