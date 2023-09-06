@@ -13,12 +13,21 @@ const Register = () => {
 
     const history = useNavigate();
 
+    const[selectedDate, setSelectedDate] = useState()
+
+    const handleDateChange = (e) => {
+        setSelectedDate(e.target.value);
+    };
+
+
+
     const formik = useFormik({
         initialValues: {
             Fullname: '',
             Username: '',
             Email: '',
-            password: ''
+            password: '',
+            BirthDate: selectedDate ? selectedDate : ""
         },
         // validationSchema: registerSchema,
 
@@ -41,7 +50,7 @@ const Register = () => {
             <div className='login_sectionN'>
 
                 <div>
-                    <form id='RegResponPhone' className='login_form' onSubmit={formik.handleSubmit} style={{ marginTop: "10px", height: "700px" }}>
+                    <form  id='RegResponPhone' className='login_form' onSubmit={formik.handleSubmit} style={{ marginTop: "10px", height: "700px" }}>
                         <FormControl>
                             <h3>Sign Up</h3>
                             <label htmlFor='Fullname'>Your Full Name</label><br />
@@ -90,16 +99,31 @@ const Register = () => {
                             <Input
                                 isInvalid={formik.errors.password && formik.touched.password}
                                 name='password'
+                                type='password'
                                 value={formik.values.password}
                                 onChange={formik.handleChange}
                                 placeholder='Here is a sample placeholder'
                                 size='sm'
                             />
+                            <label>Date of birth</label>
+                            <Input
+                                placeholder="Select Date and Time"
+                                size="2md"
+                                type="datetime-local"
+                                value={selectedDate}
+                                onChange={handleDateChange}
+                                style={{
+                                    borderTop: "none",
+                                    borderRight: "none",
+                                    borderLeft: "none",
+                                    borderBottom: "1px solid white",
+                                }}
+                            />
 
                             <Button type='submit' onClick={formik.handleSubmit}>Register</Button>
                             <div className='GoogleAndAppleRegister'>
-                                <button className='GoogleRegister'><FcGoogle/> Google</button>
-                                <button className='AppleRegister'><BsApple/>Apple</button>
+                                <button className='GoogleRegister'><FcGoogle /> Google</button>
+                                <button className='AppleRegister'><BsApple />Apple</button>
                             </div>
                             <Link to={"/Login"}><Button><GrPrevious />Login</Button></Link>
                         </FormControl>

@@ -68,6 +68,7 @@ const Login = () => {
             <Input
               isInvalid={formik.errors.password && formik.touched.password}
               name='password'
+              type='password' 
               value={formik.values.password}
               onChange={formik.handleChange}
               placeholder='Here is a sample placeholder'
