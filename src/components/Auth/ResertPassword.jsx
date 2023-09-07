@@ -33,8 +33,8 @@ const ResertPassword = () => {
       console.log(values);
 
       formData.append('UserId', markaLocation ? markaLocation : "");
-      formData.append("Password", values.FullName);
-      formData.append("ConfiremPassword", values.Email);
+      formData.append("Password", values.Password);
+      formData.append("ConfiremPassword", values.ConfiremPassword);
 
       try {
         const response = await axios.post('https://localhost:7152/api/Auth/ConfiremPassword', formData, {
