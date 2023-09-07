@@ -16,7 +16,7 @@ const ResertPassword = () => {
 
   const markaLocation = params[1] || '';
 
-  console.log(markaLocation);
+  const userId = markaLocation.replace(/^%0D+|%0D+$/g, '');
 
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ const ResertPassword = () => {
 
   const formik = useFormik({
     initialValues: {
-      UserId: markaLocation ? markaLocation : "",
+      UserId: userId ? userId : "",
       Password: "",
       ConfiremPassword: "",
     },
@@ -32,7 +32,7 @@ const ResertPassword = () => {
       const formData = new FormData();
       console.log(values);
 
-      formData.append('UserId', markaLocation ? markaLocation : "");
+      formData.append('UserId', userId ? userId : "");
       formData.append("Password", values.Password);
       formData.append("ConfiremPassword", values.ConfiremPassword);
 
