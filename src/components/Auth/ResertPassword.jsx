@@ -53,22 +53,24 @@ const ResertPassword = () => {
 
   return (
     <>
-      <form class="formResetpasswordD">
-        <p>Reset Password</p>
-        <div class="groupRS">
-          <input required="true" class="main-input" type="password" />
-            <span class="highlight-span"></span>
-            <label class="lebal-email">password</label>
-        </div>
-        <div class="container-1RR">
+      <Container id="PrivatePage">
+        <form class="formResetpasswordD">
+          <p>Reset Password</p>
           <div class="groupRS">
             <input required="true" class="main-input" type="password" />
-              <span class="highlight-span"></span>
-              <label class="lebal-email">password</label>
+            <span class="highlight-span"></span>
+            <label class="lebal-email">Password</label>
           </div>
-        </div>
-        <button type='submit' class="submit">submit</button>
-      </form>
+          <div class="container-1RR">
+            <div class="groupRS">
+              <input required="true" class="main-input" type="password" />
+              <span class="highlight-span"></span>
+              <label class="lebal-email">Confirem Password</label>
+            </div>
+          </div>
+          <button type='submit' class="submitRes">Send</button>
+        </form>
+      </Container>
     </>
   )
 }
