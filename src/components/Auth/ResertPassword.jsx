@@ -42,7 +42,7 @@ const ResertPassword = () => {
             'Content-Type': 'multipart/form-data',
           },
         })
-        if (response.status === 201) {
+        if (response.status === 200) {
           toast.success('Your password has been changed', { position: toast.POSITION.TOP_RIGHT });
           navigate('/Login');
         }

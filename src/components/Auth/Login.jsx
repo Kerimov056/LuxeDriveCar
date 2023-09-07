@@ -68,12 +68,13 @@ const Login = () => {
             <Input
               isInvalid={formik.errors.password && formik.touched.password}
               name='password'
-              type='password' 
+              type='password'
               value={formik.values.password}
               onChange={formik.handleChange}
               placeholder='Here is a sample placeholder'
               size='sm'
             />
+            <Link to={'/ResetPassword'} ><span style={{ marginLeft: "180px" }}>Forget Password ?</span></Link>
             <Button isLoading={isLoading} type='submit' onClick={formik.handleSubmit}>Log In</Button>
             <Link to={"/Register"}><Button id='regGo'>Register <GrNext /></Button></Link>
           </FormControl>
