@@ -1,12 +1,12 @@
 import { httpClient } from "../utils/HttpClient";
 
-export const login=(data) =>{
-    return httpClient.post('api/Auth/Login',data);
+export const login = (data) => {
+    return httpClient.post('api/Auth/Login', data);
 };
 
 
+export const SendEmailAuth = (userId) => {
+    return httpClient.post(`api/Auth/password-reset?email=${userId}`);
+};
 
 
-
-
-// https://localhost:7152/api/Auth/Login
