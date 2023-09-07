@@ -12,8 +12,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginAction } from "../Redux/Slices/authSlice";
 import Navbar from '../Navbar/Navbar';
 import { GrNext } from "react-icons/gr";
-import  GoogleLogin  from "./GoogleLogin";;
-// import {  } from "./GooglLogOut"
 
 const Login = () => {
   const history = useNavigate();
@@ -77,7 +75,6 @@ const Login = () => {
               size='sm'
             />
             <Button isLoading={isLoading} type='submit' onClick={formik.handleSubmit}>Log In</Button>
-            {/* <GoogleLogin /> */}
             <Link to={"/Register"}><Button id='regGo'>Register <GrNext /></Button></Link>
           </FormControl>
         </form>

@@ -16,11 +16,10 @@ import Basket from './components/Basket/Basket';
 import Chat from './components/Chat/Chat';
 import FilterPage from "./components/CarFilterPage/FilterPage";
 import MyProfile from "./components/Profile/MyProfile";
-import Maps from "./components/Map/Maps"
-import Map from "./components/Map/Map"
-import StaticMap from "./components/Map/StaticMap"
+import ResetPassword from "./components/Auth/ResetPassword";
 import { useDispatch, useSelector } from 'react-redux';
-
+// import StaticMap from "./components/Map/StaticMap"
+// import GoogleLoginComponent from "./components/Auth/GoogleLoginComponent ";
 
 function App() {
 
@@ -29,7 +28,6 @@ function App() {
 
   return (
     <>
-
       <ChakraProvider>
 
         <Router>
@@ -52,15 +50,14 @@ function App() {
             <Route path='/Chat' element={<Chat />} />
             <Route path='/FilterPage/:car/:model' element={<FilterPage />} />
             <Route path='/MyProfile' element={<MyProfile />} />
-            {/* <Route path='/Maps' element={<Maps />} />
-            <Route path='/Map' element={<Map />} />
-            <Route path='/StaticMap' element={<StaticMap />} /> */}
-          </Routes>
+            <Route path='/ResetPassword' element={<ResetPassword />} />
+
+          </Routes >
 
           <Footer />
-        </ Router>
+        </ Router >
 
-      </ChakraProvider>
+      </ChakraProvider >
     </>
   );
 }
