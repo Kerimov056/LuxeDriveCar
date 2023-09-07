@@ -2,9 +2,11 @@ import { Container, Input } from '@chakra-ui/react'
 import './Resretpassword.scss'
 import React from 'react'
 import { useFormik } from "formik";
-import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
-import { useQuery, useMutation, useQueryClient } from "react-query";
+import { useNavigate, Link, useLocation } from "react-router-dom";
+import { useQueryClient } from "react-query";
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const ResertPassword = () => {
@@ -14,15 +16,16 @@ const ResertPassword = () => {
 
   const markaLocation = params[1] || '';
 
+  console.log(markaLocation);
+
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
 
-  const reservFormik = useFormik({
+  const formik = useFormik({
     initialValues: {
       UserId: markaLocation ? markaLocation : "",
       Password: "",
-      Email: "",
       ConfiremPassword: "",
     },
     onSubmit: async (values) => {
@@ -40,8 +43,8 @@ const ResertPassword = () => {
           },
         })
         if (response.status === 201) {
-          queryClient.invalidateQueries('getReservation');
-
+          toast.success('Your password has been changed', { position: toast.POSITION.TOP_RIGHT });
+          navigate('/Login');
         }
 
       } catch (error) {
@@ -54,16 +57,16 @@ const ResertPassword = () => {
   return (
     <>
       <Container id="PrivatePage">
-        <form class="formResetpasswordD">
+        <form class="formResetpasswordD" onSubmit={formik.handleSubmit}>
           <p>Reset Password</p>
           <div class="groupRS">
-            <input required="true" class="main-input" type="password" />
+            <input required="true"  name='Password' value={formik.values.Password} onChange={formik.handleChange} class="main-input" type="password" />
             <span class="highlight-span"></span>
             <label class="lebal-email">Password</label>
           </div>
           <div class="container-1RR">
             <div class="groupRS">
-              <input required="true" class="main-input" type="password" />
+              <input required="true" name='ConfiremPassword' value={formik.values.ConfiremPassword} onChange={formik.handleChange} class="main-input" type="password" />
               <span class="highlight-span"></span>
               <label class="lebal-email">Confirem Password</label>
             </div>
