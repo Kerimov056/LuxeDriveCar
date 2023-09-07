@@ -7,6 +7,8 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react'
 import { persistStore } from 'redux-persist'
 import store from './components/Redux/store'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { QueryClient, QueryClientProvider } from "react-query";
 // import { GoogleOAuthProvider } from '@react-oauth/google';
 
@@ -21,6 +23,7 @@ root.render(
         <Provider store={store}>
           <PersistGate persistor={persistStore(store)}>
             <App />
+            <ToastContainer />
           </PersistGate>
         </Provider>
       </QueryClientProvider>
