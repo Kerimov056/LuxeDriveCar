@@ -1,10 +1,10 @@
 import { Container, Input } from '@chakra-ui/react'
+import './Resretpassword.scss'
 import React from 'react'
 import { useFormik } from "formik";
 import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import axios from 'axios';
-
 
 
 const ResertPassword = () => {
@@ -34,7 +34,7 @@ const ResertPassword = () => {
       formData.append("ConfiremPassword", values.Email);
 
       try {
-        const response = await axios.post('https://localhost:7152/api/CarReservations', formData, {
+        const response = await axios.post('https://localhost:7152/api/Auth/ConfiremPassword', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -53,7 +53,22 @@ const ResertPassword = () => {
 
   return (
     <>
-        
+      <form class="formResetpasswordD">
+        <p>Reset Password</p>
+        <div class="groupRS">
+          <input required="true" class="main-input" type="password" />
+            <span class="highlight-span"></span>
+            <label class="lebal-email">password</label>
+        </div>
+        <div class="container-1RR">
+          <div class="groupRS">
+            <input required="true" class="main-input" type="password" />
+              <span class="highlight-span"></span>
+              <label class="lebal-email">password</label>
+          </div>
+        </div>
+        <button type='submit' class="submit">submit</button>
+      </form>
     </>
   )
 }
