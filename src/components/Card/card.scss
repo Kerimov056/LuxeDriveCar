@@ -83,7 +83,25 @@
 }
 
 
+#CarCompPrice{
+    width: 100%;
+    height: 120px;
 
+    #newPrice{
+        font-size: 24px;
+    }
+
+    #OldPrice{
+        text-decoration: line-through;
+        font-size: 20px;
+        margin-left: 100px;
+    }
+
+    #CompaginsFai{
+        font-size: 18px;
+        margin-left: -50px;
+    }
+}
 
 
 

@@ -7,28 +7,25 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react'
 import { persistStore } from 'redux-persist'
 import store from './components/Redux/store'
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { QueryClient, QueryClientProvider } from "react-query";
-// import { GoogleOAuthProvider } from '@react-oauth/google';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const queryClinet = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  // <GoogleOAuthProvider clientId="91997614652-1q2taif2sptoou1dahqsiripc4u5e0b6.apps.googleusercontent.com">
-    <React.StrictMode>
-      <QueryClientProvider client={queryClinet} >
-        <Provider store={store}>
-          <PersistGate persistor={persistStore(store)}>
+  <React.StrictMode>
+    <QueryClientProvider client={queryClinet} >
+      <Provider store={store}>
+        <PersistGate persistor={persistStore(store)}>
+          <GoogleOAuthProvider clientId="91997614652-1q2taif2sptoou1dahqsiripc4u5e0b6.apps.googleusercontent.com">
             <App />
-            <ToastContainer />
-          </PersistGate>
-        </Provider>
-      </QueryClientProvider>
-    </React.StrictMode>
-  // </GoogleOAuthProvider>
+          </GoogleOAuthProvider>
+        </PersistGate>
+      </Provider>
+    </QueryClientProvider>
+  </React.StrictMode>
 
 );
 

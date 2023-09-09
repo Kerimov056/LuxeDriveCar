@@ -14,3 +14,13 @@ export const SendEmailAuth = (userId) => {
 };
 
 
+export const GoogleSignIn = (userId) => {
+    return httpClient.post(`api/Auth/google-login?idToken=${userId}`);
+};
+
+
+export const ProfileImageEdit = (data) => {
+    return httpClient.post(`api/Auth/profile-image`, data);
+};
+
+

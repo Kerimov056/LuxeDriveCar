@@ -8,6 +8,7 @@ const FilterCar = (props) => {
             
                 <div className='SearchCarCard'>
                     <div className='SearchCarCardImg'>
+                        {/* <img src={props.imgUrl} /> */}
                         <img src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/01/Vihecle-single-featured-img-150x150.jpg' />
                     </div>
                     <div className='SearchCarCardText'>

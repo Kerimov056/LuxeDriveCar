@@ -23,3 +23,8 @@ export const getByCar = (id) => {
 export const getNameCar = (marka, model) => {
   return httpClient.get(`api/Car/car?car=${marka}&model=${model}`)
 };
+
+
+export const IsCampaigns = () => {             //companinanin olub olmamasini bildirir
+  return httpClient.get("api/Car/IsCampaigns")
+};

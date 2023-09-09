@@ -114,7 +114,7 @@ const Navbar = () => {
                         </li>
                     </ul>
                     <Text fontSize={"2xl"}>
-                        {username}
+                       <Link to={'/MyProfile'}>{username}</Link> 
                     </Text>
                     <h1 class="logo"><BsSearch onClick={() => setSearch(!search)} /></h1>
                     {!token &&

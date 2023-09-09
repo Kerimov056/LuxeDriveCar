@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 
 const CLIENT_ID =
-  "674664791603-vt0mjjouili3uo0drbfqeae3ing6oibi.apps.googleusercontent.com";
+  "91997614652-1q2taif2sptoou1dahqsiripc4u5e0b6.apps.googleusercontent.com";
 
 class GoogleLoginComponent extends Component {
   constructor() {
@@ -27,8 +27,14 @@ class GoogleLoginComponent extends Component {
   };
 
   // Error Handler
+  // Inside the responseGoogleError method
   responseGoogleError = (response) => {
-    console.log(response);
+    if (response.error === "popup_closed_by_user") {
+      console.log("Login process was canceled by the user.");
+      // You can also update the state to reflect the canceled state if needed.
+    } else {
+      console.error(response);
+    }
   };
 
   // Logout Session and Update State
