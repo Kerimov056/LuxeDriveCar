@@ -5,7 +5,7 @@ import NavbarTwo from "../Navbar/Navbartwo";
 import Car from '../Card//Car'
 import { CheckboxIcon, Input, InputGroup, InputLeftElement, InputRightElement, Select, Stack } from '@chakra-ui/react'
 import { useQuery } from 'react-query'
-import { getCar, getAllMarka, getAllModel } from "../Services/carServices";
+import { getCar, getAllMarka, getAllModel, IsCampaigns } from "../Services/carServices";
 import { getCategorie } from "../Services/categorieServices";
 import { getType } from "../Services/typeServices";
 
@@ -35,6 +35,14 @@ const VehicleFleet = () => {
         queryFn: getType,
         staleTime: 0,
     });
+
+
+    const { data: Compn } = useQuery({
+        queryKey: ["IsCampaignss"],
+        queryFn: IsCampaigns,
+        staleTime: 0,
+    });
+
 
     const [selectedMarka, setSelectedMarka] = useState('');
     const [selectedModel, setSelectedModel] = useState('');
@@ -100,6 +108,22 @@ const VehicleFleet = () => {
                 <NavbarTwo />
             </div>
 
+            {Compn?.data === true &&
+                <div id='Compahins'>
+                    <span>Now up to {cars?.data[0]?.campaignsInterest}% discounts at LuxeDrive</span>
+                    <div id='LuxeDriveComp'>
+                        <div class="spinner">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+            }
+
             <div id="Fleet">
                 <img src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/vehicle-list-title-img.jpg' />
                 <div id='responePhone'>
@@ -154,14 +178,14 @@ const VehicleFleet = () => {
                                 <InputRightElement>
                                 </InputRightElement>
                             </InputGroup>
-                            <button  style={{marginTop:"20px"}} onClick={handleFilterSearch} className="buttonSearchVFilter">
+                            <button style={{ marginTop: "20px" }} onClick={handleFilterSearch} className="buttonSearchVFilter">
                                 <span class="span">\ō͡≡o˞̶ </span>
                             </button>
                         </div>
                     </div>
                     <div className='Cards'>
                         {cars?.data.map((byCar, index) => (
-                            <Car key={index} Id={byCar?.id} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Vihecle-list-image-04.jpg"} name={byCar.marka} desc={byCar.description.slice(0, 30)} price={byCar.price} />
+                            <Car key={index} campaignsInterest={byCar?.campaignsInterest} campaignsPrice={byCar?.campaignsPrice} Id={byCar?.id} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Vihecle-list-image-04.jpg"} name={byCar.marka} desc={byCar.description.slice(0, 30)} price={byCar.price} />
                         ))}
                     </div>
                 </div>

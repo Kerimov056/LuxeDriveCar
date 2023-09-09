@@ -7,10 +7,11 @@ import { Link } from "react-router-dom";
 
 const Navbartwo = () => {
 
+
     return (
         <>
-            <nav class="navbar" id='ResponsivePhone' style={{background:"transparent"}}>
-                <div  class="navbar-container container" >
+            <nav class="navbar" id='ResponsivePhone' style={{ background: "transparent" }}>
+                <div class="navbar-container container" >
                     <input type="checkbox" name="" id="" />
                     <div class="hamburger-lines">
                         <span class="line line1"></span>
@@ -24,7 +25,7 @@ const Navbartwo = () => {
                         <li><a href='/Blogs'>BLOG</a></li>
                         <li><a href='/Shop'>SHOP</a></li>
                     </ul>
-                    <h1 class="logo"><BsSearch/></h1>
+                    <h1 class="logo"><BsSearch /></h1>
                 </div>
             </nav>
         </>

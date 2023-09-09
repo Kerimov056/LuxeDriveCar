@@ -15,7 +15,7 @@ import {
 import Accardion from './Accardion';
 import ShopCarCard from '../Shop/ShopCarCard';
 import 'leaflet/dist/leaflet.css'
-import { getByCar, getCar } from "../Services/carServices";
+import { getByCar, getCar, IsCampaigns } from "../Services/carServices";
 import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import CarComment from './CarComment'
@@ -366,6 +366,11 @@ const CarDetail = () => {
 
 
 
+    const { data: Compn } = useQuery({
+        queryKey: ["IsCampaignss"],
+        queryFn: IsCampaigns,
+        staleTime: 0,
+    });
 
 
     if (byCars) {
@@ -375,6 +380,23 @@ const CarDetail = () => {
                 <div className='CarDeatilsNavbar'>
                     <Navbar />
                 </div>
+
+                {Compn?.data === true &&
+                    <div id='Compahins'>
+                        <span>Now up to {cars?.data[0]?.campaignsInterest}% discounts at LuxeDrive</span>
+                        <div id='LuxeDriveComp'>
+                            <div class="spinner">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
 
                 <div id='CarDetail'>
                     <div>
@@ -477,7 +499,7 @@ const CarDetail = () => {
                             </div>
                             <div className='CarText'>
                                 <h1>{byCars.data.marka}   {byCars.data.model}</h1><br />
-                                <h2>{byCars.data.price}</h2>
+                                <h2>${byCars.data.campaignsPrice} /Hour</h2> <span id='OldPrice'>${byCars.data.price} /Hour</span>
                                 <div className='addCart'>
                                     <button onClick={handleAddToOrder} >+ ADD TO ORDER</button>
                                 </div>

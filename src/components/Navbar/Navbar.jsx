@@ -11,7 +11,7 @@ import { getBasketItemCount } from "../Services/basketServices";
 import { MdYoutubeSearchedFor } from "react-icons/md";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { getNameCar } from "../Services/carServices";
+import { getNameCar, IsCampaigns } from "../Services/carServices";
 
 
 const Navbar = () => {
@@ -71,9 +71,10 @@ const Navbar = () => {
     });
 
 
+
     return (
         <>
-            <nav class="navbar" style={{marginTop:"-81px"}}>
+            <nav class="navbar" style={{ marginTop: "-81px" }}>
                 <div data-aos="fade-down" id='SearcParlax' style={search == true ? { display: "block" } : { display: "none" }}>
                     <div className='XButton'>
                         <p></p>
@@ -114,7 +115,7 @@ const Navbar = () => {
                         </li>
                     </ul>
                     <Text fontSize={"2xl"}>
-                       <Link to={'/MyProfile'}>{username}</Link> 
+                        <Link to={'/MyProfile'}>{username}</Link>
                     </Text>
                     <h1 class="logo"><BsSearch onClick={() => setSearch(!search)} /></h1>
                     {!token &&

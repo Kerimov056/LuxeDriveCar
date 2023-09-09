@@ -117,12 +117,26 @@ const Home = ({ color, onNavStateChange }) => {
 
 
 
-
   return (
     <>
       <div className={isVisible ? 'navbar' : 'navbar hidden'}>
         <Nav />
       </div>
+      {Compn?.data === true &&
+        <div id='Compahins'>
+          <span>Now up to {cars?.data[0]?.campaignsInterest}% discounts at LuxeDrive</span>
+          <div id='LuxeDriveComp'>
+            <div class="spinner">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      }
 
       <div className='home'>
         <Slider {...settings} className='sliderrr'>

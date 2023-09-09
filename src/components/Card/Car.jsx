@@ -17,7 +17,8 @@ const Car = (props) => {
                         </div>
                         <div className='CarLow'>
                             <p>{props.desc}</p>
-                            <span>$<b>{props.price}</b>/hour</span>
+                            <span>$<b>{props.price}</b>/hour</span><br/>
+                            <span id='oldPrice'>${props.campaignsPrice} /Hour</span>
                             <button>+ MORE DETAILS</button>
                         </div>
                     </div>
