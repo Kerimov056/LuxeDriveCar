@@ -6,7 +6,7 @@ const RecentPost = (props) => {
         <>
             <div id='RecentPost'>
                 <div className='PostImg'>
-                    <img src={props.img} />
+                    <img style={{objectFit:"cover"}} src={props.img} />
                 </div>
                 <div className='PostText'>
                     <h3>{props.name} {props.category}</h3>

@@ -40,7 +40,7 @@ const BlogPost = (props) => {
                             <div class="tracker tr-24"></div>
                             <div class="tracker tr-25"></div>
                             <div id="card">
-                                <img src={props.img} />
+                                <img style={{objectFit:"cover"}} src={props.img} />
                             </div>
                         </div>
                     </div>

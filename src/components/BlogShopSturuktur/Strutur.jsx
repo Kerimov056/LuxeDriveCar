@@ -62,7 +62,7 @@ const Strutur = (props) => {
                                             <h3>JAN 8. 2022. DRIVELUXURY</h3>
                                         </p>
                                         <div>
-                                            <img src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/b-l-img-1.jpg' />
+                                            <img style={{objectFit:'cover'}} src={`data:image/jpeg;base64,${byCars?.data?.blogImages[0].imagePath}`} />
                                         </div>
                                     </div>
 
@@ -76,13 +76,13 @@ const Strutur = (props) => {
                                         </div>
                                         <div>{byCars?.data?.description?.slice(27, 32)}</div>
                                         <div className='endimg'>
-                                            <img src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/b-s-img-2.jpg' />
+                                            <img style={{objectFit:'cover'}} src={`data:image/jpeg;base64,${byCars?.data?.blogImages[1].imagePath}`} />
                                         </div>
                                         <div>{byCars?.data?.description?.slice(32)}</div>
                                     </div>
 
                                     {blogs?.data?.slice(-1).map((byBlogs, index) => (
-                                        <BlogPost Id={byBlogs.id} title={byBlogs.title} date={"Jan 8.   2022./   DRIVE, LUXURY"} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/b-l-img-1.jpg"} desc={byBlogs.description} />
+                                        <BlogPost key={index} Id={byBlogs.id} title={byBlogs.title} date={"Jan 8.   2022./   DRIVE, LUXURY"} img={`data:image/jpeg;base64,${byBlogs?.blogImages[0].imagePath}`} desc={byBlogs.description} />
                                     ))}
                                 </div>
 
@@ -91,7 +91,7 @@ const Strutur = (props) => {
                                 props.blog === true ?
                                     <div id='responSive'>
                                         {blogs?.data.map((byBlogs, index) => (
-                                            <BlogPost Id={byBlogs.id} title={byBlogs.title} date={"Jan 8.   2022./   DRIVE, LUXURY"} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/b-l-img-1.jpg"} desc={byBlogs.description} />
+                                            <BlogPost Id={byBlogs.id} title={byBlogs.title} date={"Jan 8.   2022./   DRIVE, LUXURY"} img={`data:image/jpeg;base64,${byBlogs?.blogImages[0].imagePath}`}  desc={byBlogs.description} />
                                         ))}
                                     </div> :
                                     <div className='Shoppp'>
@@ -112,7 +112,7 @@ const Strutur = (props) => {
                                 props.blog === true ?
                                     <div>
                                         {blogs?.data.slice(-3).map((byBlogs, index) => (
-                                            <RecentPost key={index} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/b-l-img-1.jpg"} Id={byBlogs.id} title={byBlogs.title} date={"28 may 2023"} />
+                                            <RecentPost key={index} img={`data:image/jpeg;base64,${byBlogs?.blogImages[0].imagePath}`} Id={byBlogs.id} title={byBlogs.title} date={"28 may 2023"} />
                                         ))}
                                     </div> :
                                     <div>

@@ -185,7 +185,7 @@ const VehicleFleet = () => {
                     </div>
                     <div className='Cards'>
                         {cars?.data.map((byCar, index) => (
-                            <Car key={index} campaignsInterest={byCar?.campaignsInterest} campaignsPrice={byCar?.campaignsPrice} Id={byCar?.id} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Vihecle-list-image-04.jpg"} name={byCar.marka} desc={byCar.description.slice(0, 30)} price={byCar.price} />
+                            <Car key={index} img={`data:image/jpeg;base64,${byCar?.carImages[0]?.imagePath}`} campaignsInterest={byCar?.campaignsInterest} campaignsPrice={byCar?.campaignsPrice} Id={byCar?.id} name={byCar.marka} desc={byCar.description.slice(0, 30)} price={byCar.price} />
                         ))}
                     </div>
                 </div>
