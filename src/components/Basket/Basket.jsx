@@ -164,7 +164,7 @@ const Basket = () => {
                             {basketCars?.data !== null && basketCars?.data.map((bycars, index) => (
                                 <BasketCard
                                     key={index}
-                                    img={'https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Main-home-vehicle-list-img-01.jpg'}
+                                    img={`data:image/jpeg;base64,${bycars?.carGetDTO?.carImages[0]?.imagePath}`}
                                     Id={bycars?.carGetDTO?.id}
                                     Marka={bycars?.carGetDTO?.marka}
                                     model={bycars?.carGetDTO?.model}

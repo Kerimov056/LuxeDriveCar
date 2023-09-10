@@ -1,11 +1,15 @@
 import React from 'react';
 import './RecentPost.scss'
+import { Link } from 'react-router-dom';
 
 const RecentPost = (props) => {
+
+
     return (
         <>
+        <Link to={`/CarDetail/${props.Id}`}>
             <div id='RecentPost'>
-                <div className='PostImg'>
+                <div style={{width:`${props.style}px`}} className='PostImg'>
                     <img style={{objectFit:"cover"}} src={props.img} />
                 </div>
                 <div className='PostText'>
@@ -13,6 +17,7 @@ const RecentPost = (props) => {
                     <h4>{props.date}</h4>
                 </div>
             </div>
+        </Link>
         </>
     );
 }

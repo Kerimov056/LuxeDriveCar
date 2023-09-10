@@ -34,7 +34,7 @@ const Strutur = (props) => {
     });
 
 
-    const { data: Faqs } = useQuery({
+    const { data: CarImages } = useQuery({
         queryKey: ["Faqs"],
         queryFn: getCarImage,
         staleTime: 0,
@@ -91,12 +91,12 @@ const Strutur = (props) => {
                                 props.blog === true ?
                                     <div id='responSive'>
                                         {blogs?.data.map((byBlogs, index) => (
-                                            <BlogPost Id={byBlogs.id} title={byBlogs.title} date={"Jan 8.   2022./   DRIVE, LUXURY"} img={`data:image/jpeg;base64,${byBlogs?.blogImages[0].imagePath}`}  desc={byBlogs.description} />
+                                            <BlogPost  key={index} Id={byBlogs.id} title={byBlogs.title} date={"Jan 8.   2022./   DRIVE, LUXURY"} img={`data:image/jpeg;base64,${byBlogs?.blogImages[0].imagePath}`}  desc={byBlogs.description} />
                                         ))}
                                     </div> :
                                     <div className='Shoppp'>
-                                        {Faqs?.data.map((carImages, index) => (
-                                            <ShopCarCard Id={carImages?.carId} img={carImages.imagePath[1]} />
+                                        {CarImages?.data.map((carImages, index) => (
+                                            <ShopCarCard key={index} Id={carImages?.carId} img={`data:image/jpeg;base64, ${carImages?.imagePath}`} />
                                         ))}
                                     </div>
                         }
@@ -112,12 +112,12 @@ const Strutur = (props) => {
                                 props.blog === true ?
                                     <div>
                                         {blogs?.data.slice(-3).map((byBlogs, index) => (
-                                            <RecentPost key={index} img={`data:image/jpeg;base64,${byBlogs?.blogImages[0].imagePath}`} Id={byBlogs.id} title={byBlogs.title} date={"28 may 2023"} />
+                                            <RecentPost key={index} style={200} img={`data:image/jpeg;base64,${byBlogs?.blogImages[0].imagePath}`} Id={byBlogs.id} title={byBlogs.title}  />
                                         ))}
                                     </div> :
                                     <div>
-                                        {cars?.data.slice(-3).map((byCar, index) => (
-                                            <RecentPost key={index} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/side-b-l-img-2.jpg"} name={byCar.model} category={byCar.carCategory ? byCar.carCategory.category : "No Category"} date={"28 may 2023"} />
+                                        {CarImages?.data.slice(-3).map((carImages, index) => (
+                                            <RecentPost key={index} Id={carImages?.carId} style={200} img={`data:image/jpeg;base64, ${carImages?.imagePath}`}   />
                                         ))}
                                     </div>
                             }
