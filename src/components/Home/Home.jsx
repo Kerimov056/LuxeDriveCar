@@ -101,20 +101,28 @@ const Home = ({ color, onNavStateChange }) => {
   };
 
 
+  // const { sliders } = useQuery({
+  //   queryKey: ["Sliderr"],
+  //   queryFn: getSlider,
+  //   staleTime: 0,
+  // });
 
-
-  const { sliders } = useQuery({
-    queryKey: ["Sliderr"],
-    queryFn: getSlider,
-    staleTime: 0,
-  });
-
+  
 
   const { data: Compn } = useQuery({
     queryKey: ["IsCampaignss"],
     queryFn: IsCampaigns,
     staleTime: 0,
   });
+
+  const [sliders, setSliders] = useState([]);
+
+  useEffect(() => {
+    fetch('https://localhost:7152/api/Sliders')
+      .then(response => response.json())
+      .then(data => setSliders(data))
+      .catch(error => console.error('Error:', error));
+  }, []);
 
 
   return (
@@ -140,22 +148,10 @@ const Home = ({ color, onNavStateChange }) => {
 
       <div className='home'>
         <Slider {...settings} className='sliderrr'>
-          {sliders?.data.map((sliderimg, index) => (
+          {sliders?.map((sliderimg, index) => (
             <div key={index}>
               <div>
-                <img src={`data:image/jpeg;base64,${sliderimg?.imagePath}`} alt="Slide 1" />
-              </div>
-              <div>
-                <img src="https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/04/h1-rev-img-2b.jpg" alt="Slide 2" />
-              </div>
-              <div>
-                <img src="https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/04/h1-rev-img-3b.jpg" alt="Slide 3" />
-              </div>
-              <div>
-                <img src="https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/04/h1-rev-img-4b.jpg" alt="Slide 4" />
-              </div>
-              <div>
-                <img style={{ width: "100%", height: "99vh", objectFit: 'cover' }} src="https://i.ytimg.com/vi/D6B6A1SF14o/maxresdefault.jpg" alt="Slide 5" />
+                <img style={{ width: "100%", height: "99vh", objectFit: 'cover' }} src={`data:image/jpeg;base64,${sliderimg?.imagePath}`} alt="Slide 1" />
               </div>
             </div>
           ))}

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import './aboutus.scss'
 import Navbar from '../Navbar/Navbar'
 import ImageCom from '../Imagecompanents/ImageCom'
@@ -10,19 +10,26 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Questions from '../Questions/Questions'
 import Premiumcars from '../PremiumCars/Premiumcars'
-import { useQuery } from 'react-query'
-import { getCar } from "../Services/carServices";
 import Navbartwo from '../Navbar/Navbartwo'
 
 
 const AboutUs = () => {
 
 
-  const { data: cars } = useQuery({
-    queryKey: ["Cars"],
-    queryFn: getCar,
-    staleTime: 0,
-  });
+  // const { data: cars } = useQuery({
+  //   queryKey: ["Cars"],
+  //   queryFn: getCarAbout,
+  //   staleTime: 0,
+  // });
+  const [cars, setCars] = useState([]);
+
+  useEffect(() => {
+    fetch('https://localhost:7152/api/Car')
+      .then(response => response.json())
+      .then(data => setCars(data))
+      .catch(error => console.error('Error:', error));
+  }, []);
+
 
   useEffect(() => {
     AOS.init({
@@ -61,7 +68,7 @@ const AboutUs = () => {
                 </div>
 
                 <div id='itemRes' class="items">
-                  {cars?.data.map((byCar, index) => (
+                  {cars?.map((byCar, index) => (
                     <Car key={index} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Vihecle-list-image-04.jpg"} name={byCar.marka} desc={byCar.description.slice(0, 30)} price={byCar.price} />
                   ))}
                 </div>
