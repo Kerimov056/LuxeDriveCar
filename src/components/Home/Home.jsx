@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import './home.scss'
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -101,8 +101,10 @@ const Home = ({ color, onNavStateChange }) => {
   };
 
 
+
+
   const { sliders } = useQuery({
-    queryKey: ["Slider"],
+    queryKey: ["Sliderr"],
     queryFn: getSlider,
     staleTime: 0,
   });
@@ -113,8 +115,6 @@ const Home = ({ color, onNavStateChange }) => {
     queryFn: IsCampaigns,
     staleTime: 0,
   });
-
-
 
 
   return (
@@ -143,7 +143,7 @@ const Home = ({ color, onNavStateChange }) => {
           {sliders?.data.map((sliderimg, index) => (
             <div key={index}>
               <div>
-                <img src={sliderimg.imagePath} alt="Slide 1" />
+                <img src={`data:image/jpeg;base64,${sliderimg?.imagePath}`} alt="Slide 1" />
               </div>
               <div>
                 <img src="https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/04/h1-rev-img-2b.jpg" alt="Slide 2" />
@@ -243,7 +243,6 @@ const Home = ({ color, onNavStateChange }) => {
         </div>
         <div className='cards' id='CardsRes'>
           {cars?.data?.slice(0, 6).map((byCar, index) => (  //https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Main-home-vehicle-list-img-01.jpg
-            console.log("Imageeeeee", byCar.carImages[0]?.imagePath),
             <Card key={index} isCampaigns={byCar?.isCampaigns} campaignsInterest={byCar?.campaignsInterest} campaignsPrice={byCar?.campaignsPrice} Id={byCar?.id} img={`data:image/jpeg;base64,${byCar.carImages[0]?.imagePath}`} catagorie={byCar.carCategory ? byCar.carCategory.category : "No Category"} name={byCar.model} price={byCar.price} description={byCar.description.slice(0, 60)} />
           ))}
         </div>

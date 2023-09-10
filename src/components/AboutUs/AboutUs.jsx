@@ -24,7 +24,6 @@ const AboutUs = () => {
     staleTime: 0,
   });
 
-
   useEffect(() => {
     AOS.init({
       offset: 630,

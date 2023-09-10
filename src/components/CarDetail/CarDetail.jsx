@@ -405,12 +405,12 @@ const CarDetail = () => {
                                 <div className='mainImg'>
                                     <CursorZoom
                                         image={{
-                                            src: "https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/shop-single-img-03.jpg",
+                                            src: `data:image/png;base64,${byCars?.data?.carImages[0]?.imagePath}`,
                                             width: 600,
                                             height: 750
                                         }}
                                         zoomImage={{
-                                            src: "https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/shop-single-img-03.jpg",
+                                            src: `data:image/png;base64,${byCars?.data?.carImages[0]?.imagePath}`,
                                             width: 1300,
                                             height: 1000
                                         }}
@@ -440,7 +440,7 @@ const CarDetail = () => {
                                         </AlertDialogOverlay>
                                     </AlertDialog>
                                     {byCars.data?.carImages?.map(byImage => (
-                                        <div><img onClick={() => Imgaetrasfer("https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/shop-single-gallery-img-02.jpg")} src={`data:image/jpeg;base64,${byImage?.imagePath}`} alt="Image 1" /></div>
+                                        <div><img onClick={() => Imgaetrasfer(`data:image/jpeg;base64,${byImage?.imagePath}`)} src={`data:image/jpeg;base64,${byImage?.imagePath}`} alt="Image 1" /></div>
                                     ))}
                                 </div>
 
@@ -491,7 +491,7 @@ const CarDetail = () => {
                                     </div>
                                     <div className='ChauferrsShop'>
                                         {chaurffers?.data?.slice(0, 2).map((chauf, index) => (
-                                            <ChauffeursCard key={index} Id={chauf?.id} name={chauf?.name} price={chauf?.price} />
+                                            <ChauffeursCard imgUrl={`data:image/jpeg;base64,${chauf?.imagePath}`} key={index} Id={chauf?.id} name={chauf?.name} price={chauf?.price} />
                                         ))}
                                     </div>
                                 </div>
@@ -499,16 +499,14 @@ const CarDetail = () => {
                             </div>
                             <div className='CarText'>
                                 <h1>{byCars.data.marka}   {byCars.data.model}</h1><br />
-                                <h2>${byCars.data.campaignsPrice} /Hour</h2> <span id='OldPrice'>${byCars.data.price} /Hour</span>
+                                <h2>${byCars.data.campaignsPrice===null && byCars.data.price} /Hour</h2> <span style={byCars.data.campaignsPrice===null && {display:"none"}} id='OldPrice'>${byCars.data.price} /Hour</span>
                                 <div className='addCart'>
                                     <button onClick={handleAddToOrder} >+ ADD TO ORDER</button>
                                 </div>
                                 <div className='Det'>
                                     <div><span>Catagory:</span><span className='Answer Category'>{byCars.data.carCategory.category ? byCars.data.carCategory.category : "No Category"}</span></div>
                                     <div><span>Tags:</span><span className='Answer'>
-                                        {/* {byCars.data.carTags.forEach(element => {
-                                            <button>{element.data.Tag.tag}</button>
-                                        })} */}
+                                 
                                         <button>#Car</button>
                                         <button>#{byCars.data.carCategory.category ? byCars.data.carCategory.category : "No Category"}</button>
                                     </span></div>
@@ -632,8 +630,8 @@ const CarDetail = () => {
                         <div className='EndCar'>
                             <h1>Related products</h1>
                             <div>
-                                {cars?.data.slice(-3).map((byCar, index) => (
-                                    <ShopCarCard Id={byCar.id} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/shop-single-img-03.jpg"} />
+                                {cars?.data?.slice(0,3).map((byCar, index) => (
+                                    <ShopCarCard key={index} Id={byCar.id} img={`data:image/jpeg;base64,${byCar?.carImages[0]?.imagePath}`}/>
                                 ))}
                             </div>
                         </div>

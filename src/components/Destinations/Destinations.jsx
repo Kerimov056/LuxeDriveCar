@@ -63,7 +63,7 @@ const Destinations = (props) => {
                         )))}
                         {props.isHuman && chaurffers?.data.slice(-3).map((chauff) => ((
                             [
-                                <Chauffeurs img={chauff.imagePath} name={chauff.name} number={chauff.number} />
+                                <Chauffeurs img={`data:image/jpeg;base64,${chauff.imagePath}`} name={chauff.name} number={chauff.number} />
                             ]
                         )))}
                     </div>

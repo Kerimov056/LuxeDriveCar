@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const Car = (props) => {
     return (
         <>
-            <Link to={`/CarDetail/${props.Id}`} style={{marginTop:"45px"}}>
+            <Link to={`/CarDetail/${props.Id}`} style={{ marginTop: "45px" }}>
                 <div className='CarCard'>
                     <div>
                         <div className='CarUp'>
@@ -17,8 +17,10 @@ const Car = (props) => {
                         </div>
                         <div className='CarLow'>
                             <p>{props.desc}</p>
-                            <span>$<b>{props.price}</b>/hour</span><br/>
-                            <span id='oldPrice'>${props.campaignsPrice} /Hour</span>
+                            <span>$<b>{props.campaignsPrice === null ? props.price : props.campaignsPrice }</b>/hour</span><br />
+                            {props.campaignsPrice !== null &&
+                                <span id='oldPrice'>${props.price} /Hour</span>
+                            }
                             <button>+ MORE DETAILS</button>
                         </div>
                     </div>

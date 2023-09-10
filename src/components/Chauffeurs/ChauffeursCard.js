@@ -8,7 +8,8 @@ const ChauffeursCard = (props) => {
         <>
             <div class="cardChauff">
                 <div class="card-detailsChaufff">
-                    <img src="https://cdn4.buysellads.net/uu/1/81016/1609783196-authentic-260x200-variation-3.jpg" alt="Car" />
+                    <img src={props.imgUrl} />
+                    {/* <img src="https://cdn4.buysellads.net/uu/1/81016/1609783196-authentic-260x200-variation-3.jpg" alt="Car" /> */}
                     <p class="text-bodyYYY">Name: {props.name}</p>
                     <p class="text-bodyYYY">Price: {props.price}</p>
                 </div>
