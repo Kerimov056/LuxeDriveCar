@@ -1,8 +1,8 @@
-import { Container, Input } from '@chakra-ui/react'
+import { Container } from '@chakra-ui/react'
 import './Resretpassword.scss'
 import React from 'react'
 import { useFormik } from "formik";
-import { useNavigate, Link, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useQueryClient } from "react-query";
 import axios from 'axios';
 import { toast } from 'react-toastify';
