@@ -33,6 +33,41 @@ import { getSlider } from "../Services/sliderServices";
 import { getCarAll, IsCampaigns } from "../Services/carServices";
 
 
+
+
+
+
+const CountdownTimer = ({ targetDate }) => {
+  const [countdown, setCountdown] = useState('');
+
+  const [days, setDays] = useState('');
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = new Date();
+      const difference = targetDate - now;
+
+      if (difference <= 0) {
+        clearInterval(interval);
+        setCountdown('Discounts Have Started');
+      } else {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        setCountdown(`${days} day ${hours} hour ${minutes} minute ${seconds} second`);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [targetDate]);
+
+  return <div>{countdown}</div>;
+};
+
+
+
 const Home = ({ color, onNavStateChange }) => {
 
 
@@ -101,14 +136,6 @@ const Home = ({ color, onNavStateChange }) => {
   };
 
 
-  // const { sliders } = useQuery({
-  //   queryKey: ["Sliderr"],
-  //   queryFn: getSlider,
-  //   staleTime: 0,
-  // });
-
-  
-
   const { data: Compn } = useQuery({
     queryKey: ["IsCampaignss"],
     queryFn: IsCampaigns,
@@ -132,17 +159,33 @@ const Home = ({ color, onNavStateChange }) => {
       </div>
       {Compn?.data === true &&
         <div id='Compahins'>
-          <span>Now up to {cars?.data[0]?.campaignsInterest}% discounts at LuxeDrive</span>
-          <div id='LuxeDriveComp'>
-            <div class="spinner">
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
+
+          <div class="container" >
+            <h1 id="headline">Now up to {cars?.data[0]?.campaignsInterest}% discounts at LuxeDrive</h1>
+            <div id="countdown">
+              <ul>
+                <li><span id="days"><CountdownTimer targetDate={new Date(cars.data[5 + 1]?.returnCampaigns)} /></span></li>
+              </ul>
+            </div>
+            <div id="content" class="emoji">
             </div>
           </div>
+
+          <div class="cloader">
+            <div class="clface">
+              <div class="clsface">
+                <div id="h2" class="hand"></div>
+              </div>
+              <div class="top"></div>
+              <div class="bottom"></div>
+              <div class="left"></div>
+              <div class="right"></div>
+              <div id="sub" class="pin"></div>
+              <div id="h1" class="hand"></div>
+              <div id="main" class="pin"></div>
+            </div>
+          </div>
+
         </div>
       }
 
