@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 
-const initialState = { token: null, expireDate:null, username: null, email: null, appuserid: null };
+const initialState = { token: null, expireDate:null, username: null, email: null, appuserid: null, ProfileImage: null };
 export const authSlice = createSlice({
     name: 'auth',
     initialState,
@@ -14,6 +14,6 @@ export const authSlice = createSlice({
     }
 })
 
-console.log(initialState);
+// console.log("dsddddd",initialState.ProfileImage);
 export const { loginAction, logoutAction } = authSlice.actions;
 export default authSlice.reducer;

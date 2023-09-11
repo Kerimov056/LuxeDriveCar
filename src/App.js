@@ -18,6 +18,7 @@ import FilterPage from "./components/CarFilterPage/FilterPage";
 import MyProfile from "./components/Profile/MyProfile";
 import ResetPassword from "./components/Auth/ResetPassword";
 import ResertPassword from "./components/Auth/ResertPassword";
+import Communication from "./components/Communication/Communication";
 import { useDispatch, useSelector } from 'react-redux';
 // import StaticMap from "./components/Map/StaticMap"
 // import GoogleLoginComponent from "./components/Auth/GoogleLoginComponent ";
@@ -36,12 +37,8 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/AboutUs' element={<AboutUs />} />
-            {token === null &&
-              <Route path='/Login' element={<Login />} />
-            }
-            {token === null &&
-              <Route path='/Register' element={<Register />} />
-            }
+            <Route path='/Login' element={<Login />} />
+            <Route path='/Register' element={<Register />} />
             <Route path='/VehicleFleet' element={<VehicleFleet />} />
             <Route path='/Blogs' element={<Blogs />} />
             <Route path='/Shop' element={<Shop />} />
@@ -52,10 +49,9 @@ function App() {
             <Route path='/FilterPage/:car/:model' element={<FilterPage />} />
             <Route path='/MyProfile' element={<MyProfile />} />
             <Route path='/ResetPassword' element={<ResetPassword />} />
+            <Route path='/Communication' element={<Communication />} />
             <Route path='/ResertPassword/:userId/:resetToken' element={<ResertPassword />} />
-
           </Routes >
-
           <Footer />
         </ Router >
 

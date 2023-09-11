@@ -499,14 +499,15 @@ const CarDetail = () => {
                             </div>
                             <div className='CarText'>
                                 <h1>{byCars.data.marka}   {byCars.data.model}</h1><br />
-                                <h2>${byCars.data.campaignsPrice===null && byCars.data.price} /Hour</h2> <span style={byCars.data.campaignsPrice===null && {display:"none"}} id='OldPrice'>${byCars.data.price} /Hour</span>
+                                <h2>${byCars.data.campaignsPrice === null ? byCars.data.price : byCars.data.campaignsPrice} /Hour</h2> 
+                                <span id='OldPrice'>${byCars.data.price} /Hour</span>
                                 <div className='addCart'>
                                     <button onClick={handleAddToOrder} >+ ADD TO ORDER</button>
                                 </div>
                                 <div className='Det'>
                                     <div><span>Catagory:</span><span className='Answer Category'>{byCars.data.carCategory.category ? byCars.data.carCategory.category : "No Category"}</span></div>
                                     <div><span>Tags:</span><span className='Answer'>
-                                 
+
                                         <button>#Car</button>
                                         <button>#{byCars.data.carCategory.category ? byCars.data.carCategory.category : "No Category"}</button>
                                     </span></div>
@@ -612,8 +613,12 @@ const CarDetail = () => {
                                                 placeholder='Here is a sample placeholder'
                                                 size='sm'
                                             />
-
-                                            <Button type='submit'>Order</Button>
+                                            {token !== null &&
+                                                <Button type='submit'>Order</Button>
+                                            }
+                                            {token===null &&
+                                                <Link to={'/Login'} ><Button>Order</Button></Link>
+                                            }
                                         </FormControl>
                                     </form>
 
@@ -630,8 +635,8 @@ const CarDetail = () => {
                         <div className='EndCar'>
                             <h1>Related products</h1>
                             <div>
-                                {cars?.data?.slice(0,3).map((byCar, index) => (
-                                    <ShopCarCard key={index} Id={byCar.id} img={`data:image/jpeg;base64,${byCar?.carImages[0]?.imagePath}`}/>
+                                {cars?.data?.slice(0, 3).map((byCar, index) => (
+                                    <ShopCarCard key={index} Id={byCar.id} img={`data:image/jpeg;base64,${byCar?.carImages[0]?.imagePath}`} />
                                 ))}
                             </div>
                         </div>

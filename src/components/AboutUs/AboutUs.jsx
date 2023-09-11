@@ -69,7 +69,7 @@ const AboutUs = () => {
 
                 <div id='itemRes' class="items">
                   {cars?.map((byCar, index) => (
-                    <Car key={index} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Vihecle-list-image-04.jpg"} name={byCar.marka} desc={byCar.description.slice(0, 30)} price={byCar.price} />
+                     <Car Id={byCar.id} key={index} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Vihecle-list-image-04.jpg"} name={byCar.marka} desc={byCar.description.slice(0, 30)} price={byCar.price} />
                   ))}
                 </div>
               </div>

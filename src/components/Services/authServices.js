@@ -19,8 +19,8 @@ export const GoogleSignIn = (userId) => {
 };
 
 
-export const ProfileImageEdit = (data) => {
-    return httpClient.post(`api/Auth/profile-image`, data);
+export const ProfileImageEdit = (email, image) => {
+    return httpClient.post(`api/Auth/profile-image?Email=${email}`);
 };
 
 
