@@ -33,6 +33,12 @@
                     width: 100%;
                     height: auto;
                     cursor: pointer;
+
+                    &>img{
+                        width: 565px;
+                        height: 600px;
+                        object-fit: cover;
+                    }
                 }
 
                 .SecImg {
@@ -237,8 +243,7 @@
             margin-top: 100px;
             width: 100%;
             height: auto;
-            border-bottom: 1px solid rgb(155, 155, 155);
-
+            margin-bottom: 260px;
         }
 
         .EndCar {

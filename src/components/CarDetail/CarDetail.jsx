@@ -407,8 +407,6 @@ const CarDetail = () => {
     });
 
 
-
-
     const [compaignData, setCompaignData] = useState(null);
 
     useEffect(() => {
@@ -515,7 +513,7 @@ const CarDetail = () => {
                                         </AlertDialogOverlay>
                                     </AlertDialog>
                                     {byCars.data?.carImages?.map(byImage => (
-                                        <div><img onClick={() => Imgaetrasfer(`data:image/jpeg;base64,${byImage?.imagePath}`)} src={`data:image/jpeg;base64,${byImage?.imagePath}`} alt="Image 1" /></div>
+                                        <div><img style={{width:"300px",marginTop:"20px"}} onClick={() => Imgaetrasfer(`data:image/jpeg;base64,${byImage?.imagePath}`)} src={`data:image/jpeg;base64,${byImage?.imagePath}`} alt="Image 1" /></div>
                                     ))}
                                 </div>
 
@@ -701,11 +699,7 @@ const CarDetail = () => {
                             </div>
                         </div>
 
-                        <div className='CDA'>
-                            <Accardion name={"Salam"} body={"Salam jsnand adjna djaind ai da dinad an daid ai daid ia dai dai dadadada"} />
-                            <Accardion name={"Salam"} body={"Salam jsnand adjna djaind aiSajsnandjsnandlam jsnand djaind aiSajsnandjsnandlam jsnand adjna dja djaind aiSajsnandjsnandlam jsnand adjna dja djaind aiSajsnandjsnandlam jsnand adjna dja adjna djaind ai da dinaSalam jsnand adjna djaind ai da dina da dinad an daid ai daid ia dai dai dadadada"} />
-                            <Accardion name={"Salam"} body={"Salam jsnand adjna djaind ai da dinad an daid ai daid ia dai dai dadadada"} />
-                        </div>
+                        <div className='CDA'></div>
 
                         <div className='EndCar'>
                             <h1>Related products</h1>
