@@ -3,11 +3,12 @@ import "./VehicleFleet.scss";
 import Navbar from '../Navbar/Navbar'
 import NavbarTwo from "../Navbar/Navbartwo";
 import Car from '../Card//Car'
-import { CheckboxIcon, Input, InputGroup, InputLeftElement, InputRightElement, Select, Stack } from '@chakra-ui/react'
+import { Input, InputGroup, InputLeftElement, InputRightElement, Select } from '@chakra-ui/react'
 import { useQuery } from 'react-query'
 import { getCar, getAllMarka, getAllModel, IsCampaigns } from "../Services/carServices";
 import { getCategorie } from "../Services/categorieServices";
 import { getType } from "../Services/typeServices";
+import AllCarMap from './AllCarMap';
 
 
 
@@ -200,6 +201,10 @@ const VehicleFleet = () => {
                 <div id='responePhone'>
                     <h1>Fleet Standard</h1>
                 </div>
+            </div>
+
+            <div id='SppedCarReserv'>
+                <AllCarMap />
             </div>
 
             <div className='Carsss'>
