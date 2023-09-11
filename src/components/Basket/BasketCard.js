@@ -62,12 +62,20 @@ const BasketCard = (props) => {
                     <img src={imgUrl} />
                 </div>
 
-                <div className='Price'>
-                    <button>
-                        ${props.price}
-                    </button>
-                </div>
-
+                {props.CommpainPrice !== null &&
+                    <div className='Price'>
+                        <button>
+                            ${props.CommpainPrice}
+                        </button>
+                    </div>
+                }
+                {props.CommpainPrice === null &&
+                    <div className='Price'>
+                        <button>
+                            ${props.price}
+                        </button>
+                    </div>
+                }
                 <div>
                     <Button onClick={handleRemove}>X</Button>
                 </div>

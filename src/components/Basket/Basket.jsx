@@ -165,6 +165,7 @@ const Basket = () => {
                                 <BasketCard
                                     key={index}
                                     img={`data:image/jpeg;base64,${bycars?.carGetDTO?.carImages[0]?.imagePath}`}
+                                    CommpainPrice={bycars?.carGetDTO?.campaignsPrice}
                                     Id={bycars?.carGetDTO?.id}
                                     Marka={bycars?.carGetDTO?.marka}
                                     model={bycars?.carGetDTO?.model}
