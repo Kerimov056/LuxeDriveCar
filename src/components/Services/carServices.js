@@ -8,10 +8,15 @@ export const getCarAbout = () => {
   return httpClient.get(`api/Car}`)
 };
 
-
 export const getCarAll = () => {
   return httpClient.get("api/Car")
 };
+
+
+export const GetAllCompaignAsync = () => {
+  return httpClient.get(`api/Car/GetAll-CompaignAsync}`)
+};
+
 
 export const getAllMarka = () => {
   return httpClient.get("api/Car/AllMarka")

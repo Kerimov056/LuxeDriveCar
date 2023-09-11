@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./VehicleFleet.scss";
 import Navbar from '../Navbar/Navbar'
 import NavbarTwo from "../Navbar/Navbartwo";
@@ -8,6 +8,40 @@ import { useQuery } from 'react-query'
 import { getCar, getAllMarka, getAllModel, IsCampaigns } from "../Services/carServices";
 import { getCategorie } from "../Services/categorieServices";
 import { getType } from "../Services/typeServices";
+
+
+
+
+
+const CountdownTimer = ({ targetDate }) => {
+    const [countdown, setCountdown] = useState('');
+
+    const [days, setDays] = useState('');
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const now = new Date();
+            const difference = targetDate - now;
+
+            if (difference <= 0) {
+                clearInterval(interval);
+                setCountdown('Discounts Have Started');
+            } else {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                setCountdown(`${days} day ${hours} hour ${minutes} minute ${seconds} second`);
+            }
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, [targetDate]);
+
+    return <div>{countdown}</div>;
+};
+
 
 
 const VehicleFleet = () => {
@@ -99,6 +133,27 @@ const VehicleFleet = () => {
         staleTime: 0,
     });
 
+
+    const [compaignData, setCompaignData] = useState(null);
+
+    useEffect(() => {
+        const fetchAllCompaign = async () => {
+            try {
+                const response = await fetch('https://localhost:7152/api/Car/GetAll-CompaignAsync');
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                setCompaignData(data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchAllCompaign();
+    }, []);
+
     return (
         <>
             <div className='ReponsiveNav'>
@@ -110,15 +165,31 @@ const VehicleFleet = () => {
 
             {Compn?.data === true &&
                 <div id='Compahins'>
-                    <span>Now up to {cars?.data[0]?.campaignsInterest}% discounts at LuxeDrive</span>
-                    <div id='LuxeDriveComp'>
-                        <div class="spinner">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
+                    {compaignData !== null &&
+
+                        <div class="container" >
+                            <h1 id="headline">Now up to {compaignData[0]?.campaignsInterest ? compaignData[0]?.campaignsInterest : ''}% discounts at LuxeDrive</h1>
+                            <div id="countdown">
+                                <ul>
+                                    <li><span id="days"><CountdownTimer targetDate={new Date(compaignData[0]?.returnCampaigns ? compaignData[0]?.returnCampaigns : '')} /></span></li>
+                                </ul>
+                            </div>
+                            <div id="content" class="emoji">
+                            </div>
+                        </div>
+                    }
+                    <div class="cloader">
+                        <div class="clface">
+                            <div class="clsface">
+                                <div id="h2" class="hand"></div>
+                            </div>
+                            <div class="top"></div>
+                            <div class="bottom"></div>
+                            <div class="left"></div>
+                            <div class="right"></div>
+                            <div id="sub" class="pin"></div>
+                            <div id="h1" class="hand"></div>
+                            <div id="main" class="pin"></div>
                         </div>
                     </div>
                 </div>
@@ -185,7 +256,7 @@ const VehicleFleet = () => {
                     </div>
                     <div className='Cards'>
                         {cars?.data.map((byCar, index) => (
-                            <Car key={index} img={`data:image/jpeg;base64,${byCar?.carImages[0]?.imagePath}`} campaignsInterest={byCar?.campaignsInterest} campaignsPrice={byCar?.campaignsPrice} Id={byCar?.id} name={byCar.marka} desc={byCar.description.slice(0, 30)} price={byCar.price} />
+                            <Car key={index} img={`data:image/jpeg;base64,${byCar?.carImages[0]?.imagePath ? byCar?.carImages[0]?.imagePath : ''}`} campaignsInterest={byCar?.campaignsInterest} campaignsPrice={byCar?.campaignsPrice} Id={byCar?.id} name={byCar.marka} desc={byCar.description.slice(0, 30)} price={byCar.price} />
                         ))}
                     </div>
                 </div>

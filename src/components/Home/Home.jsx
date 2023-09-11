@@ -30,7 +30,7 @@ import {
 import Carcatogorie from '../CarCatogorie/Carcatogorie';
 import { useQuery } from "react-query";
 import { getSlider } from "../Services/sliderServices";
-import { getCarAll, IsCampaigns } from "../Services/carServices";
+import { getCarAll, IsCampaigns, GetAllCompaignAsync } from "../Services/carServices";
 
 
 
@@ -142,6 +142,26 @@ const Home = ({ color, onNavStateChange }) => {
     staleTime: 0,
   });
 
+  const [compaignData, setCompaignData] = useState(null);
+
+  useEffect(() => {
+    const fetchAllCompaign = async () => {
+      try {
+        const response = await fetch('https://localhost:7152/api/Car/GetAll-CompaignAsync');
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        setCompaignData(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchAllCompaign();
+  }, []);
   const [sliders, setSliders] = useState([]);
 
   useEffect(() => {
@@ -159,18 +179,20 @@ const Home = ({ color, onNavStateChange }) => {
       </div>
       {Compn?.data === true &&
         <div id='Compahins'>
+          {compaignData!== null &&
 
-          <div class="container" >
-            <h1 id="headline">Now up to {cars?.data[0]?.campaignsInterest}% discounts at LuxeDrive</h1>
-            <div id="countdown">
-              <ul>
-                <li><span id="days"><CountdownTimer targetDate={new Date(cars.data[5 + 1]?.returnCampaigns)} /></span></li>
-              </ul>
+            <div class="container" >
+              <h1 id="headline">Now up to {compaignData[0]?.campaignsInterest ? compaignData[0]?.campaignsInterest : ''}% discounts at LuxeDrive</h1>
+              <div id="countdown">
+                <ul>
+                  <li><span id="days"><CountdownTimer targetDate={new Date(compaignData[0]?.returnCampaigns ? compaignData[0]?.returnCampaigns : '')} /></span></li>
+                </ul>
+              </div>
+              <div id="content" class="emoji">
+              </div>
             </div>
-            <div id="content" class="emoji">
-            </div>
-          </div>
 
+          }
           <div class="cloader">
             <div class="clface">
               <div class="clsface">
@@ -185,7 +207,6 @@ const Home = ({ color, onNavStateChange }) => {
               <div id="main" class="pin"></div>
             </div>
           </div>
-
         </div>
       }
 
