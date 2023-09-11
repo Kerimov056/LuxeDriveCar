@@ -162,6 +162,8 @@ const Home = ({ color, onNavStateChange }) => {
 
     fetchAllCompaign();
   }, []);
+
+  
   const [sliders, setSliders] = useState([]);
 
   useEffect(() => {
