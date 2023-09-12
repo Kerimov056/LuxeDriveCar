@@ -19,6 +19,7 @@ import MyProfile from "./components/Profile/MyProfile";
 import ResetPassword from "./components/Auth/ResetPassword";
 import ResertPassword from "./components/Auth/ResertPassword";
 import Communication from "./components/Communication/Communication";
+import RentalConditions from "./components/RentalConditions/RentalConditions";
 import { useDispatch, useSelector } from 'react-redux';
 // import StaticMap from "./components/Map/StaticMap"
 // import GoogleLoginComponent from "./components/Auth/GoogleLoginComponent ";
@@ -50,6 +51,7 @@ function App() {
             <Route path='/MyProfile' element={<MyProfile />} />
             <Route path='/ResetPassword' element={<ResetPassword />} />
             <Route path='/Communication' element={<Communication />} />
+            <Route path='/RentalConditions' element={<RentalConditions />} />
             <Route path='/ResertPassword/:userId/:resetToken' element={<ResertPassword />} />
           </Routes >
           <Footer />

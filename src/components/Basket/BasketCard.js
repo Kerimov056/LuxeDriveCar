@@ -27,9 +27,9 @@ const BasketCard = (props) => {
     };
 
 
-    const sport = "SPORT";
+    const sport = "Minivan";
     const Premium = "Premium";
-    const Luxury = "Luxury";
+    const Luxury = "Lux";
     const Business = "Business";
 
     const [imgUrl, setImgUrl] = useState('');
@@ -47,6 +47,8 @@ const BasketCard = (props) => {
             setImgUrl('');
         }
     }, [props.category]);
+
+    
     return (
         <>
             <div className='BasketCard'>
