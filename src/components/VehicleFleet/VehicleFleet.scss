@@ -1,4 +1,4 @@
-.ReponsiveNav{
+.ReponsiveNav {
     margin-top: 75px;
 }
 
@@ -28,6 +28,10 @@
     }
 }
 
+#SppedCarReserv {
+    margin-top: 20px !important;
+}
+
 .Carsss {
     width: 100%;
     height: auto;
@@ -38,7 +42,7 @@
     &>div {
         width: 90%;
         height: auto;
-       
+
 
         &>h1 {
             width: 100%;
@@ -65,7 +69,7 @@
                 align-items: center;
                 display: grid;
                 grid-template-columns: auto auto auto auto;
-                
+
                 &>div {
                     margin-top: 20px;
                     margin-right: 140px;
@@ -185,9 +189,7 @@
         height: 380px;
     }
 
-    #SppedCarReserv{
-        margin-top: 20px !important;
-    }
+
 
     .Carsss {
         width: 100%;

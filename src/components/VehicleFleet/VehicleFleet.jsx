@@ -164,7 +164,7 @@ const VehicleFleet = () => {
                 <NavbarTwo />
             </div>
 
-            {Compn?.data === true &&
+            {Compn?.data !== true &&
                 <div id='Compahins'>
                     {compaignData !== null &&
 
@@ -203,7 +203,7 @@ const VehicleFleet = () => {
                 </div>
             </div>
 
-            <div id='SppedCarReserv'>
+            <div id='SppedCarReservb'>
                 <AllCarMap />
             </div>
 

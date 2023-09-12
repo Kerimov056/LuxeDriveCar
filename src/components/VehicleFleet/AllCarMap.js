@@ -6,6 +6,7 @@ import { useQuery } from "react-query";
 import 'leaflet/dist/leaflet.css';
 import { useQueryClient } from "react-query";
 import L from "leaflet";
+import { Container } from "@chakra-ui/react";
 
 
 const markerIcon = new L.Icon({
@@ -16,6 +17,7 @@ const markerIcon = new L.Icon({
 });
 
 const AllCarMap = () => {
+
     const position = [40.4093, 49.8671]
     const queryClient = useQueryClient();
 
@@ -47,8 +49,8 @@ const AllCarMap = () => {
                     />
 
                     {AllCar?.data?.map((car, index) => (
-                    console.log("lat:", car.latitude),console.log("lnh:", car.longitude),    <Marker
-                            position={[ car?.latitude, car?.longitude]}
+                        console.log("lat:", car.latitude), console.log("lnh:", car.longitude), <Marker
+                            position={[car?.latitude, car?.longitude]}
                             key={index}
                             icon={markerIcon}
                             eventHandlers={{
@@ -58,22 +60,19 @@ const AllCarMap = () => {
                                 },
                             }}
                         >
-                             <Popup >
-                                <p style={{ color: "purple" }}>Car Location</p>
-
+                            <Popup >
                                 <p> Marka: {car?.marka}</p>
                                 <p> Model: {car?.model}</p>
-                                <p> Year: {car?.year}</p>
-                                <img
-                                    style={{ width: "300px", height: "180px", objectFit: "cover" }}
-                                    src={`data:image/png;base64,${car?.carImages[0]?.imagePath}`}
-                                />
-                            </Popup> 
+                            </Popup>
                         </Marker>
                     ))}
-
-
                 </MapContainer>
+            </div>
+
+            <div className="FindByCar">
+                <div>
+
+                </div>
             </div>
         </>
     );

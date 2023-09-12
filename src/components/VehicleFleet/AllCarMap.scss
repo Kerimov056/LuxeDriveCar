@@ -1,6 +1,5 @@
 .ss {
   margin-top: 30px;
-  margin-bottom: 30px;
   width: 100%;
   height: 63vh !important;
 
@@ -25,5 +24,21 @@
   .leaflet-container {
     width: 100%;
     height: 100%;
+  }
+}
+
+
+.FindByCar {
+  width: 100%;
+  height: 400px;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &>div {
+    width: 88%;
+    height: 100%;
+    background-color: #eb9f48;
   }
 }
