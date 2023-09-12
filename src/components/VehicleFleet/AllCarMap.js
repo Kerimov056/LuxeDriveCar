@@ -6,7 +6,7 @@ import { useQuery } from "react-query";
 import 'leaflet/dist/leaflet.css';
 import { useQueryClient } from "react-query";
 import L from "leaflet";
-import { Container } from "@chakra-ui/react";
+import { Google_Maps_Api_Key } from "../utils/ExportFile";
 import FindByCar from "./FindByCar";
 
 
@@ -38,7 +38,33 @@ const AllCarMap = () => {
 
     const [returnLocation, setReturnLocation] = useState(false);
     const [selectedMarker, setSelectedMarker] = useState(null);
-    console.log(selectedMarker);
+
+
+    const [carAddress, setCarAddress] = useState('');
+
+    const reverseGeocode = async (lat, lng) => {
+        const apiKey = Google_Maps_Api_Key; 
+
+        try {
+            const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`);
+            const data = await response.json();
+
+            if (data.results && data.results.length > 0) {
+                const address = data.results[0].formatted_address;
+                return address;
+            } else {
+                return 'Adres bulunamadi.';
+            }
+        } catch (error) {
+            console.error('Ters jeokodlama hatasi:', error);
+            return 'Ters jeokodlama hatasi.';
+        }
+    };
+
+    reverseGeocode(selectedMarker?.latitude, selectedMarker?.longitude)
+        .then(address => setCarAddress(address))
+        .catch(error => console.error(error));
+
     return (
         <>
             <div className='ss'>
@@ -73,13 +99,14 @@ const AllCarMap = () => {
                 <div className="FindByCar">
                     <div>
                         <FindByCar img={`data:image/jpeg;base64,${selectedMarker?.carImages[0]?.imagePath}`}
-                         Id={selectedMarker?.id}
-                         marka={selectedMarker?.marka} 
-                         model={selectedMarker?.model} 
-                         year={selectedMarker?.year} 
-                         price={selectedMarker?.price} 
-                         campaignsPrice={selectedMarker?.campaignsPrice}
-                         />
+                            Id={selectedMarker?.id}
+                            marka={selectedMarker?.marka}
+                            model={selectedMarker?.model}
+                            year={selectedMarker?.year}
+                            price={selectedMarker?.price}
+                            campaignsPrice={selectedMarker?.campaignsPrice}
+                            Address={carAddress} 
+                        />
                     </div>
                 </div>
             }

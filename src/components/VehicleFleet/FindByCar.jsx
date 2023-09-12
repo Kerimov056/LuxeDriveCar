@@ -1,22 +1,17 @@
 import React from 'react'
 import './FindCar.scss'
-import { getByCar } from "../Services/carServices";
-import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
-import { useQuery, useMutation, useQueryClient } from "react-query";
-
+import { Link } from 'react-router-dom';
 
 
 const FindByCar = (props) => {
 
-    const { id } = useParams();
-    const queryClient = useQueryClient();
-    const navigate = useNavigate();
+    const processAddress = (fullAddress) => {
+        const parts = fullAddress.split(', ');
+        return parts.slice(1).join(', ');
+    };
 
-    const { data: byCars } = useQuery(["Car", id], () =>
-        getByCar(id)
-    );
+    const processedAddress = processAddress(props.Address);
 
-    // if (byCars) {
 
     return (
         <>
@@ -30,7 +25,8 @@ const FindByCar = (props) => {
                             <h2>Marka: <span>{props.marka}</span></h2>
                             <h2>Model: <span>{props.model}</span></h2>
                             <h2>Year: <span>{props.year}</span></h2>
-                            <h2>Price: <span style={props.campaignsPrice===null ? {display:"none"} : {}}>${props.campaignsPrice}/Day</span>   <span style={props.campaignsPrice!==null ? {textDecoration:"line-through", marginLeft:'190px'} : {}}>${props.price}/Day</span></h2>
+                            <h2>Price: <span style={props.campaignsPrice === null ? { display: "none" } : {}}>${props.campaignsPrice}/Day</span>   <span style={props.campaignsPrice !== null ? { textDecoration: "line-through", marginLeft: '190px' } : {}}>${props.price}/Day</span></h2>
+                            <h2>Car Address: <span>{processedAddress}</span></h2>
                             <button><Link to={`/CarDetail/${props.Id}`} >Show Car {">"}</Link></button>
                         </div>
                     </div>
@@ -38,7 +34,6 @@ const FindByCar = (props) => {
             </div>
         </>
     );
-    // }
 }
 
 export default FindByCar
