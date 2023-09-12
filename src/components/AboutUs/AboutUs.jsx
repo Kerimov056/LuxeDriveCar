@@ -69,7 +69,13 @@ const AboutUs = () => {
 
                 <div id='itemRes' class="items">
                   {cars?.map((byCar, index) => (
-                     <Car Id={byCar.id} key={index} img={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Vihecle-list-image-04.jpg"} name={byCar.marka} desc={byCar.description.slice(0, 30)} price={byCar.price} />
+                    <Car
+                      Id={byCar.id}
+                      key={index}
+                      img={`data:image/jpeg;base64,${byCar?.carImages[0]?.imagePath}`}
+                      name={byCar.marka}
+                      desc={byCar.description.slice(0, 30)}
+                      price={byCar.price} />
                   ))}
                 </div>
               </div>
@@ -101,18 +107,8 @@ const AboutUs = () => {
               </div>
             </div>
 
-            <div style={{ marginTop: "-100px" }} className='ByQuestions'>
-              <p></p>
-              <div>
-
-                <Questions />
-
-              </div>
-            </div>
-
           </div>
         </div>
-
 
         <div className='ThreeImg'>
           <div>
@@ -126,7 +122,6 @@ const AboutUs = () => {
         <div className='PC'>
           <Premiumcars about={true} backColor={"white"} one={2} two={1} NumColor={"black"} imgUrl={"https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/inner-ab-img-3.jpg"} />
         </div>
-
 
       </div>
     </>

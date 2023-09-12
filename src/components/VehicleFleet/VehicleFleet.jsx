@@ -164,7 +164,7 @@ const VehicleFleet = () => {
                 <NavbarTwo />
             </div>
 
-            {Compn?.data !== true &&
+            {Compn?.data === true &&
                 <div id='Compahins'>
                     {compaignData !== null &&
 
