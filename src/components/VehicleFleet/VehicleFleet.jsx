@@ -203,7 +203,8 @@ const VehicleFleet = () => {
                 </div>
             </div>
 
-            <div id='SppedCarReservb'>
+            <div id='SppedCarReserv'>
+                <h1>Find the car you want to reserve on Google map and book it</h1>
                 <AllCarMap />
             </div>
 

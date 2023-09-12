@@ -38,7 +38,7 @@ const AllCarMap = () => {
 
     const [returnLocation, setReturnLocation] = useState(false);
     const [selectedMarker, setSelectedMarker] = useState(null);
-
+    console.log(selectedMarker);
     return (
         <>
             <div className='ss'>
@@ -69,12 +69,20 @@ const AllCarMap = () => {
                     ))}
                 </MapContainer>
             </div>
-
-            <div className="FindByCar">
-                <div>
-                    <FindByCar />
+            {selectedMarker !== null &&
+                <div className="FindByCar">
+                    <div>
+                        <FindByCar img={`data:image/jpeg;base64,${selectedMarker?.carImages[0]?.imagePath}`}
+                         Id={selectedMarker?.id}
+                         marka={selectedMarker?.marka} 
+                         model={selectedMarker?.model} 
+                         year={selectedMarker?.year} 
+                         price={selectedMarker?.price} 
+                         campaignsPrice={selectedMarker?.campaignsPrice}
+                         />
+                    </div>
                 </div>
-            </div>
+            }
         </>
     );
 };

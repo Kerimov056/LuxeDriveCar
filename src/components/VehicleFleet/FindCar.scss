@@ -6,20 +6,67 @@
     align-items: center;
 
     &>div {
-        width: 96%;
-        height: 96%;
+        width: 90%;
+        height: 90%;
         display: flex;
         justify-content: center;
         align-items: center;
+        border: 1px solid black;
+        border-radius: 30px;
 
         .FindBYCar_Image {
             width: 60%;
+            border-top-left-radius: 30px;
+            border-bottom-left-radius: 30px;
             height: 100%;
 
             &>img {
                 width: 100%;
                 height: 100%;
+                border-top-left-radius: 30px;
+                border-bottom-left-radius: 30px;
                 object-fit: cover;
+            }
+        }
+
+        .FindBYCar_Info {
+            width: 40%;
+            height: 100%;
+            display: flex;
+            border-top-right-radius: 30px;
+            border-bottom-right-radius: 30px;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(255, 255, 255);
+
+            &>div {
+                width: 90%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: start;
+
+                &>h2 {
+                    margin-top: 20px;
+                    font-size: 24px;
+                    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                    margin-left: 15px;
+
+                    &>span {
+                        color: cadetblue;
+                    }
+                }
+
+                &>button {
+                    margin-top: 30px;
+                    width: 160px;
+                    height: 40px;
+                    border-radius: 8px;
+                    background-color: none;
+                    font-size: 26px;
+                    color: cadetblue;
+                }
             }
         }
     }
