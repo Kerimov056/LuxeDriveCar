@@ -1,6 +1,5 @@
 import React from 'react'
 import './car.scss'
-import { AiOutlineStar } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 
 
@@ -13,7 +12,6 @@ const Car = (props) => {
                         <div className='CarUp'>
                             <img src={props.img} />
                             <h2>{props.name}</h2>
-                            <span><AiOutlineStar /><AiOutlineStar /><AiOutlineStar /><AiOutlineStar /><AiOutlineStar /></span>
                         </div>
                         <div className='CarLow'>
                             <p>{props.desc}</p>

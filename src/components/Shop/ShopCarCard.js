@@ -10,7 +10,7 @@ const ShopCarCard = (props) => {
     const dispatch = useDispatch();
     const queryClient = useQueryClient();
 
-    const { mutate, isLoading, isError, error } = useMutation(() => PostCar(props.Id, appuserid), {
+    const { mutate } = useMutation(() => PostCar(props.Id, appuserid), {
         onSuccess: (data) => {
             queryClient.invalidateQueries(["basketsCountT"]);
         },

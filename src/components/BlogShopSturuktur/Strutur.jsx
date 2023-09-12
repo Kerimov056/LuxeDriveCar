@@ -5,7 +5,6 @@ import BlogPost from '../Blogs/BlogPost';
 import ShopCarCard from '../Shop/ShopCarCard';
 import { getCarImage } from "../Services/shopCarardServices";
 import { useNavigate, useParams } from 'react-router-dom';
-import { getCategorie } from "../Services/categorieServices";
 import { getCar } from "../Services/carServices";
 import { getBlog, getByBlog } from "../Services/blogServices";
 import { useQuery, useQueryClient } from "react-query";
@@ -26,13 +25,6 @@ const Strutur = (props) => {
         queryFn: getCar,
         staleTime: 0,
     });
-
-    const { data: categorie } = useQuery({
-        queryKey: ["Categorie"],
-        queryFn: getCategorie,
-        staleTime: 0,
-    });
-
 
     const { data: CarImages } = useQuery({
         queryKey: ["Faqs"],
@@ -62,7 +54,7 @@ const Strutur = (props) => {
                                             <h3>JAN 8. 2022. DRIVELUXURY</h3>
                                         </p>
                                         <div>
-                                            <img style={{objectFit:'cover'}} src={`data:image/jpeg;base64,${byCars?.data?.blogImages[0].imagePath}`} />
+                                            <img style={{ objectFit: 'cover' }} src={`data:image/jpeg;base64,${byCars?.data?.blogImages[0].imagePath}`} />
                                         </div>
                                     </div>
 
@@ -76,7 +68,7 @@ const Strutur = (props) => {
                                         </div>
                                         <div>{byCars?.data?.description?.slice(27, 32)}</div>
                                         <div className='endimg'>
-                                            <img style={{objectFit:'cover'}} src={`data:image/jpeg;base64,${byCars?.data?.blogImages[1].imagePath}`} />
+                                            <img style={{ objectFit: 'cover' }} src={`data:image/jpeg;base64,${byCars?.data?.blogImages[1].imagePath}`} />
                                         </div>
                                         <div>{byCars?.data?.description?.slice(32)}</div>
                                     </div>
@@ -91,7 +83,7 @@ const Strutur = (props) => {
                                 props.blog === true ?
                                     <div id='responSive'>
                                         {blogs?.data.map((byBlogs, index) => (
-                                            <BlogPost  key={index} Id={byBlogs.id} title={byBlogs.title} date={"Jan 8.   2022./   DRIVE, LUXURY"} img={`data:image/jpeg;base64,${byBlogs?.blogImages[0].imagePath}`}  desc={byBlogs.description} />
+                                            <BlogPost key={index} Id={byBlogs.id} title={byBlogs.title} date={"Jan 8.   2022./   DRIVE, LUXURY"} img={`data:image/jpeg;base64,${byBlogs?.blogImages[0].imagePath}`} desc={byBlogs.description} />
                                         ))}
                                     </div> :
                                     <div className='Shoppp'>
@@ -112,12 +104,12 @@ const Strutur = (props) => {
                                 props.blog === true ?
                                     <div>
                                         {blogs?.data.slice(-3).map((byBlogs, index) => (
-                                            <RecentPost key={index} style={200} img={`data:image/jpeg;base64,${byBlogs?.blogImages[0].imagePath}`} Id={byBlogs.id} title={byBlogs.title}  />
+                                            <RecentPost key={index} style={200} img={`data:image/jpeg;base64,${byBlogs?.blogImages[0].imagePath}`} Id={byBlogs.id} title={byBlogs.title} />
                                         ))}
                                     </div> :
                                     <div>
                                         {CarImages?.data.slice(-3).map((carImages, index) => (
-                                            <RecentPost key={index} Id={carImages?.carId} style={200} img={`data:image/jpeg;base64, ${carImages?.imagePath}`}   />
+                                            <RecentPost key={index} Id={carImages?.carId} style={200} img={`data:image/jpeg;base64, ${carImages?.imagePath}`} />
                                         ))}
                                     </div>
                             }
@@ -126,9 +118,10 @@ const Strutur = (props) => {
 
                         <div className='Catagories'>
                             <h1>Catagories</h1> <br />
-                            {categorie?.data.map((category, index) => (
-                                <span key={index}>{category.category}</span>
-                            ))}
+                            <span>Lux</span>
+                            <span>Business</span>
+                            <span>Minivan</span>
+                            <span>Premium</span>
                         </div>
 
                         <div className='ReklamImg'>
