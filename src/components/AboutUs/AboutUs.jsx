@@ -8,19 +8,12 @@ import Aboutcard from '../Card/Aboutcard'
 import Car from '../Card/Car'
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Questions from '../Questions/Questions'
 import Premiumcars from '../PremiumCars/Premiumcars'
 import Navbartwo from '../Navbar/Navbartwo'
 
 
 const AboutUs = () => {
 
-
-  // const { data: cars } = useQuery({
-  //   queryKey: ["Cars"],
-  //   queryFn: getCarAbout,
-  //   staleTime: 0,
-  // });
   const [cars, setCars] = useState([]);
 
   useEffect(() => {
@@ -70,12 +63,14 @@ const AboutUs = () => {
                 <div id='itemRes' class="items">
                   {cars?.map((byCar, index) => (
                     <Car
-                      Id={byCar.id}
+                      Id={byCar?.id}
                       key={index}
                       img={`data:image/jpeg;base64,${byCar?.carImages[0]?.imagePath}`}
-                      name={byCar.marka}
-                      desc={byCar.description.slice(0, 30)}
-                      price={byCar.price} />
+                      name={byCar?.marka}
+                      desc={byCar?.description.slice(0, 30)}
+                      price={byCar?.price}
+                      campaignsPrice={byCar?.campaignsPrice}
+                    />
                   ))}
                 </div>
               </div>
