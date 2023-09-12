@@ -7,6 +7,7 @@ import 'leaflet/dist/leaflet.css';
 import { useQueryClient } from "react-query";
 import L from "leaflet";
 import { Container } from "@chakra-ui/react";
+import FindByCar from "./FindByCar";
 
 
 const markerIcon = new L.Icon({
@@ -71,7 +72,7 @@ const AllCarMap = () => {
 
             <div className="FindByCar">
                 <div>
-
+                    <FindByCar />
                 </div>
             </div>
         </>

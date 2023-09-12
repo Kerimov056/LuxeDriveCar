@@ -1,0 +1,26 @@
+.FindBYCar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &>div {
+        width: 96%;
+        height: 96%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .FindBYCar_Image {
+            width: 60%;
+            height: 100%;
+
+            &>img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+}
