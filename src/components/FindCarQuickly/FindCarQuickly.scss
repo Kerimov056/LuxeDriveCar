@@ -186,7 +186,7 @@
         .ResponseAllCars{
             width: 55%;
             height: 100%;
-            background-color: rgb(6, 27, 28);
+            background-color: rgb(8, 23, 24);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -194,11 +194,12 @@
             &>div{
                 width: 92%;
                 height: 100%;
-                background-color: orange;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                
+                flex-wrap: wrap;
+                overflow-y: auto;
+
             }
         }
 

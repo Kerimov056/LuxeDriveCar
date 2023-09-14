@@ -67,6 +67,11 @@ const FindCarQuickly = () => {
                     <div className='ResponseAllCars'>
                         <div>
                             <RespnseCars />
+                            <RespnseCars />
+                            <RespnseCars />
+                            <RespnseCars />
+                            <RespnseCars />
+                            <RespnseCars />
                         </div>
                     </div>
                     <div className='ResponseMapAllCar'>
