@@ -340,7 +340,7 @@ const Home = ({ color, onNavStateChange }) => {
           <div className='FindCityCar'>
             <div><h1>Find your car by country</h1></div>
             <div className='inputCountryHome'>
-                <Input placeholder='search...'></Input><Button><FiSearch /></Button>
+                <Input  onChange={handleInputChange} placeholder='search...'></Input><Button onClick={handleButtonClick}><FiSearch /></Button>
             </div>
           </div>
         </div>
