@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { MdLocationPin } from 'react-icons/md'
 import { RxVideo } from 'react-icons/rx'
 import { TfiHeadphoneAlt } from 'react-icons/tfi'
+import { FiSearch  } from 'react-icons/fi'
 import { Button, Input, useDisclosure, AspectRatio } from '@chakra-ui/react';
 import Card from '../Card/Card'
 import Aboutcard from '../Card/Aboutcard'
@@ -339,7 +340,7 @@ const Home = ({ color, onNavStateChange }) => {
           <div className='FindCityCar'>
             <div><h1>Find your car by country</h1></div>
             <div className='inputCountryHome'>
-                <Input></Input><Button><s></s></Button>
+                <Input placeholder='search...'></Input><Button><FiSearch /></Button>
             </div>
           </div>
         </div>
