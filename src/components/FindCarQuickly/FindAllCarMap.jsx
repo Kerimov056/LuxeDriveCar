@@ -16,29 +16,6 @@ const FindAllCarMap = (props) => {
     const mapRef = useRef(null);
 
 
-    useEffect(() => {
-        const reverseGeocode = async (lat, lng) => {
-            const apiKey = Google_Maps_Api_Key;
-    
-            try {
-                const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`);
-                const data = await response.json();
-    
-                if (data.results && data.results.length > 0) {
-                    const address = data.results[0].formatted_address;
-                    props.setCarAddress(address);
-                } else {
-                    props.setCarAddress('Adres bulunamadi.');
-                }
-            } catch (error) {
-                console.error('Ters jeokodlama hatasi:', error);
-                props.setCarAddress('Ters jeokodlama hatasi.');
-            }
-        };
-        
-        reverseGeocode(props.locationLat, props.locationLng);
-    }, [props.locationLat, props.locationLng, props.setCarAddress]);
-
     return (
         <div className='ss'>
             <MapContainer center={[props.locationLat, props.locationLng] ? [props.locationLat, props.locationLng] : [40.4093, 49.8671]} ref={mapRef} zoom={13} scrollWheelZoom={false}>
@@ -51,12 +28,6 @@ const FindAllCarMap = (props) => {
                             position={[car?.latitude, car?.longitude]}
                             key={index}
                             icon={markerIcon}
-                            eventHandlers={{
-                                click: () => {
-                                    props.setSelectedMarker(car);
-                                    props.setReturnLocation(false);
-                                },
-                            }}
                         >
                             <Popup>
                                 <p> Price: $ {car?.price}</p>

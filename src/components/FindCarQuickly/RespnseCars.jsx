@@ -64,7 +64,7 @@ const RespnseCars = (props) => {
                     <div className='RespnseCarsCard_PriceCenter'>
                         <div>
                             <p>LuxeDrive.com</p>
-                            <h2>${props.price}</h2>
+                            <h2>${props.campaignsPrice ? props.campaignsPrice : props.price}</h2>
                             <p>Total</p>
                             <Button><Link to={`/CarDetail/${props.Id}`}>View Deal</Link></Button>
                         </div>

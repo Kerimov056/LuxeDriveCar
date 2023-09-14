@@ -204,6 +204,7 @@ const FindCarQuickly = () => {
                                             img={`data:image/jpeg;base64,${byCar.carImages[0]?.imagePath}`}
                                             category={byCar?.carCategory?.category ? byCar?.carCategory?.category : "No Category"}
                                             price={byCar?.price}
+                                            campaignsPrice={byCar?.campaignsPrice}
                                             carLat={byCar?.latitude}
                                             carLng={byCar?.longitude}
                                         />
