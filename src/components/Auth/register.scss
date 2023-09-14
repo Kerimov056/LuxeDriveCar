@@ -59,7 +59,7 @@
     }
 
     .login_form {
-        height: 750px !important;
+        height: 814px !important;
         width: 460px;
         background-color: rgba(255, 255, 255, 0.13);
         position: absolute;
@@ -187,4 +187,26 @@
             border: 1px solid #2d79f3;
         }
     }
+}
+
+//  ReCAPTCHA
+
+
+.grecaptcha-badge {
+    visibility: hidden;
+}
+
+.badge-container {
+    display: flex;
+    justify-content: flex-end;
+    overflow: hidden;
+    width: 70px;
+    height: 60px;
+    margin: 0 auto;
+    box-shadow: 0 0 4px #ddd;
+    transition: linear 100ms width;
+}
+
+.badge-container:hover {
+    width: 256px;
 }

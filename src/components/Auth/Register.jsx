@@ -8,12 +8,27 @@ import registerSchema from '../Validators/registerSchema'
 import { GrPrevious } from "react-icons/gr";
 import { FcGoogle } from "react-icons/fc";
 import { BsApple } from "react-icons/bs";
+import ReCAPTCHA from 'react-google-recaptcha';
+
 
 const Register = () => {
 
+    const [token, setToken] = useState('');
+
+    const onCaptchaLoad = () => {
+        console.log('reCAPTCHA yüklendi');
+    }
+
+    const onCaptchaVerify = (recaptchaToken) => {
+        console.log('reCAPTCHA doğrulandi:', recaptchaToken);
+        setToken(recaptchaToken);
+    }
+
+
+
     const history = useNavigate();
 
-    const[selectedDate, setSelectedDate] = useState()
+    const [selectedDate, setSelectedDate] = useState()
 
     const handleDateChange = (e) => {
         setSelectedDate(e.target.value);
@@ -50,7 +65,7 @@ const Register = () => {
             <div className='login_sectionN'>
 
                 <div>
-                    <form  id='RegResponPhone' className='login_form' onSubmit={formik.handleSubmit} style={{ marginTop: "10px", height: "700px" }}>
+                    <form id='RegResponPhone' className='login_form' onSubmit={formik.handleSubmit} style={{ marginTop: "10px", height: "700px" }}>
                         <FormControl>
                             <h3>Sign Up</h3>
                             <label htmlFor='Fullname'>Your Full Name</label><br />
@@ -119,7 +134,14 @@ const Register = () => {
                                     borderBottom: "1px solid white",
                                 }}
                             />
-
+                            <ReCAPTCHA
+                                sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                                render="explicit"
+                                onloadCallback={onCaptchaLoad}
+                                verifyCallback={onCaptchaVerify}
+                                data-theme="dark light"
+                                style={{marginLeft:"40px",marginTop:"14px"}}
+                            />
                             <Button type='submit' onClick={formik.handleSubmit}>Register</Button>
                             <div className='GoogleAndAppleRegister'>
                                 <button className='GoogleRegister'><FcGoogle /> Google</button>

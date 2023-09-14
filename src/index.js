@@ -9,6 +9,9 @@ import { persistStore } from 'redux-persist'
 import store from './components/Redux/store'
 import { QueryClient, QueryClientProvider } from "react-query";
 import { GoogleOAuthProvider } from '@react-oauth/google';
+// import MyStoreCheckout from './MyStoreCheckout';
+
+
 
 const queryClinet = new QueryClient();
 
@@ -20,7 +23,7 @@ root.render(
       <Provider store={store}>
         <PersistGate persistor={persistStore(store)}>
           <GoogleOAuthProvider clientId="91997614652-1q2taif2sptoou1dahqsiripc4u5e0b6.apps.googleusercontent.com">
-            <App />
+              <App />
           </GoogleOAuthProvider>
         </PersistGate>
       </Provider>

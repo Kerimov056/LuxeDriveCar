@@ -107,7 +107,14 @@ L.Icon.Default.mergeOptions({
 
 
 const CarDetail = () => {
+    const currentDateTime = new Date().toISOString().slice(0, 16);
 
+    // const today = new Date();
+    // const tomorrow = new Date(today);
+    // tomorrow.setDate(today.getDate() + 1);
+
+    // const tomorrowDateString = tomorrow.toISOString().slice(0, 10);
+    // console.log(tomorrowDateString);
     //---------leaflet
 
     const [center, setCenter] = useState({ lat: 40.4093, lng: 49.8671 });
@@ -513,7 +520,7 @@ const CarDetail = () => {
                                         </AlertDialogOverlay>
                                     </AlertDialog>
                                     {byCars.data?.carImages?.map(byImage => (
-                                        <div><img style={{width:"300px",marginTop:"20px"}} onClick={() => Imgaetrasfer(`data:image/jpeg;base64,${byImage?.imagePath}`)} src={`data:image/jpeg;base64,${byImage?.imagePath}`} alt="Image 1" /></div>
+                                        <div><img style={{ width: "300px", marginTop: "20px" }} onClick={() => Imgaetrasfer(`data:image/jpeg;base64,${byImage?.imagePath}`)} src={`data:image/jpeg;base64,${byImage?.imagePath}`} alt="Image 1" /></div>
                                     ))}
                                 </div>
 
@@ -650,6 +657,7 @@ const CarDetail = () => {
                                                 type="datetime-local"
                                                 value={selectedDate}
                                                 onChange={handleDateChange}
+                                                min={currentDateTime}
                                                 style={{
                                                     borderTop: "none",
                                                     borderRight: "none",
@@ -667,6 +675,7 @@ const CarDetail = () => {
                                                 type="datetime-local"
                                                 value={selectedDate1}
                                                 onChange={handleDateChange1}
+                                                min={currentDateTime }
                                                 style={{
                                                     borderTop: "none",
                                                     borderRight: "none",

@@ -125,7 +125,7 @@ const Communication = () => {
                                     <input value={formik.Note} onChange={formik.handleChange} name='Note' type='text' /><br />
                                 </div>
                                 <ReCAPTCHA
-                                    sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" // reCAPTCHA sitesi için sağlanan anahtar
+                                    sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" 
                                     render="explicit"
                                     onloadCallback={onCaptchaLoad}
                                     verifyCallback={onCaptchaVerify}

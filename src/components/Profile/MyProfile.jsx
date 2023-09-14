@@ -3,7 +3,7 @@ import "./MyProfile.scss";
 import Navbar from "../Navbar/Navbar";
 import MyReserv from './MyReserv';
 import { getReservation } from "../Services/reservationService";
-import { useQuery, useMutation, useQueryClient } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import axios from 'axios';
@@ -21,7 +21,6 @@ const MyProfile = () => {
         staleTime: 0,
     });
 
-    console.log(ProfileImage);
 
     // const [Useremail, setEmail] = useState(""); // Eğer email'i başka bir yerden alıyorsanız, başlangıç değerini ayarlamalısınız.
     const [image, setImage] = useState(null);
@@ -48,7 +47,6 @@ const MyProfile = () => {
                     },
                 });
                 if (response.status === 200) {
-                    console.log('Profil resmi güncellendi');
                 }
             } catch (error) {
                 console.error(error);

@@ -4,6 +4,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { BsTelephoneX } from 'react-icons/bs'
+import { useNavigate } from 'react-router-dom';
 import { MdLocationPin } from 'react-icons/md'
 import { RxVideo } from 'react-icons/rx'
 import { TfiHeadphoneAlt } from 'react-icons/tfi'
@@ -41,6 +42,7 @@ const CountdownTimer = ({ targetDate }) => {
   const [countdown, setCountdown] = useState('');
 
   const [days, setDays] = useState('');
+
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -245,7 +247,7 @@ const Home = ({ color, onNavStateChange }) => {
                     <div>
                       +994 051 385 07 07 <br />
                       +994 077 332 43 18
-                    </div>
+                    </div>  
                   </div>
                 </div>
               </div>

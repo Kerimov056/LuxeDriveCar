@@ -18,13 +18,22 @@ import FilterPage from "./components/CarFilterPage/FilterPage";
 import MyProfile from "./components/Profile/MyProfile";
 import ResetPassword from "./components/Auth/ResetPassword";
 import ResertPassword from "./components/Auth/ResertPassword";
+import FindCarQuickly from "./components/FindCarQuickly/FindCarQuickly";
 import Communication from "./components/Communication/Communication";
 import RentalConditions from "./components/RentalConditions/RentalConditions";
 import { useDispatch, useSelector } from 'react-redux';
+// import { Elements } from "@stripe/react-stripe-js";
+// import { loadStripe } from "@stripe/stripe-js";
 // import StaticMap from "./components/Map/StaticMap"
 // import GoogleLoginComponent from "./components/Auth/GoogleLoginComponent ";
 
 function App() {
+
+  // const stripePromise = loadStripe('pk_test_51NpYaKB2AWkOD0IHgKCsciOitUcBE8xHNqXflRBwSptRVnSvu0HOPY6UmPMohmkCTLJHaF7YiZIoIuZvkEoXGJ1P00j8HH04jb');
+  // const options = {
+  //   // passing the client secret obtained from the server
+  //   clientSecret: 'sk_test_51NpYaKB2AWkOD0IHNUV1wExXiWjVKZSAnoB1RhMQsxsCRVHGoIJbkJWKZchha7qlAFMFmxz84LvSZh1f7o10XmvO00LskDay4k',
+  // };
 
   const dispatch = useDispatch();
   const { token } = useSelector(x => x.authReducer);
@@ -32,9 +41,9 @@ function App() {
   return (
     <>
       <ChakraProvider>
+        {/* <Elements stripe={stripePromise} options={options}> */}
 
         <Router>
-
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/AboutUs' element={<AboutUs />} />
@@ -49,6 +58,7 @@ function App() {
             <Route path='/Chat' element={<Chat />} />
             <Route path='/FilterPage/:car/:model' element={<FilterPage />} />
             <Route path='/MyProfile' element={<MyProfile />} />
+            <Route path='/FindCarQuickly' element={<FindCarQuickly />} />
             <Route path='/ResetPassword' element={<ResetPassword />} />
             <Route path='/Communication' element={<Communication />} />
             <Route path='/RentalConditions' element={<RentalConditions />} />
@@ -56,7 +66,7 @@ function App() {
           </Routes >
           <Footer />
         </ Router >
-
+        {/* </Elements> */}
       </ChakraProvider >
     </>
   );
