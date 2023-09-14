@@ -1,18 +1,19 @@
 import React from 'react'
 import './RespnseCars.scss'
 import { Button } from '@chakra-ui/react'
+import { Link } from 'react-router-dom'
 
-const RespnseCars = () => {
+const RespnseCars = (props) => {
     return (
         <>
             <div className='RespnseCarsCard'>
                 <div className='RespnseCarsCard_Img'>
-                    <img src='https://content.r9cdn.net/rimg/carimages/generic/02_economy_red.png?height=174' />
+                    <img src={props.img} />
                 </div>
                 <div className='RespnseCarsCard_Desc'>
                     <div className='RespnseCarsCard_Desc1'>
-                        <h1>BMW M4</h1>
-                        <h2>LUX</h2>
+                        <h1>{props.marka} {props.model}</h1>
+                        <h2>{props.category}</h2>
 
                     </div>
                     <div className='RespnseCarsCard_Desc2'>
@@ -24,9 +25,9 @@ const RespnseCars = () => {
                     <div className='RespnseCarsCard_PriceCenter'>
                         <div>
                             <p>LuxeDrive.com</p>
-                            <h2>$499</h2>
+                            <h2>${props.price}</h2>
                             <p>Total</p>
-                            <Button>View Deal</Button>
+                            <Button><Link to={`/CarDetail/${props.Id}`}>View Deal</Link></Button>
                         </div>
                     </div>
                 </div>

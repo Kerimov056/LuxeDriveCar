@@ -85,7 +85,6 @@ const VehicleFleet = () => {
     const [selectedCategory, setSelectedCategory] = useState('');
     const [minPrice, setMinPrice] = useState();
     const [maxPrice, setMaxPrice] = useState();
-    console.log(selectedModel);
 
     const handleCategoryChange = (event) => {
         setSelectedCategory(event.target.value);
