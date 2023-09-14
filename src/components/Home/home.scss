@@ -244,7 +244,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            border-bottom: 1px solid white;
+            border-bottom: 1px solid rgb(88, 88, 88);
 
             &>div {
                 width: 88%;
@@ -422,13 +422,34 @@
     .cards {
         margin-top: 10px;
         width: 97%;
-        height: 100%;
+        height: auto;
         display: grid;
         grid-template-columns: auto auto auto;
         overflow: hidden;
         margin-left: 40px;
 
         &>div {}
+    }
+
+    .FindCityCar {
+        width: 300%;
+        height: 120px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        &>div {
+            &>h1 {
+                font-size: 29px;
+                font-family: 'Times New Roman', Times, serif;
+            }
+        }
+
+        .inputCountryHome{
+            width: 100%;
+        }
     }
 }
 

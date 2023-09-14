@@ -5,7 +5,7 @@ import CategoryCarCard from './CategoryCarCard';
 import { Select } from '@chakra-ui/react';
 import FindAllCarMap from "./FindAllCarMap";
 import RespnseCars from "./RespnseCars";
-import { getCar, getAllMarka, getAllModel, IsCampaigns } from "../Services/carServices";
+import { getCar, getAllMarka, getAllModel } from "../Services/carServices";
 import { useQuery } from 'react-query'
 import { getCategorie } from "../Services/categorieServices";
 import { getType } from "../Services/typeServices";
@@ -184,10 +184,9 @@ const FindCarQuickly = () => {
                     <div className='ResponseAllCars'>
                         <div>
                             {cityBounds && cars?.data.map((byCar, index) => {
-                                const carLatitude = byCar.latitude; // Aracın enlemi
-                                const carLongitude = byCar.longitude; // Aracın boylamı
+                                const carLatitude = byCar.latitude; 
+                                const carLongitude = byCar.longitude; 
 
-                                // Eğer cityBounds değeri null değilse ve aracın konumu Paris sınırları içindeyse
                                 if (
                                     cityBounds &&
                                     carLatitude >= cityBounds.southwest.lat &&
@@ -210,8 +209,6 @@ const FindCarQuickly = () => {
                                         />
                                     );
                                 }
-
-                                // Aracın konumu Paris sınırları içinde değilse, null döndür
                                 return null;
                             })}
                         </div>
@@ -221,7 +218,6 @@ const FindCarQuickly = () => {
                         {cityBounds && cars?.data.map((byCar, index) => {
                             const carLatitude = byCar.latitude; 
                             const carLongitude = byCar.longitude;
-
                             if (
                                 cityBounds &&
                                 carLatitude >= cityBounds.southwest.lat &&
@@ -246,8 +242,7 @@ const FindCarQuickly = () => {
                             return null; 
                         })}
                     </div>
-
-                </div>
+                </div>  
             </div>
         </>
     )

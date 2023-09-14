@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './home.scss'
 import Slider from 'react-slick';
+import { Google_Maps_Api_Key } from "../utils/ExportFile";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { BsTelephoneX } from 'react-icons/bs'
@@ -165,7 +166,7 @@ const Home = ({ color, onNavStateChange }) => {
     fetchAllCompaign();
   }, []);
 
-  
+
   const [sliders, setSliders] = useState([]);
 
   useEffect(() => {
@@ -176,6 +177,32 @@ const Home = ({ color, onNavStateChange }) => {
   }, []);
 
 
+
+  const [searchCity, setSearchCity] = useState('');
+  const [cityBounds, setCityBounds] = useState(null);
+
+  const handleInputChange = (e) => {
+    setSearchCity(e.target.value);
+  };
+
+  const handleButtonClick = () => {
+    fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${searchCity}&key=${Google_Maps_Api_Key}`)
+      .then(response => response.json())
+      .then(data => {
+        setSearchCity(data.results[0].geometry.location);
+        setCityBounds(data.results[0].geometry.bounds);
+        console.log(data);
+      })
+      .catch(error => console.error('Hata:', error));
+  };
+
+
+
+
+
+
+
+
   return (
     <>
       <div className={isVisible ? 'navbar' : 'navbar hidden'}>
@@ -183,7 +210,7 @@ const Home = ({ color, onNavStateChange }) => {
       </div>
       {Compn?.data === true &&
         <div id='Compahins'>
-          {compaignData!== null &&
+          {compaignData !== null &&
 
             <div class="container" >
               <h1 id="headline">Now up to {compaignData[0]?.campaignsInterest ? compaignData[0]?.campaignsInterest : ''}% discounts at LuxeDrive</h1>
@@ -247,7 +274,7 @@ const Home = ({ color, onNavStateChange }) => {
                     <div>
                       +994 051 385 07 07 <br />
                       +994 077 332 43 18
-                    </div>  
+                    </div>
                   </div>
                 </div>
               </div>
@@ -309,6 +336,12 @@ const Home = ({ color, onNavStateChange }) => {
           {cars?.data?.slice(0, 6).map((byCar, index) => (  //https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Main-home-vehicle-list-img-01.jpg
             <Card key={index} isCampaigns={byCar?.isCampaigns} campaignsInterest={byCar?.campaignsInterest} campaignsPrice={byCar?.campaignsPrice} Id={byCar?.id} img={`data:image/jpeg;base64,${byCar.carImages[0]?.imagePath}`} catagorie={byCar.carCategory ? byCar.carCategory.category : "No Category"} name={byCar.model} price={byCar.price} description={byCar.description.slice(0, 60)} />
           ))}
+          <div className='FindCityCar'>
+            <div><h1>Find your car by country</h1></div>
+            <div className='inputCountryHome'>
+                <Input></Input><Button><s></s></Button>
+            </div>
+          </div>
         </div>
       </div>
 
