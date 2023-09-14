@@ -15,13 +15,15 @@ const RespnseCars = () => {
                 <div className='RespnseCarsCard_Price'>
                     <div className='BossPrs'></div>
                     <div className='RespnseCarsCard_PriceCenter'>
-                        <p>LuxeDrive.com</p>
-                        <h2>$499</h2>
-                        <p>Total</p>
-                        <Button>Total</Button>
+                        <div>
+                            <p>LuxeDrive.com</p>
+                            <h2>$499</h2>
+                            <p>Total</p>
+                            <Button>View Deal</Button>
+                        </div>
                     </div>
                 </div>
-            </div>  
+            </div>
         </>
     )
 }
