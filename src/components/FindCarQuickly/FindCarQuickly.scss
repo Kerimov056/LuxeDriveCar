@@ -86,17 +86,72 @@
             justify-content: center;
             align-items: center;
 
-            .ACArFilterLeft{
-                width: 50%;
+            .ACArFilterLeft {
+                width: 60%;
                 height: 100%;
                 background-color: blueviolet;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+
+                &>div {
+
+                    /* Input container */
+                    .input-containerFindMinPRice {
+                        position: relative;
+                        margin: 20px;
+                    }
+
+                    /* Input field */
+                    .input-field {
+                        display: block;
+                        width: 100%;
+                        padding: 10px;
+                        font-size: 16px;
+                        border: none;
+                        border-bottom: 2px solid #ccc;
+                        outline: none;
+                        background-color: transparent;
+                    }
+
+                    /* Input label */
+                    .input-labelEL {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        font-size: 16px;
+                        color: rgba(204, 204, 204, 0);
+                        pointer-events: none;
+                        transition: all 0.3s ease;
+                    }
+
+                    /* Input highlight */
+                    .input-highlightTT {
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        height: 2px;
+                        width: 0;
+                        background-color: #e8381b;
+                        transition: all 0.3s ease;
+                    }
+
+                    /* Input field:focus styles */
+                    .input-field:focus+.input-labelEL {
+                        top: -20px;
+                        font-size: 12px;
+                        color: #e8381b;
+                    }
+
+                    .input-field:focus+.input-labelEL+.input-highlightTT {
+                        width: 100%;
+                    }
+
+                }
             }
 
-            .ACArFilterRight{
-                width: 50%;
+            .ACArFilterRight {
+                width: 40%;
                 height: 100%;
                 background-color: cornflowerblue;
             }

@@ -24,6 +24,22 @@ const FindCarQuickly = () => {
                         <div className='ACArFilterLeft'>
                             <CategoryCarCard img={"https://content.r9cdn.net/rimg/carimages/generic/05_suv-small_white.png?width=108&height=72"} category={"Small"} />
                             <CategoryCarCard img={"https://content.r9cdn.net/rimg/carimages/generic/02_economy_white.png?width=108&height=72"} category={"Medium"} />
+                            <CategoryCarCard img={"https://content.r9cdn.net/rimg/carimages/generic/05_suv-small_white.png?width=108&height=72"} category={"Suv"} />
+                            <CategoryCarCard img={"https://content.r9cdn.net/rimg/carimages/generic/03_standard_white.png?width=108&height=72"} category={"Large"} />
+                            <div>
+                                <div class="input-containerFindMinPRice">
+                                    <input placeholder="Min Price" class="input-field" type="number" />
+                                        <label for="input-field" class="input-labelEL">Enter Price</label>
+                                        <span class="input-highlightTT"></span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="input-containerFindMinPRice">
+                                    <input placeholder="Max Price" class="input-field" type="number" />
+                                        <label for="input-field" class="input-labelEL">Enter Price</label>
+                                        <span class="input-highlightTT"></span>
+                                </div>
+                            </div>
                         </div>
                         <div className='ACArFilterRight'>
 

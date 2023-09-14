@@ -7,6 +7,10 @@
     border: 1px solid rgb(6, 100, 167);
     border-radius: 8px;
     margin-left: 15px;
+    
+    &:hover{
+        border: none;
+    }
 
     &>div{
         width: 80%;
