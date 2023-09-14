@@ -10,7 +10,6 @@ import { useQuery } from 'react-query'
 import { getCategorie } from "../Services/categorieServices";
 import { getType } from "../Services/typeServices";
 import { Google_Maps_Api_Key } from "../utils/ExportFile";
-import isLocationInCityBounds from "./FindAllCarMap";
 
 const FindCarQuickly = () => {
     const [searchCity, setSearchCity] = useState('');
@@ -134,7 +133,7 @@ const FindCarQuickly = () => {
                     <div className='ACArFilter'>
                         <div className='ACArFilterLeft'>
                             {allCategorie?.data?.slice(0, 4).map((category, index) => (
-                                <CategoryCarCard img={"https://content.r9cdn.net/rimg/carimages/generic/05_suv-small_white.png?width=108&height=72"} category={category?.category} />
+                                <CategoryCarCard category={category?.category} />
                             ))}
                             <div>
                                 <div class="input-containerFindMinPRice">
