@@ -176,6 +176,7 @@
     }
 
     .ResponseACar {
+        border-top: 1px solid rgb(63, 63, 93);
         width: 100%;
         height: 73%;
         display: flex;
@@ -185,13 +186,32 @@
         .ResponseAllCars{
             width: 55%;
             height: 100%;
-            background-color: chocolate;
+            background-color: rgb(6, 27, 28);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            &>div{
+                width: 92%;
+                height: 100%;
+                background-color: orange;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                
+            }
         }
 
         .ResponseMapAllCar{
             width: 45%;
             height: 100%;
             background-color: cadetblue;
+
+            &>div{
+                margin-top: 0px;
+                width: 100%;
+                height: 100% !important;
+            }
         }
     }
 }

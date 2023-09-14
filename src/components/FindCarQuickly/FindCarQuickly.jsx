@@ -3,7 +3,8 @@ import "./FindCarQuickly.scss";
 import { Link } from 'react-router-dom';
 import CategoryCarCard from './CategoryCarCard';
 import { Select } from '@chakra-ui/react';
-
+import AllCarMap from '../VehicleFleet/AllCarMap';
+import RespnseCars from "./RespnseCars";
 
 const FindCarQuickly = () => {
     return (
@@ -64,10 +65,12 @@ const FindCarQuickly = () => {
                 </div>
                 <div className='ResponseACar'>
                     <div className='ResponseAllCars'>
-
+                        <div>
+                            <RespnseCars />
+                        </div>
                     </div>
                     <div className='ResponseMapAllCar'>
-
+                        <AllCarMap />
                     </div>
                 </div>
             </div>
