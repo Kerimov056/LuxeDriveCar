@@ -2,6 +2,7 @@ import React from 'react'
 import "./FindCarQuickly.scss";
 import { Link } from 'react-router-dom';
 import CategoryCarCard from './CategoryCarCard';
+import { Select } from '@chakra-ui/react';
 
 
 const FindCarQuickly = () => {
@@ -29,25 +30,45 @@ const FindCarQuickly = () => {
                             <div>
                                 <div class="input-containerFindMinPRice">
                                     <input placeholder="Min Price" class="input-field" type="number" />
-                                        <label for="input-field" class="input-labelEL">Enter Price</label>
-                                        <span class="input-highlightTT"></span>
+                                    <label for="input-field" class="input-labelEL">Enter Price</label>
+                                    <span class="input-highlightTT"></span>
                                 </div>
                             </div>
                             <div>
                                 <div class="input-containerFindMinPRice">
                                     <input placeholder="Max Price" class="input-field" type="number" />
-                                        <label for="input-field" class="input-labelEL">Enter Price</label>
-                                        <span class="input-highlightTT"></span>
+                                    <label for="input-field" class="input-labelEL">Enter Price</label>
+                                    <span class="input-highlightTT"></span>
                                 </div>
                             </div>
                         </div>
                         <div className='ACArFilterRight'>
-
+                            <div>
+                                <Select variant='flushed' placeholder='All Marka' >
+                                    {/* {allMarka?.data?.map((byMarka, index) => (
+                                    <option value={byMarka} key={index}>{byMarka}</option>
+                                ))} */}
+                                    <option>Salam</option>
+                                </Select>
+                            </div>
+                            <div>
+                                <Select variant='flushed' placeholder='All Model' >
+                                    {/* {allMarka?.data?.map((byMarka, index) => (
+                                    <option value={byMarka} key={index}>{byMarka}</option>
+                                ))} */}
+                                    <option>Salam</option>
+                                </Select>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div className='ResponseACar'>
+                    <div className='ResponseAllCars'>
 
+                    </div>
+                    <div className='ResponseMapAllCar'>
+
+                    </div>
                 </div>
             </div>
         </>

@@ -6,13 +6,14 @@
         width: 100%;
         height: 27%;
         background-color: rgb(6, 27, 28);
-
+        
         .CityFindACarSearch {
             width: 100%;
             height: 40%;
             display: flex;
             justify-content: center;
             align-items: center;
+            border-bottom: 1px solid rgb(63, 63, 93);
 
 
             .input-wrapperFilterACar {
@@ -81,7 +82,7 @@
         .ACArFilter {
             width: 100%;
             height: 60%;
-            background-color: cadetblue;
+            background-color: rgb(6, 27, 28);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -89,7 +90,7 @@
             .ACArFilterLeft {
                 width: 60%;
                 height: 100%;
-                background-color: blueviolet;
+                background-color: rgb(6, 27, 28);
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -153,7 +154,23 @@
             .ACArFilterRight {
                 width: 40%;
                 height: 100%;
-                background-color: cornflowerblue;
+                background-color: rgb(6, 27, 28);
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                
+                &>div{
+                    width: 45%;
+                    height: 30px;
+
+                    &>select{
+
+                        &:hover option{
+                            background-color: #e8381b;
+                            color: white;
+                        }
+                    }
+                }
             }
         }
     }
@@ -161,6 +178,20 @@
     .ResponseACar {
         width: 100%;
         height: 73%;
-        background-color: chocolate;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        .ResponseAllCars{
+            width: 55%;
+            height: 100%;
+            background-color: chocolate;
+        }
+
+        .ResponseMapAllCar{
+            width: 45%;
+            height: 100%;
+            background-color: cadetblue;
+        }
     }
 }
