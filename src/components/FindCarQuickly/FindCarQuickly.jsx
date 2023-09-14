@@ -27,6 +27,7 @@ const FindCarQuickly = () => {
             .then(data => {
                 setSearchCity(data.results[0].geometry.location);
                 setCityBounds(data.results[0].geometry.bounds);
+                console.log(data);
             })
             .catch(error => console.error('Hata:', error));
     };
@@ -63,8 +64,8 @@ const FindCarQuickly = () => {
     const [minPrice, setMinPrice] = useState();
     const [maxPrice, setMaxPrice] = useState();
 
-    const handleCategoryChange = (event) => {
-        setSelectedCategory(event.target.value);
+    const handleCategoryChange = (selectedCategory) => {
+        setSelectedCategory(selectedCategory);
     };
 
     const handleMarkaChange = (event) => {
@@ -106,7 +107,7 @@ const FindCarQuickly = () => {
         setReturnLocation(location);
     };
 
-    
+
 
     return (
         <>
@@ -123,7 +124,7 @@ const FindCarQuickly = () => {
                             <input
                                 placeholder="search.."
                                 onChange={handleInputChange}
-                                value={searchCity}
+                                // value={searchCity}
                                 className="inputCarS"
                                 name="text"
                                 type="text"
@@ -133,7 +134,12 @@ const FindCarQuickly = () => {
                     <div className='ACArFilter'>
                         <div className='ACArFilterLeft'>
                             {allCategorie?.data?.slice(0, 4).map((category, index) => (
-                                <CategoryCarCard category={category?.category} />
+                                <CategoryCarCard
+                                    key={index}
+                                    value={category?.category} // This is the value for the select option
+                                    onChange={handleCategoryChange} // This is the change event handler
+                                    category={category?.category}
+                                />
                             ))}
                             <div>
                                 <div class="input-containerFindMinPRice">
@@ -165,7 +171,7 @@ const FindCarQuickly = () => {
                                     ))}
                                 </Select>
                             </div>
-                            <div>
+                            <div style={{ marginLeft: "30px", marginTop: "-30px" }}>
                                 <button style={{ marginTop: "20px" }} onClick={handleFilterSearch} className="buttonSearchVFilter">
                                     <span class="span">\ō͡≡o˞̶ </span>
                                 </button>
@@ -177,31 +183,69 @@ const FindCarQuickly = () => {
                 <div className='ResponseACar'>
                     <div className='ResponseAllCars'>
                         <div>
-                            {cars?.data.map((byCar, index) => (
-                                <RespnseCars
-                                    key={index}
-                                    Id={byCar?.id}
-                                    marka={byCar?.marka}
-                                    model={byCar.model}
-                                    img={`data:image/jpeg;base64,${byCar?.carImages[0]?.imagePath}`}
-                                    catagorie={byCar?.carCategory ? byCar.carCategory.category : "No Category"}
-                                    price={byCar?.price}
-                                />
-                            ))}
+                            {cityBounds && cars?.data.map((byCar, index) => {
+                                const carLatitude = byCar.latitude; // Aracın enlemi
+                                const carLongitude = byCar.longitude; // Aracın boylamı
+
+                                // Eğer cityBounds değeri null değilse ve aracın konumu Paris sınırları içindeyse
+                                if (
+                                    cityBounds &&
+                                    carLatitude >= cityBounds.southwest.lat &&
+                                    carLatitude <= cityBounds.northeast.lat &&
+                                    carLongitude >= cityBounds.southwest.lng &&
+                                    carLongitude <= cityBounds.northeast.lng
+                                ) {
+                                    return (
+                                        <RespnseCars
+                                            key={index}
+                                            Id={byCar?.id}
+                                            marka={byCar?.marka}
+                                            model={byCar?.model}
+                                            img={`data:image/jpeg;base64,${byCar.carImages[0]?.imagePath}`}
+                                            category={byCar?.carCategory?.category ? byCar?.carCategory?.category : "No Category"}
+                                            price={byCar?.price}
+                                            carLat={byCar?.latitude}
+                                            carLng={byCar?.longitude}
+                                        />
+                                    );
+                                }
+
+                                // Aracın konumu Paris sınırları içinde değilse, null döndür
+                                return null;
+                            })}
                         </div>
+
                     </div>
                     <div className='ResponseMapAllCar'>
-                        <FindAllCarMap
-                            ref={mapRef}
-                            locationLat={searchCity?.lat ? searchCity?.lat : ''}
-                            locationLng={searchCity?.lng ? searchCity?.lng : ''}
-                            data={cars ? cars : ''}
-                            cityBounds={cityBounds ? cityBounds : ''}
-                            setSelectedMarker={setSelectedMarker}
-                            setReturnLocation={setReturnLocation}
-                            setCarAddress={setCarAddress}
-                        />
+                        {cityBounds && cars?.data.map((byCar, index) => {
+                            const carLatitude = byCar.latitude; 
+                            const carLongitude = byCar.longitude;
+
+                            if (
+                                cityBounds &&
+                                carLatitude >= cityBounds.southwest.lat &&
+                                carLatitude <= cityBounds.northeast.lat &&
+                                carLongitude >= cityBounds.southwest.lng &&
+                                carLongitude <= cityBounds.northeast.lng
+                            ) {
+                                return (
+                                    <FindAllCarMap
+                                        key={index} 
+                                        ref={mapRef}
+                                        locationLat={searchCity?.lat ? searchCity?.lat : ''}
+                                        locationLng={searchCity?.lng ? searchCity?.lng : ''}
+                                        data={cars ? cars : ''}
+                                        cityBounds={cityBounds ? cityBounds : ''}
+                                        setSelectedMarker={setSelectedMarker}
+                                        setReturnLocation={setReturnLocation}
+                                        setCarAddress={setCarAddress}
+                                    />
+                                );
+                            }
+                            return null; 
+                        })}
                     </div>
+
                 </div>
             </div>
         </>

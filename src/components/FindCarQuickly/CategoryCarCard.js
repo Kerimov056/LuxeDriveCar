@@ -28,16 +28,16 @@ const CategoryCarCard = (props) => {
 
 
   return (
-    <div className='CategoryCarCard'>
-        <div>
-            <div className='CategoryCarCard_Img'>
-                <img src={imgUrl} />
-            </div>
-            <div className='CategoryCarCard_Name'>
-                {props.category}
-            </div>
-        </div>
+    <div className='CategoryCarCard' onClick={() => props.onChange(props.category)}>
+    <div>
+      <div className='CategoryCarCard_Img'>
+        <img src={imgUrl} alt={props.category} />
+      </div>
+      <div className='CategoryCarCard_Name'>
+        {props.category}
+      </div>
     </div>
+  </div>
   )
 }
 

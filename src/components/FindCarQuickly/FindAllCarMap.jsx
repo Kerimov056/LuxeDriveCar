@@ -12,7 +12,7 @@ const markerIcon = new L.Icon({
 });
 
 const FindAllCarMap = (props) => {
-    console.log(props.locationLat, props.locationLng);
+    // console.log(props.locationLat, props.locationLng);
     const mapRef = useRef(null);
 
 

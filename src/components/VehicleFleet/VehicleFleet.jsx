@@ -116,7 +116,6 @@ const VehicleFleet = () => {
         refetch();
     };
 
-
     const handleFilterSearch = () => {
         refetch();
     };
