@@ -1,6 +1,7 @@
 import React from 'react'
 import "./FindCarQuickly.scss";
 import { Link } from 'react-router-dom';
+import CategoryCarCard from './CategoryCarCard';
 
 
 const FindCarQuickly = () => {
@@ -9,8 +10,6 @@ const FindCarQuickly = () => {
             <div id='FindCarQuickly'>
                 <div className='FilterFindACar'>
                     <div className='CityFindACarSearch'>
-
-
                         <div class="input-wrapperFilterACar">
                             <button class="iconFindCar">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="25px" width="25px">
@@ -20,11 +19,15 @@ const FindCarQuickly = () => {
                             </button>
                             <input placeholder="search.." class="inputCarS" name="text" type="text" />
                         </div>
-
-
                     </div>
                     <div className='ACArFilter'>
+                        <div className='ACArFilterLeft'>
+                            <CategoryCarCard img={"https://content.r9cdn.net/rimg/carimages/generic/05_suv-small_white.png?width=108&height=72"} category={"Small"} />
+                            <CategoryCarCard img={"https://content.r9cdn.net/rimg/carimages/generic/02_economy_white.png?width=108&height=72"} category={"Medium"} />
+                        </div>
+                        <div className='ACArFilterRight'>
 
+                        </div>
                     </div>
                 </div>
                 <div className='ResponseACar'>

@@ -31,7 +31,7 @@
                 outline: none;
                 border-radius: 50%;
                 transition: .5s ease-in-out;
-                background-color: #7e4fd4;
+                background-color: #e8381b;
                 box-shadow: 0px 0px 3px #f3f3f3;
                 padding-right: 40px;
                 color: #fff;
@@ -70,7 +70,7 @@
                 width: 250px;
                 border-radius: 0px;
                 background-color: transparent;
-                border-bottom: 3px solid #7e4fd4;
+                border-bottom: 3px solid #e8381b;
                 transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
             }
 
@@ -82,6 +82,24 @@
             width: 100%;
             height: 60%;
             background-color: cadetblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .ACArFilterLeft{
+                width: 50%;
+                height: 100%;
+                background-color: blueviolet;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .ACArFilterRight{
+                width: 50%;
+                height: 100%;
+                background-color: cornflowerblue;
+            }
         }
     }
 
