@@ -18,6 +18,7 @@ import {
     useDisclosure, Input, Text,
     Button, FormLabel, FormControl
 } from '@chakra-ui/react'
+import reservationScheme from "../Validators/ReservationScheme";
 
 const Basket = () => {
 
@@ -144,6 +145,7 @@ const Basket = () => {
                 console.log(error);
             }
         },
+        validationSchema: reservationScheme
     });
 
 
@@ -195,8 +197,10 @@ const Basket = () => {
 
                                                         <label htmlFor="password">Full Name</label>
                                                         <Text fontSize={"15px"} color={"red"} mb="8px">
+                                                            {reservFormik.touched.FullName && reservFormik.errors.FullName}
                                                         </Text>
                                                         <Input
+                                                            isInvalid={reservFormik.errors.FullName && reservFormik.touched.FullName}
                                                             name='FullName'
                                                             value={reservFormik.values.FullName}
                                                             onChange={reservFormik.handleChange}
@@ -206,8 +210,10 @@ const Basket = () => {
 
                                                         <label htmlFor="Image">Email</label>
                                                         <Text fontSize={"15px"} color={"red"} mb="8px">
+                                                            {reservFormik.touched.Email && reservFormik.errors.Email}
                                                         </Text>
                                                         <Input
+                                                            isInvalid={reservFormik.errors.Email && reservFormik.touched.Email}
                                                             type='email'
                                                             name='Email'
                                                             value={reservFormik.values.Email}
@@ -218,9 +224,11 @@ const Basket = () => {
 
                                                         <label htmlFor="password">Number</label>
                                                         <Text fontSize={"15px"} color={"red"} mb="8px">
+                                                            {reservFormik.touched.Number && reservFormik.errors.Number}
                                                         </Text>
                                                         <Input
                                                             name='Number'
+                                                            isInvalid={reservFormik.errors.Number && reservFormik.touched.Number}
                                                             value={reservFormik.values.Number}
                                                             onChange={reservFormik.handleChange}
                                                             placeholder='Here is a sample placeholder'
@@ -229,8 +237,10 @@ const Basket = () => {
 
                                                         <label htmlFor="password">Suruculuk Vesiqesi</label>
                                                         <Text fontSize={"15px"} color={"red"} mb="8px">
+                                                            {reservFormik.touched.Image && reservFormik.errors.Image}
                                                         </Text>
                                                         <Input
+                                                            isInvalid={reservFormik.errors.Image && reservFormik.touched.Image}
                                                             type='file'
                                                             id='Cfile'
                                                             name='Image'
@@ -242,10 +252,12 @@ const Basket = () => {
 
                                                         <label htmlFor="password">Pickup Date</label>
                                                         <Text fontSize={"15px"} color={"red"} mb="8px">
+                                                            {reservFormik.touched.PickupDate && reservFormik.errors.PickupDate}
                                                         </Text>
                                                         <Input
                                                             placeholder="Select Date and Time"
                                                             size="2md"
+                                                            isInvalid={reservFormik.errors.PickupDate && reservFormik.touched.PickupDate}
                                                             type="datetime-local"
                                                             value={selectedDate}
                                                             onChange={handleDateChange}
@@ -259,8 +271,10 @@ const Basket = () => {
 
                                                         <label htmlFor="password">Retur nDate</label>
                                                         <Text fontSize={"15px"} color={"red"} mb="8px">
+                                                            {reservFormik.touched.ReturnDate && reservFormik.errors.ReturnDate}
                                                         </Text>
                                                         <Input
+                                                            isInvalid={reservFormik.errors.ReturnDate && reservFormik.touched.ReturnDate}
                                                             placeholder="Select Date and Time"
                                                             size="2md"
                                                             type="datetime-local"

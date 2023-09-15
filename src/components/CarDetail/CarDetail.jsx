@@ -37,7 +37,7 @@ import "leaflet-draw/dist/leaflet.draw.css";
 import { MapContainer, TileLayer, Marker, Popup, FeatureGroup } from "react-leaflet";
 import { EditControl } from "react-leaflet-draw";
 import '../Map/map.scss'
-
+import reservationScheme from "../Validators/ReservationScheme";
 
 
 
@@ -403,6 +403,7 @@ const CarDetail = () => {
                 console.log(error);
             }
         },
+        validationSchema: reservationScheme,
     });
 
 
@@ -599,12 +600,12 @@ const CarDetail = () => {
                                     <form className='login_form' onSubmit={reservFormik.handleSubmit} >
                                         <FormControl>
                                             <h3>Reservation A Car</h3>
-
-
                                             <label htmlFor="password">Full Name</label>
                                             <Text fontSize={"15px"} color={"red"} mb="8px">
+                                                {reservFormik.touched.FullName && reservFormik.errors.FullName}
                                             </Text>
                                             <Input
+                                                isInvalid={reservFormik.errors.FullName && reservFormik.touched.FullName}
                                                 name='FullName'
                                                 value={reservFormik.values.FullName}
                                                 onChange={reservFormik.handleChange}
@@ -614,8 +615,10 @@ const CarDetail = () => {
 
                                             <label htmlFor="Image">Email</label>
                                             <Text fontSize={"15px"} color={"red"} mb="8px">
+                                                {reservFormik.touched.Email && reservFormik.errors.Email}
                                             </Text>
                                             <Input
+                                                isInvalid={reservFormik.errors.Email && reservFormik.touched.Email}
                                                 type='email'
                                                 name='Email'
                                                 value={reservFormik.values.Email}
@@ -626,9 +629,12 @@ const CarDetail = () => {
 
                                             <label htmlFor="password">Number</label>
                                             <Text fontSize={"15px"} color={"red"} mb="8px">
+                                                {reservFormik.touched.Number && reservFormik.errors.Number}
                                             </Text>
                                             <Input
+                                                isInvalid={reservFormik.errors.Number && reservFormik.touched.Number}
                                                 name='Number'
+                                                type='number'
                                                 value={reservFormik.values.Number}
                                                 onChange={reservFormik.handleChange}
                                                 placeholder='Here is a sample placeholder'
@@ -637,8 +643,10 @@ const CarDetail = () => {
 
                                             <label htmlFor="password">Suruculuk Vesiqesi</label>
                                             <Text fontSize={"15px"} color={"red"} mb="8px">
+                                                {reservFormik.touched.Image && reservFormik.errors.Image}
                                             </Text>
                                             <Input
+                                                isInvalid={reservFormik.errors.Image && reservFormik.touched.Image}
                                                 type='file'
                                                 id='Cfile'
                                                 name='Image'
@@ -650,8 +658,10 @@ const CarDetail = () => {
 
                                             <label htmlFor="password">Pickup Date</label>
                                             <Text fontSize={"15px"} color={"red"} mb="8px">
+                                                {reservFormik.touched.PickupDate && reservFormik.errors.PickupDate}
                                             </Text>
                                             <Input
+                                                isInvalid={reservFormik.errors.PickupDate && reservFormik.touched.PickupDate}
                                                 placeholder="Select Date and Time"
                                                 size="2md"
                                                 type="datetime-local"
@@ -668,14 +678,16 @@ const CarDetail = () => {
 
                                             <label htmlFor="password">Retur nDate</label>
                                             <Text fontSize={"15px"} color={"red"} mb="8px">
+                                                {reservFormik.touched.ReturnDate && reservFormik.errors.ReturnDate}
                                             </Text>
                                             <Input
+                                                isInvalid={reservFormik.errors.ReturnDate && reservFormik.touched.ReturnDate}
                                                 placeholder="Select Date and Time"
                                                 size="2md"
                                                 type="datetime-local"
                                                 value={selectedDate1}
                                                 onChange={handleDateChange1}
-                                                min={currentDateTime }
+                                                min={currentDateTime}
                                                 style={{
                                                     borderTop: "none",
                                                     borderRight: "none",

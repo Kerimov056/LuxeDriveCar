@@ -32,7 +32,7 @@ const Login = () => {
       history('/');
       history.push('/');
     },
-  });
+  })
 
   const formik = useFormik({
     initialValues: {
@@ -42,9 +42,10 @@ const Login = () => {
     onSubmit: (values) => {
       console.log(values);
       mutate(values);
-    }
-    // validationSchema: 
+    },
+    validationSchema: loginSchema,
   });
+
 
   const [google, setGoogle] = useState('');
 

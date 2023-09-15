@@ -3,6 +3,9 @@ import { httpClient } from "../utils/HttpClient";
 export const login = (data) => {
     return httpClient.post('api/Auth/Login', data);
 };
+export const register = (data) => {
+    return httpClient.post('api/Auth/register', data);
+};
 
 export const ConfiremPassword = (data) => {
     return httpClient.post('api/Auth/ConfiremPassword', data);
