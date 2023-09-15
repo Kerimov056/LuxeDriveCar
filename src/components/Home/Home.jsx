@@ -5,11 +5,11 @@ import { Google_Maps_Api_Key } from "../utils/ExportFile";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { BsTelephoneX } from 'react-icons/bs'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MdLocationPin } from 'react-icons/md'
 import { RxVideo } from 'react-icons/rx'
 import { TfiHeadphoneAlt } from 'react-icons/tfi'
-import { FiSearch  } from 'react-icons/fi'
+import { FiSearch } from 'react-icons/fi'
 import { Button, Input, useDisclosure, AspectRatio } from '@chakra-ui/react';
 import Card from '../Card/Card'
 import Aboutcard from '../Card/Aboutcard'
@@ -34,6 +34,7 @@ import Carcatogorie from '../CarCatogorie/Carcatogorie';
 import { useQuery } from "react-query";
 import { getSlider } from "../Services/sliderServices";
 import { getCarAll, IsCampaigns, GetAllCompaignAsync } from "../Services/carServices";
+import FindCarQuickly from '../FindCarQuickly/FindCarQuickly';
 
 
 
@@ -180,22 +181,22 @@ const Home = ({ color, onNavStateChange }) => {
 
 
   const [searchCity, setSearchCity] = useState('');
-  const [cityBounds, setCityBounds] = useState(null);
+  // const [cityBounds, setCityBounds] = useState(null);
 
   const handleInputChange = (e) => {
     setSearchCity(e.target.value);
   };
 
-  const handleButtonClick = () => {
-    fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${searchCity}&key=${Google_Maps_Api_Key}`)
-      .then(response => response.json())
-      .then(data => {
-        setSearchCity(data.results[0].geometry.location);
-        setCityBounds(data.results[0].geometry.bounds);
-        console.log(data);
-      })
-      .catch(error => console.error('Hata:', error));
-  };
+  // const handleButtonClick = () => {
+  //   fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${searchCity}&key=${Google_Maps_Api_Key}`)
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       setSearchCity(data.results[0].geometry.location);
+  //       setCityBounds(data.results[0].geometry.bounds);
+  //       console.log(data);
+  //     })
+  //     .catch(error => console.error('Hata:', error));
+  // };
 
 
 
@@ -335,12 +336,26 @@ const Home = ({ color, onNavStateChange }) => {
         </div>
         <div className='cards' id='CardsRes'>
           {cars?.data?.slice(0, 6).map((byCar, index) => (  //https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Main-home-vehicle-list-img-01.jpg
-            <Card key={index} isCampaigns={byCar?.isCampaigns} campaignsInterest={byCar?.campaignsInterest} campaignsPrice={byCar?.campaignsPrice} Id={byCar?.id} img={`data:image/jpeg;base64,${byCar.carImages[0]?.imagePath}`} catagorie={byCar.carCategory ? byCar.carCategory.category : "No Category"} name={byCar.model} price={byCar.price} description={byCar.description.slice(0, 60)} />
+            <Card key={index}
+              isCampaigns={byCar?.isCampaigns}
+              campaignsInterest={byCar?.campaignsInterest}
+              campaignsPrice={byCar?.campaignsPrice}
+              Id={byCar?.id}
+              img={`data:image/jpeg;base64,${byCar.carImages[0]?.imagePath}`}
+              catagorie={byCar.carCategory ? byCar.carCategory.category : "No Category"}
+              name={byCar.model}
+              price={byCar.price}
+              description={byCar.description.slice(0, 60)} />
           ))}
           <div className='FindCityCar'>
             <div><h1>Find your car by country</h1></div>
             <div className='inputCountryHome'>
-                <Input  onChange={handleInputChange} placeholder='search...'></Input><Button onClick={handleButtonClick}><FiSearch /></Button>
+              <Input onChange={handleInputChange} placeholder='search...'></Input>
+              <Button>
+                <Link to={`/FindCarQuickly/${searchCity}`}>
+                  <FiSearch />
+                </Link>
+              </Button>
             </div>
           </div>
         </div>

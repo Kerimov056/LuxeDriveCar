@@ -11,11 +11,13 @@ import { getCategorie } from "../Services/categorieServices";
 import { getType } from "../Services/typeServices";
 import { Google_Maps_Api_Key } from "../utils/ExportFile";
 
-const FindCarQuickly = () => {
-    const [searchCity, setSearchCity] = useState('');
+const FindCarQuickly = (props) => {
+    const [searchCity, setSearchCity] = useState(props.city);
     const [cityBounds, setCityBounds] = useState(null);
     const [filteredCars, setFilteredCars] = useState(null);
     const mapRef = useRef(null);
+
+    console.log("-----",props.city);
 
     const handleInputChange = (e) => {
         setSearchCity(e.target.value);
@@ -31,7 +33,6 @@ const FindCarQuickly = () => {
             })
             .catch(error => console.error('Hata:', error));
     };
-
 
     const { data: allMarka } = useQuery({
         queryKey: ["Marka"],

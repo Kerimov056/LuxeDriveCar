@@ -58,10 +58,10 @@ function App() {
             <Route path='/Chat' element={<Chat />} />
             <Route path='/FilterPage/:car/:model' element={<FilterPage />} />
             <Route path='/MyProfile' element={<MyProfile />} />
-            <Route path='/FindCarQuickly' element={<FindCarQuickly />} />
             <Route path='/ResetPassword' element={<ResetPassword />} />
             <Route path='/Communication' element={<Communication />} />
             <Route path='/RentalConditions' element={<RentalConditions />} />
+            <Route path='/FindCarQuickly/:city' component={FindCarQuickly} />
             <Route path='/ResertPassword/:userId/:resetToken' element={<ResertPassword />} />
           </Routes >
           <Footer />
