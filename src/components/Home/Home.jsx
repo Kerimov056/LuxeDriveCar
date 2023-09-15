@@ -335,7 +335,7 @@ const Home = ({ color, onNavStateChange }) => {
           </div>
         </div>
         <div className='cards' id='CardsRes'>
-          {cars?.data?.slice(0, 6).map((byCar, index) => (  //https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/Main-home-vehicle-list-img-01.jpg
+          {cars?.data?.slice(0, 6).map((byCar, index) => (  
             <Card key={index}
               isCampaigns={byCar?.isCampaigns}
               campaignsInterest={byCar?.campaignsInterest}

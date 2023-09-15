@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import "./FindCarQuickly.scss";
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import CategoryCarCard from './CategoryCarCard';
 import { Select } from '@chakra-ui/react';
 import FindAllCarMap from "./FindAllCarMap";
@@ -11,13 +11,13 @@ import { getCategorie } from "../Services/categorieServices";
 import { getType } from "../Services/typeServices";
 import { Google_Maps_Api_Key } from "../utils/ExportFile";
 
-const FindCarQuickly = (props) => {
-    const [searchCity, setSearchCity] = useState(props.city);
-    const [cityBounds, setCityBounds] = useState(null);
-    const [filteredCars, setFilteredCars] = useState(null);
-    const mapRef = useRef(null);
+const FindCarQuickly = () => {
 
-    console.log("-----",props.city);
+    const { city } = useParams();
+
+    const [searchCity, setSearchCity] = useState(city ? city : '');
+    const [cityBounds, setCityBounds] = useState(null);
+    const mapRef = useRef(null);
 
     const handleInputChange = (e) => {
         setSearchCity(e.target.value);
@@ -33,6 +33,11 @@ const FindCarQuickly = (props) => {
             })
             .catch(error => console.error('Hata:', error));
     };
+
+
+    useEffect(() => {
+        handleButtonClick()
+    }, [searchCity]);
 
     const { data: allMarka } = useQuery({
         queryKey: ["Marka"],
@@ -125,7 +130,7 @@ const FindCarQuickly = (props) => {
                             <input
                                 placeholder="search.."
                                 onChange={handleInputChange}
-                                // value={searchCity}
+                                //value={searchCity}
                                 className="inputCarS"
                                 name="text"
                                 type="text"

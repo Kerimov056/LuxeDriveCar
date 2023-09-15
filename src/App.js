@@ -61,7 +61,7 @@ function App() {
             <Route path='/ResetPassword' element={<ResetPassword />} />
             <Route path='/Communication' element={<Communication />} />
             <Route path='/RentalConditions' element={<RentalConditions />} />
-            <Route path='/FindCarQuickly/:city' component={FindCarQuickly} />
+            <Route path='/FindCarQuickly/:city' element={<FindCarQuickly />} />
             <Route path='/ResertPassword/:userId/:resetToken' element={<ResertPassword />} />
           </Routes >
           <Footer />

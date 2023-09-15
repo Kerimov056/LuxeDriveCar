@@ -60,7 +60,7 @@ const BasketCard = (props) => {
                     </div>
                 </div>
 
-                <div>
+                <div className='BasketCatCategory'>
                     <img src={imgUrl} />
                 </div>
 
