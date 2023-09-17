@@ -335,7 +335,7 @@ const Home = ({ color, onNavStateChange }) => {
           </div>
         </div>
         <div className='cards' id='CardsRes'>
-          {cars?.data?.slice(0, 6).map((byCar, index) => (  
+          {cars?.data?.slice(0, 6).map((byCar, index) => (
             <Card key={index}
               isCampaigns={byCar?.isCampaigns}
               campaignsInterest={byCar?.campaignsInterest}
@@ -347,16 +347,16 @@ const Home = ({ color, onNavStateChange }) => {
               price={byCar.price}
               description={byCar.description.slice(0, 60)} />
           ))}
-          <div className='FindCityCar'>
-            <div><h1>Find your car by country</h1></div>
-            <div className='inputCountryHome'>
-              <Input onChange={handleInputChange} placeholder='search...'></Input>
-              <Button>
-                <Link to={`/FindCarQuickly/${searchCity}`}>
-                  <FiSearch />
-                </Link>
-              </Button>
-            </div>
+        </div>
+        <div className='FindCityCar'>
+          <div><h1>Find your car by country</h1></div>
+          <div className='inputCountryHome'>
+            <Input onChange={handleInputChange} placeholder='search...'></Input>
+            <Button>
+              <Link to={`/FindCarQuickly/${searchCity}`}>
+                <FiSearch />
+              </Link>
+            </Button>
           </div>
         </div>
       </div>

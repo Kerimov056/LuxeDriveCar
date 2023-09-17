@@ -590,7 +590,7 @@ const CarDetail = () => {
                             <div className='CarText'>
                                 <h1>{byCars.data.marka}   {byCars.data.model}</h1><br />
                                 <h2>${byCars.data.campaignsPrice === null ? byCars.data.price : byCars.data.campaignsPrice} /Hour</h2>
-                                <span id='OldPrice'>${byCars.data.price} /Hour</span>
+                                <span style={byCars.data.campaignsPrice!==null ? {} : {display:"none"}} id='OldPrice'>${byCars.data.price} /Hour</span>
                                 <div className='addCart'>
                                     <button onClick={handleAddToOrder} >+ ADD TO ORDER</button>
                                 </div>
