@@ -30,6 +30,10 @@ export const getByCar = (id) => {
   return httpClient.get(`api/Car/${id}`);
 };
 
+export const getByCarQRCode = (id) => {
+  return httpClient.get(`api/Car/qrcode?id=${id}`);
+};
+
 export const getNameCar = (marka, model) => {
   return httpClient.get(`api/Car/car?car=${marka}&model=${model}`)
 };

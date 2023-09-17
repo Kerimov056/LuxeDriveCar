@@ -2,7 +2,7 @@ import * as Yup from "yup";
 
 const reservationSchema = Yup.object({
     FullName: Yup.string()
-        .min(5,"Too Short!")
+        .min(3,"Too Short!")
         .max(125,"Too Long")
         .required("Required"),
 
@@ -12,10 +12,6 @@ const reservationSchema = Yup.object({
         .max(255,"Too Long")
         .required("Required"),
 
-    Number: Yup.number() // <- Changed this line
-        .min(5,"Too Short!")
-        .max(255,"Too Long")
-        .required("Required"),
 
     PickupDate: Yup.string()
         .required("Required"),

@@ -323,6 +323,26 @@ const CarDetail = () => {
     });
 
 
+    ///////////////////////////////////////////     CarQRCode
+
+    // const [qrCode, setQrCode] = useState(null);
+
+    // useEffect(() => {
+    //   const fetchData = async () => {
+    //     try {
+    //       const response = await axios.get(`https://localhost:7152/api/Car/qrcode?id=${byCars?.data?.id}`);
+    //       setQrCode(response);
+    //     } catch (error) {
+    //       console.error('Error fetching data:', error);
+    //     }
+    //   };
+  
+    //   fetchData();
+    // }, []);
+    // console.log("Buuuu",qrCode?.data?.imageSrc);
+    ///////////////////////////////////////////
+
+
     const { mutate, isLoading, isError, error } = useMutation(() => PostCar(byCars?.data?.id, appuserid), {
         onSuccess: (data) => {
             queryClient.invalidateQueries(["basketsCountT"]);
@@ -387,16 +407,6 @@ const CarDetail = () => {
                 if (response.status === 201) {
                     queryClient.invalidateQueries('getReservation');
                     navigate('/MyProfile');
-                    // toast.success('🦄 Wow so easy!', {
-                    //     position: "top-center",
-                    //     autoClose: 5000,
-                    //     hideProgressBar: false,
-                    //     closeOnClick: true,
-                    //     pauseOnHover: true,
-                    //     draggable: true,
-                    //     progress: undefined,
-                    //     theme: "dark",
-                    // });
                 }
 
             } catch (error) {
@@ -444,7 +454,6 @@ const CarDetail = () => {
                 <div className='CarDeatilsNavbar'>
                     <Navbar />
                 </div>
-
                 {Compn?.data === true &&
                     <div id='Compahins'>
                         {compaignData !== null &&
