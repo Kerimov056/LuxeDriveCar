@@ -447,12 +447,13 @@ const CarDetail = () => {
         fetchAllCompaign();
     }, []);
 
-
+    const [isClicked, setIsClicked] = useState(false);
 
     
     const { mutate: mutateAddToWishlist } = useMutation(() => PostCarWishlist(byCars.data.id ? byCars.data.id : '', appuserid), {
         onSuccess: (data) => {
             queryClient.invalidateQueries(["wishlistCountT"]);
+            setIsClicked(true);
         },
         onError: (error) => {
             console.error("Error adding car to order", error);
@@ -610,7 +611,7 @@ const CarDetail = () => {
                                 <span style={byCars.data.campaignsPrice!==null ? {} : {display:"none"}} id='OldPrice'>${byCars.data.price} /Hour</span>
                                 <div className='addCart'>
                                     <button onClick={handleAddToOrder} >+ ADD TO ORDER</button>
-                                    <button onClick={handleAddToWishlist}  className='WishListAdd'><BsFillBookmarkHeartFill /></button>
+                                    <button onClick={handleAddToWishlist}  className={`WishListAdd ${isClicked ? 'orange' : ''}`}><BsFillBookmarkHeartFill /></button>
                                 </div>
                                 <div className='Det'>
                                     <div><span>Catagory:</span><span className='Answer Category'>{byCars.data.carCategory.category ? byCars.data.carCategory.category : "No Category"}</span></div>

@@ -12,6 +12,7 @@ import { MdYoutubeSearchedFor } from "react-icons/md";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { getNameCar, IsCampaigns } from "../Services/carServices";
+import { BsFillBalloonHeartFill } from "react-icons/bs";
 
 
 const Navbar = () => {
@@ -71,6 +72,13 @@ const Navbar = () => {
     });
 
 
+    const { data: wishlistCount } = useQuery({
+        queryKey: ["wishlistCountT", appuserid],
+        queryFn: () => getBasketItemCount(appuserid),
+        staleTime: 0,
+    });
+
+    console.log("wwwwwwwww",wishlistCount.data);
 
     return (
         <>
@@ -108,9 +116,20 @@ const Navbar = () => {
                         <li><a href='/Shop'>SHOP</a></li>
                     </ul>
                     <ul style={{ order: 2 }}>
-                        <li>
-                            <Link to={'/Basket'} className='BasketCar'><AiOutlineCar id='SumCar' /><span className='SumC'>
-                                {basketCount && basketCount.data !== 0 ? basketCount.data : ""}</span>
+                        <li style={{ listStyle: "none" }}>
+                            <Link to={'/Basket'} className='BasketCar'><AiOutlineCar id='SumCar' />
+                                <span className='SumC'>
+                                    {basketCount && basketCount.data !== 0 ? basketCount.data : ""}
+                                </span>
+                            </Link>
+                        </li>
+                    </ul>
+                    <ul style={{ order: 2, marginLeft: "-90px" }}>
+                        <li style={{ listStyle: "none" }}>
+                            <Link to={'/Wishlist'} className='WishlistCar'><BsFillBalloonHeartFill id='SumCar' />
+                                <span className='SumC'>
+                                    {wishlistCount && wishlistCount.data !== 0 ? wishlistCount.data : ""}
+                                </span>
                             </Link>
                         </li>
                     </ul>
