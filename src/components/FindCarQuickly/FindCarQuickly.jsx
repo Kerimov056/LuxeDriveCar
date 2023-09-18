@@ -190,8 +190,8 @@ const FindCarQuickly = () => {
                     <div className='ResponseAllCars'>
                         <div>
                             {cityBounds && cars?.data.map((byCar, index) => {
-                                const carLatitude = byCar.latitude; 
-                                const carLongitude = byCar.longitude; 
+                                const carLatitude = byCar.latitude;
+                                const carLongitude = byCar.longitude;
 
                                 if (
                                     cityBounds &&
@@ -222,7 +222,7 @@ const FindCarQuickly = () => {
                     </div>
                     <div className='ResponseMapAllCar'>
                         {cityBounds && cars?.data.map((byCar, index) => {
-                            const carLatitude = byCar.latitude; 
+                            const carLatitude = byCar.latitude;
                             const carLongitude = byCar.longitude;
                             if (
                                 cityBounds &&
@@ -233,7 +233,7 @@ const FindCarQuickly = () => {
                             ) {
                                 return (
                                     <FindAllCarMap
-                                        key={index} 
+                                        key={index}
                                         ref={mapRef}
                                         locationLat={searchCity?.lat ? searchCity?.lat : ''}
                                         locationLng={searchCity?.lng ? searchCity?.lng : ''}
@@ -245,10 +245,10 @@ const FindCarQuickly = () => {
                                     />
                                 );
                             }
-                            return null; 
+                            return null;
                         })}
                     </div>
-                </div>  
+                </div>
             </div>
         </>
     )

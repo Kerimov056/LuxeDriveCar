@@ -16,6 +16,7 @@ import Basket from './components/Basket/Basket';
 import Chat from './components/Chat/Chat';
 import FilterPage from "./components/CarFilterPage/FilterPage";
 import MyProfile from "./components/Profile/MyProfile";
+import Wishlist from "./components/Wishlist/Wishlist";
 import ResetPassword from "./components/Auth/ResetPassword";
 import ResertPassword from "./components/Auth/ResertPassword";
 import FindCarQuickly from "./components/FindCarQuickly/FindCarQuickly";
@@ -60,6 +61,7 @@ function App() {
             <Route path='/MyProfile' element={<MyProfile />} />
             <Route path='/ResetPassword' element={<ResetPassword />} />
             <Route path='/Communication' element={<Communication />} />
+            <Route path='/Wishlist' element={<Wishlist />} />
             <Route path='/RentalConditions' element={<RentalConditions />} />
             <Route path='/FindCarQuickly/:city' element={<FindCarQuickly />} />
             <Route path='/ResertPassword/:userId/:resetToken' element={<ResertPassword />} />
