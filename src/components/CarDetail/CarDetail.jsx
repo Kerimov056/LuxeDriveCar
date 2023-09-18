@@ -337,19 +337,18 @@ const CarDetail = () => {
     //       console.error('Error fetching data:', error);
     //     }
     //   };
-  
+
     //   fetchData();
     // }, []);
     // console.log("Buuuu",qrCode?.data?.imageSrc);
     ///////////////////////////////////////////
 
 
-    const { mutate : mutateAddToOrder, isLoading, isError, error } = useMutation(() => PostCar(byCars?.data?.id, appuserid), {
+    const { mutate: mutateAddToOrder, isLoading, isError, error } = useMutation(() => PostCar(byCars?.data?.id, appuserid), {
         onSuccess: (data) => {
             queryClient.invalidateQueries(["basketsCountT"]);
         },
         onError: (error) => {
-            console.error("Error adding car to order", error);
         }
     });
 
@@ -381,7 +380,6 @@ const CarDetail = () => {
         },
         onSubmit: async (values) => {
             const formData = new FormData();
-            console.log(values);
 
             formData.append('Image', image);
             formData.append("FullName", values.FullName);
@@ -411,7 +409,6 @@ const CarDetail = () => {
                 }
 
             } catch (error) {
-                console.log(error);
             }
         },
         validationSchema: reservationScheme,
@@ -440,7 +437,6 @@ const CarDetail = () => {
                 const data = await response.json();
                 setCompaignData(data ? data : '');
             } catch (error) {
-                console.error('Error fetching data:', error);
             }
         };
 
@@ -449,14 +445,13 @@ const CarDetail = () => {
 
     const [isClicked, setIsClicked] = useState(false);
 
-    
+
     const { mutate: mutateAddToWishlist } = useMutation(() => PostCarWishlist(byCars?.data?.id ? byCars?.data?.id : '', appuserid), {
         onSuccess: (data) => {
             queryClient.invalidateQueries(["wishlistCountT"]);
             setIsClicked(true);
         },
         onError: (error) => {
-            console.error("Error adding car to order", error);
         }
     });
 
@@ -536,7 +531,11 @@ const CarDetail = () => {
                                                 <AlertDialogCloseButton />
                                                 <AlertDialogBody>
                                                     <div>
-                                                        <img src={img} alt="Zoomed Image" />
+                                                        <img
+                                                            src={img}
+                                                            alt="Zoomed Image"
+                                                            style={{ width: '900px', height: '200px' }} 
+                                                        />
                                                     </div>
                                                 </AlertDialogBody>
                                                 <AlertDialogFooter>
@@ -548,7 +547,7 @@ const CarDetail = () => {
                                         </AlertDialogOverlay>
                                     </AlertDialog>
                                     {byCars?.data?.carImages?.map(byImage => (
-                                        <div><img style={{ width: "300px", marginTop: "20px" }} onClick={() => Imgaetrasfer(`data:image/jpeg;base64,${byImage?.imagePath}`)} src={`data:image/jpeg;base64,${byImage?.imagePath}`} alt="Image 1" /></div>
+                                        <div className='IMSd'><img style={{ width: "300px", marginTop: "20px" }} onClick={() => Imgaetrasfer(`data:image/jpeg;base64,${byImage?.imagePath}`)} src={`data:image/jpeg;base64,${byImage?.imagePath}`} alt="Image 1" /></div>
                                     ))}
                                 </div>
 
@@ -608,10 +607,10 @@ const CarDetail = () => {
                             <div className='CarText'>
                                 <h1>{byCars?.data?.marka}   {byCars?.data?.model}</h1><br />
                                 <h2>${byCars?.data?.campaignsPrice === null ? byCars?.data?.price : byCars?.data?.campaignsPrice} /Hour</h2>
-                                <span style={byCars?.data?.campaignsPrice!==null ? {} : {display:"none"}} id='OldPrice'>${byCars?.data?.price} /Hour</span>
+                                <span style={byCars?.data?.campaignsPrice !== null ? {} : { display: "none" }} id='OldPrice'>${byCars?.data?.price} /Hour</span>
                                 <div className='addCart'>
                                     <button onClick={handleAddToOrder} >+ ADD TO ORDER</button>
-                                    <button onClick={handleAddToWishlist}  className={`WishListAdd ${isClicked ? 'orange' : ''}`}><BsFillBookmarkHeartFill /></button>
+                                    <button onClick={handleAddToWishlist} className={`WishListAdd ${isClicked ? 'orange' : ''}`}><BsFillBookmarkHeartFill /></button>
                                 </div>
                                 <div className='Det'>
                                     <div><span>Catagory:</span><span className='Answer Category'>{byCars?.data?.carCategory?.category ? byCars?.data?.carCategory?.category : "No Category"}</span></div>
