@@ -12,8 +12,9 @@ const WishlistCard = () => {
                         <img src='https://www.bmwgroup.com/content/dam/grpw/websites/bmwgroup_com/brands/einstiegsseite/1280x854_P90351044_highRes_the-new-bmw-8-series.jpg' />
                     </div>
                 </div>
-                <div>
-                    <h1><span></span></h1>
+                <div className='WishlistCarDetails'>
+                    <h1>Marka: <span>BMW</span></h1>
+                    <h1>Model: <span>m3</span></h1>
                 </div>
                 <div className='WishlistCardX'>
                     <Button>X</Button>
