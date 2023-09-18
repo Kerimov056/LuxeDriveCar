@@ -38,7 +38,7 @@ import { MapContainer, TileLayer, Marker, Popup, FeatureGroup } from "react-leaf
 import { EditControl } from "react-leaflet-draw";
 import '../Map/map.scss'
 import reservationScheme from "../Validators/ReservationScheme";
-
+import { BsFillBookmarkHeartFill } from "react-icons/bs";
 
 
 const CountdownTimer = ({ targetDate }) => {
@@ -593,6 +593,7 @@ const CarDetail = () => {
                                 <span style={byCars.data.campaignsPrice!==null ? {} : {display:"none"}} id='OldPrice'>${byCars.data.price} /Hour</span>
                                 <div className='addCart'>
                                     <button onClick={handleAddToOrder} >+ ADD TO ORDER</button>
+                                    <button className='WishListAdd'><BsFillBookmarkHeartFill /></button>
                                 </div>
                                 <div className='Det'>
                                     <div><span>Catagory:</span><span className='Answer Category'>{byCars.data.carCategory.category ? byCars.data.carCategory.category : "No Category"}</span></div>

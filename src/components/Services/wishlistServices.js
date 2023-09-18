@@ -8,11 +8,11 @@ export const PostCar = (carId,AppUserId) => {
     return httpClient.post(`api/Wishlists?Id=${carId}&AppUserId=${AppUserId}`);
 };
 
-export const getBasketCars = (AppUserId) => {
+export const getWishlistCars = (AppUserId) => {
     return httpClient.get(`api/Wishlists?AppUserId=${AppUserId}`)
 };
 
-export const getBasketItemCount = (AppUserId) => {
+export const getWishlistItemCount = (AppUserId) => {
     return httpClient.get(`api/Wishlists/Get-Wishlist-Count?AppUserId=${AppUserId}`)
 };
 

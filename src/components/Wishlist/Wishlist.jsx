@@ -3,9 +3,23 @@ import Navbar from "../Navbar/Navbar";
 import WishlistCard from "./WishlistCard";
 import "./Wishlist.scss";
 import { BsFillBalloonHeartFill } from "react-icons/bs";
-
+import { useNavigate, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useQuery, useMutation, useQueryClient } from "react-query";
+import { getWishlistCars } from "../Services/wishlistServices";
 
 const Wishlist = () => {
+
+    const { appuserid } = useSelector((x) => x.authReducer);
+    const dispatch = useDispatch();
+
+    const { data: wishlistCars } = useQuery({
+        queryKey: ["CarWishlist", appuserid],
+        queryFn: () => getWishlistCars(appuserid),
+        staleTime: 0,
+    });
+
+
     return (
         <>
             <div style={{ marginTop: "78px" }}>
