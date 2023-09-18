@@ -127,9 +127,6 @@ const Navbar = () => {
                     <ul style={{ order: 2, marginLeft: "-90px" }}>
                         <li style={{ listStyle: "none" }}>
                             <Link to={'/Wishlist'} className='WishlistCar'><BsFillBalloonHeartFill id='SumCar' />
-                                <span className='SumC'>
-                                    {wishlistCount && wishlistCount.data !== 0 ? wishlistCount.data : ""}
-                                </span>
                             </Link>
                         </li>
                     </ul>
