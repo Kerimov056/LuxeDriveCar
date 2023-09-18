@@ -4,7 +4,7 @@ import { Button } from '@chakra-ui/react';
 import { useMutation, useQueryClient } from 'react-query';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-
+import { removeByCar } from "../Services/wishlistServices";
 
 const WishlistCard = (props) => {
 
@@ -14,12 +14,12 @@ const WishlistCard = (props) => {
 
     const { mutate, isLoading, isError, error } = useMutation(() => removeByCar(props.Id, appuserid), {
         onSuccess: (data) => {
-            queryClient.invalidateQueries(['Cars']);
-            queryClient.invalidateQueries(['basketsCountT']);
+            // queryClient.invalidateQueries(['Cars']);
+            // queryClient.invalidateQueries(['basketsCountT']);
         },
         onError: (error) => {
             console.error("Error adding car to order", error);
-        }
+        } 
     });
 
     const handleRemove = () => {
@@ -41,7 +41,7 @@ const WishlistCard = (props) => {
                     <h1>Model: <span>m3</span></h1>
                 </div>
                 <div className='WishlistCardX'>
-                    <Button>X</Button>
+                    <Button onClick={handleRemove}>X</Button>
                 </div>
                 <div className='WishlistCardSohowCar'>
                     <button class="cta">
