@@ -19,7 +19,7 @@ const Wishlist = () => {
         staleTime: 0,
     });
 
-
+    console.log(wishlistCars);
     return (
         <>
             <div style={{ marginTop: "78px" }}>
@@ -35,7 +35,15 @@ const Wishlist = () => {
             </div> */}
             <div id='Wishlist'>
                 <div>
-                    <WishlistCard />
+                    {wishlistCars?.data !== null && wishlistCars?.data.map((bycars, index) => (
+                        <WishlistCard
+                            key={index}
+                            img={`data:image/jpeg;base64,${bycars?.carGetDTO?.carImages[0]?.imagePath}`}
+                            Id={bycars?.carGetDTO?.id}
+                            marka={bycars?.carGetDTO?.marka}
+                            model={bycars?.carGetDTO?.model}
+                        />
+                    ))}
                 </div>
             </div>
         </>

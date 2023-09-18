@@ -39,6 +39,7 @@ import { EditControl } from "react-leaflet-draw";
 import '../Map/map.scss'
 import reservationScheme from "../Validators/ReservationScheme";
 import { BsFillBookmarkHeartFill } from "react-icons/bs";
+import { PostCarWishlist } from "../Services/wishlistServices";
 
 
 const CountdownTimer = ({ targetDate }) => {
@@ -343,7 +344,7 @@ const CarDetail = () => {
     ///////////////////////////////////////////
 
 
-    const { mutate, isLoading, isError, error } = useMutation(() => PostCar(byCars?.data?.id, appuserid), {
+    const { mutate : mutateAddToOrder, isLoading, isError, error } = useMutation(() => PostCar(byCars?.data?.id, appuserid), {
         onSuccess: (data) => {
             queryClient.invalidateQueries(["basketsCountT"]);
         },
@@ -353,7 +354,7 @@ const CarDetail = () => {
     });
 
     const handleAddToOrder = () => {
-        mutate({ carId: byCars?.data?.id, AppUserId: appuserid });
+        mutateAddToOrder({ carId: byCars?.data?.id, AppUserId: appuserid });
     }
 
     const [image, setImage] = useState(null);
@@ -445,6 +446,22 @@ const CarDetail = () => {
 
         fetchAllCompaign();
     }, []);
+
+
+
+    
+    const { mutate: mutateAddToWishlist } = useMutation(() => PostCarWishlist(byCars.data.id ? byCars.data.id : '', appuserid), {
+        onSuccess: (data) => {
+            queryClient.invalidateQueries(["wishlistCountT"]);
+        },
+        onError: (error) => {
+            console.error("Error adding car to order", error);
+        }
+    });
+
+    const handleAddToWishlist = () => {
+        mutateAddToWishlist({ carId: byCars.data.id ? byCars.data.id : '', AppUserId: appuserid });
+    }
 
 
     if (byCars) {
@@ -593,7 +610,7 @@ const CarDetail = () => {
                                 <span style={byCars.data.campaignsPrice!==null ? {} : {display:"none"}} id='OldPrice'>${byCars.data.price} /Hour</span>
                                 <div className='addCart'>
                                     <button onClick={handleAddToOrder} >+ ADD TO ORDER</button>
-                                    <button className='WishListAdd'><BsFillBookmarkHeartFill /></button>
+                                    <button onClick={handleAddToWishlist}  className='WishListAdd'><BsFillBookmarkHeartFill /></button>
                                 </div>
                                 <div className='Det'>
                                     <div><span>Catagory:</span><span className='Answer Category'>{byCars.data.carCategory.category ? byCars.data.carCategory.category : "No Category"}</span></div>

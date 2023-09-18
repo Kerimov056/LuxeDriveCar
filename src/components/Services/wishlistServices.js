@@ -4,7 +4,7 @@ export const removeByCar = (carId,AppUserId) => {
     return httpClient.delete(`api/Wishlists/ProductItem?Id=${carId}&AppUserId=${AppUserId}`)
 };
 
-export const PostCar = (carId,AppUserId) => {
+export const PostCarWishlist = (carId,AppUserId) => {
     return httpClient.post(`api/Wishlists?Id=${carId}&AppUserId=${AppUserId}`);
 };
 
