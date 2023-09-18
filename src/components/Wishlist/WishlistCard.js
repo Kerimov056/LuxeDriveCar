@@ -1,8 +1,32 @@
 import React from 'react'
 import "./WishlistCard.scss";
 import { Button } from '@chakra-ui/react';
+import { useMutation, useQueryClient } from 'react-query';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
 
-const WishlistCard = () => {
+
+const WishlistCard = (props) => {
+
+    const { appuserid } = useSelector((x) => x.authReducer);
+    const dispatch = useDispatch();
+    const queryClient = useQueryClient();
+
+    const { mutate, isLoading, isError, error } = useMutation(() => removeByCar(props.Id, appuserid), {
+        onSuccess: (data) => {
+            queryClient.invalidateQueries(['Cars']);
+            queryClient.invalidateQueries(['basketsCountT']);
+        },
+        onError: (error) => {
+            console.error("Error adding car to order", error);
+        }
+    });
+
+    const handleRemove = () => {
+        mutate({ carId: props.Id, AppUserId: appuserid });
+    };
+
+
     return (
         <>
             <div className='WishlistCardMain'>
