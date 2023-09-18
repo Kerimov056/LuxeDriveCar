@@ -3,18 +3,16 @@ import './strutur.scss'
 import RecentPost from './RecentPost';
 import BlogPost from '../Blogs/BlogPost';
 import ShopCarCard from '../Shop/ShopCarCard';
-import { getCarImage } from "../Services/shopCarardServices";
-import { useNavigate, useParams } from 'react-router-dom';
-import { getCar } from "../Services/carServices";
+import { getCarImage, } from "../Services/shopCarardServices";
+import { useParams } from 'react-router-dom';
+import { getCarAll } from "../Services/carServices";
 import { getBlog, getByBlog } from "../Services/blogServices";
-import { useQuery, useQueryClient } from "react-query";
+import { useQuery } from "react-query";
 
 
 const Strutur = (props) => {
 
     const { id } = useParams();
-    const queryClient = useQueryClient();
-    const navigate = useNavigate();
 
     const { data: byCars } = useQuery(["Blogs", id], () =>
         getByBlog(id)
@@ -22,10 +20,10 @@ const Strutur = (props) => {
 
     const { data: cars } = useQuery({
         queryKey: ["Cars"],
-        queryFn: getCar,
+        queryFn: getCarAll,
         staleTime: 0,
     });
-
+    console.log("---------", cars?.data);
     const { data: CarImages } = useQuery({
         queryKey: ["Faqs"],
         queryFn: getCarImage,
@@ -87,8 +85,8 @@ const Strutur = (props) => {
                                         ))}
                                     </div> :
                                     <div className='Shoppp'>
-                                        {CarImages?.data.map((carImages, index) => (
-                                            <ShopCarCard key={index} Id={carImages?.carId} img={`data:image/jpeg;base64, ${carImages?.imagePath}`} />
+                                        {cars?.data?.map((car, index) => (
+                                            <ShopCarCard key={index} Id={car?.id} img={`data:image/jpeg;base64, ${car?.carImages[0]?.imagePath}`} />
                                         ))}
                                     </div>
                         }

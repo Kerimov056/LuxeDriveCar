@@ -5,7 +5,7 @@ export const getCar = (category, type, marka, model, minPrice, maxPrice) => {
 };
 
 export const getCarAbout = () => {
-  return httpClient.get(`api/Car}`)
+  return httpClient.get(`api/Car`)
 };
 
 export const getCarAll = () => {
