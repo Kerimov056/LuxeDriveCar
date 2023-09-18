@@ -34,6 +34,21 @@
     }
 }
 
+.YourCarFavoriteList{
+    margin-top: 20px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: orange;
+
+    &>h1{
+        font-size: 26px;
+        font-family:'Times New Roman', Times, serif;
+    }
+}
+
 #Wishlist{
     width: 100%;
     height: auto;

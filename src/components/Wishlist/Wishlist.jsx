@@ -25,14 +25,19 @@ const Wishlist = () => {
             <div style={{ marginTop: "78px" }}>
                 <Navbar />
             </div>
-            {/* <div className='WishlistContenet'>
-                <div>
-                    <BsFillBalloonHeartFill />
-                    <h1>Your Favorites List is Still Empty</h1>
-                    <h2>No product found in the favorites list. You can add the products you want to your favorites by clicking the "Start Shopping" button.</h2>
-                    <button>Rent a Car</button>
+            {wishlistCars?.data?.lenght === null || wishlistCars?.data.length === 0 && (
+                <div style={{height:"100vh"}} className='WishlistContenet'>
+                    <div>
+                        <BsFillBalloonHeartFill />
+                        <h1>Your Favorites List is Still Empty</h1>
+                        <h2>No product found in the favorites list. You can add the products you want to your favorites by clicking the "Start Shopping" button.</h2>
+                        <button><Link to={'/Shop'}>Rent a Car</Link></button>
+                    </div>
                 </div>
-            </div> */}
+            )}
+            <div className='YourCarFavoriteList'>
+                <h1>Your car favorite list</h1>
+            </div>
             <div id='Wishlist'>
                 <div>
                     {wishlistCars?.data !== null && wishlistCars?.data.map((bycars, index) => (
