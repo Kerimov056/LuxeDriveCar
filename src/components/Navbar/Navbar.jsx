@@ -72,13 +72,12 @@ const Navbar = () => {
     });
 
 
-    const { data: wishlistCount } = useQuery({
-        queryKey: ["wishlistCountT", appuserid],
-        queryFn: () => getBasketItemCount(appuserid),
-        staleTime: 0,
-    });
+    // const { data: wishlistCount } = useQuery({
+    //     queryKey: ["wishlistCountT", appuserid],
+    //     queryFn: () => getBasketItemCount(appuserid),
+    //     staleTime: 0,
+    // });
 
-    console.log("wwwwwwwww",wishlistCount.data);
 
     return (
         <>

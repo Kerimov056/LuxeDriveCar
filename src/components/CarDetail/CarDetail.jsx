@@ -438,7 +438,7 @@ const CarDetail = () => {
                 }
 
                 const data = await response.json();
-                setCompaignData(data);
+                setCompaignData(data ? data : '');
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -450,7 +450,7 @@ const CarDetail = () => {
     const [isClicked, setIsClicked] = useState(false);
 
     
-    const { mutate: mutateAddToWishlist } = useMutation(() => PostCarWishlist(byCars.data.id ? byCars.data.id : '', appuserid), {
+    const { mutate: mutateAddToWishlist } = useMutation(() => PostCarWishlist(byCars?.data?.id ? byCars?.data?.id : '', appuserid), {
         onSuccess: (data) => {
             queryClient.invalidateQueries(["wishlistCountT"]);
             setIsClicked(true);
@@ -461,7 +461,7 @@ const CarDetail = () => {
     });
 
     const handleAddToWishlist = () => {
-        mutateAddToWishlist({ carId: byCars.data.id ? byCars.data.id : '', AppUserId: appuserid });
+        mutateAddToWishlist({ carId: byCars?.data?.id ? byCars?.data?.id : '', AppUserId: appuserid });
     }
 
 
@@ -547,7 +547,7 @@ const CarDetail = () => {
                                             </AlertDialogContent>
                                         </AlertDialogOverlay>
                                     </AlertDialog>
-                                    {byCars.data?.carImages?.map(byImage => (
+                                    {byCars?.data?.carImages?.map(byImage => (
                                         <div><img style={{ width: "300px", marginTop: "20px" }} onClick={() => Imgaetrasfer(`data:image/jpeg;base64,${byImage?.imagePath}`)} src={`data:image/jpeg;base64,${byImage?.imagePath}`} alt="Image 1" /></div>
                                     ))}
                                 </div>
@@ -606,22 +606,22 @@ const CarDetail = () => {
 
                             </div>
                             <div className='CarText'>
-                                <h1>{byCars.data.marka}   {byCars.data.model}</h1><br />
-                                <h2>${byCars.data.campaignsPrice === null ? byCars.data.price : byCars.data.campaignsPrice} /Hour</h2>
-                                <span style={byCars.data.campaignsPrice!==null ? {} : {display:"none"}} id='OldPrice'>${byCars.data.price} /Hour</span>
+                                <h1>{byCars?.data?.marka}   {byCars?.data?.model}</h1><br />
+                                <h2>${byCars?.data?.campaignsPrice === null ? byCars?.data?.price : byCars?.data?.campaignsPrice} /Hour</h2>
+                                <span style={byCars?.data?.campaignsPrice!==null ? {} : {display:"none"}} id='OldPrice'>${byCars?.data?.price} /Hour</span>
                                 <div className='addCart'>
                                     <button onClick={handleAddToOrder} >+ ADD TO ORDER</button>
                                     <button onClick={handleAddToWishlist}  className={`WishListAdd ${isClicked ? 'orange' : ''}`}><BsFillBookmarkHeartFill /></button>
                                 </div>
                                 <div className='Det'>
-                                    <div><span>Catagory:</span><span className='Answer Category'>{byCars.data.carCategory.category ? byCars.data.carCategory.category : "No Category"}</span></div>
+                                    <div><span>Catagory:</span><span className='Answer Category'>{byCars?.data?.carCategory?.category ? byCars?.data?.carCategory?.category : "No Category"}</span></div>
                                     <div><span>Tags:</span><span className='Answer'>
 
                                         <button>#Car</button>
-                                        <button>#{byCars.data.carCategory.category ? byCars.data.carCategory.category : "No Category"}</button>
+                                        <button>#{byCars?.data?.carCategory?.category ? byCars?.data?.carCategory?.category : "No Category"}</button>
                                     </span></div>
                                 </div>
-                                <p id='ByCarDecs'>{byCars.data.description}</p>
+                                <p id='ByCarDecs'>{byCars?.data?.description}</p>
 
                                 <div className='ByReservACar'>
 
@@ -816,7 +816,7 @@ const CarDetail = () => {
                                 </form>
                             </div>
                             {byCars?.data?.carCommentGetDTO?.map((comment, index) => (
-                                <CarComment key={index} username={comment.userName} commentId={comment?.id} comment={comment.comment} likeSum={comment.likeSum} />
+                                <CarComment key={index} username={comment?.userName} commentId={comment?.id} comment={comment?.comment} likeSum={comment?.likeSum} />
                             ))}
                             <h6></h6>
                         </div>
