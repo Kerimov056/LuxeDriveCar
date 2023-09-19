@@ -1,0 +1,68 @@
+#GameCarCard {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+
+    &>div {
+        width: 82%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .GameText {
+            width: 100%;
+            height: 400px;
+            text-align: center;
+        }
+
+        .GameCarCards {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .GameCarCard_Card4 {
+                width: 82%;
+                height: 25%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .GameCarCard_Card3 {
+                margin-top: 30px;
+                width: 82%;
+                height: 25%;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+            }
+
+            .GameCarCard_Card2 {
+                width: 82%;
+                height: 25%;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+            }
+
+            .GameCarCard_Card1 {
+                width: 82%;
+                height: 25%;
+                margin-bottom: 200px;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+            }
+        }
+    }
+
+
+}
