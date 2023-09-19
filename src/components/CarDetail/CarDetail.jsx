@@ -468,6 +468,9 @@ const CarDetail = () => {
                 <div className='CarDeatilsNavbar'>
                     <Navbar />
                 </div>
+                {/* <div>
+                    <img style={{marginTop:"100px"}} src={qrCode?.data?.imageSrc} />
+                </div> */}
                 {Compn?.data === true &&
                     <div id='Compahins'>
                         {compaignData !== null &&

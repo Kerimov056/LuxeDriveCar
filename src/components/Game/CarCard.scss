@@ -4,6 +4,7 @@
     height: 254px;
     perspective: 1000px;
     font-family: sans-serif;
+    cursor: pointer;
 }
 
 .titleGame {
@@ -18,7 +19,7 @@
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.8s;
+    transition: transform 0.3s;
     transform-style: preserve-3d;
 }
 
@@ -39,6 +40,7 @@
     backface-visibility: hidden;
     border: 1px solid coral;
     border-radius: 1rem;
+
 }
 
 .flip-card-frontGame {
@@ -52,4 +54,9 @@
             bisque 40%, rgb(255, 185, 160) 78%);
     color: white;
     transform: rotateY(180deg);
+}
+
+
+#GameCarDesc{
+    font-size: 26px;
 }

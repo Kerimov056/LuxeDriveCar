@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import './GameCarCard.scss'
 import CarCard from "./CarCard";
 import { GameGetTenCar } from "../Services/carServices";
 import { useQuery } from "react-query";
+import axios from 'axios';
+
+
 
 const GameCarCard = () => {
 
@@ -11,7 +14,23 @@ const GameCarCard = () => {
         queryFn: GameGetTenCar,
         staleTime: 0,
     });
-    console.log(GameCar?.data);
+
+    const [qrCode, setQrCode] = useState(null);
+
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(`https://localhost:7152/api/Car/GameQRCode?id=${byCars?.data?.id}`);
+          setQrCode(response);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+
+      fetchData();
+    }, []);
+    console.log("Buuuu",qrCode?.data?.imageSrc);
+
     return (
         <>
             <div id='GameCarCard'>
@@ -38,16 +57,37 @@ const GameCarCard = () => {
                             ))}
                         </div>
                         <div className='GameCarCard_Card3'>
-                            <CarCard />
-                            <CarCard />
-                            <CarCard />
+                            {GameCar?.data?.slice(4, 7).map((byCar, index) => (
+                                <CarCard
+                                    key={index}
+                                    Id={byCar?.id}
+                                    img={byCar?.carImages[0]?.imagePath}
+                                    marka={byCar?.marka}
+                                    model={byCar?.model}
+                                    year={byCar?.year} />
+                            ))}
                         </div>
                         <div className='GameCarCard_Card2'>
-                            <CarCard />
-                            <CarCard />
+                            {GameCar?.data?.slice(7, 9).map((byCar, index) => (
+                                <CarCard
+                                    key={index}
+                                    Id={byCar?.id}
+                                    img={byCar?.carImages[0]?.imagePath}
+                                    marka={byCar?.marka}
+                                    model={byCar?.model}
+                                    year={byCar?.year} />
+                            ))}
                         </div>
                         <div className='GameCarCard_Card1'>
-                            <CarCard />
+                            {GameCar?.data?.slice(9, 10).map((byCar, index) => (
+                                <CarCard
+                                    key={index}
+                                    Id={byCar?.id}
+                                    img={byCar?.carImages[0]?.imagePath}
+                                    marka={byCar?.marka}
+                                    model={byCar?.model}
+                                    year={byCar?.year} />
+                            ))}
                         </div>
                     </div>
                 </div>

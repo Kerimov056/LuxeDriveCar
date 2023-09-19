@@ -36,6 +36,9 @@ export const getByCar = (id) => {
 export const getByCarQRCode = (id) => {
   return httpClient.get(`api/Car/qrcode?id=${id}`);
 };
+export const gameGetByCarQRCode = (id) => {
+  return httpClient.get(`api/Car/GameQRCode?id=${id}`);
+};
 
 export const getNameCar = (marka, model) => {
   return httpClient.get(`api/Car/car?car=${marka}&model=${model}`)
