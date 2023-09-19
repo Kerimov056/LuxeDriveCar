@@ -1,8 +1,17 @@
 import React from 'react'
 import './GameCarCard.scss'
 import CarCard from "./CarCard";
+import { GameGetTenCar } from "../Services/carServices";
+import { useQuery } from "react-query";
 
 const GameCarCard = () => {
+
+    const { data: GameCar } = useQuery({
+        queryKey: ["GameCar"],
+        queryFn: GameGetTenCar,
+        staleTime: 0,
+    });
+    console.log(GameCar?.data);
     return (
         <>
             <div id='GameCarCard'>
@@ -18,10 +27,15 @@ const GameCarCard = () => {
                     </div>
                     <div className='GameCarCards'>
                         <div className='GameCarCard_Card4'>
-                            <CarCard />
-                            <CarCard />
-                            <CarCard />
-                            <CarCard />
+                            {GameCar?.data?.slice(0, 4).map((byCar, index) => (
+                                <CarCard
+                                    key={index}
+                                    Id={byCar?.id}
+                                    img={byCar?.carImages[0]?.imagePath}
+                                    marka={byCar?.marka}
+                                    model={byCar?.model}
+                                    year={byCar?.year} />
+                            ))}
                         </div>
                         <div className='GameCarCard_Card3'>
                             <CarCard />

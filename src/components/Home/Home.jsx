@@ -108,7 +108,6 @@ const Home = ({ color, onNavStateChange }) => {
     if (selected < now) {
       return;
     }
-
     setSelectedDate(e.target.value);
   };
 

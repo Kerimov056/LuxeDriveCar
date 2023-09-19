@@ -12,11 +12,9 @@ export const getCarAll = () => {
   return httpClient.get("api/Car")
 };
 
-
 export const GameGetTenCar = () => {
   return httpClient.get("api/Car/GameGetTenAsync")
 };
-
 
 export const GetAllCompaignAsync = () => {
   return httpClient.get(`api/Car/GetAll-CompaignAsync}`)
