@@ -16,8 +16,21 @@
 
         .GameText {
             width: 100%;
-            height: 400px;
-            text-align: center;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            &>h1 {
+                text-align: center;
+                font-size: 30px;
+                font-family: 'Times New Roman', Times, serif;
+            }
+
+            &>div{
+
+            }
         }
 
         .GameCarCards {
