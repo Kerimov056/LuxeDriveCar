@@ -40,6 +40,7 @@ import '../Map/map.scss'
 import reservationScheme from "../Validators/ReservationScheme";
 import { BsFillBookmarkHeartFill } from "react-icons/bs";
 import { PostCarWishlist } from "../Services/wishlistServices";
+import ThreeSixty from 'react-360-view'
 
 
 const CountdownTimer = ({ targetDate }) => {
@@ -534,7 +535,7 @@ const CarDetail = () => {
                                                         <img
                                                             src={img}
                                                             alt="Zoomed Image"
-                                                            style={{ width: '900px', height: '200px' }} 
+                                                            style={{ width: '900px', height: '200px' }}
                                                         />
                                                     </div>
                                                 </AlertDialogBody>
@@ -748,7 +749,6 @@ const CarDetail = () => {
                         </div>
 
                         <div className='CDA'></div>
-
                         <div className='EndCar'>
                             <h1>Related products</h1>
                             <div>

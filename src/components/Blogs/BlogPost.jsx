@@ -46,9 +46,9 @@ const BlogPost = (props) => {
                     </div>
                 </div>
                 <div className='postDesc'>
-                    <h4>{props.desc}</h4>
+                    <h4>{props.desc.slice(0,360)}</h4>
                 </div>
-                <div className='postButton'>
+                <div className='postButtonN'>
                     <Link to={`/BlogDetails/${props.Id}`} >
                         <button>+ DISCOVER</button>
                     </Link>

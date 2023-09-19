@@ -52,28 +52,29 @@ const Strutur = (props) => {
                                             <h3>JAN 8. 2022. DRIVELUXURY</h3>
                                         </p>
                                         <div>
-                                            <img style={{ objectFit: 'cover' }} src={`data:image/jpeg;base64,${byCars?.data?.blogImages[0].imagePath}`} />
+                                            <img style={{ objectFit: 'cover' }} src={`data:image/jpeg;base64,${byCars?.data?.blogImages[0]?.imagePath}`} />
                                         </div>
                                     </div>
 
                                     <div className='blogDetails_2'>
                                         <div>
-                                            {byCars?.data?.description?.slice(0, 9)} <br /><br />
-                                            {byCars?.data?.description?.slice(9, 23)}
+                                            {byCars?.data?.description?.slice(0, 360)} <br /><br />
+                                            {byCars?.data?.description?.slice(361, 500)}
                                         </div>
                                         <div className='ortaq'>
-                                            <div>{byCars?.data?.description?.slice(23, 27)}</div>
+                                            <div>{byCars?.data?.description?.slice(501, 700)}</div>
                                         </div>
-                                        <div>{byCars?.data?.description?.slice(27, 32)}</div>
-                                        <div className='endimg'>
-                                            <img style={{ objectFit: 'cover' }} src={`data:image/jpeg;base64,${byCars?.data?.blogImages[1].imagePath}`} />
+                                        <div>{byCars?.data?.description?.slice(701, 900)}</div>
+                                        <div style={byCars?.data?.blogImages[1]?.imagePath ? {} : {display:"none"}} className='endimg'>
+                                            <img  style={byCars?.data?.blogImages[1]?.imagePath ? { objectFit: 'cover' } : {display:"none"}} src={`data:image/jpeg;base64,${byCars?.data?.blogImages[1]?.imagePath}`} />
                                         </div>
-                                        <div>{byCars?.data?.description?.slice(32)}</div>
+                                        <div style={byCars?.data?.blogImages[2]?.imagePath ? {} : {display:"none"}} className='endimg'>
+                                            <img  style={byCars?.data?.blogImages[2]?.imagePath ? { objectFit: 'cover' } : {display:"none"}} src={`data:image/jpeg;base64,${byCars?.data?.blogImages[2]?.imagePath}`} />
+                                        </div>
+                                        <div>{byCars?.data?.description?.slice(901)}</div>
                                     </div>
 
-                                    {blogs?.data?.slice(-1).map((byBlogs, index) => (
-                                        <BlogPost key={index} Id={byBlogs.id} title={byBlogs.title} date={"Jan 8.   2022./   DRIVE, LUXURY"} img={`data:image/jpeg;base64,${byBlogs?.blogImages[0].imagePath}`} desc={byBlogs.description} />
-                                    ))}
+                                    
                                 </div>
 
                                 :
@@ -81,7 +82,7 @@ const Strutur = (props) => {
                                 props.blog === true ?
                                     <div id='responSive'>
                                         {blogs?.data.map((byBlogs, index) => (
-                                            <BlogPost key={index} Id={byBlogs.id} title={byBlogs.title} date={"Jan 8.   2022./   DRIVE, LUXURY"} img={`data:image/jpeg;base64,${byBlogs?.blogImages[0].imagePath}`} desc={byBlogs.description} />
+                                            <BlogPost key={index} Id={byBlogs?.id} title={byBlogs?.title} date={"Jan 8.   2022./   DRIVE, LUXURY"} img={`data:image/jpeg;base64,${byBlogs?.blogImages[0]?.imagePath}`} desc={byBlogs?.description} />
                                         ))}
                                     </div> :
                                     <div className='Shoppp'>
