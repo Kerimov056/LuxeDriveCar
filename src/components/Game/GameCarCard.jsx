@@ -9,27 +9,48 @@ import axios from 'axios';
 
 const GameCarCard = () => {
 
-    const { data: GameCar } = useQuery({
-        queryKey: ["GameCar"],
-        queryFn: GameGetTenCar,
-        staleTime: 0,
-    });
+    // const { data: GameCar } = useQuery({
+    //     queryKey: ["GameCarrs"],
+    //     queryFn: GameGetTenCar,
+    //     staleTime: 0,
+    // });
+    // console.log(GameCar?.data);
 
-    const [qrCode, setQrCode] = useState(null);
+    const [carData, setCarData] = useState(null);
 
     useEffect(() => {
-      const fetchData = async () => {
+      async function fetchData() {
         try {
-          const response = await axios.get(`https://localhost:7152/api/Car/GameQRCode?id=${byCars?.data?.id}`);
-          setQrCode(response);
+          const response = await fetch('https://localhost:7152/api/Car/GameGetTenAsync');
+          const data = await response.json();
+          setCarData(data);
         } catch (error) {
-          console.error('Error fetching data:', error);
+          console.error('Hata:', error);
         }
-      };
-
+      }
+  
       fetchData();
     }, []);
-    console.log("Buuuu",qrCode?.data?.imageSrc);
+
+    //const [qrCode, setQrCode] = useState(null);
+    // const [number, setNumber] = useState(0);
+
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const response = await axios.get(`https://localhost:7152/api/Car/GameQRCode?id=${GameCar?.data[number]?.id}`);
+    //             setQrCode(response);
+    //             if (number < 11) {
+    //                 setNumber(number = number + 1)
+    //             }
+    //         } catch (error) {
+    //             console.error('Error fetching data:', error);
+    //         }
+    //     };
+
+    //     fetchData();
+    // }, []);
+    // console.log("Buuuu", qrCode?.data?.imageSrc);
 
     return (
         <>
@@ -46,7 +67,7 @@ const GameCarCard = () => {
                     </div>
                     <div className='GameCarCards'>
                         <div className='GameCarCard_Card4'>
-                            {GameCar?.data?.slice(0, 4).map((byCar, index) => (
+                            {carData?.slice(0, 4).map((byCar, index) => (
                                 <CarCard
                                     key={index}
                                     Id={byCar?.id}
@@ -57,7 +78,7 @@ const GameCarCard = () => {
                             ))}
                         </div>
                         <div className='GameCarCard_Card3'>
-                            {GameCar?.data?.slice(4, 7).map((byCar, index) => (
+                            {carData?.slice(4, 7).map((byCar, index) => (
                                 <CarCard
                                     key={index}
                                     Id={byCar?.id}
@@ -68,7 +89,7 @@ const GameCarCard = () => {
                             ))}
                         </div>
                         <div className='GameCarCard_Card2'>
-                            {GameCar?.data?.slice(7, 9).map((byCar, index) => (
+                            {carData?.slice(7, 9).map((byCar, index) => (
                                 <CarCard
                                     key={index}
                                     Id={byCar?.id}
@@ -79,7 +100,7 @@ const GameCarCard = () => {
                             ))}
                         </div>
                         <div className='GameCarCard_Card1'>
-                            {GameCar?.data?.slice(9, 10).map((byCar, index) => (
+                            {carData?.slice(9, 10).map((byCar, index) => (
                                 <CarCard
                                     key={index}
                                     Id={byCar?.id}
@@ -90,6 +111,30 @@ const GameCarCard = () => {
                             ))}
                         </div>
                     </div>
+
+                    <div className='GameCarCards'>
+                        <div className='GameCarCard_Card4'>
+                            {carData?.slice(0, 4).map((byCar, index) => (
+                                <img key={index} style={{ width: "250px", height: "254px", borderRadius: "1rem" }} src={byCar?.imageSrc} />
+                            ))}
+                        </div>
+                        <div className='GameCarCard_Card3'>
+                            {carData?.slice(4, 7).map((byCar, index) => (
+                                <img key={index} style={{ width: "250px", height: "254px", borderRadius: "1rem" }} src={byCar?.imageSrc} />
+                            ))}
+                        </div>
+                        <div className='GameCarCard_Card2'>
+                            {carData?.slice(7, 9).map((byCar, index) => (
+                                <img key={index} style={{ width: "250px", height: "254px", borderRadius: "1rem" }} src={byCar?.imageSrc} />
+                            ))}
+                        </div>
+                        <div className='GameCarCard_Card1'>
+                            {carData?.slice(9, 10).map((byCar, index) => (
+                                <img key={index} style={{ width: "250px", height: "254px", borderRadius: "1rem" }} src={byCar?.imageSrc} />
+                            ))}
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </>
