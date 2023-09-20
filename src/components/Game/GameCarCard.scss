@@ -31,14 +31,39 @@
             &>div {}
         }
 
-        #ByOptionCar{
+        #ByOptionCar {
             margin-top: -100px;
             margin-bottom: 200px;
 
-            &>h1{
+            &>h1 {
                 text-align: center;
                 font-family: 'Times New Roman', Times, serif;
                 font-size: 24px;
+            }
+        }
+
+
+        .FormGameCar {
+            &>label{
+                margin-left: 200px;
+            }
+
+            &>form {
+                &>div {
+                    margin-top: 6px;
+                    display: flex;
+
+                    &>input {
+                        width: 700px;
+                    }
+
+                    &>button {
+
+                        &>svg {
+                            font-size: 26px;
+                        }
+                    }
+                }
             }
         }
 
@@ -89,6 +114,3 @@
         }
     }
 }
-
-
-

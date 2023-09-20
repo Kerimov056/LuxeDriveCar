@@ -1,14 +1,44 @@
 import React, { useEffect, useState } from 'react';
 import './GameCarCard.scss'
 import CarCard from "./CarCard";
-
+import { Button, Input } from '@chakra-ui/react';
+import { IoCarSportOutline } from "react-icons/io5";
+import { useFormik } from "formik";
+import { useQueryClient } from "react-query";
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 
 const GameCarCard = () => {
 
+    const { appuserid } = useSelector((x) => x.authReducer);
+    const dispatch = useDispatch();
+
+    const queryClient = useQueryClient();
+    const navigate = useNavigate();
+
+
     const [carData, setCarData] = useState(null);
     const [carDataView, setCarDataView] = useState(null);
+    const [carQrDataView, setQrCarDataView] = useState(null);
     const [viewHandler, setViewHandler] = useState(false);
+    const [viewQrHandler, setViewQrHandler] = useState(false);
+    const [password, setPassword] = useState('');
+
+    useEffect(() => {
+        if (password !== '') {
+            setViewQrHandler(true);
+            for (let i = 0; i < carData.length; i++) {
+                const car = carData[i];
+                const modifiedId = car.id.replace(/-/g, '');
+                if (modifiedId === password) {
+                    setQrCarDataView(car);
+                    break;
+                }
+            }
+        }
+    }, [password]);
 
     useEffect(() => {
         async function fetchData() {
@@ -17,13 +47,41 @@ const GameCarCard = () => {
                 const data = await response.json();
                 setCarData(data);
                 setCarDataView(data);
+                setQrCarDataView(data);
             } catch (error) {
-                console.error('Hata:', error);
             }
         }
 
         fetchData();
     }, []);
+
+    const formik = useFormik({
+        initialValues: {
+            AppUserId: appuserid,
+            CarId: carDataView?.id ? carDataView?.id : '',
+            Password: password != null && password,
+        },
+        onSubmit: async (values) => {
+            const formData = new FormData();
+
+            formData.append('AppUserId', appuserid ? appuserid : '');
+            formData.append("CarId", carDataView?.id ? carDataView?.id : '');
+            formData.append("Password", password ? password : '');
+
+            // console.log(formData.getAll("AppUserId"));
+            // console.log(formData.getAll("CarId"));
+            // console.log(formData.getAll("Password"));
+
+            const response = await axios.post('https://localhost:7152/api/GameCars', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            })
+            if (response.status === 201) {
+                queryClient.invalidateQueries('Car');
+            }
+        },
+    });
 
 
     const CarOption = (Id) => {
@@ -37,23 +95,7 @@ const GameCarCard = () => {
         }
     }
 
-    const [QRCodeScanned, setQRCodeScanned] = useState(false);
-
-
-    function handleQRCodeScan() {
-        setQRCodeScanned(true);
-        // Kullanıcı QR kodunu taradığında yapılacak işlemler burada olacak
-        // Örneğin, bir durum (state) değişikliği yapabilirsiniz
-        // Örneğin: setQRCodeScanned(true);
-    }
-
-    useEffect(() => {
-        if (QRCodeScanned) {
-            // Kullanıcı QR kodunu taradı, yapılacak işlemler burada olacak
-            console.log("Salam");
-        }
-    }, [QRCodeScanned]);
-
+    console.log(carQrDataView);
 
     return (
         <>
@@ -73,7 +115,7 @@ const GameCarCard = () => {
                             <h1>The car you choose</h1>
                             <CarCard
                                 Id={carDataView?.id}
-                                img={carDataView?.carImages[0] ? carDataView?.carImages[0]?.imagePath : null}
+                                // img={carDataView?.carImages[0] ? carDataView?.carImages[0]?.imagePath : null}
                                 marka={carDataView?.marka}
                                 model={carDataView?.model}
                                 year={carDataView?.year}
@@ -134,35 +176,58 @@ const GameCarCard = () => {
                         </div>
                     }
 
-                    {viewHandler === true && <div className='GameCarCards'>
-                        <div style={{ marginTop: "100px" }} className='GameText'>
+                    <div style={{marginTop:"-130px"}} className='FormGameCar'>
+                        <label>Enter the password of the QR code you scanned here.</label>
+                        <form onSubmit={formik.handleSubmit}>
                             <div>
-                                <h2>5{")"} 10 different QR codes for the vehicle you choose are waiting for you. Find the right one and enjoy 70% discount!</h2>
-                                <h2>6{")"} Let's see how well you know your luck. 10 different QR codes, only one will connect you with a discount!</h2>
-                                <h2>7{")"} Now it's time to find the right path! The QR code of the vehicle we have chosen specifically for you is among these 10 cards. Are you ready?</h2>
+                                <Input
+                                    placeholder='Gr password'
+                                    values={password}
+                                    onChange={(e) => setPassword(e.target.value)} />
+                                <Button onClick={formik.handleSubmit} >
+                                    <IoCarSportOutline />
+                                </Button>
                             </div>
+                        </form>
+                    </div>
+
+                    <div style={{ marginTop: "-130px" }} className='GameText'>
+                        <div>
+                            <h2>5{")"} 10 different QR codes for the vehicle you choose are waiting for you. Find the right one and enjoy 70% discount!</h2>
+                            <h2>6{")"} Let's see how well you know your luck. 10 different QR codes, only one will connect you with a discount!</h2>
+                            <h2>7{")"} Now it's time to find the right path! The QR code of the vehicle we have chosen specifically for you is among these 10 cards. Are you ready?</h2>
                         </div>
-                        <div style={{ marginTop: "100px" }} className='GameCarCard_Card4'>
-                            {carData?.slice(0, 4).map((byCar, index) => (
-                                <img onClick={handleQRCodeScan} key={index} style={{ width: "250px", height: "254px", borderRadius: "1rem" }} src={byCar?.imageSrc} />
-                            ))}
+                    </div>
+
+                    {viewQrHandler === true &&
+                        <div style={{marginTop:"-130px",marginBottom:"100px"}}>
+                            <img style={{ width: "250px", height: "254px", borderRadius: "1rem" }} src={carQrDataView?.imageSrc} />
                         </div>
-                        <div className='GameCarCard_Card3'>
-                            {carData?.slice(4, 7).map((byCar, index) => (
-                                <img key={index} style={{ width: "250px", height: "254px", borderRadius: "1rem" }} src={byCar?.imageSrc} />
-                            ))}
-                        </div>
-                        <div className='GameCarCard_Card2'>
-                            {carData?.slice(7, 9).map((byCar, index) => (
-                                <img key={index} style={{ width: "250px", height: "254px", borderRadius: "1rem" }} src={byCar?.imageSrc} />
-                            ))}
-                        </div>
-                        <div className='GameCarCard_Card1'>
-                            {carData?.slice(9, 10).map((byCar, index) => (
-                                <img key={index} style={{ width: "250px", height: "254px", borderRadius: "1rem" }} src={byCar?.imageSrc} />
-                            ))}
-                        </div>
-                    </div>}
+                    }
+
+                    {viewQrHandler === false && viewHandler === true &&
+                        <div className='GameCarCards'>
+                            <div style={{ marginTop: "100px" }} className='GameCarCard_Card4'>
+                                {carQrDataView?.slice(0, 4).map((byCar, index) => (
+                                    <img key={index} style={{ width: "250px", height: "254px", borderRadius: "1rem" }} src={byCar?.imageSrc} />
+                                ))}
+                            </div>
+                            <div className='GameCarCard_Card3'>
+                                {carQrDataView?.slice(4, 7).map((byCar, index) => (
+                                    <img key={index} style={{ width: "250px", height: "254px", borderRadius: "1rem" }} src={byCar?.imageSrc} />
+                                ))}
+                            </div>
+                            <div className='GameCarCard_Card2'>
+                                {carQrDataView?.slice(7, 9).map((byCar, index) => (
+                                    <img key={index} style={{ width: "250px", height: "254px", borderRadius: "1rem" }} src={byCar?.imageSrc} />
+                                ))}
+                            </div>
+                            <div className='GameCarCard_Card1'>
+                                {carQrDataView?.slice(9, 10).map((byCar, index) => (
+                                    <img key={index} style={{ width: "250px", height: "254px", borderRadius: "1rem" }} src={byCar?.imageSrc} />
+                                ))}
+                            </div>
+                        </div>}
 
                 </div>
             </div>

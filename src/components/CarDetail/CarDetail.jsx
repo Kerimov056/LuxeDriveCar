@@ -291,12 +291,12 @@ const CarDetail = () => {
     const commentCount = byCars?.data?.carCommentGetDTO.length;
 
 
-    const mutation = useMutation(postComments, {
-        onSuccess: () => {
-            queryClient.invalidateQueries("Comments");
-            navigate("/");
-        },
-    });
+    // const mutation = useMutation(postComments, {
+    //     onSuccess: () => {
+    //         queryClient.invalidateQueries("Comments");
+    //         navigate("/");
+    //     },
+    // });
 
     const formik = useFormik({
         initialValues: {
