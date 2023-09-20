@@ -36,6 +36,25 @@ const GameCarCard = () => {
             }
         }
     }
+
+    const [QRCodeScanned, setQRCodeScanned] = useState(false);
+
+
+    function handleQRCodeScan() {
+        setQRCodeScanned(true);
+        // Kullanıcı QR kodunu taradığında yapılacak işlemler burada olacak
+        // Örneğin, bir durum (state) değişikliği yapabilirsiniz
+        // Örneğin: setQRCodeScanned(true);
+    }
+
+    useEffect(() => {
+        if (QRCodeScanned) {
+            // Kullanıcı QR kodunu taradı, yapılacak işlemler burada olacak
+            console.log("Salam");
+        }
+    }, [QRCodeScanned]);
+
+
     return (
         <>
             <div id='GameCarCard'>
@@ -116,16 +135,16 @@ const GameCarCard = () => {
                     }
 
                     {viewHandler === true && <div className='GameCarCards'>
-                        <div style={{marginTop:"100px"}} className='GameText'>
+                        <div style={{ marginTop: "100px" }} className='GameText'>
                             <div>
                                 <h2>5{")"} 10 different QR codes for the vehicle you choose are waiting for you. Find the right one and enjoy 70% discount!</h2>
                                 <h2>6{")"} Let's see how well you know your luck. 10 different QR codes, only one will connect you with a discount!</h2>
                                 <h2>7{")"} Now it's time to find the right path! The QR code of the vehicle we have chosen specifically for you is among these 10 cards. Are you ready?</h2>
                             </div>
                         </div>
-                        <div style={{marginTop:"100px"}} className='GameCarCard_Card4'>
+                        <div style={{ marginTop: "100px" }} className='GameCarCard_Card4'>
                             {carData?.slice(0, 4).map((byCar, index) => (
-                                <img key={index} style={{ width: "250px", height: "254px", borderRadius: "1rem" }} src={byCar?.imageSrc} />
+                                <img onClick={handleQRCodeScan} key={index} style={{ width: "250px", height: "254px", borderRadius: "1rem" }} src={byCar?.imageSrc} />
                             ))}
                         </div>
                         <div className='GameCarCard_Card3'>
