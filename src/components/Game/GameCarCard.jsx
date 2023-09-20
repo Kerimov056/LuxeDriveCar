@@ -50,11 +50,11 @@ const GameCarCard = () => {
                         </div>
                     </div>
                     {viewHandler === true &&
-                        <div>
-                            <h1></h1>
+                        <div id='ByOptionCar'>
+                            <h1>The car you choose</h1>
                             <CarCard
                                 Id={carDataView?.id}
-                                img={carDataView?.carImages[0]?.imagePath}
+                                img={carDataView?.carImages[0] ? carDataView?.carImages[0]?.imagePath : null}
                                 marka={carDataView?.marka}
                                 model={carDataView?.model}
                                 year={carDataView?.year}
@@ -115,28 +115,35 @@ const GameCarCard = () => {
                         </div>
                     }
 
-                    {/* <div className='GameCarCards'>
-                        <div className='GameCarCard_Card4'>
-                            {carDataView?.slice(0, 4).map((byCar, index) => (
+                    {viewHandler === true && <div className='GameCarCards'>
+                        <div style={{marginTop:"100px"}} className='GameText'>
+                            <div>
+                                <h2>5{")"} 10 different QR codes for the vehicle you choose are waiting for you. Find the right one and enjoy 70% discount!</h2>
+                                <h2>6{")"} Let's see how well you know your luck. 10 different QR codes, only one will connect you with a discount!</h2>
+                                <h2>7{")"} Now it's time to find the right path! The QR code of the vehicle we have chosen specifically for you is among these 10 cards. Are you ready?</h2>
+                            </div>
+                        </div>
+                        <div style={{marginTop:"100px"}} className='GameCarCard_Card4'>
+                            {carData?.slice(0, 4).map((byCar, index) => (
                                 <img key={index} style={{ width: "250px", height: "254px", borderRadius: "1rem" }} src={byCar?.imageSrc} />
                             ))}
                         </div>
                         <div className='GameCarCard_Card3'>
-                            {carDataView?.slice(4, 7).map((byCar, index) => (
+                            {carData?.slice(4, 7).map((byCar, index) => (
                                 <img key={index} style={{ width: "250px", height: "254px", borderRadius: "1rem" }} src={byCar?.imageSrc} />
                             ))}
                         </div>
                         <div className='GameCarCard_Card2'>
-                            {carDataView?.slice(7, 9).map((byCar, index) => (
+                            {carData?.slice(7, 9).map((byCar, index) => (
                                 <img key={index} style={{ width: "250px", height: "254px", borderRadius: "1rem" }} src={byCar?.imageSrc} />
                             ))}
                         </div>
                         <div className='GameCarCard_Card1'>
-                            {carDataView?.slice(9, 10).map((byCar, index) => (
+                            {carData?.slice(9, 10).map((byCar, index) => (
                                 <img key={index} style={{ width: "250px", height: "254px", borderRadius: "1rem" }} src={byCar?.imageSrc} />
                             ))}
                         </div>
-                    </div> */}
+                    </div>}
 
                 </div>
             </div>
