@@ -1,56 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import './GameCarCard.scss'
 import CarCard from "./CarCard";
-import { GameGetTenCar } from "../Services/carServices";
-import { useQuery } from "react-query";
-import axios from 'axios';
 
 
 
 const GameCarCard = () => {
 
-    // const { data: GameCar } = useQuery({
-    //     queryKey: ["GameCarrs"],
-    //     queryFn: GameGetTenCar,
-    //     staleTime: 0,
-    // });
-    // console.log(GameCar?.data);
-
     const [carData, setCarData] = useState(null);
 
     useEffect(() => {
-      async function fetchData() {
-        try {
-          const response = await fetch('https://localhost:7152/api/Car/GameGetTenAsync');
-          const data = await response.json();
-          setCarData(data);
-        } catch (error) {
-          console.error('Hata:', error);
+        async function fetchData() {
+            try {
+                const response = await fetch('https://localhost:7152/api/Car/GameGetTenAsync');
+                const data = await response.json();
+                setCarData(data);
+            } catch (error) {
+                console.error('Hata:', error);
+            }
         }
-      }
-  
-      fetchData();
+
+        fetchData();
     }, []);
 
-    //const [qrCode, setQrCode] = useState(null);
-    // const [number, setNumber] = useState(0);
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const response = await axios.get(`https://localhost:7152/api/Car/GameQRCode?id=${GameCar?.data[number]?.id}`);
-    //             setQrCode(response);
-    //             if (number < 11) {
-    //                 setNumber(number = number + 1)
-    //             }
-    //         } catch (error) {
-    //             console.error('Error fetching data:', error);
-    //         }
-    //     };
-
-    //     fetchData();
-    // }, []);
-    // console.log("Buuuu", qrCode?.data?.imageSrc);
+    const test = (Id) => {
+        console.log(Id);
+    }
 
     return (
         <>
@@ -74,7 +48,8 @@ const GameCarCard = () => {
                                     img={byCar?.carImages[0]?.imagePath}
                                     marka={byCar?.marka}
                                     model={byCar?.model}
-                                    year={byCar?.year} />
+                                    year={byCar?.year} 
+                                    testFunction={() => test(byCar?.id)} />
                             ))}
                         </div>
                         <div className='GameCarCard_Card3'>

@@ -2,9 +2,10 @@ import React from 'react'
 import './CarCard.scss'
 
 const CarCard = (props) => {
+
     return (
         <>
-            <div class="flip-cardGame">
+            <div onClick={props.testFunction} class="flip-cardGame">
                 <div class="flip-card-innerGame">
                     <div class="flip-card-frontGame">
                         <img style={{width:"100%", height:"100%", objectFit:"contain"}} src={`data:image/jpeg;base64,${props.img}`} />
