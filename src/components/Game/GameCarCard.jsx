@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Triangle } from 'react-loader-spinner';
 
 
 const GameCarCard = () => {
@@ -121,7 +122,7 @@ const GameCarCard = () => {
         // Örnek olarak, 2 saniye bekleyip sonra loading durumunu sıfırlıyoruz.
         setTimeout(() => {
             setLoading(false);
-        }, 5000);
+        }, 3000);
     };
 
     return (
@@ -211,14 +212,22 @@ const GameCarCard = () => {
                                     placeholder='Gr password'
                                     values={password}
                                     onChange={(e) => setPassword(e.target.value)} />
-                                <Button onClick={handleClick} >
+                                <Button onClick={handleClick} disabled={loading} >
                                     <IoCarSportOutline />
                                 </Button>
                             </div>
                         </form>
                     </div>
                     <>
-                        {loading ? 'Loading...' : 'Click Me'}
+                        {loading===true && <Triangle
+                            height="80"
+                            width="80"
+                            color="#4fa94d"
+                            ariaLabel="triangle-loading"
+                            wrapperStyle={{}}
+                            wrapperClassName=""
+                            visible={true}
+                        /> }
                     </>
                     <div style={{ marginTop: "-130px" }} className='GameText'>
                         <div>
