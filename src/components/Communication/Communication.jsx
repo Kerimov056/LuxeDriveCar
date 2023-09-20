@@ -51,11 +51,8 @@ const Communication = () => {
     const [token, setToken] = useState('');
 
     const onCaptchaLoad = () => {
-        console.log('reCAPTCHA yüklendi');
     }
-
     const onCaptchaVerify = (recaptchaToken) => {
-        console.log('reCAPTCHA doğrulandi:', recaptchaToken);
         setToken(recaptchaToken);
     }
 

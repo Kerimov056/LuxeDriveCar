@@ -49,7 +49,6 @@ const GameCarCard = () => {
                     break;
                 }
                 else {
-                    console.log("denemeeee");
                     gameCarQuityPasswordError();
                     notifyError()
                 }
@@ -111,6 +110,19 @@ const GameCarCard = () => {
             }
         }
     }
+
+    const [loading, setLoading] = useState(false);
+    const handleClick = () => {
+        formik.handleSubmit();
+        setLoading(true);
+
+        // Buraya yükleme işlemlerini ekleyebilirsiniz.
+
+        // Örnek olarak, 2 saniye bekleyip sonra loading durumunu sıfırlıyoruz.
+        setTimeout(() => {
+            setLoading(false);
+        }, 5000);
+    };
 
     return (
         <>
@@ -199,13 +211,15 @@ const GameCarCard = () => {
                                     placeholder='Gr password'
                                     values={password}
                                     onChange={(e) => setPassword(e.target.value)} />
-                                <Button onClick={formik.handleSubmit} >
+                                <Button onClick={handleClick} >
                                     <IoCarSportOutline />
                                 </Button>
                             </div>
                         </form>
                     </div>
-
+                    <>
+                        {loading ? 'Loading...' : 'Click Me'}
+                    </>
                     <div style={{ marginTop: "-130px" }} className='GameText'>
                         <div>
                             <h2>5{")"} 10 different QR codes for the vehicle you choose are waiting for you. Find the right one and enjoy 70% discount!</h2>
