@@ -8,6 +8,8 @@ import { useQueryClient } from "react-query";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const GameCarCard = () => {
@@ -26,6 +28,16 @@ const GameCarCard = () => {
     const [viewQrHandler, setViewQrHandler] = useState(false);
     const [password, setPassword] = useState('');
 
+
+
+    const gameCarQuityPasswordError = () => {
+        toast.success(`The password you entered is incorrect`, {
+            position: toast.POSITION.TOP_CENTER
+        });
+    };
+    const notifyError = () => toast.error(`Error updating`);
+
+
     useEffect(() => {
         if (password !== '') {
             setViewQrHandler(true);
@@ -35,6 +47,11 @@ const GameCarCard = () => {
                 if (modifiedId === password) {
                     setQrCarDataView(car);
                     break;
+                }
+                else {
+                    console.log("denemeeee");
+                    gameCarQuityPasswordError();
+                    notifyError()
                 }
             }
         }
@@ -94,8 +111,6 @@ const GameCarCard = () => {
             }
         }
     }
-
-    console.log(carQrDataView);
 
     return (
         <>
@@ -176,7 +191,7 @@ const GameCarCard = () => {
                         </div>
                     }
 
-                    <div style={{marginTop:"-130px"}} className='FormGameCar'>
+                    <div style={{ marginTop: "0px" }} className='FormGameCar'>
                         <label>Enter the password of the QR code you scanned here.</label>
                         <form onSubmit={formik.handleSubmit}>
                             <div>
@@ -200,7 +215,7 @@ const GameCarCard = () => {
                     </div>
 
                     {viewQrHandler === true &&
-                        <div style={{marginTop:"-130px",marginBottom:"100px"}}>
+                        <div style={{ marginTop: "-130px", marginBottom: "100px" }}>
                             <img style={{ width: "250px", height: "254px", borderRadius: "1rem" }} src={carQrDataView?.imageSrc} />
                         </div>
                     }
