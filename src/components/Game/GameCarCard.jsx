@@ -8,6 +8,7 @@ const GameCarCard = () => {
 
     const [carData, setCarData] = useState(null);
     const [carDataView, setCarDataView] = useState(null);
+    const [viewHandler, setViewHandler] = useState(false);
 
     useEffect(() => {
         async function fetchData() {
@@ -30,11 +31,11 @@ const GameCarCard = () => {
             const car = carData[i];
             if (car.id === Id) {
                 setCarDataView(car);
+                setViewHandler(true);
                 break;
             }
         }
     }
-console.log(carDataView);
     return (
         <>
             <div id='GameCarCard'>
@@ -48,63 +49,71 @@ console.log(carDataView);
                             <h2>4{")"} Choose one of these 10 vehicles. Which one will be your companion?</h2>
                         </div>
                     </div>
-                    <div className='GameCarCards'>
-                        <div className='GameCarCard_Card4'>
-                            {carDataView?.length > 1 ? carDataView?.slice(0, 4).map((byCar, index) => (
-                                <CarCard
-                                    key={index}
-                                    Id={byCar?.id}
-                                    img={byCar?.carImages[0]?.imagePath}
-                                    marka={byCar?.marka}
-                                    model={byCar?.model}
-                                    year={byCar?.year}
-                                    testFunction={() => CarOption(byCar?.id)} />
-                            )) : 
-                                <CarCard
-                                    Id={carDataView?.id}
-                                    img={carDataView?.carImages[0]?.imagePath}
-                                    marka={carDataView?.marka}
-                                    model={carDataView?.model}
-                                    year={carDataView?.year}
-                                    testFunction={() => CarOption(carDataView?.id)}
-                                     />
-                            // )) 
-                            }
+                    {viewHandler === true &&
+                        <div>
+                            <h1></h1>
+                            <CarCard
+                                Id={carDataView?.id}
+                                img={carDataView?.carImages[0]?.imagePath}
+                                marka={carDataView?.marka}
+                                model={carDataView?.model}
+                                year={carDataView?.year}
+                                testFunction={() => CarOption(carDataView?.id)}
+                            />
                         </div>
-                        {/* <div className='GameCarCard_Card3'>
-                            {carDataView?.slice(4, 7).map((byCar, index) => (
-                                <CarCard
-                                    key={index}
-                                    Id={byCar?.id}
-                                    img={byCar?.carImages[0]?.imagePath}
-                                    marka={byCar?.marka}
-                                    model={byCar?.model}
-                                    year={byCar?.year} />
-                            ))}
+                    }
+                    {viewHandler === false &&
+                        <div className='GameCarCards'>
+                            <div className='GameCarCard_Card4'>
+                                {carDataView?.length > 1 && carDataView?.slice(0, 4).map((byCar, index) => (
+                                    <CarCard
+                                        key={index}
+                                        Id={byCar?.id}
+                                        img={byCar?.carImages[0]?.imagePath}
+                                        marka={byCar?.marka}
+                                        model={byCar?.model}
+                                        year={byCar?.year}
+                                        testFunction={() => CarOption(byCar?.id)} />
+                                ))}
+                            </div>
+                            <div className='GameCarCard_Card3'>
+                                {carDataView?.length > 1 && carDataView?.slice(4, 7).map((byCar, index) => (
+                                    <CarCard
+                                        key={index}
+                                        Id={byCar?.id}
+                                        img={byCar?.carImages[0]?.imagePath}
+                                        marka={byCar?.marka}
+                                        model={byCar?.model}
+                                        year={byCar?.year}
+                                        testFunction={() => CarOption(byCar?.id)} />
+                                ))}
+                            </div>
+                            <div className='GameCarCard_Card2'>
+                                {carDataView?.length > 1 && carDataView?.slice(7, 9).map((byCar, index) => (
+                                    <CarCard
+                                        key={index}
+                                        Id={byCar?.id}
+                                        img={byCar?.carImages[0]?.imagePath}
+                                        marka={byCar?.marka}
+                                        model={byCar?.model}
+                                        year={byCar?.year}
+                                        testFunction={() => CarOption(byCar?.id)} />
+                                ))}
+                            </div>
+                            <div className='GameCarCard_Card1'>
+                                {carDataView?.length > 1 && carDataView?.slice(9, 10).map((byCar, index) => (
+                                    <CarCard
+                                        key={index}
+                                        Id={byCar?.id}
+                                        img={byCar?.carImages[0]?.imagePath}
+                                        marka={byCar?.marka}
+                                        model={byCar?.model}
+                                        year={byCar?.year}
+                                        testFunction={() => CarOption(byCar?.id)} />
+                                ))}
+                            </div>
                         </div>
-                        <div className='GameCarCard_Card2'>
-                            {carDataView?.slice(7, 9).map((byCar, index) => (
-                                <CarCard
-                                    key={index}
-                                    Id={byCar?.id}
-                                    img={byCar?.carImages[0]?.imagePath}
-                                    marka={byCar?.marka}
-                                    model={byCar?.model}
-                                    year={byCar?.year} />
-                            ))}
-                        </div>
-                        <div className='GameCarCard_Card1'>
-                            {carDataView?.slice(9, 10).map((byCar, index) => (
-                                <CarCard
-                                    key={index}
-                                    Id={byCar?.id}
-                                    img={byCar?.carImages[0]?.imagePath}
-                                    marka={byCar?.marka}
-                                    model={byCar?.model}
-                                    year={byCar?.year} />
-                            ))}
-                        </div> */}
-                    </div>
+                    }
 
                     {/* <div className='GameCarCards'>
                         <div className='GameCarCard_Card4'>
