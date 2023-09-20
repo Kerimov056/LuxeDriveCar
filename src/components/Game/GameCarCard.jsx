@@ -7,6 +7,7 @@ import CarCard from "./CarCard";
 const GameCarCard = () => {
 
     const [carData, setCarData] = useState(null);
+    const [carDataView, setCarDataView] = useState(null);
 
     useEffect(() => {
         async function fetchData() {
@@ -14,6 +15,7 @@ const GameCarCard = () => {
                 const response = await fetch('https://localhost:7152/api/Car/GameGetTenAsync');
                 const data = await response.json();
                 setCarData(data);
+                setCarDataView(data);
             } catch (error) {
                 console.error('Hata:', error);
             }
@@ -22,10 +24,17 @@ const GameCarCard = () => {
         fetchData();
     }, []);
 
-    const test = (Id) => {
-        console.log(Id);
-    }
 
+    const CarOption = (Id) => {
+        for (let i = 0; i < carData.length; i++) {
+            const car = carData[i];
+            if (car.id === Id) {
+                setCarDataView(car);
+                break;
+            }
+        }
+    }
+console.log(carDataView);
     return (
         <>
             <div id='GameCarCard'>
@@ -41,19 +50,29 @@ const GameCarCard = () => {
                     </div>
                     <div className='GameCarCards'>
                         <div className='GameCarCard_Card4'>
-                            {carData?.slice(0, 4).map((byCar, index) => (
+                            {carDataView?.length > 1 ? carDataView?.slice(0, 4).map((byCar, index) => (
                                 <CarCard
                                     key={index}
                                     Id={byCar?.id}
                                     img={byCar?.carImages[0]?.imagePath}
                                     marka={byCar?.marka}
                                     model={byCar?.model}
-                                    year={byCar?.year} 
-                                    testFunction={() => test(byCar?.id)} />
-                            ))}
+                                    year={byCar?.year}
+                                    testFunction={() => CarOption(byCar?.id)} />
+                            )) : 
+                                <CarCard
+                                    Id={carDataView?.id}
+                                    img={carDataView?.carImages[0]?.imagePath}
+                                    marka={carDataView?.marka}
+                                    model={carDataView?.model}
+                                    year={carDataView?.year}
+                                    testFunction={() => CarOption(carDataView?.id)}
+                                     />
+                            // )) 
+                            }
                         </div>
-                        <div className='GameCarCard_Card3'>
-                            {carData?.slice(4, 7).map((byCar, index) => (
+                        {/* <div className='GameCarCard_Card3'>
+                            {carDataView?.slice(4, 7).map((byCar, index) => (
                                 <CarCard
                                     key={index}
                                     Id={byCar?.id}
@@ -64,7 +83,7 @@ const GameCarCard = () => {
                             ))}
                         </div>
                         <div className='GameCarCard_Card2'>
-                            {carData?.slice(7, 9).map((byCar, index) => (
+                            {carDataView?.slice(7, 9).map((byCar, index) => (
                                 <CarCard
                                     key={index}
                                     Id={byCar?.id}
@@ -75,7 +94,7 @@ const GameCarCard = () => {
                             ))}
                         </div>
                         <div className='GameCarCard_Card1'>
-                            {carData?.slice(9, 10).map((byCar, index) => (
+                            {carDataView?.slice(9, 10).map((byCar, index) => (
                                 <CarCard
                                     key={index}
                                     Id={byCar?.id}
@@ -84,31 +103,31 @@ const GameCarCard = () => {
                                     model={byCar?.model}
                                     year={byCar?.year} />
                             ))}
-                        </div>
+                        </div> */}
                     </div>
 
-                    <div className='GameCarCards'>
+                    {/* <div className='GameCarCards'>
                         <div className='GameCarCard_Card4'>
-                            {carData?.slice(0, 4).map((byCar, index) => (
+                            {carDataView?.slice(0, 4).map((byCar, index) => (
                                 <img key={index} style={{ width: "250px", height: "254px", borderRadius: "1rem" }} src={byCar?.imageSrc} />
                             ))}
                         </div>
                         <div className='GameCarCard_Card3'>
-                            {carData?.slice(4, 7).map((byCar, index) => (
+                            {carDataView?.slice(4, 7).map((byCar, index) => (
                                 <img key={index} style={{ width: "250px", height: "254px", borderRadius: "1rem" }} src={byCar?.imageSrc} />
                             ))}
                         </div>
                         <div className='GameCarCard_Card2'>
-                            {carData?.slice(7, 9).map((byCar, index) => (
+                            {carDataView?.slice(7, 9).map((byCar, index) => (
                                 <img key={index} style={{ width: "250px", height: "254px", borderRadius: "1rem" }} src={byCar?.imageSrc} />
                             ))}
                         </div>
                         <div className='GameCarCard_Card1'>
-                            {carData?.slice(9, 10).map((byCar, index) => (
+                            {carDataView?.slice(9, 10).map((byCar, index) => (
                                 <img key={index} style={{ width: "250px", height: "254px", borderRadius: "1rem" }} src={byCar?.imageSrc} />
                             ))}
                         </div>
-                    </div>
+                    </div> */}
 
                 </div>
             </div>
