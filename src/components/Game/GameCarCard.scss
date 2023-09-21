@@ -114,3 +114,17 @@
         }
     }
 }
+
+
+#Attention{
+    font-size: 30px;
+    text-align: center;
+    color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &>svg{
+        margin-left: 10px;
+    }
+}

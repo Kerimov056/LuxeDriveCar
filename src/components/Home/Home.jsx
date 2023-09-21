@@ -10,7 +10,6 @@ import { MdLocationPin } from 'react-icons/md'
 import { RxVideo } from 'react-icons/rx'
 import { TfiHeadphoneAlt } from 'react-icons/tfi'
 import { FiSearch } from 'react-icons/fi'
-import { Button, Input, useDisclosure, AspectRatio } from '@chakra-ui/react';
 import Card from '../Card/Card'
 import Aboutcard from '../Card/Aboutcard'
 import Sliderimg from '../Slider/Sliderimg';
@@ -20,8 +19,16 @@ import Imagecompanents from '../Imagecompanents/Imagecompanents';
 import Navbartwo from '../Navbar/Navbartwo';
 import Navbar from '../Navbar/Navbar';
 import Nav from '../Navbar/Nav'
+import { useDispatch, useSelector } from "react-redux";
+import axios from 'axios';
+import Modal from 'react-modal';
+import { AiFillCloseCircle } from "react-icons/ai";
 
 import {
+  Button,
+  Input,
+  useDisclosure,
+  AspectRatio,
   AlertDialog,
   AlertDialogBody,
   AlertDialogFooter,
@@ -37,8 +44,16 @@ import { getCarAll, IsCampaigns, GetAllCompaignAsync } from "../Services/carServ
 import FindCarQuickly from '../FindCarQuickly/FindCarQuickly';
 
 
-
-
+const customStyles = {
+  content: {
+    top: '52%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
 
 
 const CountdownTimer = ({ targetDate }) => {
@@ -199,13 +214,58 @@ const Home = ({ color, onNavStateChange }) => {
 
 
 
+  const { appuserid } = useSelector((x) => x.authReducer);
 
+
+  const [carGameAccess, setCarGameAccess] = useState(null);
+  const [showModal, setShowModal] = useState(true);
+
+
+  useEffect(() => {
+    axios.get(`https://localhost:7152/api/CarReservations/CarFindGameUserAccess?AppUserId=${appuserid}`)
+      .then(response => {
+        setCarGameAccess(response?.data);
+        if (response?.data === true) {
+          setShowModal(true);
+        }
+      })
+      .catch(error => {
+      });
+  }, []);
+
+
+  function closeModal() {
+    setShowModal(false);
+  }
 
 
 
 
   return (
     <>
+
+
+
+
+      <Modal
+        isOpen={showModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Example Modal"
+      >
+        <div className='TrueAccess'>
+          <div className='onCloceSuc'>
+            <h1><AiFillCloseCircle onClick={closeModal} /></h1>
+          </div>
+          <div className='GameToTrueAcces'>
+            Salam
+          </div>
+        </div>
+      </Modal>
+
+
+
+
       <div className={isVisible ? 'navbar' : 'navbar hidden'}>
         <Nav />
       </div>
@@ -314,7 +374,7 @@ const Home = ({ color, onNavStateChange }) => {
           </div>
 
         </div>
-      </div>
+      </div >
 
       <div className='Experience'>
         <div className='Description'>
@@ -335,7 +395,8 @@ const Home = ({ color, onNavStateChange }) => {
         </div>
         <div className='cards' id='CardsRes'>
           {cars?.data?.slice(0, 6).map((byCar, index) => (
-            <Card key={index}
+            <Card
+              key={index}
               isCampaigns={byCar?.isCampaigns}
               campaignsInterest={byCar?.campaignsInterest}
               campaignsPrice={byCar?.campaignsPrice}

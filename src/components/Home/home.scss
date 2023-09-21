@@ -9,6 +9,31 @@
     color: white;
 }
 
+//Game
+
+.TrueAccess{
+    width: 600px;
+    height: 500px;
+
+    .onCloceSuc{
+        width: 100%;
+        height: 7%;
+        background-color: red;
+
+        &>h1{
+            font-size: 30px;
+            margin-left: auto;
+        }
+    }
+
+    .GameToTrueAcces{
+        width: 100%;
+        height: 93%;
+    }
+}
+
+//-------------
+
 #Compahins {
     position: sticky;
     width: 100%;

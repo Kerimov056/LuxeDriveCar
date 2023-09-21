@@ -3,11 +3,12 @@ import './GameCarCard.scss'
 import CarCard from "./CarCard";
 import { Button, Input } from '@chakra-ui/react';
 import { IoCarSportOutline } from "react-icons/io5";
+import { TiWarning } from "react-icons/ti";
 import { useFormik } from "formik";
 import { useQueryClient } from "react-query";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Triangle } from 'react-loader-spinner';
@@ -16,7 +17,6 @@ import { Triangle } from 'react-loader-spinner';
 const GameCarCard = () => {
 
     const { appuserid } = useSelector((x) => x.authReducer);
-    const dispatch = useDispatch();
 
     const queryClient = useQueryClient();
     const navigate = useNavigate();
@@ -234,6 +234,9 @@ const GameCarCard = () => {
                             <h2>5{")"} 10 different QR codes for the vehicle you choose are waiting for you. Find the right one and enjoy 70% discount!</h2>
                             <h2>6{")"} Let's see how well you know your luck. 10 different QR codes, only one will connect you with a discount!</h2>
                             <h2>7{")"} Now it's time to find the right path! The QR code of the vehicle we have chosen specifically for you is among these 10 cards. Are you ready?</h2>
+                            <h1 id='Attention' >Attention <TiWarning /></h1>
+                            <h2 style={{color:"red"}} >8{")"} After typing the password, the QR code below should be displayed. If the QR code is not displayed, it means that you typed the password you scanned incorrectly.</h2>
+                            <h2 style={{color:"red"}} >9{")"} Try typing the password again and you will not be given a second chance to scan the QR code !!!</h2>
                         </div>
                     </div>
 
