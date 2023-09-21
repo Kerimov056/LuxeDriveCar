@@ -162,6 +162,7 @@ const GameCarCard = () => {
     }, [trueShowModal,showModal])
 
     if (exitPage === false) {
+        
         return (
             <>
 
@@ -390,11 +391,6 @@ const GameCarCard = () => {
         )
     }
     navigate('/')
-    // return (
-    //     <>
-    //         Go to home page
-    //     </>
-    // )
 }
 
 export default GameCarCard
