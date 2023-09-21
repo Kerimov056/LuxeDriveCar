@@ -221,33 +221,43 @@ const FindCarQuickly = () => {
 
                     </div>
                     <div className='ResponseMapAllCar'>
-                        {cityBounds && cars?.data.map((byCar, index) => {
-                            const carLatitude = byCar.latitude;
-                            const carLongitude = byCar.longitude;
-                            if (
-                                cityBounds &&
-                                carLatitude >= cityBounds.southwest.lat &&
-                                carLatitude <= cityBounds.northeast.lat &&
-                                carLongitude >= cityBounds.southwest.lng &&
-                                carLongitude <= cityBounds.northeast.lng
-                            ) {
-                                return (
-                                    <FindAllCarMap
-                                        key={index}
-                                        ref={mapRef}
-                                        locationLat={searchCity?.lat ? searchCity?.lat : ''}
-                                        locationLng={searchCity?.lng ? searchCity?.lng : ''}
-                                        data={cars ? cars : ''}
-                                        cityBounds={cityBounds ? cityBounds : ''}
-                                        setSelectedMarker={setSelectedMarker}
-                                        setReturnLocation={setReturnLocation}
-                                        setCarAddress={setCarAddress}
-                                    />
-                                );
-                            }
-                            return null;
-                        })}
+                        {
+                            cityBounds && cars?.data &&
+                            (() => {
+                                const elements = [];
+                                for (let index = 0; index < cars.data.length; index++) {
+                                    const byCar = cars.data[index];
+                                    const carLatitude = byCar.latitude;
+                                    const carLongitude = byCar.longitude;
+
+                                    if (
+                                        cityBounds &&
+                                        carLatitude >= cityBounds.southwest.lat &&
+                                        carLatitude <= cityBounds.northeast.lat &&
+                                        carLongitude >= cityBounds.southwest.lng &&
+                                        carLongitude <= cityBounds.northeast.lng
+                                    ) {
+                                        elements.push(
+                                            <FindAllCarMap
+                                                key={index}
+                                                ref={mapRef}
+                                                locationLat={searchCity?.lat ? searchCity?.lat : ''}
+                                                locationLng={searchCity?.lng ? searchCity?.lng : ''}
+                                                data={cars ? cars : ''}
+                                                cityBounds={cityBounds ? cityBounds : ''}
+                                                setSelectedMarker={setSelectedMarker}
+                                                setReturnLocation={setReturnLocation}
+                                                setCarAddress={setCarAddress}
+                                            />
+                                        );
+                                        break;
+                                    }
+                                }
+                                return elements;
+                            })()
+                        }
                     </div>
+
                 </div>
             </div>
         </>

@@ -233,40 +233,43 @@ const Home = ({ color, onNavStateChange }) => {
       });
   }, []);
 
+  const [gameEnter, setGameEnter] = useState(false);
 
   function closeModal() {
     setShowModal(false);
+    setGameEnter(true);
   }
-
+  function gameEnterAccess() {
+    console.log("---------");
+    setGameEnter(true);
+  }
 
   return (
     <>
 
 
-
-
-      <Modal
-        isOpen={showModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
-      >
-        <div className='TrueAccess'>
-          <div className='onCloceSuc'>
-            <h1><AiFillCloseCircle onClick={closeModal} /></h1>
+      {gameEnter === false &&
+        <Modal
+          isOpen={showModal}
+          // onRequestClose={closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <div className='TrueAccess'>
+            <div className='onCloceSuc'>
+              <h1><AiFillCloseCircle onClick={closeModal} /></h1>
+            </div>
+            <div className='GameToTrueAcces'>
+              <h1>Congratulations</h1>
+              <h2>Since you have successfully booked a car with us 3 times, we offer you the chance to win a 60% discount.</h2>
+              <h2>To get a chance to win 60% off, click on the image below and go to the page.</h2>
+              <Link to={`/GameCarCard/${appuserid}`}>
+                <img onClick={gameEnterAccess} style={{ width: "400px", height: "300px", objectFit: "contain" }} src={img} />
+              </Link>
+            </div>
           </div>
-          <div className='GameToTrueAcces'>
-            <h1>Congratulations</h1>
-            <h2>Since you have successfully booked a car with us 3 times, we offer you the chance to win a 60% discount.</h2>
-            <h2>To get a chance to win 60% off, click on the image below and go to the page.</h2>
-            <Link to={`/GameCarCard/${appuserid}`}>
-              <img style={{ width: "400px", height: "300px", objectFit: "contain" }} src={img} />
-            </Link>
-          </div>
-        </div>
-      </Modal>
-
-
+        </Modal>
+      }
 
 
       <div className={isVisible ? 'navbar' : 'navbar hidden'}>

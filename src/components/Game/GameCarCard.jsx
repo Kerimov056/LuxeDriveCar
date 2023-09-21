@@ -157,12 +157,14 @@ const GameCarCard = () => {
 
     useEffect(() => {
         if (trueShowModal === false || showModal === false) {
-            // setExitPage(true);
+            setExitPage(true);
         }
-    }, [trueShowModal,showModal])
+    }, [trueShowModal, showModal])
+
+    console.log(carDataView);
 
     if (exitPage === false) {
-        
+
         return (
             <>
 
