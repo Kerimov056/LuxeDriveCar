@@ -62,7 +62,7 @@ function App() {
             <Route path='/MyProfile' element={<MyProfile />} />
             <Route path='/ResetPassword' element={<ResetPassword />} />
             <Route path='/Communication' element={<Communication />} />
-            <Route path='/GameCarCard' element={<GameCarCard />} />
+            <Route path='/GameCarCard/:appUserId' element={<GameCarCard />} />
             <Route path='/Wishlist' element={<Wishlist />} />
             <Route path='/RentalConditions' element={<RentalConditions />} />
             <Route path='/FindCarQuickly/:city' element={<FindCarQuickly />} />

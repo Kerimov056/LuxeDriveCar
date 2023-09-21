@@ -12,6 +12,21 @@ import { useSelector } from "react-redux";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Triangle } from 'react-loader-spinner';
+import Modal from 'react-modal';
+import xImage from "./xxx.svg";
+import yesImage from "./yes.svg";
+
+const customStyles = {
+    content: {
+        top: '52%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+    },
+};
+
 
 
 const GameCarCard = () => {
@@ -85,17 +100,13 @@ const GameCarCard = () => {
             formData.append("CarId", carDataView?.id ? carDataView?.id : '');
             formData.append("Password", password ? password : '');
 
-            // console.log(formData.getAll("AppUserId"));
-            // console.log(formData.getAll("CarId"));
-            // console.log(formData.getAll("Password"));
-
             const response = await axios.post('https://localhost:7152/api/GameCars', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
             })
             if (response.status === 201) {
-                queryClient.invalidateQueries('Car');
+
             }
         },
     });
@@ -112,21 +123,130 @@ const GameCarCard = () => {
         }
     }
 
+
+    const [showModal, setShowModal] = useState(false);
+    const [trueShowModal, setTrueShowModal] = useState(false);
+
+    function closeModal() {
+        setShowModal(false);
+    }
+
+    function closeModalTrue() {
+        setTrueShowModal(false);
+    }
+
+
     const [loading, setLoading] = useState(false);
     const handleClick = () => {
         formik.handleSubmit();
         setLoading(true);
-
-        // Buraya yükleme işlemlerini ekleyebilirsiniz.
-
-        // Örnek olarak, 2 saniye bekleyip sonra loading durumunu sıfırlıyoruz.
         setTimeout(() => {
             setLoading(false);
         }, 3000);
+
+
+        // const modifiedId = carDataView.id.replace(/-/g, '');
+        if (carDataView.id !== password) {
+            console.log('11111', carDataView?.id);
+            console.log('22222', password);
+            setShowModal(true);
+        }
+        else {
+            trueShowModal(true);
+        }
     };
 
+
+    console.log(carDataView);
     return (
         <>
+
+            <Modal
+                isOpen={showModal}
+                onRequestClose={closeModal}
+                style={customStyles}
+                contentLabel="Example Modal"
+            >
+                {loading === true && <Triangle
+                    height="80"
+                    width="80"
+                    color="#4fa94d"
+                    ariaLabel="triangle-loading"
+                    wrapperStyle={{}}
+                    wrapperClassName=""
+                    visible={true}
+                />}
+                {loading === false &&
+                    <>
+                        <div className='TrueAccessS'>
+                            <div>
+                                <CarCard
+                                    Id={carDataView?.id}
+                                    // img={carDataView?.carImages[0] ? carDataView?.carImages[0]?.imagePath : null}
+                                    marka={carDataView?.marka}
+                                    model={carDataView?.model}
+                                    year={carDataView?.year}
+                                    testFunction={() => CarOption(carDataView?.id)}
+                                />
+                            </div>
+                            <div>
+                                <img style={{ width: "250px", height: "254px", borderRadius: "1rem", backgroundColor: "red" }} src={xImage} />
+                            </div>
+                            <div>
+                                <img style={{ width: "250px", height: "254px", borderRadius: "1rem" }} src={carQrDataView?.imageSrc} />
+                            </div>
+                        </div>
+                        <div style={{ color: "yellow" }} className='ResponseGameCar'>
+                            You chose the wrong car. You did not win the discount. Have a nice day.
+                        </div>
+                    </>
+                }
+            </Modal>
+
+
+            <Modal
+                isOpen={trueShowModal}
+                onRequestClose={closeModalTrue}
+                style={customStyles}
+                contentLabel="Example Modal"
+            >
+                {loading === true && <Triangle
+                    height="80"
+                    width="80"
+                    color="#4fa94d"
+                    ariaLabel="triangle-loading"
+                    wrapperStyle={{}}
+                    wrapperClassName=""
+                    visible={true}
+                />}
+                {loading === false &&
+                    <>
+                        <div className='TrueAccessS'>
+                            <div>
+                                <CarCard
+                                    Id={carDataView?.id}
+                                    // img={carDataView?.carImages[0] ? carDataView?.carImages[0]?.imagePath : null}
+                                    marka={carDataView?.marka}
+                                    model={carDataView?.model}
+                                    year={carDataView?.year}
+                                    testFunction={() => CarOption(carDataView?.id)}
+                                />
+                            </div>
+                            <div>
+                                <img style={{ width: "250px", height: "254px", borderRadius: "1rem", }} src={"https://upload.wikimedia.org/wikipedia/en/thumb/f/fb/Yes_check.svg/2048px-Yes_check.svg.png"} />
+                            </div>
+                            <div>
+                                <img style={{ width: "250px", height: "254px", borderRadius: "1rem" }} src={carQrDataView?.imageSrc} />
+                            </div>
+                        </div>
+                        <div className='ResponseGameCar'>
+                            I congratulate you. You found the right car. You get a 60% car discount for booking with us.
+
+                        </div>
+                    </>
+                }
+            </Modal>
+
             <div id='GameCarCard'>
                 <div>
                     <div className='GameText'>
@@ -218,25 +338,15 @@ const GameCarCard = () => {
                             </div>
                         </form>
                     </div>
-                    <>
-                        {loading===true && <Triangle
-                            height="80"
-                            width="80"
-                            color="#4fa94d"
-                            ariaLabel="triangle-loading"
-                            wrapperStyle={{}}
-                            wrapperClassName=""
-                            visible={true}
-                        /> }
-                    </>
+
                     <div style={{ marginTop: "-130px" }} className='GameText'>
                         <div>
                             <h2>5{")"} 10 different QR codes for the vehicle you choose are waiting for you. Find the right one and enjoy 70% discount!</h2>
                             <h2>6{")"} Let's see how well you know your luck. 10 different QR codes, only one will connect you with a discount!</h2>
                             <h2>7{")"} Now it's time to find the right path! The QR code of the vehicle we have chosen specifically for you is among these 10 cards. Are you ready?</h2>
                             <h1 id='Attention' >Attention <TiWarning /></h1>
-                            <h2 style={{color:"red"}} >8{")"} After typing the password, the QR code below should be displayed. If the QR code is not displayed, it means that you typed the password you scanned incorrectly.</h2>
-                            <h2 style={{color:"red"}} >9{")"} Try typing the password again and you will not be given a second chance to scan the QR code !!!</h2>
+                            <h2 style={{ color: "red" }} >8{")"} After typing the password, the QR code below should be displayed. If the QR code is not displayed, it means that you typed the password you scanned incorrectly.</h2>
+                            <h2 style={{ color: "red" }} >9{")"} Try typing the password again and you will not be given a second chance to scan the QR code !!!</h2>
                         </div>
                     </div>
 

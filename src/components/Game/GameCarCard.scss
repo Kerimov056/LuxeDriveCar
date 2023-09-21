@@ -128,3 +128,22 @@
         margin-left: 10px;
     }
 }
+
+
+.TrueAccessS {
+    width: 900px;
+    height: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ResponseGameCar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 22px;
+    color: rgb(0, 98, 28);
+}

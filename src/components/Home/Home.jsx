@@ -218,7 +218,7 @@ const Home = ({ color, onNavStateChange }) => {
 
 
   const [carGameAccess, setCarGameAccess] = useState(null);
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
 
   useEffect(() => {
@@ -237,8 +237,6 @@ const Home = ({ color, onNavStateChange }) => {
   function closeModal() {
     setShowModal(false);
   }
-
-
 
 
   return (
@@ -261,7 +259,9 @@ const Home = ({ color, onNavStateChange }) => {
             <h1>Congratulations</h1>
             <h2>Since you have successfully booked a car with us 3 times, we offer you the chance to win a 60% discount.</h2>
             <h2>To get a chance to win 60% off, click on the image below and go to the page.</h2>
-            <img src={img} />
+            <Link to={`/GameCarCard/${appuserid}`}>
+              <img style={{ width: "400px", height: "300px", objectFit: "contain" }} src={img} />
+            </Link>
           </div>
         </div>
       </Modal>

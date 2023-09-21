@@ -442,8 +442,8 @@ const CarDetail = () => {
         };
 
         fetchAllCompaign();
-    }, []);
-
+    }, []);  
+//d205e6aece7c483c932e08dbb8879562
     const [isClicked, setIsClicked] = useState(false);
 
 
