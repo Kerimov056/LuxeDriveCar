@@ -50,7 +50,7 @@ const Destinations = (props) => {
             <div>
                 <div className='Basliq'>
                     <p></p>
-                    <h1 style={{ color: Color === "white" ? "black" : "white" }}>{props.name}</h1>
+                    <h1 style={{ color: Color === "white" ? "black" : "white", fontFamily:"'Times New Roman', Times, serif" }}>{props.name}</h1>
                     <h3>{props.topic}</h3>
                 </div>
                 <div className='DestinationsCardIn'>

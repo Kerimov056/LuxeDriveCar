@@ -49,7 +49,7 @@ const AboutUs = () => {
         <div className='CarCards'>
           <div>
             <div className='CatalogName'>
-              <h1>Luxury Limousine for Maximum Satisfaction. Enjoy.</h1>
+              <h1 style={{fontFamily:"'Times New Roman', Times, serif"}} >Luxury Limousine for Maximum Satisfaction. Enjoy.</h1>
               <h3>ENJOY THE RIDE</h3>
             </div>
 
@@ -83,7 +83,7 @@ const AboutUs = () => {
           <div><img src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/inner-ab-img-2.jpg' /></div>
           <div className='left'>
             <div>
-              <h1>We Care About Your Comfort And Safety</h1>
+              <h1 id='FontFamliyChange' >We Care About Your Comfort And Safety</h1>
               <h3>BEST DRIVERS</h3>
               <p>Turpis tincidunt id aliquet risus feugiat in ante metus dictum. Netus et sed malesuada fames ac turpis. Netus et sed males ada fames ac turpis egesta doi tempus urna. Amet nulla facilisi morbi temp do.</p>
               <button>+ VIEW MORE</button>
@@ -97,7 +97,7 @@ const AboutUs = () => {
 
             <div style={{ marginBottom: "1px solid gray" }} className='Questions'>
               <div>
-                <h1>Frequently Asked Questions</h1>
+                <h1 id='FontFamliyChange'>Frequently Asked Questions</h1>
                 <h3>LIST OF ANSWERS</h3>
               </div>
             </div>

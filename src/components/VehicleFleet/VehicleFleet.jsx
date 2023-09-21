@@ -197,12 +197,12 @@ const VehicleFleet = () => {
             <div id="Fleet">
                 <img src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/02/vehicle-list-title-img.jpg' />
                 <div id='responePhone'>
-                    <h1>Fleet Standard</h1>
+                    <h1 id='FontFamliyChange'>Fleet Standard</h1>
                 </div>
             </div>
 
             <div id='SppedCarReserv'>
-                <h1>Find the car you want to reserve on Google map and book it</h1>
+                <h1 id='responePhone'>Find the car you want to reserve on Google map and book it</h1>
                 <AllCarMap />
             </div>
 

@@ -24,7 +24,6 @@ const Communication = () => {
         onSubmit: async (values) => {
 
             const formData = new FormData();
-            console.log(values);
 
             formData.append("Name", values.Name);
             formData.append("SurName", values.SurName);
@@ -43,7 +42,6 @@ const Communication = () => {
                 }
 
             } catch (error) {
-                console.log(error);
             }
         },
     });

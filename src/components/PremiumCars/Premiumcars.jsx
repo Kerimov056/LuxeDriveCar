@@ -39,7 +39,7 @@ const Premiumcars = (props) => {
                     </div>
                     <div style={{order:props.two}} className='PremiumcarsText'>
                         <div>
-                            <h1 style={{color: props.NumColor}}>Premium Cars Rental</h1>
+                            <h1 id='FontFamliyChange' style={{color: props.NumColor}}>Premium Cars Rental</h1>
                             <h3 style={{color: props.NumColor}}>ONLY THE BEST</h3>
                             <p>Praesent elementum facilisis leo vel fringilla est. Vest bulum lectus a urise ultrices eros in cursus turpi uto.</p>
                             <div id='responsive'>

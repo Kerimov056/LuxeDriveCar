@@ -6,7 +6,7 @@ const Sliderimg = (props) => {
     <>
       <div class="slider-container">
         <img src={props.img} alt="Slider Image" />
-        <div class="caption">
+        <div id='FontFamliyChange' class="caption">
          {props.name} <br/>
           <br/>
           <button id='resBut'> + VIEW MORE </button>

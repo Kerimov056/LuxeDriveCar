@@ -6,19 +6,16 @@ import { useFormik } from "formik";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
-import { useQuery, useMutation, useQueryClient } from "react-query";
+import React, { useEffect, useState } from 'react';
+import { useQuery, useQueryClient } from "react-query";
 import {
-    AlertDialog,
-    AlertDialogBody,
-    AlertDialogFooter,
-    AlertDialogContent,
-    AlertDialogOverlay,
-    AlertDialogCloseButton,
-    useDisclosure, Input, Text,
-    Button, FormLabel, FormControl
+    Input, Text,
+    Button, FormControl
 } from '@chakra-ui/react'
 import reservationScheme from "../Validators/ReservationScheme";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Basket = () => {
 
@@ -105,21 +102,6 @@ const Basket = () => {
             formData.append("ReturnLocation.Latitude", '');
             formData.append("ReturnLocation.Longitude", '');
 
-            ////////////////////////////////
-            console.log("Image-------" + formData.getAll("Image"));
-            console.log("FullName-------" + formData.getAll("FullName"));
-            console.log("Email-------" + formData.getAll("Email"));
-            console.log("Number-------" + formData.getAll("Number"));
-            console.log("Notes-------" + formData.getAll("Notes"));
-            console.log("AppUserId-------" + formData.getAll("AppUserId"));
-            console.log("PickupDate-------" + formData.getAll("PickupDate"));
-            console.log("ReturnDate-------" + formData.getAll("ReturnDate"));
-            console.log("PickupLocation.Latitude-------" + formData.getAll("PickupLocation.Latitude"));
-            console.log("PickupLocation.Longitude-------" + formData.getAll("PickupLocation.Longitude"));
-            console.log("ReturnLocation.Latitude-------" + formData.getAll("ReturnLocation.Latitude"));
-            console.log("ReturnLocation.Longitude-------" + formData.getAll("ReturnLocation.Longitude"));
-            ////////////////////////////////
-
             try {
                 const response = await axios.post('https://localhost:7152/api/CarReservations/AllResev', formData, {
                     headers: {
@@ -128,26 +110,17 @@ const Basket = () => {
                 })
                 if (response.status === 201) {
                     queryClient.invalidateQueries('getReservation');
+                    toast.success("New Cars Reservation Success");
                     navigate('/MyProfile');
-                    // toast.success('🦄 Wow so easy!', {
-                    //     position: "top-center",
-                    //     autoClose: 5000,
-                    //     hideProgressBar: false,
-                    //     closeOnClick: true,
-                    //     pauseOnHover: true,
-                    //     draggable: true,
-                    //     progress: undefined,
-                    //     theme: "dark",
-                    // });
                 }
 
             } catch (error) {
-                console.log(error);
             }
         },
         validationSchema: reservationScheme
     });
 
+    const currentDateTime = new Date().toISOString().slice(0, 16);
 
     return (
         <>
@@ -186,8 +159,8 @@ const Basket = () => {
                                     </div>
                                 )}  {basketCars?.data?.length !== 0 && (
                                     <div className="paypal">
-                                        <div className='PaypalCarReserv'>Paypal</div>
-                                        <div className='BasketReservationCar'>
+                                        {/* <div className='PaypalCarReserv'>Paypal</div> */}
+                                        <div style={{marginLeft:"230px"}} className='BasketReservationCar'>
                                             <div className='ByReservACar'>
 
                                                 <form className='login_form' onSubmit={reservFormik.handleSubmit} >
@@ -261,6 +234,7 @@ const Basket = () => {
                                                             type="datetime-local"
                                                             value={selectedDate}
                                                             onChange={handleDateChange}
+                                                            min={currentDateTime}
                                                             style={{
                                                                 borderTop: "none",
                                                                 borderRight: "none",
@@ -280,6 +254,7 @@ const Basket = () => {
                                                             type="datetime-local"
                                                             value={selectedDate1}
                                                             onChange={handleDateChange1}
+                                                            min={currentDateTime}
                                                             style={{
                                                                 borderTop: "none",
                                                                 borderRight: "none",

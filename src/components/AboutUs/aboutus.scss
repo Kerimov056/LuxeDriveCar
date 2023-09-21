@@ -319,12 +319,16 @@
 
             .CatalogName {
                 height: auto;
+                &>h1{
+                    font-family: 'Times New Roman', Times, serif;
+                }
             }
         }
     }
 
     .left {
         height: auto !important;
+      
     }
 
 
@@ -452,4 +456,8 @@
             }
         }
     }
+}
+
+#FontFamliyChange{
+    font-family: 'Times New Roman', Times, serif;
 }

@@ -382,7 +382,7 @@ const Home = ({ color, onNavStateChange }) => {
         <div className='Description'>
           <div className='resPhone'>
             <div>
-              <h1 className='ExIntoG'>
+              <h1 style={{fontFamily:"'Times New Roman', Times, serif"}} className='ExIntoG'>
                 What We Provide Is The Luxury Transport And Most Comfortable Experience
               </h1>
             </div>
@@ -526,7 +526,7 @@ const Home = ({ color, onNavStateChange }) => {
 
           <div className='CarOptons'>
             <div>
-              <h1>A High Variety Of Options</h1>
+              <h1 id='FontFamliyChange'>A High Variety Of Options</h1>
               <h3>BEST POSSIBILITIES</h3>
             </div>
           </div>
