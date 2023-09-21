@@ -42,7 +42,7 @@ import { useQuery } from "react-query";
 import { getSlider } from "../Services/sliderServices";
 import { getCarAll, IsCampaigns, GetAllCompaignAsync } from "../Services/carServices";
 import FindCarQuickly from '../FindCarQuickly/FindCarQuickly';
-
+import img from "./CongratulationsCar.jpg";
 
 const customStyles = {
   content: {
@@ -258,7 +258,10 @@ const Home = ({ color, onNavStateChange }) => {
             <h1><AiFillCloseCircle onClick={closeModal} /></h1>
           </div>
           <div className='GameToTrueAcces'>
-            Salam
+            <h1>Congratulations</h1>
+            <h2>Since you have successfully booked a car with us 3 times, we offer you the chance to win a 60% discount.</h2>
+            <h2>To get a chance to win 60% off, click on the image below and go to the page.</h2>
+            <img src={img} />
           </div>
         </div>
       </Modal>

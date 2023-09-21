@@ -18,7 +18,6 @@
     .onCloceSuc{
         width: 100%;
         height: 7%;
-        background-color: red;
 
         &>h1{
             font-size: 30px;
@@ -29,6 +28,29 @@
     .GameToTrueAcces{
         width: 100%;
         height: 93%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Times New Roman', Times, serif;
+
+        &>h1{
+            font-size: 32px;
+            color: #bfa37c;
+        }
+
+        &>h2{
+            font-size: 20px;
+            color: #141A1C;
+            margin-top: 9px;
+        }
+
+        &>img{
+            width: 400px;
+            height: 300px !important;
+            object-fit: contain;
+            cursor: pointer;
+        }
     }
 }
 
