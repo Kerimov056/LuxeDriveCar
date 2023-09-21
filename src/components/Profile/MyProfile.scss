@@ -96,6 +96,10 @@
                                 color: white;
                                 font-family: Georgia, 'Times New Roman', Times, serif;
 
+                                &>span{
+                                    color: burlywood;
+                                    margin-left: 9px;
+                                }
                             }
                         }
                     }

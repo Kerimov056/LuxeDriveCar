@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import './home.scss'
 import Slider from 'react-slick';
-import { Google_Maps_Api_Key } from "../utils/ExportFile";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { BsTelephoneX } from 'react-icons/bs'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { MdLocationPin } from 'react-icons/md'
 import { RxVideo } from 'react-icons/rx'
 import { TfiHeadphoneAlt } from 'react-icons/tfi'
@@ -17,9 +16,8 @@ import Destinations from '../Destinations/Destinations'
 import Premiumcars from '../PremiumCars/Premiumcars'
 import Imagecompanents from '../Imagecompanents/Imagecompanents';
 import Navbartwo from '../Navbar/Navbartwo';
-import Navbar from '../Navbar/Navbar';
 import Nav from '../Navbar/Nav'
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import axios from 'axios';
 import Modal from 'react-modal';
 import { AiFillCloseCircle } from "react-icons/ai";
@@ -39,9 +37,7 @@ import {
 } from '@chakra-ui/react'
 import Carcatogorie from '../CarCatogorie/Carcatogorie';
 import { useQuery } from "react-query";
-import { getSlider } from "../Services/sliderServices";
-import { getCarAll, IsCampaigns, GetAllCompaignAsync } from "../Services/carServices";
-import FindCarQuickly from '../FindCarQuickly/FindCarQuickly';
+import { getCarAll, IsCampaigns } from "../Services/carServices";
 import img from "./CongratulationsCar.jpg";
 
 const customStyles = {
@@ -502,7 +498,7 @@ const Home = ({ color, onNavStateChange }) => {
 
       <div id='HomeAbout'>
         <div className='opinions'>
-          <h1 id="resphSone">We trive to meet the needs <br />
+          <h1 style={{fontFamily:"'Times New Roman', Times, serif"}} id="resphSone">We trive to meet the needs <br />
             of our clients and we value their <br />
             opinions about our work</h1>
         </div>

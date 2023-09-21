@@ -65,30 +65,14 @@ const MyProfile = () => {
                         <div>
                             <div className='BackIamge'>
                                 <img src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/04/Limo_open_graph.png' />
-                                <form onSubmit={formik.handleSubmit}>
-                                    <input
-                                        type='file'
-                                        onChange={(e) => fileUploadHandler(e)}
-                                    />
-                                    <button id='EditImage' type='submit'>Profil Resmini Güncelle</button>
-                                </form>
                             </div>
                             <div className='DeatilsProfil'>
-                                <div className='DeatilsProfilUP'>
-                                    <p>   {ProfileImage !== null &&
-                                        <img src={`data:image/png;base64,${ProfileImage}`} />
-                                    }
-                                        {ProfileImage === null &&
-                                            <img src='https://luxedrive.qodeinteractive.com/wp-content/uploads/2023/04/Limo_open_graph.png' />
-                                        }
-                                    </p>
-                                    <p className='ttt'>...</p>
-                                </div>
+                                
                                 <div className='Detailsss'>
                                     <div>
-                                        <h1>{username}</h1>
-                                        <h1>{email}</h1>
-                                        <h1>+994 51 324 43 43</h1>
+                                        <h1>UserName: <span>{username}</span></h1>
+                                        <h1>Email: <span>{email}</span></h1>
+                                        <h1>Number: <span>+994 51 324 43 43</span></h1>
                                     </div>
                                 </div>
                             </div>
