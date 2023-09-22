@@ -154,14 +154,21 @@ const GameCarCard = () => {
         }
     };
 
-
     useEffect(() => {
-        if (trueShowModal === false || showModal === false) {
-            setExitPage(true);
-        }
-    }, [trueShowModal, showModal])
+        let timeout;
 
-    console.log(carDataView);
+        if (trueShowModal || showModal) {
+            timeout = setTimeout(() => {
+                setExitPage(true);
+            }, 13000); 
+        }
+
+        return () => {
+            clearTimeout(timeout);
+        };
+    }, [trueShowModal, showModal]);
+
+    const imagePath = carDataView?.carImages && carDataView.carImages[0] ? carDataView.carImages[0].imagePath : null;
 
     if (exitPage === false) {
 
@@ -189,7 +196,7 @@ const GameCarCard = () => {
                                 <div>
                                     <CarCard
                                         Id={carDataView?.id}
-                                        // img={carDataView?.carImages[0] ? carDataView?.carImages[0]?.imagePath : null}
+                                        img={imagePath}
                                         marka={carDataView?.marka}
                                         model={carDataView?.model}
                                         year={carDataView?.year}
@@ -232,7 +239,7 @@ const GameCarCard = () => {
                                 <div>
                                     <CarCard
                                         Id={carDataView?.id}
-                                        // img={carDataView?.carImages[0] ? carDataView?.carImages[0]?.imagePath : null}
+                                        img={imagePath}
                                         marka={carDataView?.marka}
                                         model={carDataView?.model}
                                         year={carDataView?.year}
@@ -270,7 +277,7 @@ const GameCarCard = () => {
                                 <h1>The car you choose</h1>
                                 <CarCard
                                     Id={carDataView?.id}
-                                    // img={carDataView?.carImages[0] ? carDataView?.carImages[0]?.imagePath : null}
+                                    img={imagePath}
                                     marka={carDataView?.marka}
                                     model={carDataView?.model}
                                     year={carDataView?.year}

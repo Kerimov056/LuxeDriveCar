@@ -21,6 +21,7 @@ import ResetPassword from "./components/Auth/ResetPassword";
 import ResertPassword from "./components/Auth/ResertPassword";
 import FindCarQuickly from "./components/FindCarQuickly/FindCarQuickly";
 import GameCarCard from "./components/Game/GameCarCard";
+import NotFound from "./components/NotFound/NotFound";
 import Communication from "./components/Communication/Communication";
 import RentalConditions from "./components/RentalConditions/RentalConditions";
 import { useDispatch, useSelector } from 'react-redux';
@@ -44,10 +45,10 @@ function App() {
     <>
       <ChakraProvider>
         {/* <Elements stripe={stripePromise} options={options}> */}
-
         <Router>
           <Routes>
             <Route path='/' element={<Home />} />
+            <Route path='*' element={<NotFound />} />
             <Route path='/AboutUs' element={<AboutUs />} />
             <Route path='/Login' element={<Login />} />
             <Route path='/Register' element={<Register />} />

@@ -21,18 +21,22 @@ const Login = () => {
   const history = useNavigate();
 
   const [clinetId, credential] = useState('');
+  const [loginError, setLoginError] = useState(null);
 
   const dispatch = useDispatch();
   const { token } = useSelector(x => x.authReducer)
-  console.log(token);
 
-  const { mutate, isLoading } = useMutation((values) => login(values), {
+  const { mutate, isLoading, error } = useMutation((values) => login(values), {
     onSuccess: (resp) => {
       dispatch(loginAction(resp.data));
       history('/');
       history.push('/');
     },
+    onError: (error) => {
+      setLoginError("Invalid Login!");
+    }
   })
+
 
   const formik = useFormik({
     initialValues: {
@@ -40,7 +44,6 @@ const Login = () => {
       password: '',
     },
     onSubmit: (values) => {
-      console.log(values);
       mutate(values);
     },
     validationSchema: loginSchema,
@@ -68,7 +71,8 @@ const Login = () => {
           <FormControl>
             <h3>Login Here</h3>
             <label htmlFor="email">Email</label>
-            <Text fontSize={"15px"} color={"red"} mb="8px">
+            <Text style={{ color: "red" }} fontSize={"15px"} color={"red"} mb="8px">
+              {loginError === null ? '' : loginError}
               {formik.touched.UsernameOrEmail && formik.errors.UsernameOrEmail}
             </Text>
             <Input
@@ -80,7 +84,8 @@ const Login = () => {
               size='sm'
             />
             <label htmlFor="password">Password</label>
-            <Text fontSize={"15px"} color={"red"} mb="8px">
+            <Text style={{ color: "red" }} fontSize={"15px"} color={"red"} mb="8px">
+              {loginError === null ? '' : loginError}
               {formik.touched.password && formik.errors.password}
             </Text>
             <Input

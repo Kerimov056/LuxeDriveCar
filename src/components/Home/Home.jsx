@@ -213,8 +213,23 @@ const Home = ({ color, onNavStateChange }) => {
   const { appuserid } = useSelector((x) => x.authReducer);
 
 
+  const [oneUsing, setOneUsing] = useState(null);
   const [carGameAccess, setCarGameAccess] = useState(null);
   const [showModal, setShowModal] = useState(false);
+
+
+  useEffect(() => {
+    axios.get(`https://localhost:7152/api/GameCars/GetByGame?AppUserId=${appuserid}`)
+      .then(response => {
+        setCarGameAccess(response?.data);
+        if (response?.data === true) {
+          setOneUsing(true);
+        }
+      })
+      .catch(error => {
+      });
+  }, []);
+
 
 
   useEffect(() => {
@@ -222,7 +237,9 @@ const Home = ({ color, onNavStateChange }) => {
       .then(response => {
         setCarGameAccess(response?.data);
         if (response?.data === true) {
-          setShowModal(true);
+          if (oneUsing?.data === null) {
+            setShowModal(true);
+          }
         }
       })
       .catch(error => {
@@ -242,7 +259,6 @@ const Home = ({ color, onNavStateChange }) => {
 
   return (
     <>
-
 
       {gameEnter === false &&
         <Modal
@@ -382,7 +398,7 @@ const Home = ({ color, onNavStateChange }) => {
         <div className='Description'>
           <div className='resPhone'>
             <div>
-              <h1 style={{fontFamily:"'Times New Roman', Times, serif"}} className='ExIntoG'>
+              <h1 style={{ fontFamily: "'Times New Roman', Times, serif" }} className='ExIntoG'>
                 What We Provide Is The Luxury Transport And Most Comfortable Experience
               </h1>
             </div>
@@ -498,7 +514,7 @@ const Home = ({ color, onNavStateChange }) => {
 
       <div id='HomeAbout'>
         <div className='opinions'>
-          <h1 style={{fontFamily:"'Times New Roman', Times, serif"}} id="resphSone">We trive to meet the needs <br />
+          <h1 style={{ fontFamily: "'Times New Roman', Times, serif" }} id="resphSone">We trive to meet the needs <br />
             of our clients and we value their <br />
             opinions about our work</h1>
         </div>
