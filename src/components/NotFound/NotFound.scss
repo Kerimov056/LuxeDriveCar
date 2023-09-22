@@ -1,0 +1,34 @@
+.NotFound{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+
+
+
+    .NotFound_image{
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+
+        &>img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+
+        .NotFound_Text{
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+           
+            &>h1{
+                font-size: 50px;
+                font-weight: bold;
+                font-family: 'Times New Roman', Times, serif;
+                color: white;
+            }
+        }
+    }
+}
