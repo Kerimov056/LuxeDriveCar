@@ -20,11 +20,18 @@
 
         .NotFound_Text{
             position: absolute;
-            bottom: 50%;
-            left: 50%;
+            bottom: 48%;
+            left: 60%;
            
             &>h1{
-                font-size: 50px;
+                font-size: 250px;
+                font-weight: bold;
+                font-family: 'Times New Roman', Times, serif;
+                color: white;
+            }
+
+            &>h2{
+                font-size: 25px;
                 font-weight: bold;
                 font-family: 'Times New Roman', Times, serif;
                 color: white;
