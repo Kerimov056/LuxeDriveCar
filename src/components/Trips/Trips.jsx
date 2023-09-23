@@ -31,7 +31,6 @@ const Trips = () => {
 
     const searchData = (data) => {
         setCity(data.label);
-        console.log(data.label);
     }
 
     const [showModal, setShowModal] = useState(false);
