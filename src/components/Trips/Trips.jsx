@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import './Trips.scss'
-import { Button } from '@chakra-ui/react'
 import TripsCard from "./TripsCard";
 import Modal from 'react-modal';
 import { AiFillCloseCircle } from "react-icons/ai";
 import Search from "./Search";
-
-
+import {
+    Input, Text,
+    Button, FormLabel, FormControl
+} from '@chakra-ui/react'
 
 const customStyles = {
     content: {
@@ -56,7 +57,67 @@ const Trips = () => {
                                 <Search searchCountry={searchData} />
                             </div>
                             <div>
-                                
+                                <label htmlFor="password">Full Name</label>
+                                <Text fontSize={"15px"} color={"red"} mb="8px">
+                                    {/* {reservFormik.touched.FullName && reservFormik.errors.FullName} */}
+                                </Text>
+                                <Input
+                                    // isInvalid={reservFormik.errors.FullName && reservFormik.touched.FullName}
+                                    name='FullName'
+                                    // value={reservFormik.values.FullName}
+                                    // onChange={reservFormik.handleChange}
+                                    placeholder='Here is a sample placeholder'
+                                    size='sm'
+                                />
+                            </div>
+                            <div className='pickReturnDate'>
+                                <div>
+                                    <label htmlFor="password">Pickup Date</label>
+                                    <Text fontSize={"15px"} color={"red"} mb="8px">
+                                        {/* {reservFormik.touched.PickupDate && reservFormik.errors.PickupDate} */}
+                                    </Text>
+                                    <Input
+                                        // isInvalid={reservFormik.errors.PickupDate && reservFormik.touched.PickupDate}
+                                        placeholder="Select Date and Time"
+                                        size="2md"
+                                        type="datetime-local"
+                                        // value={selectedDate}
+                                        // onChange={handleDateChange}
+                                        // min={currentDateTime}
+                                        style={{
+                                            borderTop: "none",
+                                            borderRight: "none",
+                                            borderLeft: "none",
+                                            borderBottom: "1px solid white",
+                                        }}
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="password">Retur nDate</label>
+                                    <Text fontSize={"15px"} color={"red"} mb="8px">
+                                        {/* {reservFormik.touched.ReturnDate && reservFormik.errors.ReturnDate} */}
+                                    </Text>
+                                    <Input
+                                        // isInvalid={reservFormik.errors.ReturnDate && reservFormik.touched.ReturnDate}
+                                        placeholder="Select Date and Time"
+                                        size="2md"
+                                        type="datetime-local"
+                                        // value={selectedDate1}
+                                        // onChange={handleDateChange1}
+                                        // min={currentDateTime}
+                                        style={{
+                                            borderTop: "none",
+                                            borderRight: "none",
+                                            borderLeft: "none",
+                                            borderBottom: "1px solid white",
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                            <div className='TripCreateButton'>
+                                <button class="btnTripeCreate">
+                                    Save
+                                </button>
                             </div>
                         </form>
                     </div>

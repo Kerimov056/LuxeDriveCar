@@ -87,17 +87,87 @@
 
 //--------Create Trip Modal
 
-.GameToTrueAccesS{
+.GameToTrueAccesS {
     width: 100%;
     height: auto;
 
-    &>h1{
+    &>h1 {
         font-size: 24px;
     }
 
-    &>form{
+    &>form {
         margin-top: 25px;
         width: 100%;
         height: auto;
+
+        &>div {
+            margin-top: 15px;
+        }
+
+        .pickReturnDate {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &>div {
+                width: 48%;
+                height: auto;
+            }
+        }
+
+        .TripCreateButton {
+            margin-top: 20px;
+
+            .btnTripeCreate {
+                font-size: 17px;
+                background: transparent;
+                border: none;
+                padding: 1em 1.5em;
+                color: #ffffff;
+                text-transform: uppercase;
+                position: relative;
+                transition: .5s ease;
+            }
+
+            .btnTripeCreate::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                height: 2px;
+                width: 0;
+                background-color: #0697ff;
+                transition: .5s ease;
+            }
+
+            .btnTripeCreate:hover {
+                color: #1e1e2b;
+                transition-delay: .5s;
+            }
+
+            .btnTripeCreate:hover::before {
+                width: 100%;
+            }
+
+            .btnTripeCreate::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                height: 0;
+                width: 100%;
+                background-color: #0697ff;
+                transition: .4s ease;
+                z-index: -1;
+            }
+
+            .btnTripeCreate:hover::after {
+                height: 100%;
+                transition-delay: 0.4s;
+                color: rgb(255, 255, 255);
+                font-size: 25px;
+            }
+        }
     }
 }
