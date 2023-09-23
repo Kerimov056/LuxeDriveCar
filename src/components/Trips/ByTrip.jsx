@@ -6,6 +6,9 @@ import { Button } from '@chakra-ui/react';
 import { RiUserShared2Line } from "react-icons/ri";
 import { ImLocation } from "react-icons/im";
 import TripNote from "./TripNote";
+// import { WEATHER_API, MY_API_KEY } from '../Export/Export'
+// import Search from "./Search";
+
 
 const ByTrip = () => {
 
@@ -15,6 +18,13 @@ const ByTrip = () => {
         setMapEnter(!mapEnter);
     }
 
+    
+    // const [city, setCity] = useState('');
+    // const searchData = (data) => {
+    //     setCity(data);
+    //     console.log(data);
+    // }
+    
     return (
         <>
             <div style={{ marginTop: "70px" }}>
@@ -62,13 +72,12 @@ const ByTrip = () => {
                                         <input placeholder='  Where will you eat ? What will you see? Type + to add places' />
                                     </div>
                                     <div className='AddNote_LocationB'>
-                                        <div><ImLocation /><input  placeholder=' Add location'/></div>
+                                        <div><ImLocation /><input placeholder=' Add location' /></div>
                                         <Button>Add note</Button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div style={mapEnter === true ? { display: "none" } : {}} className='ByTrip_map'>
@@ -76,6 +85,10 @@ const ByTrip = () => {
                     <Maps />
                 </div>
             </div>
+
+            {/* <div>
+                <Search searchCountry={searchData} />
+            </div> */}
         </>
     )
 }

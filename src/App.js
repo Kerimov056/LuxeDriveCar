@@ -24,7 +24,6 @@ import GameCarCard from "./components/Game/GameCarCard";
 import NotFound from "./components/NotFound/NotFound";
 import Trips from "./components/Trips/Trips";
 import ByTrip from "./components/Trips/ByTrip";
-import TestMapApiKey from "./components/Trips/TestMapApiKey";
 import Communication from "./components/Communication/Communication";
 import RentalConditions from "./components/RentalConditions/RentalConditions";
 import { useDispatch, useSelector } from 'react-redux';
@@ -68,7 +67,6 @@ function App() {
             <Route path='/Communication' element={<Communication />} />
             <Route path='/Trips' element={<Trips />} />
             <Route path='/ByTrip' element={<ByTrip />} />
-            <Route path='/TestMapApiKey' element={<TestMapApiKey />} />
             <Route path='/GameCarCard/:appUserId' element={<GameCarCard />} />
             <Route path='/Wishlist' element={<Wishlist />} />
             <Route path='/RentalConditions' element={<RentalConditions />} />

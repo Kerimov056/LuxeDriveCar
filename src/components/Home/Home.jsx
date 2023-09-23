@@ -253,7 +253,6 @@ const Home = ({ color, onNavStateChange }) => {
     setGameEnter(true);
   }
   function gameEnterAccess() {
-    console.log("---------");
     setGameEnter(true);
   }
 
