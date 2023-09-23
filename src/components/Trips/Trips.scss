@@ -1,0 +1,73 @@
+#Trips{
+    background-color: rgb(20, 1, 1);
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &>div{
+        width: 70%;
+        height: auto;
+
+        .Trips_Main{
+            width: 100%;
+            height: 300px;
+
+            .Trips_Main_one{
+                width: 100%;
+                height: 80px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                &>h1{
+                    font-size: 48px;
+                    font-weight: bold;
+                    color: rgba(255, 255, 255, 0.773);
+                }
+
+                &>button{
+                    background-color:rgb(34, 118, 236);
+                }
+            }
+
+            .Trips_Main_two{
+                width: 100%;
+                height: 160px;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+
+                &>div{
+                    width: auto;
+                    height: auto;
+
+                    &>h1{
+                        color: rgba(255, 255, 255, 0.742);
+                        font-size: 23px;
+                    }
+
+                    &>h3{
+                        font-size: 19px;
+                        color: rgba(240, 248, 255, 0.704);
+                    }
+                }
+
+                .nextAllTripDesc{
+                    font-size: 28px;
+                }
+            }
+
+            .Trips_Main_three{
+                width: 100%;
+                height: 70px;
+
+                &>h2{
+                    font-size: 24px;
+                    color: rgba(255, 255, 255, 0.866);
+                }
+            }
+        }
+    }
+}
