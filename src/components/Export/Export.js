@@ -136,4 +136,3 @@ export const API_URl = 'https://wft-geo-db.p.rapidapi.com/v1/geo';
 export const WEATHER_API = 'https://api.openweathermap.org/data/2.5'  //bu Weather ola api
 export const MY_API_KEY = 'd8258dcaf471120d613a86348406c41e'  //bu menim oz api_key'imdir
 
-

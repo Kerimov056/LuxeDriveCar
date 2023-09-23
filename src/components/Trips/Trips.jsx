@@ -39,6 +39,12 @@ const Trips = () => {
         setShowModal(!showModal);
     }
 
+    const [images, setImages] = useState([]); 
+
+    const handleImagesChange = (images) => {
+        setImages(images); 
+    };
+
     return (
         <>
 
@@ -54,7 +60,9 @@ const Trips = () => {
                     </div>
                     <div className='GameToTrueAccesS'>
                         <h1>Create a Trip</h1>
-                        <div><Unsplash query={filteredCities} /></div>
+                        <div>
+                            <Unsplash query={filteredCities} onImagesChange={handleImagesChange} />
+                        </div>
                         <form>
                             <div>
                                 <label>Destination</label>

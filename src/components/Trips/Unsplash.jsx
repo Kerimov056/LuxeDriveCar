@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './Unsplash.scss'
-
+import { UNSPLASH_API_KEY } from "../Export/Export";
 
 const Unsplash = (props) => {
     const [images, setImages] = useState([]);
 
-    console.log(props.query);
 
     useEffect(() => {
-        // props.query değiştiğinde bu blok çalışacak
         if (props.query) {
-            const apiUrl = `https://api.unsplash.com/search/photos?page=1&query=${props.query}&client_id=7VpM8-RI2TsEMiiJ35HwcXUayF_nImX6z5VVpU75dVo`;
+            const apiUrl = `https://api.unsplash.com/search/photos?page=1&query=${props.query}&client_id=${UNSPLASH_API_KEY}`;
 
             fetch(apiUrl)
                 .then(response => response.json())
@@ -19,11 +17,15 @@ const Unsplash = (props) => {
                 })
                 .catch(error => console.error("Error:", error));
         }
-    }, [props.query]);
+    }, [props.query]); 
+
+    useEffect(() => {
+        props.onImagesChange(images[0]?.urls.small); 
+    }, [images, props]);
 
     return (
         <div id='Unsplash' >
-            {images.slice(0,5).map(image => (
+            {images.slice(0, 5).map(image => (
                 <div key={image.id}>
                     <img src={image.urls.small} />
                 </div>
