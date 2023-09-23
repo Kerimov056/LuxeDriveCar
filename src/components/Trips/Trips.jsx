@@ -4,6 +4,9 @@ import { Button } from '@chakra-ui/react'
 import TripsCard from "./TripsCard";
 import Modal from 'react-modal';
 import { AiFillCloseCircle } from "react-icons/ai";
+import Search from "./Search";
+
+
 
 const customStyles = {
     content: {
@@ -20,9 +23,16 @@ const customStyles = {
 
 const Trips = () => {
 
+
+    const [city, setCity] = useState('');
+    const searchData = (data) => {
+        setCity(data);
+        console.log(data);
+    }
+
     const [showModal, setShowModal] = useState(false);
     function closeModal() {
-        setShowModal(false);
+        setShowModal(!showModal);
     }
 
     return (
@@ -38,10 +48,17 @@ const Trips = () => {
                     <div className='onCloceSuc'>
                         <h1><AiFillCloseCircle onClick={closeModal} /></h1>
                     </div>
-                    <div className='GameToTrueAcces'>
-                        <h1>Congratulations</h1>
-                        <h2>Since you have successfully booked a car with us 3 times, we offer you the chance to win a 60% discount.</h2>
-                        <h2>To get a chance to win 60% off, click on the image below and go to the page.</h2>
+                    <div className='GameToTrueAccesS'>
+                        <h1>Create a Trip</h1>
+                        <form>
+                            <div>
+                                <label>Destination</label>
+                                <Search searchCountry={searchData} />
+                            </div>
+                            <div>
+                                
+                            </div>
+                        </form>
                     </div>
                 </div>
             </Modal>
@@ -52,7 +69,7 @@ const Trips = () => {
                     <div className='Trips_Main'>
                         <div className='Trips_Main_one'>
                             <h1>Trips</h1>
-                            <Button>Create Trip</Button>
+                            <Button onClick={closeModal}>Create Trip</Button>
                         </div>
                         <div className='Trips_Main_two'>
                             <div>

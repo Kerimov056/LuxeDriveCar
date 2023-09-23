@@ -32,7 +32,7 @@ const Search = ({ searchCountry }) => {
     }
     return (
         <>
-            <div style={{ maxWidth: "600px", margin: "20px" }} className='conteiner'>
+            <div style={{ maxWidth: "600px"}} className='conteiner'>
                 <AsyncPaginate
                     placeholder="Search"  //bu axtaris inputunun icindeki yazidir
                     debounceTimeout={1000} //bu user axtaris etdikden sonra nece saniye gozdemesidir (0.6s)
