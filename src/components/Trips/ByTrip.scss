@@ -21,6 +21,53 @@
                 height: 250px;
                 background-color: bisque;
                 
+                .ByTrip_Text_Main_1{
+                    width: 100%;
+                    height: 70px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+               
+                    .ByTrip_Text_Main_1_Bt2{
+                        text-align: center;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        &>button{
+                            text-align: center;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            margin-right: 6px;
+                            
+                            &>svg{
+                                margin-right: 7px;
+                            }
+                        }
+                    }
+                }
+
+                .ByTrip_Text_Main_2{
+                    width: 100%;
+                    height: 110px;
+                    display: flex;
+                    justify-content: start;
+                    align-items: center;
+                    
+                    .ByTrip_Text_Main_2_img{
+                        width: 100px;
+                        height: 100px;
+                        border-radius: 10px;
+                        margin-left: 20px;
+
+                        &>img{
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 10px;
+                        }
+                    }
+                }
             }
         }
     }

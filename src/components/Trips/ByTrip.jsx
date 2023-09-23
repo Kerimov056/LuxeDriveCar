@@ -17,16 +17,16 @@ const ByTrip = () => {
                         <div className='ByTrip_Text_Main'>
                             <div className='ByTrip_Text_Main_1'>
                                 <div><Button>{"<"} Your Trips</Button></div>
-                                <div>
-                                    <Button><RiUserShared2Line /></Button>
+                                <div className='ByTrip_Text_Main_1_Bt2'>
+                                    <Button><RiUserShared2Line />Share</Button>
                                     <Button>...</Button>
                                 </div>
                             </div>
                             <div className='ByTrip_Text_Main_2'>
-                                <div>
+                                <div className='ByTrip_Text_Main_2_img'>
                                     <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmM5MIeMxFn6wQ7OWmBG7jFAK0zW3G2bgVcg&usqp=CAU' />
                                 </div>
-                                <div>
+                                <div className='ByTrip_Text_Main_2_text'>
                                     <h1>Los Angles Trip</h1>
                                     <h2>Sat,Sep 23 - Wed, Sep 27</h2>
                                     <h2>Los Angles, CA</h2>
