@@ -35,13 +35,12 @@ const Trips = () => {
     const { id } = useParams();
     const queryClient = useQueryClient();
     const navigate = useNavigate();
+    const currentDateTime = new Date().toISOString().slice(0, 16);
+
 
     const [location, setLocation] = useState('');
-
     const [latitude, longitude] = location.split(' ');
 
-    console.log('Latitude:', latitude);
-    console.log('Longitude:', longitude);
 
 
     const [city, setCity] = useState('');
@@ -65,28 +64,63 @@ const Trips = () => {
     };
 
 
+
+    const [selectedDate, setSelectedDate] = useState(null);
+    const [selectedDate1, setSelectedDate1] = useState(null);
+
+    const handleDateChange = (e) => {
+        const selected = new Date(e.target.value);
+        const now = new Date();
+
+        if (selected < now) {
+            return;
+        }
+        setSelectedDate(e.target.value);
+    };
+
+    const handleDateChange1 = (e) => {
+        const selected = new Date(e.target.value);
+        if (selectedDate === null) {
+            return;
+        }
+        if (selected < selectedDate) {
+            return;
+        }
+        setSelectedDate1(e.target.value);
+    };
+
+
     const formik = useFormik({
         initialValues: {
             Image: images ? images : '',
             Destination: filteredCities ? filteredCities : '',
             Name: "",
-            StartDate: "",
-            EndDate: "",
-            TripLatitude: "",
-            TripLongitude: "",
+            StartDate: selectedDate ? selectedDate : '',
+            EndDate: selectedDate1 ? selectedDate1 : '',
+            TripLatitude: latitude ? latitude : '',
+            TripLongitude: longitude ? longitude : '',
             AppUserId: appuserid ? appuserid : ''
         },
         onSubmit: async (values) => {
             const formData = new FormData();
 
-            formData.append('Image', values.images);
-            formData.append('Destination', values.Destination);
+            formData.append('Image', images ? images : '');
+            formData.append('Destination', filteredCities ? filteredCities : '');
             formData.append('Name', values.Name);
-            formData.append('StartDate', values.StartDate);
-            formData.append('EndDate', values.EndDate);
-            formData.append('TripLatitude', values.TripLatitude);
-            formData.append('TripLongitude', values.TripLongitude);
+            formData.append('StartDate', selectedDate ? selectedDate : '');
+            formData.append('EndDate', selectedDate1 ? selectedDate1 : '');
+            formData.append('TripLatitude', latitude ? latitude : '');
+            formData.append('TripLongitude', longitude ? longitude : '');
             formData.append('AppUserId', values.AppUserId);
+
+            console.log("Image",formData.getAll("Image"));
+            console.log("destions",formData.getAll("Destination"));
+            console.log("Name",formData.getAll("Name"));
+            console.log("startDate",formData.getAll("StartDate"));
+            console.log("endDate",formData.getAll("EndDate"));
+            console.log("lat",formData.getAll("TripLatitude"));
+            console.log("lng",formData.getAll("TripLongitude"));
+            console.log("user",formData.getAll("AppUserId"));
 
             const response = await axios.post('https://localhost:7152/api/Trips', formData, {
                 headers: {
@@ -118,7 +152,7 @@ const Trips = () => {
                         <div>
                             <Unsplash query={filteredCities} onImagesChange={handleImagesChange} />
                         </div>
-                        <form>
+                        <form  onSubmit={formik.handleSubmit}>
                             <div>
                                 <label>Destination</label>
                                 <Search searchCountry={searchData} />
@@ -148,9 +182,9 @@ const Trips = () => {
                                         placeholder="Select Date and Time"
                                         size="2md"
                                         type="datetime-local"
-                                        // value={selectedDate}
-                                        // onChange={handleDateChange}
-                                        // min={currentDateTime}
+                                        value={selectedDate}
+                                        onChange={handleDateChange}
+                                        min={currentDateTime}
                                         style={{
                                             borderTop: "none",
                                             borderRight: "none",
@@ -169,9 +203,9 @@ const Trips = () => {
                                         placeholder="Select Date and Time"
                                         size="2md"
                                         type="datetime-local"
-                                        // value={selectedDate1}
-                                        // onChange={handleDateChange1}
-                                        // min={currentDateTime}
+                                        value={selectedDate1}
+                                        onChange={handleDateChange1}
+                                        min={currentDateTime}
                                         style={{
                                             borderTop: "none",
                                             borderRight: "none",
@@ -182,7 +216,7 @@ const Trips = () => {
                                 </div>
                             </div>
                             <div className='TripCreateButton'>
-                                <button class="btnTripeCreate">
+                                <button type='submit' class="btnTripeCreate">
                                     Save
                                 </button>
                             </div>
