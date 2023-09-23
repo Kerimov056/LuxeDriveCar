@@ -115,3 +115,4 @@ export const carData = [
 
 
 export const SuperAdmin = "d2cb6d2a-0d22-4437-a8fa-29fdaf8b1341";
+export const GOOGLE_MAPS_API_KEY = 'AIzaSyCs2aJhlTdKjfTiQZ5kNP2-3QMNzPuLf7o';

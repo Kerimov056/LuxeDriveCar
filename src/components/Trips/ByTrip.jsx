@@ -57,12 +57,9 @@ const ByTrip = () => {
                                 <TripNote />
                                 <TripNote />
                                 <TripNote />
-                                <TripNote />
-                                <TripNote />
-                                <TripNote />
                                 <div className='AddNote'>
                                     <div className='AddNote_Not'>
-                                        <input />
+                                        <input placeholder='  Where will you eat ? What will you see? Type + to add places' />
                                     </div>
                                     <div className='AddNote_LocationB'>
                                         <div><ImLocation /><input  placeholder=' Add location'/></div>

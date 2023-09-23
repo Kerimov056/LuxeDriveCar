@@ -131,8 +131,10 @@
                     /* Scrollbar rengi */
 
                     .AddNote {
+                        margin-top: 50px;
                         width: 100%;
                         height: 120px;
+                        margin-bottom: 60px;
 
                         .AddNote_Not {
                             width: 100%;
@@ -141,7 +143,10 @@
                             &>input {
                                 width: 100%;
                                 height: 50px;
-                                border: 1px solid rgb(26, 204, 254);
+                                border-top: none;
+                                border-left: none;
+                                border-right: none;
+                                border-bottom: 1px solid rgb(26, 204, 254) !important;
                             }
 
                         }
@@ -158,10 +163,11 @@
 
                                 &>svg {
                                     font-size: 20px;
+                                    margin-top: 7px;
                                 }
 
                                 &>input {
-                                    border: 1px solid rgb(26, 204, 254);
+                                    border: none;
                                     height: 36px;
                                 }
                             }
