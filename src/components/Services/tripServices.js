@@ -9,7 +9,7 @@ export const getByTrip = (tripId) => {
     return httpClient.get(`api/Trips/${tripId}`);
 };
 
-export const PostCar = (data) => {
+export const PostTrip = (data) => {
     return httpClient.post(`api/Trips`,data);
 };
 

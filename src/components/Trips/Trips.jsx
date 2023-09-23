@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Trips.scss'
 import TripsCard from "./TripsCard";
 import Modal from 'react-modal';
@@ -9,6 +9,12 @@ import {
     Button, FormLabel, FormControl
 } from '@chakra-ui/react'
 import Unsplash from './Unsplash';
+import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
+import { useFormik } from "formik";
+import { useQuery, useMutation, useQueryClient } from "react-query";
+import { useDispatch, useSelector } from "react-redux";
+import axios from 'axios';
+
 
 const customStyles = {
     content: {
@@ -25,6 +31,12 @@ const customStyles = {
 
 const Trips = () => {
 
+    const { token, username, appuserid } = useSelector((x) => x.authReducer);
+    const { id } = useParams();
+    const queryClient = useQueryClient();
+    const navigate = useNavigate();
+
+
     const [city, setCity] = useState('');
     const cities = city.split(",");
     const filteredCities = cities.filter((item, index) => index % 2 === 0);
@@ -38,11 +50,47 @@ const Trips = () => {
         setShowModal(!showModal);
     }
 
-    const [images, setImages] = useState([]); 
+    const [images, setImages] = useState([]);
 
     const handleImagesChange = (images) => {
-        setImages(images); 
+        setImages(images);
     };
+
+
+    const formik = useFormik({
+        initialValues: {
+            Image: "",
+            Destination: "",
+            Name: "",
+            StartDate: "",
+            EndDate: "",
+            TripLatitude: "",
+            TripLongitude: "",
+            AppUserId: ""
+        },
+        onSubmit: async (values) => {
+            const formData = new FormData();
+
+            formData.append('Image', values.images);
+            formData.append('Destination', values.Destination);
+            formData.append('Name', values.Name);
+            formData.append('StartDate', values.StartDate);
+            formData.append('EndDate', values.EndDate);
+            formData.append('TripLatitude', values.TripLatitude);
+            formData.append('TripLongitude', values.TripLongitude);
+            formData.append('AppUserId', values.AppUserId);
+
+            const response = await axios.post('https://localhost:7152/api/Trips', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            })
+            if (response.status === 201) {
+                // queryClient.invalidateQueries('Car');
+            }
+        },
+    });
+
 
     return (
         <>
