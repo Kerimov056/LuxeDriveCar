@@ -31,6 +31,10 @@ const Trips = () => {
                             <h2>Upcoming {"("}4{")"}</h2>
                         </div>
                     </div>
+
+                    <div className='YouTrips'>
+
+                    </div>
                 </div>
             </div>
         </>
