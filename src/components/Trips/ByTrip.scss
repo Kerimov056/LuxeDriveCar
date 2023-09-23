@@ -7,17 +7,17 @@
 
     .ByTrip_Text {
         width: 55%;
-        height: auto;
+        height: 100%;
         display: flex;
         justify-content: center;
 
         &>div {
             width: 94%;
-            height: auto;
+            height: 100%;
 
             .ByTrip_Text_Main {
                 width: 100%;
-                height: 250px;
+                height: 30%;
                 border-bottom: 1px solid rgb(81, 194, 255);
 
                 .ByTrip_Text_Main_1 {
@@ -90,7 +90,7 @@
 
                     &>h2 {
                         margin-left: 40px;
-                        margin-top: 28px;
+                        margin-top: 8px;
                         font-size: 21px;
 
                     }
@@ -99,12 +99,12 @@
 
             .ByTrip_Text_hed {
                 width: 100%;
-                height: auto;
+                height: 66%;
 
                 .ByTrip_Text_hed_main {
                     margin-top: 30px;
                     width: 100%;
-                    height: 130px;
+                    height: 15%;
 
                     &>h1 {
                         color: rgba(255, 255, 255, 0.864);
@@ -118,12 +118,55 @@
 
                 .ByTrip_Text_hed_nots {
                     width: 100%;
-                    height: auto;
+                    height: 85%;
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     flex-wrap: wrap;
-                    overflow-y: auto;
+                    overflow-y: scroll !important;
+                    /* Scroll çubuğunu göster */
+                    scrollbar-width: 40px;
+                    /* Scrollbar genişliği */
+                    scrollbar-color: transparent transparent;
+                    /* Scrollbar rengi */
+
+                    .AddNote {
+                        width: 100%;
+                        height: 120px;
+
+                        .AddNote_Not {
+                            width: 100%;
+                            height: 50%;
+
+                            &>input {
+                                width: 100%;
+                                height: 50px;
+                                border: 1px solid rgb(26, 204, 254);
+                            }
+
+                        }
+
+                        .AddNote_LocationB {
+                            width: 100%;
+                            height: 50%;
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+
+                            &>div {
+                                display: flex;
+
+                                &>svg {
+                                    font-size: 20px;
+                                }
+
+                                &>input {
+                                    border: 1px solid rgb(26, 204, 254);
+                                    height: 36px;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -134,7 +177,7 @@
         width: 45%;
         height: 100%;
 
-        &>button{
+        &>button {
             position: absolute;
             z-index: 999;
             top: 84%;

@@ -4,8 +4,8 @@ import Maps from "../Map/Maps";
 import Navbar from "../Navbar/Navbar";
 import { Button } from '@chakra-ui/react';
 import { RiUserShared2Line } from "react-icons/ri";
-
-import TripsCard from "./TripsCard";
+import { ImLocation } from "react-icons/im";
+import TripNote from "./TripNote";
 
 const ByTrip = () => {
 
@@ -20,7 +20,7 @@ const ByTrip = () => {
             <div style={{ marginTop: "70px" }}>
                 <Navbar />
             </div>
-            <div style={mapEnter === true ? { width: "100%", height: "auto" } : {}} id='ByTrip'>
+            <div style={mapEnter === true ? { width: "100%" } : {}} id='ByTrip'>
                 <div className='ByTrip_Text'>
                     <div>
                         <div className='ByTrip_Text_Main'>
@@ -28,7 +28,7 @@ const ByTrip = () => {
                                 <div><Button>{"<"} Your Trips</Button></div>
                                 <div className='ByTrip_Text_Main_1_Bt2'>
                                     <Button><RiUserShared2Line />Share</Button>
-                                    <Button style={mapEnter===true ? {} : {display:"none"}} onClick={mapOpen}>Show map</Button>
+                                    <Button style={mapEnter === true ? {} : { display: "none" }} onClick={mapOpen}>Show map</Button>
                                     <Button>...</Button>
                                 </div>
                             </div>
@@ -54,9 +54,21 @@ const ByTrip = () => {
                             </div>
 
                             <div className='ByTrip_Text_hed_nots'>
-                                {/* <TripsCard />
-                                <TripsCard />
-                                <TripsCard /> */}
+                                <TripNote />
+                                <TripNote />
+                                <TripNote />
+                                <TripNote />
+                                <TripNote />
+                                <TripNote />
+                                <div className='AddNote'>
+                                    <div className='AddNote_Not'>
+                                        <input />
+                                    </div>
+                                    <div className='AddNote_LocationB'>
+                                        <div><ImLocation /><input  placeholder=' Add location'/></div>
+                                        <Button>Add note</Button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
