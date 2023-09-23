@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import './Unsplash.scss'
+
 
 const Unsplash = (props) => {
     const [images, setImages] = useState([]);
+
+    console.log(props.query);
 
     useEffect(() => {
         // props.query değiştiğinde bu blok çalışacak
@@ -18,14 +22,12 @@ const Unsplash = (props) => {
     }, [props.query]);
 
     return (
-        <div>
-            <div>
-                {images.map(image => (
-                    <div key={image.id}>
-                        <img src={image.urls.small} alt={image.alt_description} />
-                    </div>
-                ))}
-            </div>
+        <div id='Unsplash' >
+            {images.slice(0,5).map(image => (
+                <div key={image.id}>
+                    <img src={image.urls.small} />
+                </div>
+            ))}
         </div>
     );
 };

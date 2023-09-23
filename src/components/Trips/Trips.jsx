@@ -8,6 +8,7 @@ import {
     Input, Text,
     Button, FormLabel, FormControl
 } from '@chakra-ui/react'
+import Unsplash from './Unsplash';
 
 const customStyles = {
     content: {
@@ -24,11 +25,13 @@ const customStyles = {
 
 const Trips = () => {
 
-
     const [city, setCity] = useState('');
+    const cities = city.split(",");
+    const filteredCities = cities.filter((item, index) => index % 2 === 0);
+
     const searchData = (data) => {
-        setCity(data);
-        console.log(data);
+        setCity(data.label);
+        console.log(data.label);
     }
 
     const [showModal, setShowModal] = useState(false);
@@ -51,7 +54,7 @@ const Trips = () => {
                     </div>
                     <div className='GameToTrueAccesS'>
                         <h1>Create a Trip</h1>
-                        <div>Slama</div>
+                        <div><Unsplash query={filteredCities} /></div>
                         <form>
                             <div>
                                 <label>Destination</label>
