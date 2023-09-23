@@ -1,17 +1,31 @@
-#ByTrip{
+#ByTrip {
     width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-self: center;
 
-    .ByTrip_Text{
+    .ByTrip_Text {
         width: 55%;
         height: auto;
+        display: flex;
+        justify-content: center;
+        
+        &>div {
+            width: 94%;
+            height: auto;
+            background-color: aqua;
 
+            .ByTrip_Text_Main{
+                width: 100%;
+                height: 250px;
+                background-color: bisque;
+                
+            }
+        }
     }
 
-    .ByTrip_map{
+    .ByTrip_map {
         margin-top: -30px;
         width: 45%;
         height: 100%;
