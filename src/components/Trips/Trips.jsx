@@ -1,6 +1,8 @@
 import React from 'react'
 import './Trips.scss'
 import { Button } from '@chakra-ui/react'
+import TripsCard from "./TripsCard";
+
 
 const Trips = () => {
     return (
@@ -33,7 +35,7 @@ const Trips = () => {
                     </div>
 
                     <div className='YouTrips'>
-
+                        <TripsCard />
                     </div>
                 </div>
             </div>
