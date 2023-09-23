@@ -22,6 +22,7 @@ import ResertPassword from "./components/Auth/ResertPassword";
 import FindCarQuickly from "./components/FindCarQuickly/FindCarQuickly";
 import GameCarCard from "./components/Game/GameCarCard";
 import NotFound from "./components/NotFound/NotFound";
+import Trips from "./components/Trips/Trips";
 import Communication from "./components/Communication/Communication";
 import RentalConditions from "./components/RentalConditions/RentalConditions";
 import { useDispatch, useSelector } from 'react-redux';
@@ -63,6 +64,7 @@ function App() {
             <Route path='/MyProfile' element={<MyProfile />} />
             <Route path='/ResetPassword' element={<ResetPassword />} />
             <Route path='/Communication' element={<Communication />} />
+            <Route path='/Trips' element={<Trips />} />
             <Route path='/GameCarCard/:appUserId' element={<GameCarCard />} />
             <Route path='/Wishlist' element={<Wishlist />} />
             <Route path='/RentalConditions' element={<RentalConditions />} />

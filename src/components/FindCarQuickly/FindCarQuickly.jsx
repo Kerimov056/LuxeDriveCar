@@ -29,7 +29,6 @@ const FindCarQuickly = () => {
             .then(data => {
                 setSearchCity(data.results[0].geometry.location);
                 setCityBounds(data.results[0].geometry.bounds);
-                console.log(data);
             })
             .catch(error => console.error('Hata:', error));
     };
