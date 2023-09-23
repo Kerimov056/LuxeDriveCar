@@ -45,12 +45,13 @@ const Trips = () => {
                 style={customStyles}
                 contentLabel="Example Modal"
             >
-                <div style={{height:"auto"}} className='TrueAccess'>
+                <div style={{ height: "auto" }} className='TrueAccess'>
                     <div className='onCloceSuc'>
-                        <h1 style={{marginLeft:"570px"}}><AiFillCloseCircle onClick={closeModal} /></h1>
+                        <h1 style={{ marginLeft: "570px" }}><AiFillCloseCircle onClick={closeModal} /></h1>
                     </div>
                     <div className='GameToTrueAccesS'>
                         <h1>Create a Trip</h1>
+                        <div>Slama</div>
                         <form>
                             <div>
                                 <label>Destination</label>
@@ -72,7 +73,7 @@ const Trips = () => {
                             </div>
                             <div className='pickReturnDate'>
                                 <div>
-                                    <label htmlFor="password">Pickup Date</label>
+                                    <label htmlFor="password">Start date</label>
                                     <Text fontSize={"15px"} color={"red"} mb="8px">
                                         {/* {reservFormik.touched.PickupDate && reservFormik.errors.PickupDate} */}
                                     </Text>
@@ -93,7 +94,7 @@ const Trips = () => {
                                     />
                                 </div>
                                 <div>
-                                    <label htmlFor="password">Retur nDate</label>
+                                    <label htmlFor="password">End date</label>
                                     <Text fontSize={"15px"} color={"red"} mb="8px">
                                         {/* {reservFormik.touched.ReturnDate && reservFormik.errors.ReturnDate} */}
                                     </Text>
