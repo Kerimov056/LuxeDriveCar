@@ -37,6 +37,7 @@ const ByTrip = () => {
                             </div>
                         </div>
                         <div className='ByTrip_Text_hed'>
+
                         </div>
                     </div>
                 </div>
