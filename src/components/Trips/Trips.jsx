@@ -45,9 +45,9 @@ const Trips = () => {
                 style={customStyles}
                 contentLabel="Example Modal"
             >
-                <div className='TrueAccess'>
+                <div style={{height:"auto"}} className='TrueAccess'>
                     <div className='onCloceSuc'>
-                        <h1><AiFillCloseCircle onClick={closeModal} /></h1>
+                        <h1 style={{marginLeft:"570px"}}><AiFillCloseCircle onClick={closeModal} /></h1>
                     </div>
                     <div className='GameToTrueAccesS'>
                         <h1>Create a Trip</h1>
