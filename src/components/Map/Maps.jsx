@@ -43,7 +43,6 @@ const Maps = () => {
         setReturnUpLocationMap2(returnUpLocationMap2.lat == null && { lat, lng });
         // }    
     }
-    console.log("222222222", returnUpLocationMap2);
     const handleDrawCreated = (e) => {
         const { layerType, layer } = e;
         if (layerType === 'marker') {
@@ -52,19 +51,16 @@ const Maps = () => {
             const lng = latlng.lng;
             updatePickUpLocation(lat, lng);
             updateReturnUpLocation(lat, lng);
-            console.log(`Latitude: ${lat}, Longitude: ${lng}`);
         }
     }
-    console.log("pppppppp", pickUpLocationMap);
-    console.log("rrrrrrrrrr", returnUpLocationMap);
-
+//https://api.maptiler.com/maps/jp-mierune-streets/{z}/{x}/{y}.png?key=S3UF58mBkVoHt2UkKpEL
     return (
         <>
             <div className='ss'>
                 <MapContainer center={center} zoom={13} scrollWheelZoom={false}>
                     <TileLayer
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                        url="https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}.png?key=S3UF58mBkVoHt2UkKpEL"
+                        url="https://api.maptiler.com/maps/ch-swisstopo-lbm-dark/{z}/{x}/{y}.png?key=S3UF58mBkVoHt2UkKpEL"
                     />
                     <FeatureGroup>
                         <EditControl position='topright' onCreated={handleDrawCreated} draw={{ rectangle: false, circlemarker: false, polygon: false }} />

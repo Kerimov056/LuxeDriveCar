@@ -1,0 +1,19 @@
+#ByTrip{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+
+    .ByTrip_Text{
+        width: 55%;
+        height: auto;
+
+    }
+
+    .ByTrip_map{
+        margin-top: -30px;
+        width: 45%;
+        height: 100%;
+    }
+}
