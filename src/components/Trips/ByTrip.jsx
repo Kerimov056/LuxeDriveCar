@@ -1,17 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './ByTrip.scss'
 import Maps from "../Map/Maps";
 import Navbar from "../Navbar/Navbar";
 import { Button } from '@chakra-ui/react';
 import { RiUserShared2Line } from "react-icons/ri";
 
+import TripsCard from "./TripsCard";
+
 const ByTrip = () => {
+
+    const [mapEnter, setMapEnter] = useState(false);
+
+    function mapOpen() {
+        setMapEnter(!mapEnter);
+    }
+
     return (
         <>
             <div style={{ marginTop: "70px" }}>
                 <Navbar />
             </div>
-            <div id='ByTrip'>
+            <div style={mapEnter === true ? { width: "100%", height: "auto" } : {}} id='ByTrip'>
                 <div className='ByTrip_Text'>
                     <div>
                         <div className='ByTrip_Text_Main'>
@@ -19,6 +28,7 @@ const ByTrip = () => {
                                 <div><Button>{"<"} Your Trips</Button></div>
                                 <div className='ByTrip_Text_Main_1_Bt2'>
                                     <Button><RiUserShared2Line />Share</Button>
+                                    <Button style={mapEnter===true ? {} : {display:"none"}} onClick={mapOpen}>Show map</Button>
                                     <Button>...</Button>
                                 </div>
                             </div>
@@ -36,12 +46,24 @@ const ByTrip = () => {
                                 <h2>Itinerary</h2>
                             </div>
                         </div>
-                        <div className='ByTrip_Text_hed'>
 
+                        <div className='ByTrip_Text_hed'>
+                            <div className='ByTrip_Text_hed_main'>
+                                <h1>Sat, Sep 23 – Wed, Sep 27</h1>
+                                <h3>No scheduled activities yet</h3>
+                            </div>
+
+                            <div className='ByTrip_Text_hed_nots'>
+                                {/* <TripsCard />
+                                <TripsCard />
+                                <TripsCard /> */}
+                            </div>
                         </div>
+
                     </div>
                 </div>
-                <div className='ByTrip_map'>
+                <div style={mapEnter === true ? { display: "none" } : {}} className='ByTrip_map'>
+                    <Button onClick={mapOpen}>Colse map</Button>
                     <Maps />
                 </div>
             </div>
