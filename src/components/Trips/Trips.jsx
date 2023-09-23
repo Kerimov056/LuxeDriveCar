@@ -36,6 +36,13 @@ const Trips = () => {
     const queryClient = useQueryClient();
     const navigate = useNavigate();
 
+    const [location, setLocation] = useState('');
+
+    const [latitude, longitude] = location.split(' ');
+
+    console.log('Latitude:', latitude);
+    console.log('Longitude:', longitude);
+
 
     const [city, setCity] = useState('');
     const cities = city.split(",");
@@ -43,6 +50,7 @@ const Trips = () => {
 
     const searchData = (data) => {
         setCity(data.label);
+        setLocation(data.value);
     }
 
     const [showModal, setShowModal] = useState(false);
@@ -59,14 +67,14 @@ const Trips = () => {
 
     const formik = useFormik({
         initialValues: {
-            Image: "",
-            Destination: "",
+            Image: images ? images : '',
+            Destination: filteredCities ? filteredCities : '',
             Name: "",
             StartDate: "",
             EndDate: "",
             TripLatitude: "",
             TripLongitude: "",
-            AppUserId: ""
+            AppUserId: appuserid ? appuserid : ''
         },
         onSubmit: async (values) => {
             const formData = new FormData();
@@ -116,15 +124,15 @@ const Trips = () => {
                                 <Search searchCountry={searchData} />
                             </div>
                             <div>
-                                <label htmlFor="password">Full Name</label>
+                                <label htmlFor="password">Trip Name</label>
                                 <Text fontSize={"15px"} color={"red"} mb="8px">
                                     {/* {reservFormik.touched.FullName && reservFormik.errors.FullName} */}
                                 </Text>
                                 <Input
                                     // isInvalid={reservFormik.errors.FullName && reservFormik.touched.FullName}
-                                    name='FullName'
-                                    // value={reservFormik.values.FullName}
-                                    // onChange={reservFormik.handleChange}
+                                    name='Name'
+                                    value={formik.values.Name}
+                                    onChange={formik.handleChange}
                                     placeholder='Here is a sample placeholder'
                                     size='sm'
                                 />
