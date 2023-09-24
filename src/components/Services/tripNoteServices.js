@@ -1,11 +1,11 @@
 import { httpClient } from "../utils/HttpClient";
 
 
-export const getAllTrip = (TripId) => {
+export const getAllTripNotes = (TripId) => {
     return httpClient.get(`api/TripNotes?TripId=${TripId}`);
 };
 
-export const getByTrip = (tripId) => {
+export const getByTripNotes = (tripId) => {
     return httpClient.get(`api/Trips/${tripId}`);
 };
 
@@ -13,11 +13,11 @@ export const PostTrip = (data) => {
     return httpClient.post(`api/TripNotes/TripPost`,data);
 };
 
-export const UpdateTrip = (id, data) => {
+export const UpdateTripNotes = (id, data) => {
     return httpClient.put(`api/TripNotes/${id}`, data)
   };
 
-export const RemoveTrip = (tripNoteId) => {
+export const RemoveTripNotes = (tripNoteId) => {
     return httpClient.delete(`api/TripNotes/${tripNoteId}`,);
 };
 

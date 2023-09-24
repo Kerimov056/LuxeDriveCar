@@ -33,6 +33,8 @@ const ByTrip = (props) => {
 
     const { appuserid, username } = useSelector((x) => x.authReducer);
 
+    const { data: tripsNote } = useQuery('tripNotes', () => getAllTrip(appuserid ? appuserid : ''));
+
 
     const [mapEnter, setMapEnter] = useState(false);
     function mapOpen() {
@@ -66,23 +68,17 @@ const ByTrip = (props) => {
             formData.append('UserName', username ? username : '');
             formData.append('AppUserId', appuserid ? appuserid : '');
 
-            console.log("Comment", formData.getAll("Comment"));
-            console.log("TripId", formData.getAll("TripId"));
-            console.log("UserName", formData.getAll("UserName"));
-            console.log("AppUserId", formData.getAll("AppUserId"));
-
             const response = await axios.post('https://localhost:7152/api/TripNotes/TripPost', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
             })
             if (response.status === 201) {
-                queryClient.invalidateQueries('trip');
+                queryClient.invalidateQueries('tripNotes');
             }
         },
     });
 
-    // console.log(formik.valuses);
 
     return (
         <>
@@ -133,7 +129,7 @@ const ByTrip = (props) => {
                                                 onChange={formik.handleChange}
                                                 value={formik.values.Comment}
                                                 placeholder='  Where will you eat ? What will you see? Type + to add places' />
-                                            <Button style={{marginTop:"10px"}} type='submit'>Add note</Button>
+                                            <Button style={{ marginTop: "10px" }} type='submit'>Add note</Button>
                                         </form>
                                     </div>
                                     <div className='AddNote_LocationB'>
