@@ -47,3 +47,20 @@
         }
     }
 }
+
+
+.dropdown-content{
+    display: flex;
+    flex-direction: column;
+
+    #tripNoteRemove{
+        color: red;
+        text-decoration: underline;
+    }
+
+    #tripNoteEdit{
+        color: yellow;
+        text-decoration: underline;
+    }
+}
+

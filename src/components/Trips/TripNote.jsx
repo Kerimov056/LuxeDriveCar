@@ -55,11 +55,11 @@ const TripNote = (props) => {
                 <div>
                     <div>
                         <h1></h1>
-                        <button onClick={toggleDropdown}>...</button>
+                        <button style={isOpen===true ? {marginRight:"-100%",marginBottom:"-60px"} : {}} id='TripSers' onClick={toggleDropdown}>...</button>
                         {isOpen && appuserid === props.AppUserId && (
                             <div className="dropdown-content">
-                                <button onClick={removeTripNote}>Remove</button>
-                                <p>Seçenek 2</p>
+                                <button id='tripNoteRemove' onClick={removeTripNote}>Remove</button>
+                                <button id='tripNoteEdit' >Edit</button>
                             </div>
                         )}
                     </div>
