@@ -14,6 +14,7 @@ import { useFormik } from "formik";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios';
+import { getAllTrip } from "../Services/tripServices";
 
 
 const customStyles = {
@@ -31,16 +32,23 @@ const customStyles = {
 
 const Trips = () => {
 
-    const { token, username, appuserid } = useSelector((x) => x.authReducer);
+    const { appuserid } = useSelector((x) => x.authReducer);
     const { id } = useParams();
     const queryClient = useQueryClient();
     const navigate = useNavigate();
     const currentDateTime = new Date().toISOString().slice(0, 16);
 
 
-    const [location, setLocation] = useState('');
-    const [latitude, longitude] = location.split(' ');
+    const { data: trips } = useQuery('trips', () => getAllTrip(appuserid ? appuserid : ''));
+    console.log(trips);
 
+    const [location, setLocation] = useState('');
+    const [locationMap, setLocationMap] = useState({ lat: null, lng: null });
+
+    useEffect(() => {
+        const [lat, lng] = location.split(' ');
+        setLocationMap({ lat, lng });
+    }, [location]);
 
 
     const [city, setCity] = useState('');
@@ -97,8 +105,8 @@ const Trips = () => {
             Name: "",
             StartDate: selectedDate ? selectedDate : '',
             EndDate: selectedDate1 ? selectedDate1 : '',
-            TripLatitude: latitude ? latitude : '',
-            TripLongitude: longitude ? longitude : '',
+            TripLatitude: null,
+            TripLongitude: null,
             AppUserId: appuserid ? appuserid : ''
         },
         onSubmit: async (values) => {
@@ -109,18 +117,18 @@ const Trips = () => {
             formData.append('Name', values.Name);
             formData.append('StartDate', selectedDate ? selectedDate : '');
             formData.append('EndDate', selectedDate1 ? selectedDate1 : '');
-            formData.append('TripLatitude', latitude ? latitude : '');
-            formData.append('TripLongitude', longitude ? longitude : '');
+            formData.append('TripLatitude', locationMap.lat ? locationMap.lat : '');
+            formData.append('TripLongitude', locationMap.lng ? locationMap.lng : '');
             formData.append('AppUserId', values.AppUserId);
 
-            console.log("Image",formData.getAll("Image"));
-            console.log("destions",formData.getAll("Destination"));
-            console.log("Name",formData.getAll("Name"));
-            console.log("startDate",formData.getAll("StartDate"));
-            console.log("endDate",formData.getAll("EndDate"));
-            console.log("lat",formData.getAll("TripLatitude"));
-            console.log("lng",formData.getAll("TripLongitude"));
-            console.log("user",formData.getAll("AppUserId"));
+            // console.log("Image", formData.getAll("Image"));
+            // console.log("destions", formData.getAll("Destination"));
+            // console.log("Name", formData.getAll("Name"));
+            // console.log("startDate", formData.getAll("StartDate"));
+            // console.log("endDate", formData.getAll("EndDate"));
+            // console.log("lat", formData.getAll("TripLatitude"));
+            // console.log("lng", formData.getAll("TripLongitude"));
+            // console.log("user", formData.getAll("AppUserId"));
 
             const response = await axios.post('https://localhost:7152/api/Trips', formData, {
                 headers: {
@@ -152,7 +160,7 @@ const Trips = () => {
                         <div>
                             <Unsplash query={filteredCities} onImagesChange={handleImagesChange} />
                         </div>
-                        <form  onSubmit={formik.handleSubmit}>
+                        <form onSubmit={formik.handleSubmit}>
                             <div>
                                 <label>Destination</label>
                                 <Search searchCountry={searchData} />
@@ -254,7 +262,9 @@ const Trips = () => {
                     </div>
 
                     <div className='YouTrips'>
-                        <TripsCard />
+                        {trips?.data?.map((trip) => (
+                            <TripsCard key={trip.id} Id={trip.id} img={trip.image} Destination={trip.destination} />
+                        ))}
                     </div>
                 </div>
             </div>
