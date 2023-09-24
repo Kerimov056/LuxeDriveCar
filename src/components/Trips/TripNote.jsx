@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react';
 import './byTripNote.scss'
 import { BsFillPersonFill } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import { useMutation, useQueryClient } from "react-query";
+import { RemoveTripNotes } from "../Services/tripNoteServices";
 
 function formatDate(inputDate) {
 
@@ -18,13 +21,47 @@ function formatDate(inputDate) {
 
 
 const TripNote = (props) => {
+
+    const { token, username, appuserid } = useSelector((x) => x.authReducer);
+    const dispatch = useDispatch();
+    const queryClient = useQueryClient();
+
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleDropdown = () => {
+        setIsOpen(!isOpen);
+    };
+
+
+
+    const { mutate } = useMutation(() => RemoveTripNotes(props.tripNoteId), {
+        onSuccess: (data) => {
+            queryClient.invalidateQueries(['tripNotes']);
+            queryClient.invalidateQueries(['trip']);
+        },
+        onError: (error) => {
+        }
+    });
+
+
+    const removeTripNote = async () => {
+        mutate({ tripNoteId: props.tripNoteId });
+    }
+
     return (
         <>
             <div id='byTripNote'>
                 <div>
                     <div>
                         <h1></h1>
-                        <button>...</button>
+                        <button onClick={toggleDropdown}>...</button>
+                        {isOpen && appuserid === props.AppUserId && (
+                            <div className="dropdown-content">
+                                <button onClick={removeTripNote}>Remove</button>
+                                <p>Seçenek 2</p>
+                            </div>
+                        )}
                     </div>
                     <p>{props.tripNote}
                     </p>

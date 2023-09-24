@@ -8,9 +8,9 @@ import { ImLocation } from "react-icons/im";
 import { getByTrip } from "../Services/tripServices";
 import TripNote from "./TripNote";
 import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import { useQuery, useMutation, useQueryClient } from "react-query";
-import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios';
 import { getAllTripNotes } from "../Services/tripNoteServices";
 
@@ -122,7 +122,11 @@ const ByTrip = (props) => {
 
                             <div className='ByTrip_Text_hed_nots'>
                                 {tripsNote?.data?.map((tripsNote) => (
-                                    <TripNote tripNote={tripsNote?.comment} username={tripsNote.userName} createTripNote={tripsNote.createTripNote} />
+                                    <TripNote tripNote={tripsNote?.comment}
+                                        username={tripsNote.userName}
+                                        createTripNote={tripsNote.createTripNote}
+                                        AppUserId={tripsNote.appUserId}
+                                        tripNoteId={tripsNote.id} />
                                 ))}
                                 <div className='AddNote'>
                                     <div className='AddNote_Not'>

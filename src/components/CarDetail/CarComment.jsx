@@ -12,20 +12,19 @@ const CarComment = (props) => {
     const queryClient = useQueryClient();
 
 
-    const mutation = useMutation(postLike, {
-        onSuccess: () => {
-            queryClient.invalidateQueries("Likes");
-            queryClient.invalidateQueries("Comments");
-        },
-    });
+    // const mutation = useMutation(postLike, {
+    //     onSuccess: () => {
+    //         queryClient.invalidateQueries("Likes");
+    //         queryClient.invalidateQueries("Comments");
+    //     },
+    // });
 
-    const { mutate, isLoading, isError, error } = useMutation(() => postLike(props.commentId, appuserid), {
+    const { mutate } = useMutation(() => postLike(props.commentId, appuserid), {
         onSuccess: (data) => {
             queryClient.invalidateQueries(['Likes']);
             queryClient.invalidateQueries(['Car']);
         },
         onError: (error) => {
-            console.error("Error adding car to order", error);
         }
     });
 
