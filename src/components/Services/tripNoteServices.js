@@ -17,7 +17,7 @@ export const UpdateTripNotes = (id, data) => {
     return httpClient.put(`api/TripNotes/${id}`, data)
   };
 
-export const RemoveTripNotes = (tripNoteId) => {
-    return httpClient.delete(`api/TripNotes/${tripNoteId}`,);
+export const RemoveTripNotes = (tripNoteId,appUserId) => {
+    return httpClient.delete(`api/TripNotes/${tripNoteId}?AppUserId=${appUserId}`,);
 };
 

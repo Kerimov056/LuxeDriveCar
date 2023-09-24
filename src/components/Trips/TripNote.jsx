@@ -35,7 +35,7 @@ const TripNote = (props) => {
 
 
 
-    const { mutate } = useMutation(() => RemoveTripNotes(props.tripNoteId), {
+    const { mutate } = useMutation(() => RemoveTripNotes(props.tripNoteId,appuserid), {
         onSuccess: (data) => {
             queryClient.invalidateQueries(['tripNotes']);
             queryClient.invalidateQueries(['trip']);
@@ -46,7 +46,7 @@ const TripNote = (props) => {
 
 
     const removeTripNote = async () => {
-        mutate({ tripNoteId: props.tripNoteId });
+        mutate({ tripNoteId: props.tripNoteId, appUserId: appuserid });
     }
 
     return (
@@ -59,7 +59,7 @@ const TripNote = (props) => {
                         {isOpen && appuserid === props.AppUserId && (
                             <div className="dropdown-content">
                                 <button id='tripNoteRemove' onClick={removeTripNote}>Remove</button>
-                                <button id='tripNoteEdit' >Edit</button>
+                                <button id='tripNoteEdit'>Edit</button>
                             </div>
                         )}
                     </div>
