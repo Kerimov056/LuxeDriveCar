@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './byTripNote.scss'
 import { BsFillPersonFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { useMutation, useQueryClient } from "react-query";
 import { RemoveTripNotes } from "../Services/tripNoteServices";
 import { Button, Input } from '@chakra-ui/react';
+import { useFormik } from "formik";
+import axios from 'axios';
+
+
 
 function formatDate(inputDate) {
 
@@ -36,7 +40,9 @@ const TripNote = (props) => {
     };
 
     const editTripNote = () => {
-        setEdit(!edit);
+        setEdit(prevEdit => !prevEdit);
+        setIsOpen(true);
+        console.log("ssssss");
     };
 
 
@@ -55,6 +61,43 @@ const TripNote = (props) => {
         mutate({ tripNoteId: props.tripNoteId, appUserId: appuserid });
     }
 
+    const formik = useFormik({
+        initialValues: {
+            Comment: '',
+            TripId: props.tripId ? props.tripId : '',
+            UserName: username ? username : '',
+            AppUserId: appuserid ? appuserid : ''
+        },
+        onSubmit: async (values) => {
+            const formData = new FormData();
+
+            formData.append('Comment', values.Comment);
+            formData.append('TripId', props.tripId ? props.tripId : '');
+            formData.append('UserName', username ? username : '');
+            formData.append('AppUserId', appuserid ? appuserid : '');
+
+            try {
+                const response = await axios.put(`https://localhost:7152/api/TripNotes/Edit/${props.tripNoteId}`, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                })
+                if (response.status === 201) {
+                    setEdit(false)
+                    queryClient.invalidateQueries('tripNotes');
+                    queryClient.invalidateQueries('trip');
+                }
+            } catch (error) {
+            }
+
+        },
+    });
+
+    useEffect(() => {
+        formik.setFieldValue('Comment', props.tripNote);
+    }, [props.tripNote]);
+
+
     return (
         <>
             <div id='byTripNote'>
@@ -65,26 +108,31 @@ const TripNote = (props) => {
                         {isOpen && appuserid === props.AppUserId && (
                             <div className="dropdown-content">
                                 <button id='tripNoteRemove' onClick={removeTripNote}>Remove</button>
-                                <button id='tripNoteEdit' onClick={editTripNote}>Edit</button>
+                                <button style={edit===true ? {display:"none"} : {}} id='tripNoteEdit' onClick={editTripNote}>Edit</button>
                             </div>
                         )}
                     </div>
                     <p style={edit === true ? { display: "none" } : {}}>{props.tripNote}</p>
-                    {edit &&
+                    {edit && (
                         <div className='EditTripNoteA'>
-                            <form>
-                                <Input value={props.tripNote}
+                            <form onSubmit={formik.handleSubmit}>
+                                <Input
+                                    name='Comment'
+                                    value={formik.values.Comment}
+                                    onChange={formik.handleChange}
                                     className='editThisTripNote'
                                 />
+                                <Button
+                                    type='submit'
+                                    id='editButtun'>Save</Button>
                             </form>
                         </div>
-                    }
+                    )}
                     <h1>
                         <BsFillPersonFill />{props.username}
                         <span>
                             {formatDate(props.createTripNote)}
                         </span>
-                        <Button id='editButtun'>Save</Button>
                     </h1>
                 </div>
             </div>

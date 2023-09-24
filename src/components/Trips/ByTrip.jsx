@@ -13,6 +13,7 @@ import { useFormik } from "formik";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import axios from 'axios';
 import { getAllTripNotes } from "../Services/tripNoteServices";
+import Modal from 'react-modal';
 
 
 function formatDate(inputDate) {
@@ -28,6 +29,20 @@ function formatDate(inputDate) {
 
     return `${day}, ${month}`;
 }
+
+
+const customStyles = {
+    content: {
+        top: '52%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+    },
+};
+
+
 
 
 const ByTrip = (props) => {
@@ -47,6 +62,12 @@ const ByTrip = (props) => {
     const navigate = useNavigate();
 
 
+    const [showModal, setShowModal] = useState(false);
+    function closeModal() {
+        setShowModal(!showModal);
+    }
+
+
     const { data: byTrip } = useQuery(["trip", markaLocation], () =>
         getByTrip(markaLocation)
     );
@@ -64,7 +85,7 @@ const ByTrip = (props) => {
         },
         onSubmit: async (values) => {
             const formData = new FormData();
-            console.log(values.Comment);
+
             formData.append('Comment', values.Comment);
             formData.append('TripId', byTrip?.data?.id ? byTrip?.data?.id : '');
             formData.append('UserName', username ? username : '');
@@ -84,6 +105,19 @@ const ByTrip = (props) => {
 
     return (
         <>
+
+
+            <Modal
+                isOpen={showModal}
+                onRequestClose={closeModal}
+                style={customStyles}
+                contentLabel="Example Modal"
+            >
+                <div>
+
+                </div>
+            </Modal>
+
             <div style={{ marginTop: "70px" }}>
                 <Navbar />
             </div>
@@ -94,7 +128,7 @@ const ByTrip = (props) => {
                             <div className='ByTrip_Text_Main_1'>
                                 <div><Button>{"<"} Your Trips</Button></div>
                                 <div className='ByTrip_Text_Main_1_Bt2'>
-                                    <Button><RiUserShared2Line />Share</Button>
+                                    <Button onClick={closeModal}><RiUserShared2Line />Share</Button>
                                     <Button style={mapEnter === true ? {} : { display: "none" }} onClick={mapOpen}>Show map</Button>
                                     <Button>...</Button>
                                 </div>
@@ -126,7 +160,8 @@ const ByTrip = (props) => {
                                         username={tripsNote.userName}
                                         createTripNote={tripsNote.createTripNote}
                                         AppUserId={tripsNote.appUserId}
-                                        tripNoteId={tripsNote.id} />
+                                        tripNoteId={tripsNote.id}
+                                        tripId={byTrip?.data?.id} />
                                 ))}
                                 <div className='AddNote'>
                                     <div className='AddNote_Not'>
