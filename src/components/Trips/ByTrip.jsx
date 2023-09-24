@@ -5,15 +5,36 @@ import Navbar from "../Navbar/Navbar";
 import { Button } from '@chakra-ui/react';
 import { RiUserShared2Line } from "react-icons/ri";
 import { ImLocation } from "react-icons/im";
+import { getByTrip } from "../Services/tripServices";
 import TripNote from "./TripNote";
 import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
+import { useFormik } from "formik";
 import { useQuery, useMutation, useQueryClient } from "react-query";
-import { getByTrip } from "../Services/tripServices";
+import { useDispatch, useSelector } from "react-redux";
+import axios from 'axios';
+
+
+function formatDate(inputDate) {
+
+    const months = [
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    ];
+
+    const date = new Date(inputDate);
+    const day = date.getDate();
+    const month = months[date.getMonth()];
+
+    return `${day}, ${month}`;
+}
+
 
 const ByTrip = (props) => {
 
-    const [mapEnter, setMapEnter] = useState(false);
+    const { appuserid, username } = useSelector((x) => x.authReducer);
 
+
+    const [mapEnter, setMapEnter] = useState(false);
     function mapOpen() {
         setMapEnter(!mapEnter);
     }
@@ -30,21 +51,38 @@ const ByTrip = (props) => {
         getByTrip(markaLocation)
     );
 
-    console.log(byTrip);
+    const formik = useFormik({
+        initialValues: {
+            Comment: '',
+            TripId: byTrip?.data?.id ? byTrip?.data?.id : '',
+            UserName: username ? username : '',
+            AppUserId: appuserid ? appuserid : ''
+        },
+        onSubmit: async (values) => {
+            const formData = new FormData();
+            console.log(values.Comment);
+            formData.append('Comment', values.Comment);
+            formData.append('TripId', byTrip?.data?.id ? byTrip?.data?.id : '');
+            formData.append('UserName', username ? username : '');
+            formData.append('AppUserId', appuserid ? appuserid : '');
 
+            console.log("Comment", formData.getAll("Comment"));
+            console.log("TripId", formData.getAll("TripId"));
+            console.log("UserName", formData.getAll("UserName"));
+            console.log("AppUserId", formData.getAll("AppUserId"));
 
-    function formatDate(inputDate) {
-        const months = [
-            "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-        ];
+            const response = await axios.post('https://localhost:7152/api/TripNotes/TripPost', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            })
+            if (response.status === 201) {
+                queryClient.invalidateQueries('trip');
+            }
+        },
+    });
 
-        const date = new Date(inputDate);
-        const day = date.getDate();
-        const month = months[date.getMonth()];
-
-        return `${day}, ${month}`;
-    }
+    // console.log(formik.valuses);
 
     return (
         <>
@@ -90,11 +128,18 @@ const ByTrip = (props) => {
                                 <TripNote />
                                 <div className='AddNote'>
                                     <div className='AddNote_Not'>
-                                        <input placeholder='  Where will you eat ? What will you see? Type + to add places' />
+                                        <form onSubmit={formik.handleSubmit}>
+                                            <input name='Comment'
+                                                onChange={formik.handleChange}
+                                                value={formik.values.Comment}
+                                                placeholder='  Where will you eat ? What will you see? Type + to add places' />
+                                            <Button style={{marginTop:"10px"}} type='submit'>Add note</Button>
+                                        </form>
                                     </div>
                                     <div className='AddNote_LocationB'>
-                                        <div><ImLocation /><input placeholder=' Add location' /></div>
-                                        <Button>Add note</Button>
+                                        {/* <div><ImLocation />
+                                            <input placeholder=' Add location' />
+                                        </div> */}
                                     </div>
                                 </div>
                             </div>
