@@ -197,3 +197,53 @@
 }
 
 
+#ShareByTrip{
+    width: 690px;
+    height: 520px;
+    display: flex;
+    flex-direction: column;
+
+    &>h1{
+        width: 100%;
+        height: 25px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &>p{
+            &>svg{
+                font-size: 24px;
+            }
+        }
+    }
+
+    .ShareByTrip_1{
+        width: 100%;
+        height: 130px;
+        border-bottom:  1px solid rgb(26, 204, 254);
+        
+        &>h1{
+            font-size: 26px;
+            color: rgba(255, 255, 255, 0.855);
+        }
+
+        &>div{
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &>span{
+                color: rgba(255, 255, 255, 0.656);
+            }
+
+            &>button{
+                color: rgb(5, 177, 239);
+                
+                &>svg{
+                    margin-right: 8px;
+                }
+            }
+        }
+    }
+}

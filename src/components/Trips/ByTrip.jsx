@@ -14,7 +14,7 @@ import { useQuery, useMutation, useQueryClient } from "react-query";
 import axios from 'axios';
 import { getAllTripNotes } from "../Services/tripNoteServices";
 import Modal from 'react-modal';
-
+import { AiFillCloseCircle, AiOutlineLink } from "react-icons/ai";
 
 function formatDate(inputDate) {
 
@@ -113,8 +113,18 @@ const ByTrip = (props) => {
                 style={customStyles}
                 contentLabel="Example Modal"
             >
-                <div>
+                <div id='ShareByTrip'>
+                    <h1><p></p><p><AiFillCloseCircle onClick={closeModal} /></p></h1>
+                    <div className='ShareByTrip_1'>
+                        <h1>Share Trip</h1>
+                        <div>
+                            <span>You can share your trip with your friends by clicking Copy Link.</span>
+                            <Button><AiOutlineLink /> Copy link</Button>
+                        </div>
 
+                    </div>
+                    <div className='ShareByTrip_2'></div>
+                    <div className='ShareByTrip_3'></div>
                 </div>
             </Modal>
 
