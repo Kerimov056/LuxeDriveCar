@@ -6,14 +6,44 @@ import { Button } from '@chakra-ui/react';
 import { RiUserShared2Line } from "react-icons/ri";
 import { ImLocation } from "react-icons/im";
 import TripNote from "./TripNote";
+import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
+import { useQuery, useMutation, useQueryClient } from "react-query";
+import { getByTrip } from "../Services/tripServices";
 
-
-const ByTrip = () => {
+const ByTrip = (props) => {
 
     const [mapEnter, setMapEnter] = useState(false);
 
     function mapOpen() {
         setMapEnter(!mapEnter);
+    }
+
+    const location = useLocation();
+    const params = location.pathname.split('/').filter(param => param !== '');
+    const markaLocation = params[1] || '';
+
+    const queryClient = useQueryClient();
+    const navigate = useNavigate();
+
+
+    const { data: byTrip } = useQuery(["trip", markaLocation], () =>
+        getByTrip(markaLocation)
+    );
+
+    console.log(byTrip);
+
+
+    function formatDate(inputDate) {
+        const months = [
+            "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        ];
+
+        const date = new Date(inputDate);
+        const day = date.getDate();
+        const month = months[date.getMonth()];
+
+        return `${day}, ${month}`;
     }
 
     return (
@@ -35,12 +65,12 @@ const ByTrip = () => {
                             </div>
                             <div className='ByTrip_Text_Main_2'>
                                 <div className='ByTrip_Text_Main_2_img'>
-                                    <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmM5MIeMxFn6wQ7OWmBG7jFAK0zW3G2bgVcg&usqp=CAU' />
+                                    <img src={byTrip?.data?.image} />
                                 </div>
                                 <div className='ByTrip_Text_Main_2_text'>
-                                    <h1>Los Angles Trip</h1>
-                                    <h2>Sat,Sep 23 - Wed, Sep 27</h2>
-                                    <h2>Los Angles, CA</h2>
+                                    <h1>{byTrip?.data?.name} Trip</h1>
+                                    <h2>{formatDate(byTrip?.data?.startDate)} - {formatDate(byTrip?.data?.endDate)}</h2>
+                                    <h2>{byTrip?.data?.destination}</h2>
                                 </div>
                             </div>
                             <div className='ByTrip_Text_Main_3'>
@@ -50,7 +80,7 @@ const ByTrip = () => {
 
                         <div className='ByTrip_Text_hed'>
                             <div className='ByTrip_Text_hed_main'>
-                                <h1>Sat, Sep 23 – Wed, Sep 27</h1>
+                                <h1>{formatDate(byTrip?.data?.startDate)} – {formatDate(byTrip?.data?.endDate)}</h1>
                                 <h3>No scheduled activities yet</h3>
                             </div>
 
@@ -73,7 +103,7 @@ const ByTrip = () => {
                 </div>
                 <div style={mapEnter === true ? { display: "none" } : {}} className='ByTrip_map'>
                     <Button onClick={mapOpen}>Colse map</Button>
-                    <Maps />
+                    <Maps lat={byTrip?.data?.tripLatitude} lng={byTrip?.data?.tripLongitude} />
                 </div>
             </div>
         </>

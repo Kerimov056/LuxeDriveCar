@@ -66,7 +66,7 @@ function App() {
             <Route path='/ResetPassword' element={<ResetPassword />} />
             <Route path='/Communication' element={<Communication />} />
             <Route path='/Trips' element={<Trips />} />
-            <Route path='/ByTrip' element={<ByTrip />} />
+            <Route path='/ByTrip/:tripId' element={<ByTrip />} />
             <Route path='/GameCarCard/:appUserId' element={<GameCarCard />} />
             <Route path='/Wishlist' element={<Wishlist />} />
             <Route path='/RentalConditions' element={<RentalConditions />} />

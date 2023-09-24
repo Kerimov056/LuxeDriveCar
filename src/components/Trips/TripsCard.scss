@@ -8,6 +8,10 @@
     align-items: center;
     margin-top: 28px;
 
+    &:hover{
+        transform: scale(1.1);
+    }
+
     .TripsCard_img {
         width: 30%;
         height: 100%;

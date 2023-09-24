@@ -27,8 +27,10 @@ const markerIcon = new L.Icon({
     popupAnchor: [0, -46],
 });
 
-const Maps = () => {
-    const [center, setCenter] = useState({ lat: 40.4093, lng: 49.8671 });
+
+const Maps = (props) => {
+ 
+    const [center, setCenter] = useState({ lat: props.lat ? props.lat : '', lng: props.lng ? props.lng : '' });
 
 
     const [pickUpLocationMap, setPickUpLocationMap] = useState({ lat: null, lng: null });
@@ -53,7 +55,8 @@ const Maps = () => {
             updateReturnUpLocation(lat, lng);
         }
     }
-//https://api.maptiler.com/maps/jp-mierune-streets/{z}/{x}/{y}.png?key=S3UF58mBkVoHt2UkKpEL
+    //https://api.maptiler.com/maps/jp-mierune-streets/{z}/{x}/{y}.png?key=S3UF58mBkVoHt2UkKpEL
+
     return (
         <>
             <div className='ss'>

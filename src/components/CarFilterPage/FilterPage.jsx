@@ -16,8 +16,6 @@ const FilterPage = () => {
     const markaLocation = params[1] || '';
     const modelLocation = params[2] || '';
 
-    console.log(markaLocation);
-    console.log(modelLocation);
 
     const [marka, setMarka] = useState(markaLocation == "undefined" ? '' : markaLocation);
     const [model, setModel] = useState(modelLocation == "undefined" ? '' : modelLocation);

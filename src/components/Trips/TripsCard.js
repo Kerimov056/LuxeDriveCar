@@ -1,17 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './TripsCard.scss';
 import { IoCarSportSharp } from "react-icons/io5";
 import axios from 'axios';
 import { useFormik } from "formik";
 import { useQueryClient } from "react-query";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from 'react-router-dom';
+import  AOS from 'aos'
+import "aos/dist/aos.css";
 
 
 const TripsCard = (props) => {
     const { appuserid } = useSelector((x) => x.authReducer);
     const queryClient = useQueryClient();
+
+    
+    useEffect(() => {
+        AOS.init({
+            offset: 300,
+            duration: 500,
+            delay: 1360,
+        });
+        AOS.refresh();
+    }, [])
+
+
+
 
     const formik = useFormik({
         initialValues: {
@@ -48,7 +64,7 @@ const TripsCard = (props) => {
     }
 
     return (
-        <div id='TripsCard'>
+        <div data-aos="fade-right" id='TripsCard'>
             <div className='TripsCard_img'>
                 <img src={props.img} alt="Trip" />
             </div>
@@ -58,7 +74,7 @@ const TripsCard = (props) => {
                         <h1></h1>
                         <button type="button" onClick={formik.handleSubmit}>Delete this Trip</button>
                     </div>
-                    <h1>{props.Destination} Trip</h1>
+                    <h1><Link to={`/ByTrip/${props.Id}`} >{props.Destination} Trip</Link></h1>
                     <h3>{formatDate(props.startDate)} - {formatDate(props.endDate)}</h3>
                     <h4><IoCarSportSharp /><span>0</span></h4>
                 </div>
