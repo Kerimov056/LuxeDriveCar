@@ -40,7 +40,6 @@ const Trips = () => {
 
 
     const { data: trips } = useQuery('trips', () => getAllTrip(appuserid ? appuserid : ''));
-    console.log(trips);
 
     const [location, setLocation] = useState('');
     const [locationMap, setLocationMap] = useState({ lat: null, lng: null });
