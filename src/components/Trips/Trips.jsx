@@ -15,6 +15,8 @@ import { useQuery, useMutation, useQueryClient } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios';
 import { getAllTrip } from "../Services/tripServices";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const customStyles = {
@@ -135,7 +137,9 @@ const Trips = () => {
                 },
             })
             if (response.status === 201) {
-                // queryClient.invalidateQueries('Car');
+                queryClient.invalidateQueries('trips');
+                toast.success(`Create new ${filteredCities} Trip`, { position: toast.POSITION.TOP_RIGHT });
+                setShowModal(false)
             }
         },
     });
@@ -262,7 +266,12 @@ const Trips = () => {
 
                     <div className='YouTrips'>
                         {trips?.data?.map((trip) => (
-                            <TripsCard key={trip.id} Id={trip.id} img={trip.image} Destination={trip.destination} />
+                            <TripsCard key={trip.id}
+                                Id={trip.id}
+                                img={trip.image}
+                                Destination={trip.destination}
+                                startDate={trip.startDate}
+                                endDate={trip.endDate} />
                         ))}
                     </div>
                 </div>

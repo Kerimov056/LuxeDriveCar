@@ -5,6 +5,9 @@ import axios from 'axios';
 import { useFormik } from "formik";
 import { useQueryClient } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const TripsCard = (props) => {
     const { appuserid } = useSelector((x) => x.authReducer);
@@ -23,6 +26,7 @@ const TripsCard = (props) => {
 
                 if (response.status === 200) {
                     queryClient.invalidateQueries('trips');
+                    toast.success(`Remove ${props.Destination} Trip`, { position: toast.POSITION.TOP_RIGHT });
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -30,8 +34,18 @@ const TripsCard = (props) => {
         },
     });
 
-    console.log("AppUserId", formik.values.AppUserId);
+    function formatDate(inputDate) {
+        const months = [
+            "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        ];
 
+        const date = new Date(inputDate);
+        const day = date.getDate();
+        const month = months[date.getMonth()];
+
+        return `${day}, ${month}`;
+    }
 
     return (
         <div id='TripsCard'>
@@ -45,7 +59,7 @@ const TripsCard = (props) => {
                         <button type="button" onClick={formik.handleSubmit}>Delete this Trip</button>
                     </div>
                     <h1>{props.Destination} Trip</h1>
-                    <h3>Sat, Sep 23 - Wed, Sep 27</h3>
+                    <h3>{formatDate(props.startDate)} - {formatDate(props.endDate)}</h3>
                     <h4><IoCarSportSharp /><span>0</span></h4>
                 </div>
             </div>
