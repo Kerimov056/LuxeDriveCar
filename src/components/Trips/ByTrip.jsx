@@ -12,6 +12,7 @@ import { useFormik } from "formik";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios';
+import { getAllTripNotes } from "../Services/tripNoteServices";
 
 
 function formatDate(inputDate) {
@@ -33,9 +34,6 @@ const ByTrip = (props) => {
 
     const { appuserid, username } = useSelector((x) => x.authReducer);
 
-    const { data: tripsNote } = useQuery('tripNotes', () => getAllTrip(appuserid ? appuserid : ''));
-
-
     const [mapEnter, setMapEnter] = useState(false);
     function mapOpen() {
         setMapEnter(!mapEnter);
@@ -52,6 +50,10 @@ const ByTrip = (props) => {
     const { data: byTrip } = useQuery(["trip", markaLocation], () =>
         getByTrip(markaLocation)
     );
+
+    //--------
+    const { data: tripsNote } = useQuery('tripNotes', () => getAllTripNotes(markaLocation ? markaLocation : ''));
+    //--------
 
     const formik = useFormik({
         initialValues: {
@@ -119,9 +121,9 @@ const ByTrip = (props) => {
                             </div>
 
                             <div className='ByTrip_Text_hed_nots'>
-                                <TripNote />
-                                <TripNote />
-                                <TripNote />
+                                {tripsNote?.data?.map((tripsNote) => (
+                                    <TripNote tripNote={tripsNote?.comment} username={tripsNote.userName} createTripNote={tripsNote.createTripNote} />
+                                ))}
                                 <div className='AddNote'>
                                     <div className='AddNote_Not'>
                                         <form onSubmit={formik.handleSubmit}>
