@@ -197,51 +197,88 @@
 }
 
 
-#ShareByTrip{
+#ShareByTrip {
     width: 690px;
     height: 520px;
     display: flex;
     flex-direction: column;
 
-    &>h1{
+    &>h1 {
         width: 100%;
         height: 25px;
         display: flex;
         justify-content: space-between;
         align-items: center;
 
-        &>p{
-            &>svg{
+        &>p {
+            &>svg {
                 font-size: 24px;
             }
         }
     }
 
-    .ShareByTrip_1{
+    .ShareByTrip_1 {
         width: 100%;
         height: 130px;
-        border-bottom:  1px solid rgb(26, 204, 254);
-        
-        &>h1{
+        border-bottom: 1px solid rgb(26, 204, 254);
+
+        &>h1 {
             font-size: 26px;
             color: rgba(255, 255, 255, 0.855);
         }
 
-        &>div{
+        &>div {
             margin-top: 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
 
-            &>span{
+            &>span {
                 color: rgba(255, 255, 255, 0.656);
             }
 
-            &>button{
+            &>button {
                 color: rgb(5, 177, 239);
-                
-                &>svg{
+
+                &>svg {
                     margin-right: 8px;
+                }
+            }
+        }
+    }
+
+    .ShareByTrip_2 {
+        width: 100%;
+        height: 290px;
+        border-bottom: 1px solid rgb(26, 204, 254);
+
+        &>form {
+            margin-top: 15px;
+            width: 100%;
+            height: 90%;
+
+            .ShareByTrip_2_1 {
+
+                &>div {
+                    width: 100%;
+                    height: auto;
+                    display: flex;
+                    justify-content: space-between;
+
+                    &>label {
+                        color: rgba(255, 255, 255, 0.656);
+                        font-size: 20px;
+                    }
+
+                    .InputEmailTrip {
+                        margin-top: 9px;
+                        width: 74%;
+                    }
+
+                    .SelectTypeSend {
+                        width: 23%;
+                        margin-top: 8px !important;
+                    }
                 }
             }
         }

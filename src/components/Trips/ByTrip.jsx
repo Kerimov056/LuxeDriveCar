@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './ByTrip.scss'
 import Maps from "../Map/Maps";
 import Navbar from "../Navbar/Navbar";
-import { Button } from '@chakra-ui/react';
+import { Button, Input, Select, Textarea } from '@chakra-ui/react';
 import { RiUserShared2Line } from "react-icons/ri";
 import { ImLocation } from "react-icons/im";
 import { getByTrip } from "../Services/tripServices";
@@ -123,7 +123,31 @@ const ByTrip = (props) => {
                         </div>
 
                     </div>
-                    <div className='ShareByTrip_2'></div>
+                    <div className='ShareByTrip_2'>
+                        <form>
+                            <div className='ShareByTrip_2_1'>
+                                <div><label>Add people</label></div>
+                                <div>
+                                    <div className='InputEmailTrip' >
+                                        <Input placeholder='Separate multiple email addresses with commas or spaces' />
+                                    </div>
+                                    <div className='SelectTypeSend'>
+                                        <Select placeholder='Select option'>
+                                            <option value='option1'>Option 1</option>
+                                            <option value='option2'>Option 2</option>
+                                        </Select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='ShareByTrip_2_2'>
+                                <label>Note</label>
+                                <Textarea />
+                            </div>
+                            <div className='ShareByTrip_2_3'>
+                                <Button>Invite</Button>
+                            </div>
+                        </form>
+                    </div>
                     <div className='ShareByTrip_3'></div>
                 </div>
             </Modal>
