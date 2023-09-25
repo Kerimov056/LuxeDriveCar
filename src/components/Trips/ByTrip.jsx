@@ -87,8 +87,7 @@ const ByTrip = (props) => {
     //--------
     const showHtml = getAllSContirbuter?.data?.some(item => item.email === email);
     const myTrip = appuserid === byTrip?.data?.appUserId;
-    console.log("showHtml:", showHtml);
-    console.log("myTrip:", myTrip);
+
 
 
     const formik = useFormik({
@@ -118,6 +117,37 @@ const ByTrip = (props) => {
     });
 
 
+    const [tripRole, setTripRole] = useState(0);
+
+    const shareFormik = useFormik({
+        initialValues: {
+            Email: '',
+            Message: '',
+            TripRole: tripRole ? tripRole : '',
+            TripId: byTrip?.data?.id ? byTrip?.data?.id : '',
+            AppUserId: appuserid ? appuserid : ''
+        },
+        onSubmit: async (values) => {
+            const formData = new FormData();
+
+            formData.append('Email', values.Email);
+            formData.append('Message', values.Message);
+            formData.append('TripRole', tripRole === 0 ? 0 : 1 );
+            formData.append('TripId', byTrip?.data?.id ? byTrip?.data?.id : '');
+            formData.append('AppUserId', appuserid ? appuserid : '');
+
+            const response = await axios.post('https://localhost:7152/api/ShareTrips', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            })
+            if (response.status === 201) {
+                queryClient.invalidateQueries('trip');
+            }
+        },
+    });
+
+
     return (
         <>
             <Modal
@@ -137,27 +167,38 @@ const ByTrip = (props) => {
 
                     </div>
                     <div className='ShareByTrip_2'>
-                        <form>
+                        <form onSubmit={shareFormik.handleSubmit}>
                             <div className='ShareByTrip_2_1'>
                                 <div><label>Add people</label></div>
                                 <div>
                                     <div className='InputEmailTrip' >
-                                        <Input placeholder='Separate multiple email addresses with commas or spaces' />
+                                        <Input name='Email'
+                                            onChange={shareFormik.handleChange}
+                                            value={shareFormik.values.Email}
+                                            placeholder='Separate multiple email addresses with commas or spaces' />
                                     </div>
                                     <div className='SelectTypeSend'>
-                                        <Select placeholder='Select option'>
-                                            <option value='option1'>Option 1</option>
-                                            <option value='option2'>Option 2</option>
+                                        <Select
+                                            placeholder='Select option'
+                                            onChange={(e) => {
+                                                setTripRole(Number(e.target.value));
+                                            }}
+                                            defaultValue='0' 
+                                        >
+                                            <option value='0'>Option 1</option>
+                                            <option value='1'>Option 2</option>
                                         </Select>
                                     </div>
                                 </div>
                             </div>
                             <div className='ShareByTrip_2_2'>
                                 <label>Note</label>
-                                <Textarea />
+                                <Textarea name='Message'
+                                    onChange={shareFormik.handleChange}
+                                    value={shareFormik.values.Message} />
                             </div>
                             <div className='ShareByTrip_2_3'>
-                                <Button>Invite</Button>
+                                <Button type='submit' >Invite</Button>
                             </div>
                         </form>
                     </div>

@@ -3,7 +3,7 @@ import './byTripNote.scss'
 import { BsFillPersonFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { useMutation, useQueryClient } from "react-query";
-import { RemoveTripNotes } from "../Services/tripNoteServices";
+import { RemoveTripNotes, myTripNote } from "../Services/tripNoteServices";
 import { Button, Input } from '@chakra-ui/react';
 import { useFormik } from "formik";
 import axios from 'axios';
@@ -31,6 +31,22 @@ const TripNote = (props) => {
     const dispatch = useDispatch();
     const queryClient = useQueryClient();
 
+    // const TRIP_ID = props.tripId
+    // const mutation = useMutation(myTripNote);
+
+    // useEffect(() => {
+
+    //     const fetchData = async () => {
+    //         try {
+    //             const response = await mutation.mutateAsync({ appuserid, TRIP_ID });
+    //             console.log(">>>>>>", response);
+    //         } catch (error) {
+    //             // console.error('Error fetching data:', error);
+    //         }
+    //     };
+
+    //     fetchData();
+    // }, []);
 
     const [isOpen, setIsOpen] = useState(false);
     const [edit, setEdit] = useState(false);
@@ -108,7 +124,7 @@ const TripNote = (props) => {
                         {isOpen && appuserid === props.AppUserId && (
                             <div className="dropdown-content">
                                 <button id='tripNoteRemove' onClick={removeTripNote}>Remove</button>
-                                <button style={edit===true ? {display:"none"} : {}} id='tripNoteEdit' onClick={editTripNote}>Edit</button>
+                                <button style={edit === true ? { display: "none" } : {}} id='tripNoteEdit' onClick={editTripNote}>Edit</button>
                             </div>
                         )}
                     </div>
