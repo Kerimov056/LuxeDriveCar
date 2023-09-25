@@ -239,6 +239,7 @@
 
             &>button {
                 color: rgb(5, 177, 239);
+                color: #ffffff;
 
                 &>svg {
                     margin-right: 8px;
@@ -314,37 +315,73 @@
             justify-content: space-between;
             align-items: center;
 
-            
+
         }
 
-        &>div{
+        &>div {
             margin-top: 15px;
             width: 100%;
             height: auto;
             display: flex;
             justify-content: space-between;
 
-            &>div{
+            &>div {
                 width: auto;
                 height: 50px;
                 display: flex;
 
-                &>p{
+                &>p {
                     border-radius: 60%;
                     background-color: rgb(45, 41, 41);
                     color: rgba(255, 255, 255, 0.663);
                 }
 
-                &>span{
+                &>span {
                     margin-top: 5px;
                     color: rgba(255, 255, 255, 0.663);
                     margin-left: 16px;
                 }
             }
 
-            #UpdatDegreeTrip{
+            #UpdatDegreeTrip {
                 width: 120px;
             }
         }
     }
+}
+
+
+
+.dropdownByTrip {
+    position: absolute;
+    background-color: #000000;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    margin-top: 150px;
+    border-radius: 20px;
+}
+
+.dropdownByTrip ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.dropdownByTrip li {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    color: #404040;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.dropdownByTrip .EditByTrip:hover {
+    background-color: #2ba1e1df;
+    cursor: pointer;
+}
+
+.dropdownByTrip .RemoveByTrip:hover {
+    background-color: #ff2508ed;
+    cursor: pointer;
 }

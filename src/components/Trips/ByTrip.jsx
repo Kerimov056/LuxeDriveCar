@@ -44,13 +44,6 @@ const customStyles = {
     },
 };
 
-const copyLink = () => {
-    const currentURL = window.location.href;
-    navigator.clipboard.writeText(currentURL)
-        .then(() => alert('URL copied to clipboard'))
-        .catch((error) => console.error('Error copying URL:', error));
-};
-
 
 const ByTrip = (props) => {
 
@@ -61,6 +54,23 @@ const ByTrip = (props) => {
         setMapEnter(!mapEnter);
     }
 
+
+    const [copying, setCopying] = useState(false);
+
+
+    const copyLink = () => {
+        setCopying(true);
+        const currentURL = window.location.href;
+        navigator.clipboard.writeText(currentURL)
+            .then(() => {
+                setCopying(true);
+            })
+            .catch((error) => {
+                setCopying(false);
+            });
+    };
+
+
     const location = useLocation();
     const params = location.pathname.split('/').filter(param => param !== '');
     const markaLocation = params[1] || '';
@@ -69,9 +79,17 @@ const ByTrip = (props) => {
     const navigate = useNavigate();
 
 
+    const [showDropdown, setShowDropdown] = useState(false);
+
+    const handleButtonClick = () => {
+        setShowDropdown(!showDropdown);
+    };
+
+
     const [showModal, setShowModal] = useState(false);
     function closeModal() {
         setShowModal(!showModal);
+        setCopying(false)
     }
 
 
@@ -132,7 +150,7 @@ const ByTrip = (props) => {
 
             formData.append('Email', values.Email);
             formData.append('Message', values.Message);
-            formData.append('TripRole', tripRole === 0 ? 0 : 1 );
+            formData.append('TripRole', tripRole === 0 ? 0 : 1);
             formData.append('TripId', byTrip?.data?.id ? byTrip?.data?.id : '');
             formData.append('AppUserId', appuserid ? appuserid : '');
 
@@ -162,7 +180,7 @@ const ByTrip = (props) => {
                         <h1>Share Trip</h1>
                         <div>
                             <span>You can share your trip with your friends by clicking Copy Link.</span>
-                            <Button onClick={copyLink}><AiOutlineLink /> Copy link</Button>
+                            <Button onClick={copyLink} style={{ backgroundColor: copying ? '#07FC00' : '' }} ><AiOutlineLink /> Copy link</Button>
                         </div>
 
                     </div>
@@ -183,7 +201,7 @@ const ByTrip = (props) => {
                                             onChange={(e) => {
                                                 setTripRole(Number(e.target.value));
                                             }}
-                                            defaultValue='0' 
+                                            defaultValue='0'
                                         >
                                             <option value='0'>Option 1</option>
                                             <option value='1'>Option 2</option>
@@ -229,7 +247,16 @@ const ByTrip = (props) => {
                                         <Button onClick={closeModal}><RiUserShared2Line />Share</Button>
                                     )}
                                     <Button style={mapEnter === true ? {} : { display: "none" }} onClick={mapOpen}>Show map</Button>
-                                    <Button>...</Button>
+                                    <Button onClick={handleButtonClick}>...</Button>
+                                    {showDropdown && (
+                                        <div className="dropdownByTrip">
+                                            <ul>
+                                                <li className='EditByTrip'>Edit</li>
+                                                <li className='RemoveByTrip'>Remove</li>
+                                                {/* Diğer seçenekleri ekleyin */}
+                                            </ul>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                             <div className='ByTrip_Text_Main_2'>
