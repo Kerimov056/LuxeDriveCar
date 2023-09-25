@@ -113,6 +113,7 @@ const Navbar = () => {
                         <li><a href='/VehicleFleet'>VEHICLE FLEET</a></li>
                         <li><a href='/Blogs'>BLOG</a></li>
                         <li><a href='/Shop'>SHOP</a></li>
+                        <li><a href='/Communication'>Contact</a></li>
                     </ul>
                     <ul style={{ order: 2 }}>
                         <li style={{ listStyle: "none" }}>

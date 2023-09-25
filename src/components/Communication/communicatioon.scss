@@ -1,5 +1,8 @@
-.CommunicationNavbar {
+#CommunicationNavbar {
+    width: 100% !important;
+    height: auto;
     margin-top: 70px;
+
 }
 
 .CommunStyle {
@@ -8,7 +11,7 @@
     height: 0px;
     top: 300px;
     z-index: 1000;
-    margin-left: 50px;
+
 
     .loader {
         scale: 3;
@@ -145,7 +148,7 @@
 
 
 #Communication {
-    width: 100%;
+    width: 100% !important;
     height: 100vh;
     background-color: black;
     display: flex;

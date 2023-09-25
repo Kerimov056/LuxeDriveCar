@@ -24,6 +24,7 @@ const Nav = () => {
                         <li><a href='VehicleFleet'>VEHICLE FLEET</a></li>
                         <li><a href='/Blogs'>BLOG</a></li>
                         <li><a href='/Shop'>SHOP</a></li>
+                        <li><a href='/Communication'>Contact</a></li>
                     </ul>
                     <h1 class="logo"><BsSearch /></h1>
                 </div>

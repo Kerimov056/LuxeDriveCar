@@ -80,7 +80,9 @@ const Communication = () => {
                     </div>
                 </div>
             </div>
-            <div className='CommunicationNavbar'><Navbar /></div>
+            <div id='CommunicationNavbar'>
+                <Navbar />
+            </div>
             <div id='Communication'>
                 <div>
                     <div className='Conntact'>
@@ -120,7 +122,7 @@ const Communication = () => {
                                     <input value={formik.Note} onChange={formik.handleChange} name='Note' type='text' /><br />
                                 </div>
                                 <ReCAPTCHA
-                                    sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" 
+                                    sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
                                     render="explicit"
                                     onloadCallback={onCaptchaLoad}
                                     verifyCallback={onCaptchaVerify}
@@ -139,7 +141,7 @@ const Communication = () => {
                                             <div class="paper"></div>
                                         </div>
                                     </div>
-                                    Continue Application
+                                    Send
                                 </button>
                             </div>
                         </form>
