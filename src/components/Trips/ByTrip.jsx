@@ -42,7 +42,12 @@ const customStyles = {
     },
 };
 
-
+const copyLink = () => {
+    const currentURL = window.location.href;
+    navigator.clipboard.writeText(currentURL)
+        .then(() => alert('URL copied to clipboard'))
+        .catch((error) => console.error('Error copying URL:', error));
+};
 
 
 const ByTrip = (props) => {
@@ -119,7 +124,7 @@ const ByTrip = (props) => {
                         <h1>Share Trip</h1>
                         <div>
                             <span>You can share your trip with your friends by clicking Copy Link.</span>
-                            <Button><AiOutlineLink /> Copy link</Button>
+                            <Button onClick={copyLink}><AiOutlineLink /> Copy link</Button>
                         </div>
 
                     </div>
@@ -148,7 +153,16 @@ const ByTrip = (props) => {
                             </div>
                         </form>
                     </div>
-                    <div className='ShareByTrip_3'></div>
+                    <div className='ShareByTrip_3'>
+                        <h1><p></p><p>Owner</p></h1>
+                        <div>
+                            <div><Button>ME</Button> <span>meimeiiemiem439 (you)</span></div>
+                            <Select id='UpdatDegreeTrip' placeholder='Select option'>
+                                <option value='option1'>Option 1</option>
+                                <option value='option2'>Option 2</option>
+                            </Select>
+                        </div>
+                    </div>
                 </div>
             </Modal>
 

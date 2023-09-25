@@ -199,7 +199,7 @@
 
 #ShareByTrip {
     width: 690px;
-    height: 520px;
+    height: auto;
     display: flex;
     flex-direction: column;
 
@@ -250,7 +250,6 @@
     .ShareByTrip_2 {
         width: 100%;
         height: 290px;
-        border-bottom: 1px solid rgb(26, 204, 254);
 
         &>form {
             margin-top: 15px;
@@ -268,6 +267,8 @@
                     &>label {
                         color: rgba(255, 255, 255, 0.656);
                         font-size: 20px;
+                        margin-left: 5px;
+
                     }
 
                     .InputEmailTrip {
@@ -280,6 +281,69 @@
                         margin-top: 8px !important;
                     }
                 }
+            }
+
+            .ShareByTrip_2_2 {
+                margin-top: 16px;
+
+                &>label {
+                    color: rgba(255, 255, 255, 0.656);
+                    font-size: 20px;
+                    margin-left: 5px;
+                }
+
+                &>Textarea {
+                    margin-top: 10px;
+                }
+            }
+
+            .ShareByTrip_2_3 {
+                margin-top: 10px;
+                background-color: rgba(21, 20, 20, 0.753);
+            }
+        }
+    }
+
+    .ShareByTrip_3 {
+        margin-top: 30px;
+
+        &>h1 {
+            width: 100%;
+            height: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            
+        }
+
+        &>div{
+            margin-top: 15px;
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: space-between;
+
+            &>div{
+                width: auto;
+                height: 50px;
+                display: flex;
+
+                &>button{
+                    border-radius: 60%;
+                    background-color: rgb(45, 41, 41);
+                    color: rgba(255, 255, 255, 0.663);
+                }
+
+                &>span{
+                    margin-top: 5px;
+                    color: rgba(255, 255, 255, 0.663);
+                    margin-left: 16px;
+                }
+            }
+
+            #UpdatDegreeTrip{
+                width: 120px;
             }
         }
     }
