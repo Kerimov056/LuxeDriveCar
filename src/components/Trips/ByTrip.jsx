@@ -15,6 +15,8 @@ import axios from 'axios';
 import { getAllTripNotes } from "../Services/tripNoteServices";
 import Modal from 'react-modal';
 import { AiFillCloseCircle, AiOutlineLink } from "react-icons/ai";
+import { getAllShareContirbuter } from "../Services/shareTripServices";
+
 
 function formatDate(inputDate) {
 
@@ -52,7 +54,7 @@ const copyLink = () => {
 
 const ByTrip = (props) => {
 
-    const { appuserid, username } = useSelector((x) => x.authReducer);
+    const { appuserid, username, email } = useSelector((x) => x.authReducer);
 
     const [mapEnter, setMapEnter] = useState(false);
     function mapOpen() {
@@ -76,10 +78,18 @@ const ByTrip = (props) => {
     const { data: byTrip } = useQuery(["trip", markaLocation], () =>
         getByTrip(markaLocation)
     );
-
-    //--------
+    //-------- TripNotes
     const { data: tripsNote } = useQuery('tripNotes', () => getAllTripNotes(markaLocation ? markaLocation : ''));
     //--------
+
+    //-------- getAllShareContirbuter
+    const { data: getAllSContirbuter } = useQuery('getAllShareTrContirbuter', () => getAllShareContirbuter(markaLocation ? markaLocation : ''));
+    //--------
+    const showHtml = getAllSContirbuter?.data?.some(item => item.email === email);
+    const myTrip = appuserid === byTrip?.data?.appUserId;
+    console.log("showHtml:", showHtml);
+    console.log("myTrip:", myTrip);
+
 
     const formik = useFormik({
         initialValues: {
@@ -110,8 +120,6 @@ const ByTrip = (props) => {
 
     return (
         <>
-
-
             <Modal
                 isOpen={showModal}
                 onRequestClose={closeModal}
@@ -176,7 +184,9 @@ const ByTrip = (props) => {
                             <div className='ByTrip_Text_Main_1'>
                                 <div><Button>{"<"} Your Trips</Button></div>
                                 <div className='ByTrip_Text_Main_1_Bt2'>
-                                    <Button onClick={closeModal}><RiUserShared2Line />Share</Button>
+                                    {(showHtml || myTrip) && (
+                                        <Button onClick={closeModal}><RiUserShared2Line />Share</Button>
+                                    )}
                                     <Button style={mapEnter === true ? {} : { display: "none" }} onClick={mapOpen}>Show map</Button>
                                     <Button>...</Button>
                                 </div>
@@ -212,15 +222,17 @@ const ByTrip = (props) => {
                                         tripId={byTrip?.data?.id} />
                                 ))}
                                 <div className='AddNote'>
-                                    <div className='AddNote_Not'>
-                                        <form onSubmit={formik.handleSubmit}>
-                                            <input name='Comment'
-                                                onChange={formik.handleChange}
-                                                value={formik.values.Comment}
-                                                placeholder='  Where will you eat ? What will you see? Type + to add places' />
-                                            <Button style={{ marginTop: "10px" }} type='submit'>Add note</Button>
-                                        </form>
-                                    </div>
+                                    {(showHtml || myTrip) && (
+                                        <div className='AddNote_Not'>
+                                            <form onSubmit={formik.handleSubmit}>
+                                                <input name='Comment'
+                                                    onChange={formik.handleChange}
+                                                    value={formik.values.Comment}
+                                                    placeholder='  Where will you eat ? What will you see? Type + to add places' />
+                                                <Button style={{ marginTop: "10px" }} type='submit'>Add note</Button>
+                                            </form>
+                                        </div>
+                                    )}
                                     <div className='AddNote_LocationB'>
                                         {/* <div><ImLocation />
                                             <input placeholder=' Add location' />
