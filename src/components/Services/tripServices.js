@@ -9,6 +9,10 @@ export const getByTrip = (tripId) => {
     return httpClient.get(`api/Trips/${tripId}`);
 };
 
+export const myTripCount = (AppUserId) => {
+    return httpClient.get(`api/Trips/myTripCount?AppUserId=${AppUserId}`);
+};
+
 export const PostTrip = (data) => {
     return httpClient.post(`api/Trips`,data);
 };

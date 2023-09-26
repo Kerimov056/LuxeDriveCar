@@ -113,7 +113,6 @@ const ByTrip = (props) => {
         getByTrip(markaLocation)
     );
 
-
     //-------- TripNotes
     const { data: tripsNote } = useQuery('tripNotes', () => getAllTripNotes(markaLocation ? markaLocation : ''));
     //--------
@@ -179,6 +178,7 @@ const ByTrip = (props) => {
             })
             if (response.status === 201) {
                 queryClient.invalidateQueries('trip');
+                setShowModal(false);
             }
         },
     });
@@ -297,6 +297,7 @@ const ByTrip = (props) => {
         onSuccess: (data) => {
             queryClient.invalidateQueries(['trips']);
             queryClient.invalidateQueries(['trip']);
+            queryClient.invalidateQueries(['myTripCount']);
             navigate('/Trips')
         },
         onError: (error) => {

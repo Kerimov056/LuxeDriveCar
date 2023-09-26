@@ -29,7 +29,9 @@ const markerIcon = new L.Icon({
 
 
 const Maps = (props) => {
- 
+
+    console.log("props.lat", props.lat);
+    console.log("props.lng", props.lng);
     const [center, setCenter] = useState({ lat: props.lat ? props.lat : '', lng: props.lng ? props.lng : '' });
 
 
@@ -60,7 +62,7 @@ const Maps = (props) => {
     return (
         <>
             <div className='ss'>
-                <MapContainer center={center} zoom={13} scrollWheelZoom={false}>
+                <MapContainer center={[props.lat ? props.lat : '', props.lng ? props.lng : '']} zoom={13} scrollWheelZoom={false}>
                     <TileLayer
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                         url="https://api.maptiler.com/maps/ch-swisstopo-lbm-dark/{z}/{x}/{y}.png?key=S3UF58mBkVoHt2UkKpEL"
@@ -68,13 +70,14 @@ const Maps = (props) => {
                     <FeatureGroup>
                         <EditControl position='topright' onCreated={handleDrawCreated} draw={{ rectangle: false, circlemarker: false, polygon: false }} />
                     </FeatureGroup>
-                    <Marker position={center} icon={markerIcon}>
+                    <Marker position={[props.lat ? props.lat : '', props.lng ? props.lng : '']} icon={markerIcon}>
                         <Popup>
                             A pretty CSS3 popup. <br /> Easily customizable.
                         </Popup>
                     </Marker>
                 </MapContainer>
             </div>
+
         </>
     )
 }

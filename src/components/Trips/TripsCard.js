@@ -42,6 +42,7 @@ const TripsCard = (props) => {
 
                 if (response.status === 200) {
                     queryClient.invalidateQueries('trips');
+                    queryClient.invalidateQueries('myTripCount');
                     toast.success(`Remove ${props.Destination} Trip`, { position: toast.POSITION.TOP_RIGHT });
                 }
             } catch (error) {

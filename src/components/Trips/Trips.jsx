@@ -14,7 +14,7 @@ import { useFormik } from "formik";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios';
-import { getAllTrip } from "../Services/tripServices";
+import { getAllTrip, myTripCount } from "../Services/tripServices";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -46,6 +46,11 @@ const Trips = () => {
     const [location, setLocation] = useState('');
     const [locationMap, setLocationMap] = useState({ lat: null, lng: null });
 
+    //-----TripCount--------
+     const { data: byTripCount } = useQuery('myTripCount', () => myTripCount(appuserid ? appuserid : ''));
+    //-----TripCount--------
+    
+    
     useEffect(() => {
         const [lat, lng] = location.split(' ');
         setLocationMap({ lat, lng });
@@ -138,6 +143,7 @@ const Trips = () => {
             })
             if (response.status === 201) {
                 queryClient.invalidateQueries('trips');
+                queryClient.invalidateQueries('myTripCount');
                 toast.success(`Create new ${filteredCities} Trip`, { position: toast.POSITION.TOP_RIGHT });
                 setShowModal(false)
             }
@@ -260,7 +266,7 @@ const Trips = () => {
                             <div className='nextAllTripDesc'>{">"}</div>
                         </div>
                         <div className='Trips_Main_three'>
-                            <h2>Upcoming {"("}4{")"}</h2>
+                            <h2>Upcoming {"("}{byTripCount?.data ? byTripCount?.data : ''}{")"}</h2>
                         </div>
                     </div>
 
