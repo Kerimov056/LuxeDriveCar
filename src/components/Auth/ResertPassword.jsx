@@ -7,7 +7,7 @@ import { useQueryClient } from "react-query";
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import ResetPasswordSchema from "../Validators/ResertPasswordSchema";
 
 const ResertPassword = () => {
 
@@ -48,9 +48,9 @@ const ResertPassword = () => {
         }
 
       } catch (error) {
-        console.log(error);
       }
     },
+    // validationSchema: ResetPasswordSchema
   });
 
 
@@ -63,12 +63,14 @@ const ResertPassword = () => {
             <input required="true"  name='Password' value={formik.values.Password} onChange={formik.handleChange} class="main-input" type="password" />
             <span class="highlight-span"></span>
             <label class="lebal-email">Password</label>
+            {/* {formik.touched.Password && formik.errors.Password} */}
           </div>
           <div class="container-1RR">
             <div class="groupRS">
               <input required="true" name='ConfiremPassword' value={formik.values.ConfiremPassword} onChange={formik.handleChange} class="main-input" type="password" />
               <span class="highlight-span"></span>
               <label class="lebal-email">Confirem Password</label>
+              {/* {formik.touched.ConfiremPassword && formik.errors.ConfiremPassword} */}
             </div>
           </div>
           <button type='submit' class="submitRes">Send</button>

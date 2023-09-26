@@ -125,12 +125,10 @@
                     align-items: center;
                     flex-wrap: wrap;
                     overflow-y: scroll !important;
-                    /* Scroll çubuğunu göster */
-                    scrollbar-width: 40px;
-                    /* Scrollbar genişliği */
-                    scrollbar-color: transparent transparent;
-                    /* Scrollbar rengi */
-
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
+                    
                     .AddNote {
                         margin-top: 50px;
                         width: 100%;

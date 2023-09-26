@@ -259,8 +259,15 @@ const VehicleFleet = () => {
                         </div>
                     </div>
                     <div className='Cards'>
-                        {cars?.data.map((byCar, index) => (
-                            <Car key={index} img={`data:image/jpeg;base64,${byCar?.carImages[0]?.imagePath ? byCar?.carImages[0]?.imagePath : ''}`} campaignsInterest={byCar?.campaignsInterest} campaignsPrice={byCar?.campaignsPrice} Id={byCar?.id} name={byCar.marka} desc={byCar.description.slice(0, 30)} price={byCar.price} />
+                        {cars?.data?.map((byCar, index) => (
+                            <Car key={index}
+                                img={`data:image/jpeg;base64,${byCar?.carImages[0]?.imagePath ? byCar?.carImages[0]?.imagePath : ''}`}
+                                campaignsInterest={byCar?.campaignsInterest}
+                                campaignsPrice={byCar?.campaignsPrice}
+                                Id={byCar?.id}
+                                name={byCar.marka}
+                                desc={byCar.description.slice(0, 30)}
+                                price={byCar.price} />
                         ))}
                     </div>
                 </div>

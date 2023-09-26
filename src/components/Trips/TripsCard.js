@@ -16,7 +16,6 @@ const TripsCard = (props) => {
     const { appuserid } = useSelector((x) => x.authReducer);
     const queryClient = useQueryClient();
 
-
     useEffect(() => {
         AOS.init({
             offset: 300,
@@ -25,8 +24,6 @@ const TripsCard = (props) => {
         });
         AOS.refresh();
     }, [])
-
-
 
 
     const Trip_ID = props.Id;

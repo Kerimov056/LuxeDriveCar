@@ -64,16 +64,16 @@ const Strutur = (props) => {
                                             <div>{byCars?.data?.description?.slice(501, 700)}</div>
                                         </div>
                                         <div>{byCars?.data?.description?.slice(701, 900)}</div>
-                                        <div style={byCars?.data?.blogImages[1]?.imagePath ? {} : {display:"none"}} className='endimg'>
-                                            <img  style={byCars?.data?.blogImages[1]?.imagePath ? { objectFit: 'cover' } : {display:"none"}} src={`data:image/jpeg;base64,${byCars?.data?.blogImages[1]?.imagePath}`} />
+                                        <div style={byCars?.data?.blogImages[1]?.imagePath ? {} : { display: "none" }} className='endimg'>
+                                            <img style={byCars?.data?.blogImages[1]?.imagePath ? { objectFit: 'cover' } : { display: "none" }} src={`data:image/jpeg;base64,${byCars?.data?.blogImages[1]?.imagePath}`} />
                                         </div>
-                                        <div style={byCars?.data?.blogImages[2]?.imagePath ? {} : {display:"none"}} className='endimg'>
-                                            <img  style={byCars?.data?.blogImages[2]?.imagePath ? { objectFit: 'cover' } : {display:"none"}} src={`data:image/jpeg;base64,${byCars?.data?.blogImages[2]?.imagePath}`} />
+                                        <div style={byCars?.data?.blogImages[2]?.imagePath ? {} : { display: "none" }} className='endimg'>
+                                            <img style={byCars?.data?.blogImages[2]?.imagePath ? { objectFit: 'cover' } : { display: "none" }} src={`data:image/jpeg;base64,${byCars?.data?.blogImages[2]?.imagePath}`} />
                                         </div>
                                         <div>{byCars?.data?.description?.slice(901)}</div>
                                     </div>
 
-                                    
+
                                 </div>
 
                                 :

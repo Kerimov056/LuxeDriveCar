@@ -131,7 +131,7 @@ console.log("cars",cars);
                             <input
                                 placeholder="search.."
                                 onChange={handleInputChange}
-                                value={searchCity}
+                                // value={searchCity}
                                 className="inputCarS"
                                 name="text"
                                 type="text"
