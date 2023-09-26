@@ -43,7 +43,7 @@ const AllCarMap = () => {
     const [carAddress, setCarAddress] = useState('');
 
     const reverseGeocode = async (lat, lng) => {
-        const apiKey = Google_Maps_Api_Key; 
+        const apiKey = Google_Maps_Api_Key;
 
         try {
             const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`);
@@ -67,7 +67,7 @@ const AllCarMap = () => {
 
     return (
         <>
-            <div className='ss'>
+            <div id="VehicleFleetFindCarMap" className='ss'>
 
                 <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
                     <TileLayer
@@ -76,7 +76,8 @@ const AllCarMap = () => {
                     />
 
                     {AllCar?.data?.map((car, index) => (
-                        console.log("lat:", car.latitude), console.log("lnh:", car.longitude), <Marker
+                        console.log("lat:", car.latitude), console.log("lnh:", car.longitude),
+                        <Marker
                             position={[car?.latitude, car?.longitude]}
                             key={index}
                             icon={markerIcon}
@@ -105,7 +106,7 @@ const AllCarMap = () => {
                             year={selectedMarker?.year}
                             price={selectedMarker?.price}
                             campaignsPrice={selectedMarker?.campaignsPrice}
-                            Address={carAddress} 
+                            Address={carAddress}
                         />
                     </div>
                 </div>

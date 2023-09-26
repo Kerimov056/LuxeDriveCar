@@ -485,9 +485,12 @@ const ByTrip = (props) => {
                                     {showDropdown && (
                                         <div className="dropdownByTrip">
                                             <ul>
-                                                <li onClick={editClose} className='EditByTrip'>Edit</li>
-                                                <li onClick={tripRemove} className='RemoveByTrip'>Remove</li>
-                                                {/* Diğer seçenekleri ekleyin */}
+                                                {(showHtml || myTrip) && (
+                                                    <li onClick={editClose} className='EditByTrip'>Edit</li>
+                                                )}
+                                                {myTrip && (
+                                                    <li onClick={tripRemove} className='RemoveByTrip'>Remove</li>
+                                                )}
                                             </ul>
                                         </div>
                                     )}
