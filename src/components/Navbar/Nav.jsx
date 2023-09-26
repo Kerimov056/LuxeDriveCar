@@ -2,12 +2,16 @@ import { BsSearch } from 'react-icons/bs'
 import './navbar.scss'
 import React from 'react'
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Button } from '@chakra-ui/react';
+import { logoutAction } from '../Redux/Slices/authSlice'
+
 
 
 const Nav = () => {
-    
-    const { appuserid } = useSelector((x) => x.authReducer);
+
+    const { token, username, appuserid } = useSelector((x) => x.authReducer);
+    const dispatch = useDispatch();
 
     return (
         <>
@@ -30,6 +34,12 @@ const Nav = () => {
                         <li><a href={`/Trips/${appuserid ? appuserid : ''}`}>Trips</a></li>
                     </ul>
                     <h1 class="logo"><BsSearch /></h1>
+                    {!token &&
+                        <Link style={{ order: 1 }} to={'/Login'}><Button style={{ backgroundColor: "transparent" }}>LogIn</Button></Link>
+                    }
+                    {token &&
+                        <Link style={{ order: 1 }} to={'/Login'}><Button style={{ backgroundColor: "transparent",marginRight:"-100px" }} onClick={() => dispatch(logoutAction())}>Log out</Button></Link>
+                    }
                 </div>
             </nav>
         </>

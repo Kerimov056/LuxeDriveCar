@@ -24,13 +24,17 @@ const FindCarQuickly = () => {
     };
 
     const handleButtonClick = () => {
-        fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${searchCity}&key=${Google_Maps_Api_Key}`)
+        fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${searchCity ? searchCity : ''}&key=${Google_Maps_Api_Key ? Google_Maps_Api_Key : ''}`)
             .then(response => response.json())
             .then(data => {
-                setSearchCity(data.results[0].geometry.location);
-                setCityBounds(data.results[0].geometry.bounds);
+                if (data.results && data.results[0]) {
+                    setSearchCity(data.results[0].geometry.location);
+                    setCityBounds(data.results[0].geometry.bounds);
+                } else {
+                }
             })
-            .catch();
+            .catch(error => {
+            });
     };
 
 
@@ -50,11 +54,11 @@ const FindCarQuickly = () => {
         staleTime: 0,
     });
 
-    const { data: allType } = useQuery({
-        queryKey: ["type"],
-        queryFn: getType,
-        staleTime: 0,
-    });
+    // const { data: allType } = useQuery({
+    //     queryKey: ["type"],
+    //     queryFn: getType,
+    //     staleTime: 0,
+    // });
 
     const { data: allCategorie } = useQuery({
         queryKey: ["Category"],
@@ -113,8 +117,6 @@ const FindCarQuickly = () => {
         setReturnLocation(location);
     };
 
-console.log("cityBounds",cityBounds);
-console.log("cars",cars);
 
     return (
         <>
