@@ -3,20 +3,20 @@ import './TripsCard.scss';
 import { IoCarSportSharp } from "react-icons/io5";
 import axios from 'axios';
 import { useFormik } from "formik";
-import { useQueryClient } from "react-query";
+import { useQuery, useMutation, useQueryClient } from "react-query";
 import { useSelector } from "react-redux";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
-import  AOS from 'aos'
+import AOS from 'aos'
 import "aos/dist/aos.css";
-
+import { RemoveTrip } from "../Services/tripServices";
 
 const TripsCard = (props) => {
     const { appuserid } = useSelector((x) => x.authReducer);
     const queryClient = useQueryClient();
 
-    
+
     useEffect(() => {
         AOS.init({
             offset: 300,
@@ -29,27 +29,22 @@ const TripsCard = (props) => {
 
 
 
-    const formik = useFormik({
-        initialValues: {
-            tripId: props.Id || null,
-            AppUserId: appuserid ? appuserid : '',
-        },
-        onSubmit: async (values) => {
-            try {
-                const response = await axios.delete('https://localhost:7152/api/Trips/RemoveTrip', {
-                    data: values,
-                });
+    const Trip_ID = props.Id;
 
-                if (response.status === 200) {
-                    queryClient.invalidateQueries('trips');
-                    queryClient.invalidateQueries('myTripCount');
-                    toast.success(`Remove ${props.Destination} Trip`, { position: toast.POSITION.TOP_RIGHT });
-                }
-            } catch (error) {
-                console.error('Error:', error);
-            }
+    const { mutate } = useMutation(() => RemoveTrip(Trip_ID, appuserid), {
+        onSuccess: (data) => {
+            queryClient.invalidateQueries(['trips']);
+            queryClient.invalidateQueries(['trip']);
+            queryClient.invalidateQueries(['myTripCount']);
         },
+        onError: (error) => {
+        }
     });
+
+
+    const tripRemove = async () => {
+        mutate({ TripId: Trip_ID, AppUserId: appuserid });
+    }
 
     function formatDate(inputDate) {
         const months = [
@@ -73,7 +68,7 @@ const TripsCard = (props) => {
                 <div>
                     <div className='DeleteByTrip'>
                         <h1></h1>
-                        <button type="button" onClick={formik.handleSubmit}>Delete this Trip</button>
+                        <button type="button" onClick={tripRemove}>Delete this Trip</button>
                     </div>
                     <h1><Link to={`/ByTrip/${props.Id}`} >{props.Destination} Trip</Link></h1>
                     <h3>{formatDate(props.startDate)} - {formatDate(props.endDate)}</h3>

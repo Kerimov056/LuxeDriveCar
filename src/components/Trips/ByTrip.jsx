@@ -23,7 +23,7 @@ import Search from "./Search";
 import Unsplash from './Unsplash';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import tripImage from "./Trips.avif";
 
 
 function formatDate(inputDate) {
@@ -104,6 +104,12 @@ const ByTrip = (props) => {
     const [editModal, setEditModal] = useState(false);
     function editClose() {
         setEditModal(!editModal);
+        setShowDropdown(false)
+    }
+
+    const [removeModal, setRemoveModal] = useState(false);
+    function removeClose() {
+        setRemoveModal(!removeModal);
         setShowDropdown(false)
     }
 
@@ -314,6 +320,24 @@ const ByTrip = (props) => {
         <>
 
             <Modal
+                isOpen={removeModal}
+                onRequestClose={removeClose}
+                style={customStyles}
+                contentLabel="Example Modal"
+            >
+                <div id='deletingYourTrip'>
+                    <div className='deletingYourTrip_img'>
+                        <img src={tripImage} />
+                    </div>
+                    <div className='deletingYourTrip_text'>
+                        <h1>Are you sure about deleting your Trip?</h1>
+                        <button id='tripRemove' onClick={tripRemove}><span></span>Yes</button>
+                    </div>
+                </div>
+            </Modal>
+
+
+            <Modal
                 isOpen={editModal}
                 onRequestClose={editClose}
                 style={customStyles}
@@ -490,7 +514,7 @@ const ByTrip = (props) => {
                                                     <li onClick={editClose} className='EditByTrip'>Edit</li>
                                                 )}
                                                 {myTrip && (
-                                                    <li onClick={tripRemove} className='RemoveByTrip'>Remove</li>
+                                                    <li onClick={removeClose} className='RemoveByTrip'>Remove</li>
                                                 )}
                                             </ul>
                                         </div>
