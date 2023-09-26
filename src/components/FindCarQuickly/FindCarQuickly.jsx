@@ -30,7 +30,7 @@ const FindCarQuickly = () => {
                 setSearchCity(data.results[0].geometry.location);
                 setCityBounds(data.results[0].geometry.bounds);
             })
-            .catch(error => console.error('Hata:', error));
+            .catch();
     };
 
 
