@@ -278,30 +278,35 @@ const ByTrip = (props) => {
                     'Content-Type': 'multipart/form-data',
                 },
             })
-            if (response.status === 201) {
+            if (response.status === 200) {
                 queryClient.invalidateQueries('trips');
                 queryClient.invalidateQueries('trip');
                 toast.success(`Create new ${filteredCities} Trip`, { position: toast.POSITION.TOP_RIGHT });
-                setEditModal(false)
+                setEditModal(!editModal)
             }
         },
-    });
+    });           ////Burda modal baglanmali ve reflesh atmalidi 
 
 
     //-------------------------------------------------
     //---------------Remove---------------------------
 
-    const By_TRIP_Id = byTrip?.data?.id;
+    const Trip_ID = byTrip?.data?.id;
 
-    const handleRemove = async () => {
-        try {
-            await RemoveTrip({ By_TRIP_Id, AppUserId: appuserid });
-            queryClient.invalidateQueries('trips');
-            queryClient.invalidateQueries('trip');
-        } catch (error) {
+    const { mutate } = useMutation(() => RemoveTrip(Trip_ID, appuserid), {
+        onSuccess: (data) => {
+            queryClient.invalidateQueries(['trips']);
+            queryClient.invalidateQueries(['trip']);
+            navigate('/Trips')
+        },
+        onError: (error) => {
         }
-    };
+    });
 
+
+    const tripRemove = async () => {
+        mutate({ TripId: Trip_ID, AppUserId: appuserid });
+    }
     //------------------------------------------------
 
     return (
@@ -481,7 +486,7 @@ const ByTrip = (props) => {
                                         <div className="dropdownByTrip">
                                             <ul>
                                                 <li onClick={editClose} className='EditByTrip'>Edit</li>
-                                                <li onClick={handleRemove} className='RemoveByTrip'>Remove</li>
+                                                <li onClick={tripRemove} className='RemoveByTrip'>Remove</li>
                                                 {/* Diğer seçenekleri ekleyin */}
                                             </ul>
                                         </div>

@@ -58,7 +58,6 @@ const TripNote = (props) => {
     const editTripNote = () => {
         setEdit(prevEdit => !prevEdit);
         setIsOpen(true);
-        console.log("ssssss");
     };
 
 
@@ -98,8 +97,8 @@ const TripNote = (props) => {
                         'Content-Type': 'multipart/form-data',
                     },
                 })
-                if (response.status === 201) {
-                    setEdit(false)
+                if (response.status === 200) {
+                    setEdit(!edit)
                     queryClient.invalidateQueries('tripNotes');
                     queryClient.invalidateQueries('trip');
                 }
