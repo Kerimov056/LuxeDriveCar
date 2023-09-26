@@ -4,7 +4,7 @@ import { Button, Container } from '@chakra-ui/react'
 import { useFormik } from "formik";
 import Navbar from "../Navbar/Navbar";
 import axios from 'axios';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ReCAPTCHA from 'react-google-recaptcha';
 
@@ -12,6 +12,7 @@ import ReCAPTCHA from 'react-google-recaptcha';
 
 const Communication = () => {
 
+    const notify = () => toast("We accepted your e-mail");
 
     const formik = useFormik({
         initialValues: {
@@ -38,7 +39,7 @@ const Communication = () => {
                     },
                 })
                 if (response.status === 201) {
-                    toast.success('We accepted your e-mail', { position: toast.POSITION.TOP_RIGHT });
+                    // toast.success('We accepted your e-mail', { position: toast.POSITION.TOP_RIGHT });
                 }
 
             } catch (error) {
@@ -129,7 +130,7 @@ const Communication = () => {
                                     data-theme="dark light"
                                 />
                                 {/* <Button type='submit' >Send</Button> */}
-                                <button type='submit' class="continue-application">
+                                <button type='submit' onClick={notify} class="continue-application">
                                     <div>
                                         <div class="pencil"></div>
                                         <div class="folder">
@@ -143,6 +144,19 @@ const Communication = () => {
                                     </div>
                                     Send
                                 </button>
+                                <ToastContainer
+                                    position="bottom-center"
+                                    autoClose={5000}
+                                    hideProgressBar={false}
+                                    newestOnTop={false}
+                                    style={{width:"500px",textAlign:"center"}}
+                                    closeOnClick
+                                    rtl={false}
+                                    pauseOnFocusLoss
+                                    draggable
+                                    pauseOnHover
+                                    theme="light"
+                                />
                             </div>
                         </form>
 

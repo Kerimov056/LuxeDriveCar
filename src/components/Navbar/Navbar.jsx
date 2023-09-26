@@ -52,7 +52,9 @@ const Navbar = () => {
         }
         navigate(url);
     };
+
     const [search, setSearch] = useState(false);
+    
     useEffect(() => {
         AOS.init({
             offset: 130,
@@ -114,6 +116,7 @@ const Navbar = () => {
                         <li><a href='/Blogs'>BLOG</a></li>
                         <li><a href='/Shop'>SHOP</a></li>
                         <li><a href='/Communication'>Contact</a></li>
+                        <li><a href={`/Trips/${appuserid ? appuserid : ''}`}>Trips</a></li>
                     </ul>
                     <ul style={{ order: 2 }}>
                         <li style={{ listStyle: "none" }}>
@@ -124,7 +127,7 @@ const Navbar = () => {
                             </Link>
                         </li>
                     </ul>
-                    <ul style={{ order: 2, marginLeft: "-90px" }}>
+                    <ul style={{ order: 2, marginLeft: "-50px" }}>
                         <li style={{ listStyle: "none" }}>
                             <Link to={'/Wishlist'} className='WishlistCar'><BsFillBalloonHeartFill id='SumCar' />
                             </Link>

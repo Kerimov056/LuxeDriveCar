@@ -30,10 +30,10 @@ const markerIcon = new L.Icon({
 
 const Maps = (props) => {
 
-    console.log("props.lat", props.lat);
-    console.log("props.lng", props.lng);
     const [center, setCenter] = useState({ lat: props.lat ? props.lat : '', lng: props.lng ? props.lng : '' });
 
+    console.log("lat>>>>>",props.lat);
+    console.log("lng>>>>>",props.lng);
 
     const [pickUpLocationMap, setPickUpLocationMap] = useState({ lat: null, lng: null });
     const [returnUpLocationMap, setReturnUpLocationMap] = useState({ lat: null, lng: null })
@@ -62,15 +62,15 @@ const Maps = (props) => {
     return (
         <>
             <div className='ss'>
-                <MapContainer center={[props.lat ? props.lat : '', props.lng ? props.lng : '']} zoom={13} scrollWheelZoom={false}>
+                <MapContainer center={center} zoom={13} scrollWheelZoom={false}>
                     <TileLayer
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                        url="https://api.maptiler.com/maps/ch-swisstopo-lbm-dark/{z}/{x}/{y}.png?key=S3UF58mBkVoHt2UkKpEL"
+                        url="https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}.png?key=S3UF58mBkVoHt2UkKpEL"
                     />
                     <FeatureGroup>
                         <EditControl position='topright' onCreated={handleDrawCreated} draw={{ rectangle: false, circlemarker: false, polygon: false }} />
                     </FeatureGroup>
-                    <Marker position={[props.lat ? props.lat : '', props.lng ? props.lng : '']} icon={markerIcon}>
+                    <Marker position={center} icon={markerIcon}>
                         <Popup>
                             A pretty CSS3 popup. <br /> Easily customizable.
                         </Popup>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import './ByTrip.scss'
 import Maps from "../Map/Maps";
 import Navbar from "../Navbar/Navbar";
@@ -11,19 +11,22 @@ import { ImLocation } from "react-icons/im";
 import { getByTrip, RemoveTrip } from "../Services/tripServices";
 import TripNote from "./TripNote";
 import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useFormik } from "formik";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import axios from 'axios';
 import { getAllTripNotes } from "../Services/tripNoteServices";
 import Modal from 'react-modal';
 import { AiFillCloseCircle, AiOutlineLink } from "react-icons/ai";
-import { getAllShareContirbuter } from "../Services/shareTripServices";
+import { getAllShareContirbuter, getAllShareTrip, updateShareTrip } from "../Services/shareTripServices";
 import Search from "./Search";
 import Unsplash from './Unsplash';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import tripImage from "./Trips.avif";
+import { MapContainer, TileLayer, Marker, Popup, FeatureGroup } from "react-leaflet";
+import L from "leaflet";
+import { EditControl } from "react-leaflet-draw";
 
 
 function formatDate(inputDate) {
@@ -49,13 +52,35 @@ const customStyles = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
+        height: 'auto'
     },
 };
+
+const markerIcon = new L.Icon({
+    iconUrl: require("./download.png"),
+    iconSize: [45, 35],
+    iconAnchor: [17, 46],
+    popupAnchor: [0, -46],
+});
+
+
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+    iconRetinaUrl:
+        "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-icon.png",
+    iconUrl:
+        "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-icon.png",
+    shadowUrl:
+        "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-shadow.png",
+});
+
+
 
 const currentDateTime = new Date().toISOString().slice(0, 16);
 
 const ByTrip = (props) => {
-
+    const mapRef = useRef();
     const { appuserid, username, email } = useSelector((x) => x.authReducer);
 
     const [mapEnter, setMapEnter] = useState(false);
@@ -95,6 +120,11 @@ const ByTrip = (props) => {
     };
 
 
+    const [sharedUserModal, setSharedUserModal] = useState(false);
+    function sharedModalClose() {
+        setSharedUserModal(!sharedUserModal);
+    }
+
     const [showModal, setShowModal] = useState(false);
     function closeModal() {
         setShowModal(!showModal);
@@ -118,6 +148,10 @@ const ByTrip = (props) => {
     const { data: byTrip } = useQuery(["trip", markaLocation], () =>
         getByTrip(markaLocation)
     );
+
+    //-------- shareTripAll
+    const { data: shareTripAll } = useQuery('getAllShareTrip', () => getAllShareTrip(markaLocation ? markaLocation : ''));
+    //--------
 
     //-------- TripNotes
     const { data: tripsNote } = useQuery('tripNotes', () => getAllTripNotes(markaLocation ? markaLocation : ''));
@@ -304,7 +338,7 @@ const ByTrip = (props) => {
             queryClient.invalidateQueries(['trips']);
             queryClient.invalidateQueries(['trip']);
             queryClient.invalidateQueries(['myTripCount']);
-            navigate('/Trips')
+            navigate(`/Trips/${appuserid}`)
         },
         onError: (error) => {
         }
@@ -315,6 +349,41 @@ const ByTrip = (props) => {
         mutate({ TripId: Trip_ID, AppUserId: appuserid });
     }
     //------------------------------------------------
+
+
+    //-------------------Update Share Trip-------------------
+
+
+    // const updateFormik = useFormik({
+    //     initialValues: {
+    //         Email: '',
+    //         TripRole: tripRole ? tripRole : '',
+    //         TripId: byTrip?.data?.id ? byTrip?.data?.id : '',
+    //         AppUserId: appuserid ? appuserid : ''
+    //     },
+    //     onSubmit: async (values) => {
+    //         const formData = new FormData();
+
+    //         formData.append('Email', values.Email);
+    //         formData.append('TripRole', tripRole === 0 ? 0 : 1);
+    //         formData.append('TripId', byTrip?.data?.id ? byTrip?.data?.id : '');
+    //         formData.append('AppUserId', appuserid ? appuserid : '');
+
+    //         const response = await axios.put(`https://localhost:7152/api/ShareTrips/${"ShareTrip.id"}`, formData, {
+    //             headers: {
+    //                 'Content-Type': 'multipart/form-data',
+    //             },
+    //         })
+    //         if (response.status === 201) {
+    //             queryClient.invalidateQueries('getAllShareTrip');
+    //             queryClient.invalidateQueries('trip');
+    //             // setShowModal(false);
+    //         }
+    //     },
+    // });
+
+    //------------------------------------------------
+    const [center, setCenter] = useState({ lat: byTrip?.data?.tripLatitude, lng: byTrip?.data?.tripLatitude});
 
     return (
         <>
@@ -440,7 +509,6 @@ const ByTrip = (props) => {
                             <span>You can share your trip with your friends by clicking Copy Link.</span>
                             <Button onClick={copyLink} style={{ backgroundColor: copying ? '#07FC00' : '' }} ><AiOutlineLink /> Copy link</Button>
                         </div>
-
                     </div>
                     <div className='ShareByTrip_2'>
                         <form onSubmit={shareFormik.handleSubmit}>
@@ -461,8 +529,8 @@ const ByTrip = (props) => {
                                             }}
                                             defaultValue='0'
                                         >
-                                            <option value='0'>Option 1</option>
-                                            <option value='1'>Option 2</option>
+                                            <option value='0'>View only</option>
+                                            <option value='1'>Can Edit</option>
                                         </Select>
                                     </div>
                                 </div>
@@ -480,16 +548,33 @@ const ByTrip = (props) => {
                     </div>
                     <div className='ShareByTrip_3'>
                         <h1><p></p><p>Owner</p></h1>
-                        <div>
-                            <div><Button>ME</Button> <span>meimeiiemiem439 (you)</span></div>
-                            <Select id='UpdatDegreeTrip' placeholder='Select option'>
-                                <option value='option1'>Option 1</option>
-                                <option value='option2'>Option 2</option>
-                            </Select>
-                        </div>
+                        <Button onClick={sharedModalClose} >People with whom the trip was shared</Button>
                     </div>
                 </div>
             </Modal>
+
+            <Modal
+                isOpen={sharedUserModal}
+                onRequestClose={sharedModalClose}
+                style={customStyles}
+                contentLabel="Example Modal"
+            >
+                <div className='sharedModalClose'>
+                    <h1><p></p><p><AiFillCloseCircle onClick={sharedModalClose} /></p></h1>
+                    {shareTripAll?.data?.map((byShare) => (
+                        <div id='setSharedUser'>
+                            <div><Button>ME</Button> <span>{byShare?.email} </span></div>
+                            <div>
+                                <Select id='UpdatDegreeTrip'>
+                                    <option value='option1'>{byShare?.tripRole === 0 ? "Can Edit" : "View Only"}</option>
+                                    <option value='option2'>{byShare?.tripRole !== 0 ? "Can Edit" : "View Only"}</option>
+                                </Select>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </Modal>
+
 
 
             <div style={{ marginTop: "70px" }}>
@@ -575,7 +660,21 @@ const ByTrip = (props) => {
                 </div>
                 <div style={mapEnter === true ? { display: "none" } : {}} className='ByTrip_map'>
                     <Button onClick={mapOpen}>Colse map</Button>
-                    <Maps lat={byTrip?.data?.tripLatitude} lng={byTrip?.data?.tripLongitude} />
+                    <MapContainer style={{ width: "100%", height: "100%" }} center={[byTrip?.data?.tripLatitude ? byTrip?.data?.tripLatitude : 40.3798, byTrip?.data?.tripLongitude ? byTrip?.data?.tripLongitude : 49.8486]} zoom={13} scrollWheelZoom={false} ref={mapRef}>
+                        <TileLayer
+                            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                            url="https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}.png?key=S3UF58mBkVoHt2UkKpEL"
+                        />
+                        <FeatureGroup>
+                            <EditControl position='topright' draw={{ rectangle: false, circlemarker: false, polygon: false, marker: true, }} />
+                        </FeatureGroup>
+                        <Marker
+                            position={[byTrip?.data?.tripLatitude ? byTrip?.data?.tripLatitude : 40.3798, byTrip?.data?.tripLongitude ? byTrip?.data?.tripLongitude : 49.8486]}
+                            icon={markerIcon}
+                        >
+                            <Popup>My Location</Popup>
+                        </Marker>
+                    </MapContainer>
                 </div>
             </div>
         </>

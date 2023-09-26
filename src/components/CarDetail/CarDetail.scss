@@ -239,13 +239,17 @@
                         button {
                             margin-top: 50px;
                             width: 100%;
-                            background-color: #ffffff;
-                            color: #080710;
+                            background-color: #bfa37c;
+                            color: #1d2825;
                             padding: 15px 0;
                             font-size: 18px;
                             font-weight: 600;
                             border-radius: 5px;
                             cursor: pointer;
+
+                            &:hover{
+                                background-color: #246565;
+                            }
                         }
                     }
                 }
@@ -333,3 +337,4 @@
         color: rgb(180, 27, 27);
     }
 }
+

@@ -213,6 +213,7 @@
         &>p {
             &>svg {
                 font-size: 24px;
+                cursor: pointer;
             }
         }
     }
@@ -280,6 +281,7 @@
                     .SelectTypeSend {
                         width: 23%;
                         margin-top: 8px !important;
+
                     }
                 }
             }
@@ -318,34 +320,9 @@
 
         }
 
-        &>div {
-            margin-top: 15px;
-            width: 100%;
-            height: auto;
-            display: flex;
-            justify-content: space-between;
+        &>Button {
+            background-color: rgb(30, 142, 130);
 
-            &>div {
-                width: auto;
-                height: 50px;
-                display: flex;
-
-                &>p {
-                    border-radius: 60%;
-                    background-color: rgb(45, 41, 41);
-                    color: rgba(255, 255, 255, 0.663);
-                }
-
-                &>span {
-                    margin-top: 5px;
-                    color: rgba(255, 255, 255, 0.663);
-                    margin-left: 16px;
-                }
-            }
-
-            #UpdatDegreeTrip {
-                width: 120px;
-            }
         }
     }
 }
@@ -482,4 +459,36 @@
 .dropdownByTrip .RemoveByTrip:hover {
     background-color: #ff2508ed;
     cursor: pointer;
+}
+
+.sharedModalClose {
+    width: 600px;
+
+    &>h1{
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &>p{
+            &>svg{
+                font-size: 25px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    #setSharedUser {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: space-between;
+
+        &>div {
+            margin-top: 15px;
+            font-size: 18px;
+        }
+
+    }
 }

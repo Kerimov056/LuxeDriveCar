@@ -47,10 +47,10 @@ const Trips = () => {
     const [locationMap, setLocationMap] = useState({ lat: null, lng: null });
 
     //-----TripCount--------
-     const { data: byTripCount } = useQuery('myTripCount', () => myTripCount(appuserid ? appuserid : ''));
+    const { data: byTripCount } = useQuery('myTripCount', () => myTripCount(appuserid ? appuserid : ''));
     //-----TripCount--------
-    
-    
+
+
     useEffect(() => {
         const [lat, lng] = location.split(' ');
         setLocationMap({ lat, lng });
@@ -126,15 +126,6 @@ const Trips = () => {
             formData.append('TripLatitude', locationMap.lat ? locationMap.lat : '');
             formData.append('TripLongitude', locationMap.lng ? locationMap.lng : '');
             formData.append('AppUserId', values.AppUserId);
-
-            // console.log("Image", formData.getAll("Image"));
-            // console.log("destions", formData.getAll("Destination"));
-            // console.log("Name", formData.getAll("Name"));
-            // console.log("startDate", formData.getAll("StartDate"));
-            // console.log("endDate", formData.getAll("EndDate"));
-            // console.log("lat", formData.getAll("TripLatitude"));
-            // console.log("lng", formData.getAll("TripLongitude"));
-            // console.log("user", formData.getAll("AppUserId"));
 
             const response = await axios.post('https://localhost:7152/api/Trips', formData, {
                 headers: {

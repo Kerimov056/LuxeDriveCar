@@ -2,10 +2,12 @@ import { BsSearch } from 'react-icons/bs'
 import './navbar.scss'
 import React from 'react'
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 
 const Nav = () => {
-
+    
+    const { appuserid } = useSelector((x) => x.authReducer);
 
     return (
         <>
@@ -25,6 +27,7 @@ const Nav = () => {
                         <li><a href='/Blogs'>BLOG</a></li>
                         <li><a href='/Shop'>SHOP</a></li>
                         <li><a href='/Communication'>Contact</a></li>
+                        <li><a href={`/Trips/${appuserid ? appuserid : ''}`}>Trips</a></li>
                     </ul>
                     <h1 class="logo"><BsSearch /></h1>
                 </div>

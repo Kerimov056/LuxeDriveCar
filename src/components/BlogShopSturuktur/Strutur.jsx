@@ -23,13 +23,12 @@ const Strutur = (props) => {
         queryFn: getCarAll,
         staleTime: 0,
     });
-    console.log("---------", cars?.data);
+
     const { data: CarImages } = useQuery({
         queryKey: ["Faqs"],
         queryFn: getCarImage,
         staleTime: 0,
     });
-
 
     const { data: blogs } = useQuery({
         queryKey: ["Blogs"],

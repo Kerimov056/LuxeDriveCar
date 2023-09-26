@@ -13,7 +13,7 @@ import {
     Button, FormControl
 } from '@chakra-ui/react'
 import reservationScheme from "../Validators/ReservationScheme";
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -21,6 +21,8 @@ const Basket = () => {
 
     const { appuserid } = useSelector((x) => x.authReducer);
     const dispatch = useDispatch();
+    const notify = () => toast("Cart Added");
+
 
     const { data: basketCars } = useQuery({
         queryKey: ["Cars", appuserid],
@@ -111,6 +113,7 @@ const Basket = () => {
                 if (response.status === 201) {
                     queryClient.invalidateQueries('getReservation');
                     toast.success("New Cars Reservation Success");
+                    notify();
                     navigate('/MyProfile');
                 }
 
@@ -160,7 +163,7 @@ const Basket = () => {
                                 )}  {basketCars?.data?.length !== 0 && (
                                     <div className="paypal">
                                         {/* <div className='PaypalCarReserv'>Paypal</div> */}
-                                        <div style={{marginLeft:"230px"}} className='BasketReservationCar'>
+                                        <div style={{ marginLeft: "230px" }} className='BasketReservationCar'>
                                             <div className='ByReservACar'>
 
                                                 <form className='login_form' onSubmit={reservFormik.handleSubmit} >
@@ -276,6 +279,9 @@ const Basket = () => {
                                                         />
 
                                                         <Button type='submit'>Order</Button>
+                                                        <ToastContainer
+                                                            position="bottom-center"
+                                                        />
                                                     </FormControl>
                                                 </form>
 
