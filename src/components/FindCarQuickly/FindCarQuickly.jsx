@@ -102,6 +102,7 @@ const FindCarQuickly = () => {
         staleTime: 0,
     });
 
+
     const [carAddress, setCarAddress] = useState('');
 
     const setSelectedMarker = (marker) => {
@@ -112,7 +113,8 @@ const FindCarQuickly = () => {
         setReturnLocation(location);
     };
 
-
+console.log("cityBounds",cityBounds);
+console.log("cars",cars);
 
     return (
         <>
@@ -129,7 +131,7 @@ const FindCarQuickly = () => {
                             <input
                                 placeholder="search.."
                                 onChange={handleInputChange}
-                                //value={searchCity}
+                                value={searchCity}
                                 className="inputCarS"
                                 name="text"
                                 type="text"

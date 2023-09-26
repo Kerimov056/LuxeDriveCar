@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './ByTrip.scss'
 import Maps from "../Map/Maps";
 import Navbar from "../Navbar/Navbar";
-import { Button, Input, Select, Textarea } from '@chakra-ui/react';
+import {
+    Button, Input, Select, Textarea, Text,
+    FormLabel, FormControl
+} from '@chakra-ui/react';
 import { RiUserShared2Line } from "react-icons/ri";
 import { ImLocation } from "react-icons/im";
-import { getByTrip } from "../Services/tripServices";
+import { getByTrip, RemoveTrip } from "../Services/tripServices";
 import TripNote from "./TripNote";
 import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,6 +19,11 @@ import { getAllTripNotes } from "../Services/tripNoteServices";
 import Modal from 'react-modal';
 import { AiFillCloseCircle, AiOutlineLink } from "react-icons/ai";
 import { getAllShareContirbuter } from "../Services/shareTripServices";
+import Search from "./Search";
+import Unsplash from './Unsplash';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 function formatDate(inputDate) {
@@ -44,6 +52,7 @@ const customStyles = {
     },
 };
 
+const currentDateTime = new Date().toISOString().slice(0, 16);
 
 const ByTrip = (props) => {
 
@@ -71,8 +80,8 @@ const ByTrip = (props) => {
     };
 
 
-    const location = useLocation();
-    const params = location.pathname.split('/').filter(param => param !== '');
+    const locationUrl = useLocation();
+    const params = locationUrl.pathname.split('/').filter(param => param !== '');
     const markaLocation = params[1] || '';
 
     const queryClient = useQueryClient();
@@ -92,10 +101,19 @@ const ByTrip = (props) => {
         setCopying(false)
     }
 
+    const [editModal, setEditModal] = useState(false);
+    function editClose() {
+        setEditModal(!editModal);
+        setShowDropdown(false)
+    }
+
+
 
     const { data: byTrip } = useQuery(["trip", markaLocation], () =>
         getByTrip(markaLocation)
     );
+
+
     //-------- TripNotes
     const { data: tripsNote } = useQuery('tripNotes', () => getAllTripNotes(markaLocation ? markaLocation : ''));
     //--------
@@ -166,8 +184,218 @@ const ByTrip = (props) => {
     });
 
 
+    //------------Edit By Trip------------------------
+
+
+
+    const [location, setLocation] = useState('');
+    const [locationMap, setLocationMap] = useState({ lat: null, lng: null });
+
+    useEffect(() => {
+        const [lat, lng] = location.split(' ');
+        setLocationMap({ lat, lng });
+    }, [location]);
+
+
+    const destination = `${byTrip?.data?.destination} , US`
+
+    const [city, setCity] = useState(destination ? destination : '');
+    const cities = city.split(",");
+    const filteredCities = cities.filter((item, index) => index % 2 === 0);
+
+    const searchData = (data) => {
+        setCity(data.label);
+        setLocation(data.value);
+    }
+
+
+    const [images, setImages] = useState([]);
+
+    const handleImagesChange = (images) => {
+        setImages(images);
+    };
+
+
+    const [selectedDate, setSelectedDate] = useState(null);
+    const [selectedDate1, setSelectedDate1] = useState(null);
+
+    // useEffect(() => {
+    // }, [selectedDate1])
+
+    const handleDateChange = (e) => {
+        const selected = new Date(e.target.value);
+        const now = new Date();
+
+        if (selected < now) {
+            return;
+        }
+        setSelectedDate(e.target.value);
+    };
+
+    const handleDateChange1 = (e) => {
+        const selected = new Date(e.target.value);
+        if (selectedDate === null) {
+            return;
+        }
+        if (selected < selectedDate) {
+            return;
+        }
+        setSelectedDate1(e.target.value);
+    };
+
+
+    useEffect(() => {
+        editTripFormik.setFieldValue('Name', byTrip?.data?.name);
+    }, [byTrip?.data?.name]);
+
+
+    const editTripFormik = useFormik({
+        initialValues: {
+            Image: images ? images : '',
+            Destination: filteredCities ? filteredCities : '',
+            Name: "",
+            StartDate: selectedDate ? selectedDate : '',
+            EndDate: selectedDate1 ? selectedDate1 : '',
+            TripLatitude: null,
+            TripLongitude: null,
+            AppUserId: appuserid ? appuserid : ''
+        },
+        onSubmit: async (values) => {
+            const formData = new FormData();
+
+            formData.append('Image', images ? images : '');
+            formData.append('Destination', filteredCities ? filteredCities : '');
+            formData.append('Name', values.Name);
+            formData.append('StartDate', selectedDate ? selectedDate : '');
+            formData.append('EndDate', selectedDate1 ? selectedDate1 : '');
+            formData.append('TripLatitude', locationMap.lat ? locationMap.lat : '');
+            formData.append('TripLongitude', locationMap.lng ? locationMap.lng : '');
+            formData.append('AppUserId', values.AppUserId);
+
+
+            const response = await axios.put(`https://localhost:7152/api/Trips/Update/${byTrip?.data?.id}`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            })
+            if (response.status === 201) {
+                queryClient.invalidateQueries('trips');
+                queryClient.invalidateQueries('trip');
+                toast.success(`Create new ${filteredCities} Trip`, { position: toast.POSITION.TOP_RIGHT });
+                setEditModal(false)
+            }
+        },
+    });
+
+
+    //-------------------------------------------------
+    //---------------Remove---------------------------
+
+    const By_TRIP_Id = byTrip?.data?.id;
+
+    const handleRemove = async () => {
+        try {
+            await RemoveTrip({ By_TRIP_Id, AppUserId: appuserid });
+            queryClient.invalidateQueries('trips');
+            queryClient.invalidateQueries('trip');
+        } catch (error) {
+        }
+    };
+
+    //------------------------------------------------
+
     return (
         <>
+
+            <Modal
+                isOpen={editModal}
+                onRequestClose={editClose}
+                style={customStyles}
+                contentLabel="Example Modal"
+            >
+                <div style={{ height: "auto" }} className='TrueAccess'>
+                    <div className='onCloceSuc'>
+                        <h1 style={{ marginLeft: "570px" }}><AiFillCloseCircle onClick={editClose} /></h1>
+                    </div>
+                    <div className='GameToTrueAccesS'>
+                        <h1>Create a Trip</h1>
+                        <div>
+                            <Unsplash query={filteredCities} onImagesChange={handleImagesChange} />
+                        </div>
+                        <form onSubmit={editTripFormik.handleSubmit}>
+                            <div>
+                                <label>Destination</label>
+                                <Search searchCountry={searchData} />
+                            </div>
+                            <div>
+                                <label htmlFor="password">Trip Name</label>
+                                <Text fontSize={"15px"} color={"red"} mb="8px">
+                                    {/* {reservFormik.touched.FullName && reservFormik.errors.FullName} */}
+                                </Text>
+                                <Input
+                                    // isInvalid={reservFormik.errors.FullName && reservFormik.touched.FullName}
+                                    name='Name'
+                                    value={editTripFormik.values.Name}
+                                    onChange={editTripFormik.handleChange}
+                                    placeholder='Here is a sample placeholder'
+                                    size='sm'
+                                />
+                            </div>
+                            <div className='pickReturnDate'>
+                                <div>
+                                    <label htmlFor="password">Start date</label>
+                                    <Text fontSize={"15px"} color={"red"} mb="8px">
+                                        {/* {reservFormik.touched.PickupDate && reservFormik.errors.PickupDate} */}
+                                    </Text>
+                                    <Input
+                                        // isInvalid={reservFormik.errors.PickupDate && reservFormik.touched.PickupDate}
+                                        placeholder="Select Date and Time"
+                                        size="2md"
+                                        type="datetime-local"
+                                        value={selectedDate}
+                                        onChange={handleDateChange}
+                                        min={currentDateTime}
+                                        style={{
+                                            borderTop: "none",
+                                            borderRight: "none",
+                                            borderLeft: "none",
+                                            borderBottom: "1px solid white",
+                                        }}
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="password">End date</label>
+                                    <Text fontSize={"15px"} color={"red"} mb="8px">
+                                        {/* {reservFormik.touched.ReturnDate && reservFormik.errors.ReturnDate} */}
+                                    </Text>
+                                    <Input
+                                        // isInvalid={reservFormik.errors.ReturnDate && reservFormik.touched.ReturnDate}
+                                        placeholder="Select Date and Time"
+                                        size="2md"
+                                        type="datetime-local"
+                                        value={selectedDate1}
+                                        onChange={handleDateChange1}
+                                        min={currentDateTime}
+                                        style={{
+                                            borderTop: "none",
+                                            borderRight: "none",
+                                            borderLeft: "none",
+                                            borderBottom: "1px solid white",
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                            <div className='TripCreateButton'>
+                                <button type='submit' class="btnTripeCreate">
+                                    Save
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </Modal>
+
+
             <Modal
                 isOpen={showModal}
                 onRequestClose={closeModal}
@@ -233,6 +461,7 @@ const ByTrip = (props) => {
                 </div>
             </Modal>
 
+
             <div style={{ marginTop: "70px" }}>
                 <Navbar />
             </div>
@@ -251,8 +480,8 @@ const ByTrip = (props) => {
                                     {showDropdown && (
                                         <div className="dropdownByTrip">
                                             <ul>
-                                                <li className='EditByTrip'>Edit</li>
-                                                <li className='RemoveByTrip'>Remove</li>
+                                                <li onClick={editClose} className='EditByTrip'>Edit</li>
+                                                <li onClick={handleRemove} className='RemoveByTrip'>Remove</li>
                                                 {/* Diğer seçenekleri ekleyin */}
                                             </ul>
                                         </div>
