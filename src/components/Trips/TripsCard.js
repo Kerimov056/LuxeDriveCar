@@ -56,6 +56,16 @@ const TripsCard = (props) => {
         return `${day}, ${month}`;
     }
 
+    function isBeforeNow(dateString) {
+        const now = new Date();
+        const date = new Date(dateString);
+        return date < now;
+    }
+
+    const isDateBeforeNow = isBeforeNow(props.endDate);
+    console.log(isDateBeforeNow);
+
+
     return (
         <div data-aos="fade-right" id='TripsCard'>
             <div className='TripsCard_img'>
@@ -70,6 +80,17 @@ const TripsCard = (props) => {
                     <h1><Link to={`/ByTrip/${props.Id}`} >{props.Destination} Trip</Link></h1>
                     <h3>{formatDate(props.startDate)} - {formatDate(props.endDate)}</h3>
                     <h4><IoCarSportSharp /><span>0</span></h4>
+                    <span>
+                        {isDateBeforeNow === true ? (
+                            <label style={{marginTop:"20px"}} className="containerCampletTrip">
+                                <input type="checkbox" checked={true} />
+                                <div className="checkmark"></div>
+                            </label>
+                        ) : (
+                            ''
+                        )}
+                    </span>
+
                 </div>
             </div>
         </div>

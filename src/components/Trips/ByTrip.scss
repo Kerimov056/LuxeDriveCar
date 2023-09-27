@@ -45,6 +45,8 @@
                                 margin-right: 7px;
                             }
                         }
+
+
                     }
                 }
 
@@ -125,10 +127,11 @@
                     align-items: center;
                     flex-wrap: wrap;
                     overflow-y: scroll !important;
+
                     &::-webkit-scrollbar {
                         display: none;
                     }
-                    
+
                     .AddNote {
                         margin-top: 50px;
                         width: 100%;
@@ -463,15 +466,15 @@
 .sharedModalClose {
     width: 600px;
 
-    &>h1{
+    &>h1 {
         width: 100%;
         height: auto;
         display: flex;
         justify-content: space-between;
         align-items: center;
 
-        &>p{
-            &>svg{
+        &>p {
+            &>svg {
                 font-size: 25px;
                 cursor: pointer;
             }

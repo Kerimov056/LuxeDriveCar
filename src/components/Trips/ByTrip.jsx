@@ -27,6 +27,10 @@ import tripImage from "./Trips.avif";
 import { MapContainer, TileLayer, Marker, Popup, FeatureGroup } from "react-leaflet";
 import L from "leaflet";
 import { EditControl } from "react-leaflet-draw";
+import { PiCar } from "react-icons/pi";
+import { myTripCars } from "../Services/tripServices";
+import ByTripCars from "./ByTripCars";
+
 
 
 function formatDate(inputDate) {
@@ -94,7 +98,6 @@ const ByTrip = (props) => {
 
     const [copying, setCopying] = useState(false);
 
-
     const copyLink = () => {
         setCopying(true);
         const currentURL = window.location.href;
@@ -128,6 +131,11 @@ const ByTrip = (props) => {
         setSharedUserModal(!sharedUserModal);
     }
 
+    const [tripCar, setTripCar] = useState(false);
+    function TripCars() {
+        setTripCar(!tripCar);
+    }
+
     const [showModal, setShowModal] = useState(false);
     function closeModal() {
         setShowModal(!showModal);
@@ -151,6 +159,11 @@ const ByTrip = (props) => {
     const { data: byTrip } = useQuery(["trip", markaLocation], () =>
         getByTrip(markaLocation)
     );
+
+    //-------- shareTripCars
+    const { data: shareTripCars } = useQuery('getAllCarTrip', () => myTripCars(markaLocation ? markaLocation : ''));
+    // --------
+    console.log("shareTripCars", shareTripCars);
 
     //-------- shareTripAll
     const { data: shareTripAll } = useQuery('getAllShareTrip', () => getAllShareTrip(markaLocation ? markaLocation : ''));
@@ -215,11 +228,11 @@ const ByTrip = (props) => {
             formData.append('AppUserId', appuserid ? appuserid : '');
 
 
-            console.log(formData.getAll("Email"));
-            console.log(formData.getAll("Message"));
-            console.log(formData.getAll("TripRole"));
-            console.log(formData.getAll("TripId"));
-            console.log(formData.getAll("AppUserId"));
+            // console.log(formData.getAll("Email"));
+            // console.log(formData.getAll("Message"));
+            // console.log(formData.getAll("TripRole"));
+            // console.log(formData.getAll("TripId"));
+            // console.log(formData.getAll("AppUserId"));
 
 
             const response = await axios.post('https://localhost:7152/api/ShareTrips', formData, {
@@ -402,6 +415,23 @@ const ByTrip = (props) => {
 
     return (
         <>
+
+
+            <Modal
+                isOpen={tripCar}
+                onRequestClose={TripCars}
+                style={customStyles}
+                contentLabel="Example Modal"
+            >
+                <div>
+                    <ByTripCars
+                        img={`data:image/jpeg;base64,${shareTripCars?.data?.carImages[0]?.imagePath}`}
+                        marka={shareTripCars?.data?.marka}
+                        model={shareTripCars?.data?.model}
+                        Id={shareTripCars?.data?.id} />
+                </div>
+            </Modal>
+
 
             <Modal
                 isOpen={removeModal}
@@ -602,6 +632,7 @@ const ByTrip = (props) => {
                             <div className='ByTrip_Text_Main_1'>
                                 <div><Button>{"<"} Your Trips</Button></div>
                                 <div className='ByTrip_Text_Main_1_Bt2'>
+                                    <Button onClick={TripCars} id='PiCar'><PiCar /></Button>
                                     {(showHtml || myTrip) && (
                                         <Button onClick={closeModal}><RiUserShared2Line />Share</Button>
                                     )}
@@ -664,9 +695,6 @@ const ByTrip = (props) => {
                                         </div>
                                     )}
                                     <div className='AddNote_LocationB'>
-                                        {/* <div><ImLocation />
-                                            <input placeholder=' Add location' />
-                                        </div> */}
                                     </div>
                                 </div>
                             </div>
