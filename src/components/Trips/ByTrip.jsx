@@ -21,7 +21,7 @@ import { AiFillCloseCircle, AiOutlineLink } from "react-icons/ai";
 import { getAllShareContirbuter, getAllShareTrip, updateShareTrip } from "../Services/shareTripServices";
 import Search from "./Search";
 import Unsplash from './Unsplash';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import tripImage from "./Trips.avif";
 import { MapContainer, TileLayer, Marker, Popup, FeatureGroup } from "react-leaflet";
@@ -80,6 +80,9 @@ L.Icon.Default.mergeOptions({
 const currentDateTime = new Date().toISOString().slice(0, 16);
 
 const ByTrip = (props) => {
+    const notify = () => toast("We accepted your e-mail");
+
+    //-----------------------------------
     const mapRef = useRef();
     const { appuserid, username, email } = useSelector((x) => x.authReducer);
 
@@ -210,6 +213,14 @@ const ByTrip = (props) => {
             formData.append('TripRole', tripRole === 0 ? 0 : 1);
             formData.append('TripId', byTrip?.data?.id ? byTrip?.data?.id : '');
             formData.append('AppUserId', appuserid ? appuserid : '');
+
+
+            console.log(formData.getAll("Email"));
+            console.log(formData.getAll("Message"));
+            console.log(formData.getAll("TripRole"));
+            console.log(formData.getAll("TripId"));
+            console.log(formData.getAll("AppUserId"));
+
 
             const response = await axios.post('https://localhost:7152/api/ShareTrips', formData, {
                 headers: {
@@ -383,7 +394,11 @@ const ByTrip = (props) => {
     // });
 
     //------------------------------------------------
-    const [center, setCenter] = useState({ lat: byTrip?.data?.tripLatitude, lng: byTrip?.data?.tripLatitude});
+    const [center, setCenter] = useState({ lat: byTrip?.data?.tripLatitude, lng: byTrip?.data?.tripLatitude });
+
+    const getFirstCharacter = (email) => {
+        return email.charAt(0).toUpperCase();
+    }
 
     return (
         <>
@@ -412,7 +427,7 @@ const ByTrip = (props) => {
                 style={customStyles}
                 contentLabel="Example Modal"
             >
-                <div style={{ height: "auto" }} className='TrueAccess'>
+                <div style={{ height: "auto", zIndex: 999 }} className='TrueAccess'>
                     <div className='onCloceSuc'>
                         <h1 style={{ marginLeft: "570px" }}><AiFillCloseCircle onClick={editClose} /></h1>
                     </div>
@@ -529,8 +544,8 @@ const ByTrip = (props) => {
                                             }}
                                             defaultValue='0'
                                         >
-                                            <option value='0'>View only</option>
-                                            <option value='1'>Can Edit</option>
+                                            <option value='0'>Can Edit</option>
+                                            <option value='1'>View Only</option>
                                         </Select>
                                     </div>
                                 </div>
@@ -542,7 +557,7 @@ const ByTrip = (props) => {
                                     value={shareFormik.values.Message} />
                             </div>
                             <div className='ShareByTrip_2_3'>
-                                <Button type='submit' >Invite</Button>
+                                <Button onClick={notify} type='submit' >Invite</Button>
                             </div>
                         </form>
                     </div>
@@ -563,7 +578,7 @@ const ByTrip = (props) => {
                     <h1><p></p><p><AiFillCloseCircle onClick={sharedModalClose} /></p></h1>
                     {shareTripAll?.data?.map((byShare) => (
                         <div id='setSharedUser'>
-                            <div><Button>ME</Button> <span>{byShare?.email} </span></div>
+                            <div><Button>{getFirstCharacter(byShare?.email)}</Button> <span>{byShare?.email} </span></div>
                             <div>
                                 <Select id='UpdatDegreeTrip'>
                                     <option value='option1'>{byShare?.tripRole === 0 ? "Can Edit" : "View Only"}</option>
@@ -676,6 +691,19 @@ const ByTrip = (props) => {
                         </Marker>
                     </MapContainer>
                 </div>
+                <ToastContainer
+                    position="top-center"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    style={{ width: "500px", textAlign: "center" }}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
+                />
             </div>
         </>
     )

@@ -22,6 +22,7 @@ import axios from 'axios';
 import Modal from 'react-modal';
 import { AiFillCloseCircle } from "react-icons/ai";
 
+
 import {
   Button,
   Input,
@@ -171,7 +172,6 @@ const Home = ({ color, onNavStateChange }) => {
         const data = await response.json();
         setCompaignData(data);
       } catch (error) {
-        console.error('Error fetching data:', error);
       }
     };
 
