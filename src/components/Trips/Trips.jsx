@@ -127,6 +127,17 @@ const Trips = () => {
             formData.append('TripLongitude', locationMap.lng ? locationMap.lng : '');
             formData.append('AppUserId', values.AppUserId);
 
+
+            // console.log(formData.getAll("Image"));
+            // console.log(formData.getAll("Destination"));
+            // console.log(formData.getAll("Name"));
+            // console.log(formData.getAll("Image"));
+            // console.log(formData.getAll("StartDate"));
+            // console.log(formData.getAll("EndDate"));
+            // console.log(formData.getAll("TripLatitude"));
+            // console.log(formData.getAll("TripLongitude"));
+            // console.log(formData.getAll("AppUserId"));
+
             const response = await axios.post('https://localhost:7152/api/Trips', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
