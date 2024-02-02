@@ -690,7 +690,7 @@ const ByTrip = (props) => {
                                                     onChange={formik.handleChange}
                                                     value={formik.values.Comment}
                                                     placeholder='  Where will you eat ? What will you see? Type + to add places' />
-                                                <Button style={{ marginTop: "10px" }} type='submit'>Add note</Button>
+                                                <Button style={{ marginTop: "10px", backgroundColor: 'rgb(26, 204, 254)' }} type='submit'>Add note</Button>
                                             </form>
                                         </div>
                                     )}

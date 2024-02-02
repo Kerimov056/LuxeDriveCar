@@ -19,7 +19,7 @@
             justify-content: space-between;
             align-items: center;
 
-            &>button{
+            &>button {
                 background-color: none;
                 font-size: 29px;
             }
@@ -28,7 +28,7 @@
         &>p {
             width: 100%;
             height: auto;
-            color: rgba(248, 241, 241, 0.893);
+            color: rgba(0, 0, 0, 0.893);
         }
 
         &>h1 {
@@ -37,11 +37,11 @@
             display: flex;
             align-items: center;
 
-            &>svg{
+            &>svg {
                 margin-right: 10px;
             }
 
-            &>span{
+            &>span {
                 margin-left: 18px;
             }
         }
@@ -49,34 +49,34 @@
 }
 
 
-.dropdown-content{
+.dropdown-content {
     display: flex;
     flex-direction: column;
 
-    #tripNoteRemove{
+    #tripNoteRemove {
         color: red;
         text-decoration: underline;
     }
 
-    #tripNoteEdit{
-        color: yellow;
+    #tripNoteEdit {
+        color: rgb(45, 134, 190);
         text-decoration: underline;
     }
 }
 
 
 
-.EditTripNoteA{
+.EditTripNoteA {
 
-    .editThisTripNote{
+    .editThisTripNote {
         width: 600px;
         max-height: 40px;
     }
 }
 
-#editButtun{
+#editButtun {
     margin-top: 10px;
-    width: 600px;    
+    width: 600px;
     background-color: rgb(6, 55, 76);
     color: rgb(19, 75, 132);
     margin-bottom: 10px;

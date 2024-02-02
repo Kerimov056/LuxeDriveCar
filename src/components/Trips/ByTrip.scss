@@ -19,6 +19,7 @@
                 width: 100%;
                 height: 30%;
                 border-bottom: 1px solid rgb(81, 194, 255);
+                // background-color: rgba(18, 16, 17, 0.8);
 
                 .ByTrip_Text_Main_1 {
                     width: 100%;
@@ -78,11 +79,11 @@
 
                         &>h1 {
                             font-size: 30px;
-                            color: rgba(255, 255, 255, 0.936);
+                            color: rgba(0, 0, 0, 0.744);
                         }
 
                         &>h2 {
-                            color: rgba(255, 255, 255, 0.744);
+                            color: rgba(0, 0, 0, 0.744);
                         }
                     }
                 }
@@ -103,6 +104,7 @@
             .ByTrip_Text_hed {
                 width: 100%;
                 height: 66%;
+                // background-color: rgba(59, 59, 59, 0.8);
 
                 .ByTrip_Text_hed_main {
                     margin-top: 30px;

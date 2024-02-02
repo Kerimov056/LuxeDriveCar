@@ -53,9 +53,9 @@ const RespnseCars = (props) => {
                 </div>
                 <div className='RespnseCarsCard_Desc'>
                     <div className='RespnseCarsCard_Desc1'>
-                        <h1>{props.marka} {props.model}</h1>
-                        <h2>{props.category}</h2>
-                        <h2>Address: {processedAddress}</h2>
+                        <h1 style={{color:'white'}}>{props.marka} {props.model}</h1>
+                        <h2 style={{color:'white'}}>{props.category}</h2>
+                        <h2 style={{color:'white'}}>Address: {processedAddress}</h2>
 
                     </div>
                     </div>
@@ -63,9 +63,9 @@ const RespnseCars = (props) => {
                     <div className='BossPrs'></div>
                     <div className='RespnseCarsCard_PriceCenter'>
                         <div>
-                            <p>LuxeDrive.com</p>
-                            <h2>${props.campaignsPrice ? props.campaignsPrice : props.price}</h2>
-                            <p>Total</p>
+                            <p style={{color:'white'}}>LuxeDrive.com</p>
+                            <h2 style={{color:'white'}}>${props.campaignsPrice ? props.campaignsPrice : props.price}</h2>
+                            <p style={{color:'white'}}>Total</p>
                             <Button><Link to={`/CarDetail/${props.Id}`}>View Deal</Link></Button>
                         </div>
                     </div>

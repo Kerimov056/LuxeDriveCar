@@ -1,0 +1,86 @@
+{
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@chakra-ui/react": "^2.8.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@microsoft/signalr": "^7.0.10",
+    "@react-google-maps/api": "^2.19.2",
+    "@react-oauth/google": "^0.11.1",
+    "@reduxjs/toolkit": "^1.9.5",
+    "@stripe/react-stripe-js": "^2.3.0",
+    "@stripe/stripe-js": "^2.1.5",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "aos": "^2.3.4",
+    "axios": "^1.4.0",
+    "bootstrap": "^5.3.1",
+    "formik": "^2.4.3",
+    "framer-motion": "^10.15.1",
+    "gapi-script": "^1.2.0",
+    "jwt-decode": "^3.1.2",
+    "leaflet": "^1.9.4",
+    "leaflet-draw": "^1.0.4",
+    "react": "^18.2.0",
+    "react-360-view": "^0.1.3",
+    "react-accessible-accordion": "^5.0.0",
+    "react-cursor-zoom": "^1.3.0",
+    "react-dom": "^18.2.0",
+    "react-google-login": "^5.2.2",
+    "react-google-recaptcha": "^3.1.0",
+    "react-icons": "^4.10.1",
+    "react-image-zoom": "^1.3.1",
+    "react-img-zoom-afork": "^0.1.0",
+    "react-leaflet": "^4.2.1",
+    "react-leaflet-draw": "^0.20.4",
+    "react-loader-spinner": "^5.4.5",
+    "react-medium-image-zoom": "^5.1.8",
+    "react-modal": "^3.16.1",
+    "react-query": "^3.39.3",
+    "react-redux": "^8.1.2",
+    "react-router-dom": "^6.4.4",
+    "react-scripts": "^5.0.1",
+    "react-select-async-paginate": "^0.7.3",
+    "react-slick": "^0.29.0",
+    "react-social-login": "^3.4.17",
+    "react-spring": "^9.7.2",
+    "react-stripe-elements": "^6.1.2",
+    "react-toastify": "^9.1.3",
+    "reactjs-popup": "^2.0.5",
+    "redux-persist": "^6.0.0",
+    "sass": "^1.64.2",
+    "scss": "^0.2.4",
+    "slick-carousel": "^1.8.1",
+    "swal": "^0.1.0",
+    "sweetalert2": "^11.6.13",
+    "web-vitals": "^2.1.4",
+    "yup": "^1.2.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

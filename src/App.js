@@ -27,6 +27,7 @@ import ByTrip from "./components/Trips/ByTrip";
 import Communication from "./components/Communication/Communication";
 import RentalConditions from "./components/RentalConditions/RentalConditions";
 import { useDispatch, useSelector } from 'react-redux';
+import MusicApiTest from './MusicApiTest';
 // import { Elements } from "@stripe/react-stripe-js";
 // import { loadStripe } from "@stripe/stripe-js";
 // import StaticMap from "./components/Map/StaticMap"
@@ -49,6 +50,7 @@ function App() {
         {/* <Elements stripe={stripePromise} options={options}> */}
         <Router>
           <Routes>
+            {/* <Route path='/' element={<MusicApiTest />} /> */}
             <Route path='/' element={<Home />} />
             <Route path='*' element={<NotFound />} />
             <Route path='/AboutUs' element={<AboutUs />} />

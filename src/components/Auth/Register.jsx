@@ -2,59 +2,37 @@ import React, { Fragment, useState } from 'react';
 import './register.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useMutation } from 'react-query'
 import { useFormik } from 'formik';
 import { Input, Text, Button, FormControl } from '@chakra-ui/react'
 import registerSchema from '../Validators/registerSchema'
 import { GrPrevious } from "react-icons/gr";
 import { FcGoogle } from "react-icons/fc";
 import { BsApple } from "react-icons/bs";
-import ReCAPTCHA from 'react-google-recaptcha';
-import { register } from "../Services/authServices";
 
 const Register = () => {
 
-    const [token, setToken] = useState('');
-
-    const onCaptchaLoad = () => {
-        console.log('reCAPTCHA yüklendi');
-    }
-
-    const onCaptchaVerify = (recaptchaToken) => {
-        console.log('reCAPTCHA doğrulandi:', recaptchaToken);
-        setToken(recaptchaToken);
-    }
-
-
-
     const history = useNavigate();
-
-    const [selectedDate, setSelectedDate] = useState('')
-
-    const handleDateChange = (e) => {
-        setSelectedDate(e.target.value);
-    };
-
-    const { mutate, isLoading } = useMutation((values) => register(values), {
-        onSuccess: (resp) => {
-          history('/Login');
-          history.push('/Login');
-        },
-      });
-    
-
 
     const formik = useFormik({
         initialValues: {
             Fullname: '',
             Username: '',
             Email: '',
-            password: '',
+            password: ''
         },
+        // validationSchema: registerSchema,
+
         onSubmit: async (values) => {
-            mutate(values);
-        },
-        validationSchema: registerSchema,
+            const url = `https://localhost:7152/api/Auth/register`;
+            axios.post(url, values).then((result) => {
+                alert(result.values)
+                history('/Login');
+                history.push('/Login');
+            }).catch((error) => {
+                alert(error)
+            })
+
+        }
     })
 
 
@@ -91,6 +69,7 @@ const Register = () => {
                                 placeholder='Here is a sample placeholder'
                                 size='sm'
                             />
+
                             <label htmlFor="Email">Email</label>
                             <Text>
                                 {formik.touched.Email && formik.errors.Email}
@@ -111,38 +90,16 @@ const Register = () => {
                             <Input
                                 isInvalid={formik.errors.password && formik.touched.password}
                                 name='password'
-                                type='password'
                                 value={formik.values.password}
                                 onChange={formik.handleChange}
                                 placeholder='Here is a sample placeholder'
                                 size='sm'
                             />
-                            <label>Date of birth</label>
-                            {/* <Input
-                                placeholder="Select Date and Time"
-                                size="2md"
-                                type="datetime-local"
-                                value={selectedDate}
-                                onChange={handleDateChange}
-                                style={{
-                                    borderTop: "none",
-                                    borderRight: "none",
-                                    borderLeft: "none",
-                                    borderBottom: "1px solid white",
-                                }}
-                            /> */}
-                            {/* <ReCAPTCHA
-                                sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-                                render="explicit"
-                                onloadCallback={onCaptchaLoad}
-                                verifyCallback={onCaptchaVerify}
-                                data-theme="dark light"
-                                style={{marginLeft:"40px",marginTop:"14px"}}
-                            /> */}
+
                             <Button type='submit' onClick={formik.handleSubmit}>Register</Button>
                             <div className='GoogleAndAppleRegister'>
-                                <button className='GoogleRegister'><FcGoogle /> Google</button>
-                                <button className='AppleRegister'><BsApple />Apple</button>
+                                <button className='GoogleRegister'><FcGoogle/> Google</button>
+                                <button className='AppleRegister'><BsApple/>Apple</button>
                             </div>
                             <Link to={"/Login"}><Button><GrPrevious />Login</Button></Link>
                         </FormControl>
@@ -154,6 +111,5 @@ const Register = () => {
 };
 
 export default Register;
-
 
 

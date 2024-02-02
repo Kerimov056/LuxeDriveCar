@@ -167,16 +167,16 @@ const FindCarQuickly = () => {
                         </div>
                         <div className='ACArFilterRight'>
                             <div>
-                                <Select variant='flushed' placeholder='All Marka' value={selectedMarka} onChange={handleMarkaChange}>
+                                <Select style={{color:'white', marginLeft:'-20px'}} variant='flushed' placeholder='All Marka' value={selectedMarka} onChange={handleMarkaChange}>
                                     {allMarka?.data?.map((byMarka, index) => (
-                                        <option value={byMarka} key={index}>{byMarka}</option>
+                                        <option style={{color:'black'}} value={byMarka} key={index}>{byMarka}</option>
                                     ))}
                                 </Select>
                             </div>
                             <div>
-                                <Select variant='flushed' placeholder='All Model' value={selectedModel} onChange={handleModelChange}>
+                                <Select style={{color:'white', marginLeft:'10px'}} variant='flushed' placeholder='All Model' value={selectedModel} onChange={handleModelChange}>
                                     {allModel?.data?.map((byModel, index) => (
-                                        <option value={byModel} key={index}>{byModel}</option>
+                                        <option style={{color:'black'}} value={byModel} key={index}>{byModel}</option>
                                     ))}
                                 </Select>
                             </div>

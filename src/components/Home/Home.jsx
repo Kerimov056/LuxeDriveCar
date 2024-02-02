@@ -213,38 +213,36 @@ const Home = ({ color, onNavStateChange }) => {
   const { appuserid } = useSelector((x) => x.authReducer);
 
 
-  const [oneUsing, setOneUsing] = useState(null);
+  const [oneUsing, setOneUsing] = useState(false);
   const [carGameAccess, setCarGameAccess] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
 
   useEffect(() => {
-    axios.get(`https://localhost:7152/api/GameCars/GetByGame?AppUserId=${appuserid}`)
+    axios.get(`https://localhost:7152/api/GameCars/GetByGameAccess?AppUserId=${appuserid}`)
       .then(response => {
         setCarGameAccess(response?.data);
-        if (response?.data === true) {
+        if (response?.data === false) {
           setOneUsing(true);
         }
       })
       .catch(error => {
-      });
-  }, []);
-
-
-
-  useEffect(() => {
-    axios.get(`https://localhost:7152/api/CarReservations/CarFindGameUserAccess?AppUserId=${appuserid}`)
-      .then(response => {
-        setCarGameAccess(response?.data);
-        if (response?.data === true) {
-          if (oneUsing?.data === null) {
-            setShowModal(true);
-          }
-        }
       })
-      .catch(error => {
+      .finally(() => {
+        axios.get(`https://localhost:7152/api/CarReservations/CarFindGameUserAccess?AppUserId=${appuserid}`)
+          .then(response => {
+            setCarGameAccess(response?.data);
+            if (response?.data === true) {
+              if (oneUsing === true) {
+                setShowModal(true);
+              }
+            }
+          })
+          .catch(error => {
+          });
       });
-  }, []);
+  }, [appuserid, oneUsing]); 
+
 
   const [gameEnter, setGameEnter] = useState(false);
 
@@ -254,12 +252,13 @@ const Home = ({ color, onNavStateChange }) => {
   }
   function gameEnterAccess() {
     setGameEnter(true);
+    setShowModal(false)
   }
 
   return (
     <>
 
-      {gameEnter === false &&
+      {showModal === true &&
         <Modal
           isOpen={showModal}
           // onRequestClose={closeModal}
@@ -426,9 +425,9 @@ const Home = ({ color, onNavStateChange }) => {
           ))}
         </div>
         <div className='FindCityCar'>
-          <div><h1>Find your car by country</h1></div>
+          <div><h1 style={{color:'white'}}>Find your car by country</h1></div>
           <div className='inputCountryHome'>
-            <Input onChange={handleInputChange} placeholder='search...'></Input>
+            <Input style={{color:'white'}} onChange={handleInputChange} placeholder='search...'></Input>
             <Button>
               <Link to={`/FindCarQuickly/${searchCity}`}>
                 <FiSearch />

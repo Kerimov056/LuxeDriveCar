@@ -28,6 +28,8 @@ import ChauffeursCard from '../Chauffeurs/ChauffeursCard';
 import { getChauffeurs } from "../Services/chauffeursServices";
 import Modal from 'react-modal';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 //---LeafLet
 import L from "leaflet";
 import 'leaflet/dist/leaflet.css';
@@ -39,9 +41,6 @@ import reservationScheme from "../Validators/ReservationScheme";
 import { BsFillBookmarkHeartFill } from "react-icons/bs";
 import { PostCarWishlist } from "../Services/wishlistServices";
 import ThreeSixty from 'react-360-view'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 
 
 const CountdownTimer = ({ targetDate }) => {
@@ -119,9 +118,6 @@ const CarDetail = () => {
     // const tomorrowDateString = tomorrow.toISOString().slice(0, 10);
     // console.log(tomorrowDateString);
     //---------leaflet
-
-    const notify = () => toast("Cart Added");
-
 
     const [center, setCenter] = useState({ lat: 40.4093, lng: 49.8671 });
     const mapRef = useRef();
@@ -411,7 +407,6 @@ const CarDetail = () => {
                 if (response.status === 201) {
                     queryClient.invalidateQueries('getReservation');
                     navigate('/MyProfile');
-                    notify();
                 }
 
             } catch (error) {
@@ -448,8 +443,7 @@ const CarDetail = () => {
 
         fetchAllCompaign();
     }, []);  
-
-
+//d205e6aece7c483c932e08dbb8879562
     const [isClicked, setIsClicked] = useState(false);
 
 
@@ -745,7 +739,7 @@ const CarDetail = () => {
                                                 size='sm'
                                             />
                                             {token !== null &&
-                                                <Button  type='submit'>Order</Button>
+                                                <Button type='submit'>Order</Button>
                                             }
                                             {token === null &&
                                                 <Link to={'/Login'} ><Button>Order</Button></Link>
