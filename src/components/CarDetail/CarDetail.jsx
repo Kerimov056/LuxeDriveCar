@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Navbar from '../Navbar/Navbar';
 import './CarDetail.scss'
-import CursorZoom from 'react-cursor-zoom';
+// import CursorZoom from 'react-cursor-zoom';
 import {
     AlertDialog,
     AlertDialogBody,
@@ -509,7 +509,7 @@ const CarDetail = () => {
                     <div>
                         <div className='CarD'>
                             <div className='CarImg'>
-                                <div className='mainImg'>
+                                {/* <div className='mainImg'>
                                     <CursorZoom
                                         image={{
                                             src: `data:image/png;base64,${byCars?.data?.carImages[0]?.imagePath}`,
@@ -523,7 +523,7 @@ const CarDetail = () => {
                                         }}
                                         cursorOffset={{ x: 180, y: 0 }}
                                     />
-                                </div>
+                                </div> */}
                                 <div className='SecImg'>
                                     <AlertDialog
                                         isOpen={isOpen}
